@@ -13,10 +13,11 @@ TXT_FIC_LISTING_PATH = '/home/maria/Documents/TFG/txt_fic_paths.txt'
 ### FUNCTIONS ###
 
 def ie_preprocess(document): #divide raw text into words and tag them	
-	sentences = nltk.sent_tokenize(document) #sentence segmentation
-	sentences = [nltk.word_tokenize(sent) for sent in sentences] #tokenization
-	sentences = [nltk.pos_tag(sent) for sent in sentences] #POS tagging
-	
+	#sentences = nltk.sent_tokenize(document) #sentence segmentation
+	#sentences = [word_tokenize(sent) for sent in sentences] #tokenization	
+	#sentences = [pos_tag(sent) for sent in sentences] #POS tagging
+
+	sentences = pos_tag(word_tokenize(document))
 	return sentences
 
 def get_processed_fanfics(): #gets the paths to the fics, opens them
@@ -35,19 +36,14 @@ def get_processed_fanfics(): #gets the paths to the fics, opens them
 		fic_text=fic_text+txt_file.read()
 		txt_file.close()
 
-	preprocessed_fics = ie_preprocess(fic_text)
+	fic_text = ie_preprocess(fic_text)
 
-	return preprocessed_fics
+	return fic_text
 
 		
 ### Open and get text from txt file
 proc_fic_text = get_processed_fanfics()
-f=open('/home/maria/Documents/TFG/TFG_fics/txt/BlessedCursed_Retirement_train.txt', 'r')
-fic_text=f.read()
-f.close()
-
-proc_fic_text=ie_preprocess(fic_text)
-print(len(proc_fic_text))
+#proc_fic_text=pos_tag(word_tokenize(proc_fic_text)) #debug
 
 ### NER chunking ###
 result=nltk.ne_chunk(proc_fic_text) #Entity extraction
@@ -64,26 +60,6 @@ gpes=[] #Store entities tagged 'GPE' Here
 facilities=[] #Store entities tagged 'FACILITY' Here
 
 for chunk in result.pos(): #result.pos() returns the leaves of the tree with their tags
-	
-	if chunk[1] == 'PERSON' and chunk[0][0] not in people:
-		#print(chunk[0],chunk[1]) #debug
-		people.append(chunk[0][0])
-
-	elif chunk[1] == 'LOCATION' and chunk[0][0] not in locations:
-		locations.append(chunk[0][0])
-
-	elif chunk[1] == 'ORGANIZATION' and chunk[0][0] not in organizations:
-		organizations.append(chunk[0][0])
-
-	elif chunk[1] == 'DATE' and chunk[0][0] not in dates:
-		dates.append(chunk[0][0])
-
-	elif chunk[1] == 'GPE' and chunk[0][0] not in gpes:
-		gpes.append(chunk[0][0])
-
-	elif chunk[1] == 'FACILITY'and chunk[0][0] not in facilities:
-		facilities.append(chunk[0][0])
-	"""
 	if chunk[1] == 'PERSON':
 		#print(chunk[0],chunk[1]) #debug
 		people.append(chunk[0][0])
@@ -102,15 +78,15 @@ for chunk in result.pos(): #result.pos() returns the leaves of the tree with the
 
 	elif chunk[1] == 'FACILITY':
 		facilities.append(chunk[0][0])
-	"""
+	
 
 entities=people+locations+organizations+dates+gpes+facilities
-print('PEOPLE: \n', people)
-print('LOCATIONS: \n', locations)
-print('ORGANIZATIONS: \n', organizations)
-print('DATES: \n', dates)
-print('GPES: \n', gpes)
-print('FACILITIES: \n', facilities)
+print('PEOPLE: \n', sorted(set(people)))
+print('LOCATIONS: \n', sorted(set(locations)))
+print('ORGANIZATIONS: \n', sorted(set(organizations)))
+print('DATES: \n', sorted(set(dates)))
+print('GPES: \n', sorted(set(gpes)))
+print('FACILITIES: \n', sorted(set(facilities)))
 
 
 aux=open('./output.txt','w')

@@ -25,10 +25,11 @@ megam.config_megam('/home/maria/Downloads/megam_0.92/megam')
 ### FUNCTIONS ###
 
 def ie_preprocess(document):	#divide raw text into words and tag them
-	sentences = nltk.sent_tokenize(document) #sentence segmentation
-	sentences = [nltk.word_tokenize(sent) for sent in sentences] #tokenization
-	sentences = [nltk.pos_tag(sent) for sent in sentences] #POS tagging
+	#sentences = nltk.sent_tokenize(document) #sentence segmentation
+	#sentences = [nltk.word_tokenize(sent) for sent in sentences] #tokenization
+	#sentences = [nltk.pos_tag(sent) for sent in sentences] #POS tagging
 	
+	sentences = pos_tag(word_tokenize(document))
 	return sentences
 """
 def get_train_fanfics():
@@ -65,10 +66,6 @@ NER_chunker = NERChunker(train_sents)
 end = time.time()
 print('NER chunker (',(end-start)/60,'mins) \n',NER_chunker.evaluate(test_sents))
 
-### What has the chunker learnt?
-postags = sorted(set(pos for sent in train_sents
-                     for (word, pos) in sent.leaves()))
-print('The chunker has learnt:\n',NER_chunker.tagger.tag(postags))
 ### Take our chunker for a spin
 
 trial = NER_chunker.parse(pos_tag(word_tokenize('Una comunidad hospitalaria en medio del desierto, en donde el sol calienta, la luna es preciosa, y luces misteriosas sobrevuelan nuestras cabezas mientras todos fingimos estar durmiendo. Bienvenidos a Night Vale')))
@@ -84,6 +81,13 @@ trial = NER_chunker.parse(pos_tag(word_tokenize('Este lunes viajo a Alemania')))
 print('Alemania sentence:\n', trial)
 
 """
+### What has the chunker learnt?
+postags = sorted(set(pos for sent in train_sents
+                     for (word, pos) in sent.leaves()))
+print('The chunker has learnt:\n',NER_chunker.tagger.tag(postags))
+
+
+
 f = open('/home/maria/Documents/TFG/TFG_fics/txt/BlessedCursed_Retirement_train.txt', 'r')
 
 text_sents = ie_preprocess(f.read())
