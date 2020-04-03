@@ -4,6 +4,8 @@ import string, re
 import nltk
 #from nltk.corpus import conll2000
 from nltk.stem.snowball import SnowballStemmer
+from nltk.tag import ClassifierBasedTagger
+from collections import Iterable
 
 def word_shape(word):
 	shape = 'other'
@@ -117,10 +119,40 @@ class NERTagger(nltk.TaggerI):
 		return zip(sentence, history)
 
 
-class NERChunker(nltk.ChunkParserI):
+class NERChunkerv3(nltk.ChunkParserI):
 	def __init__(self, train_sents):
-		tagged_sents = [[((w,t,),c) for (w,t,c) in nltk.chunk.tree2conlltags(sent)]
-                               for sent in train_sents]
+		tagged_sents = [((w,t),c) for (w,t,c) in train_sents]#transform sentences to a shape that can be understood to the tagger
+		self.tagger=NERTagger(tagged_sents)
+
+	def parse(self, sentence):
+		tagged_sents = self.tagger.tag(sentence)
+		conlltags = [(w,t,c) for ((w,t),c) in tagged_sents]
+
+		return nltk.chunk.conlltags2tree(conlltags)
+
+
+class NERChunkerv2(nltk.ChunkParserI):
+	def __init__(self, train_sents, **kwargs):
+		assert isinstance(train_sents, Iterable)
+		tagged_sents = [[((w,t),c) for (w,t,c) in
+                                 nltk.chunk.tree2conlltags(sent)]
+                                 for sent in train_sents] #transform sentences to a shape that can be understood to the tagger
+
+		self.feature_detector = feature_function
+		self.tagger = ClassifierBasedTagger(train=tagged_sents, feature_detector=feature_function, **kwargs)
+
+	def parse(self, sentence):
+		tagged_sents = self.tagger.tag(sentence)
+		conlltags = [(w,t,c) for ((w,t),c) in tagged_sents]
+
+		return nltk.chunk.conlltags2tree(conlltags)
+
+
+class NERChunkerv1(nltk.ChunkParserI):
+	def __init__(self, train_sents):
+		tagged_sents = [[((w,t,),c) for (w,t,c) in                        nltk.chunk.tree2conlltags(sent)]
+                               for sent in train_sents]#transform sentences to a shape that can be understood to the tagger
+
 
 		self.tagger=NERTagger(tagged_sents)
 
