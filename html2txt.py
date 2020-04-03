@@ -3,7 +3,7 @@
 from bs4 import BeautifulSoup
 
 ### VARIABLES ###
-HTML_FIC_LISTING_PATH='/home/maria/Documents/TFG/html_fic_paths.txt'
+HTML_FIC_LISTING_PATH='/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 
 ### FUNCTIONS ###
 def cleanHTMLTags(unclean_html):	#remove HTML tags from text

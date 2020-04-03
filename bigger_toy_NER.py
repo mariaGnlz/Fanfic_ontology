@@ -92,10 +92,11 @@ train_text = get_train_fanfics()
 ### Get train and test sentences:
 tagged_sentences = get_tagged_tokens_from_csv()
 #print(tagged_sentences[0], tagged_sentences[1], tagged_sentences[2]) #debug
-print(isinstance(tagged_sentences[0], Tree)) #debug
+#print(isinstance(tagged_sentences[0], Tree)) #debug
 
-train_sents = tagged_sentences[:int(len(tagged_sentences)*0.9)]
-test_sents = tagged_sentences[int(len(tagged_sentences)*0.9):]
+train_sents = tagged_sentences[:int(len(tagged_sentences)*0.1)] #debug, tarda 18 mins
+#train_sents = tagged_sentences[:int(len(tagged_sentences)*0.9)] #aprox 4 horas
+test_sents = tagged_sentences[int(len(tagged_sentences)*0.9):] 
 
 
 ### Create and train chunker:

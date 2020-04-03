@@ -8,7 +8,7 @@ from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 
 ### VARIABLES ###
-TXT_FIC_LISTING_PATH = '/home/maria/Documents/TFG/txt_fic_paths.txt'
+TXT_FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/txt_fic_paths.txt'
 
 ### FUNCTIONS ###
 
