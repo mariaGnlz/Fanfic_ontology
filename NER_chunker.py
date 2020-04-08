@@ -31,7 +31,7 @@ def feature_function(sentence, i, history):
 	history: previous IOB tags
 	"""
 	
-	stemmer = SnowballStemmer('spanish') #must be changed to 'english' on final ver
+	stemmer = SnowballStemmer('english')
 
 	#Padding
 	sentence = [('<START2>','<START2>'),('<START1>','<START1>')] + list(sentence) + [('<END1>','<END1>'),('<END2>','<END2>')]
