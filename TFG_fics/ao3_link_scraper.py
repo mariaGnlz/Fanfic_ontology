@@ -1,7 +1,6 @@
 #!/bin/bash/python3
 
 import requests, time
-import urllib.request
 from bs4 import BeautifulSoup
 
 def check_for_text(blurb): #returns true if the fic contains at least 40 words per chapter on average
@@ -59,10 +58,12 @@ def get_work_links(page_link):
 		while True: #wait out if too many requests
 			page = requests.get(next_page_link)
 			
-			if page.status_code == 200: break
-			elif page.status_code == 429:  #Too Many Requests
+			if page.status_code == 429:  #Too Many Requests
 				print('Sleeping...')
 				time.sleep(120)
+				print('Woke up')
+
+			else: break
 
 		soup = BeautifulSoup(page.content, 'html.parser')
 
