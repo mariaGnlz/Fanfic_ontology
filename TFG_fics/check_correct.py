@@ -4,15 +4,26 @@ from bs4 import BeautifulSoup
 
 HTML_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_fics/html/'
 HTML_FIC_LISTING_PATH='/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
-DELETED_FICS = [28, 323, 448]
-#DELETED_FICS = [28, 323, 448, 2929, 3238]
+DELETED_FICS = []
 
+def get_deleted_fics():
+	f = open(HTML_FICS_PATH+'out.txt', 'r')
+	lines = [line[:-1] for line in f.readlines()]
+	f.close()
+
+	index_lines = [line.split(' ') for line in lines if lines.index(line)%2 != 0]
+	DELETED_FICS = [int(line[len(line)-1]) for line in index_lines]
+
+	return DELETED_FICS
 
 def write_out_file(link, reason, index):
 	out_file = open('./out.txt', 'a')
 	out_file.write(link+'\nReason: '+reason+' Index: '+str(index)+'\n')
 	out_file.close()
 
+
+DELETED_FICS = get_deleted_fics()
+#print(DELETED_FICS) #debug
 
 f = open(HTML_FIC_LISTING_PATH, 'r')
 downloaded_works = [line[:-1] for line in f.readlines()] #take out the \n at the end of the line

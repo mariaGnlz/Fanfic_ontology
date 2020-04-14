@@ -1,6 +1,6 @@
 #!/bin/bash/python3
 
-import requests, time
+import requests, time, sys
 import urllib.request
 from urllib.error import URLError, HTTPError, ContentTooShortError
 from bs4 import BeautifulSoup
@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 HTML_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_fics/html/'
 HTML_FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 
+### FUNCTIONS ###
 def get_work_links_from_file():
 	link_file = open('fic_work_links.txt', 'r')
 
@@ -117,15 +118,35 @@ def download_works_in_range(work_links, start, end):
 	num_fics = len((open(HTML_FIC_LISTING_PATH, 'r')).readlines())
 	return num_deleted, num_fics #return number of deleted fics and fics successfully downloaded
 
+
+### M A I N ###
+
 work_links = get_work_links_from_file()
 initial_num = len((open(HTML_FIC_LISTING_PATH, 'r')).readlines())
 
-start = time.time()
-#num_deleted, num_fics = download_works_in_range(work_links, 2000, 4000)
-num_deleted, num_fics = download_works_in_range(work_links, 451, 1000)
-#num_deleted, num_fics = download_works_in_range(work_links, 0, 20) #debug
-end = time.time()
+if len(sys.argv) == 3:
+	start_index = int(sys.argv[1])
+	end_index = int(sys.argv[2])
+	print(type(start_index), end_index) #debug
 
-print('Successfully downloaded ',(num_fics-initial_num),' fanfics in ',(end-start)/60,' minutes to '+HTML_FICS_PATH)
-print('Deleted fics: ',num_deleted)
+	start = time.time()
+	num_deleted, num_fics = download_works_in_range(work_links, start_index, end_index)
+	end = time.time()
+
+	print('Successfully downloaded ',(num_fics-initial_num),' fanfics in ',(end-start)/60,' minutes to '+HTML_FICS_PATH)
+	print('Deleted fics: ',num_deleted)
+
+elif len(sys.argv) == 1:	
+	start = time.time()
+	num_deleted, num_fics = download_works_in_range(work_links, 5147, 6000)
+	#num_deleted, num_fics = download_works_in_range(work_links, 0, 10) #debug
+	end = time.time()
+
+	print('Successfully downloaded ',(num_fics-initial_num),' fanfics in ',(end-start)/60,' minutes to '+HTML_FICS_PATH)
+	print('Deleted fics: ',num_deleted)
+
+else:
+	print('Error. Correct usage: check_correct.py OR check_correct.py [start_index] [end_index]')
+
+
 
