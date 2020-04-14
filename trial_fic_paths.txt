@@ -1,0 +1,5 @@
+/home/maria/Documents/Fanfic_ontology/TFG_trial_fics/txt/BlessedCursed_Retirement_train.txt
+/home/maria/Documents/Fanfic_ontology/TFG_trial_fics/txt/Demonology_and_the_train.txt
+/home/maria/Documents/Fanfic_ontology/TFG_trial_fics/txt/Orchestral_Manoeuvres_in_train.txt
+/home/maria/Documents/Fanfic_ontology/TFG_trial_fics/txt/Dust_Shalt_Thou_Eat_test.txt
+/home/maria/Documents/Fanfic_ontology/TFG_trial_fics/txt/So_You_Need_To_Get_Into_test.txt
