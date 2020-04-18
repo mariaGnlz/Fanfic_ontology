@@ -3,11 +3,10 @@
 
 #Toy version of an entity recognition process
 
-import nltk, re, pprint
+import nltk, re, pprint, time, pandas
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
 from toy_chunkers import UnigramChunker
-import pandas
 
 ### VARIABLES ###
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/trial_fic_paths.txt'
@@ -35,14 +34,24 @@ def get_processed_fanfics(): #gets the paths to the fics, opens them
 	#print(fic_list[0]) #debug
 	return preprocess_fics(fic_list)
 
-def save_to_csv(tagged_fics):
-	data = { 'Fic number': range(len(tagged_fics)),
-		'Sentence number': [len(fic) for fic in tagged_fics],
-	}
+def traverse(t, num_fic, num_sentence, iob_str):
+	rows = []
+	
+	for node in t:
+		if type(node) is nltk.Tree:
+			#print(node.label()) #debug
 
-	df = pandas.DataFrame(data, columns=['Fic number','Sentence number'])
+			iob_str = node.label()
+			auxrows = traverse(node, num_fic, num_sentence, iob_str)
+			rows.extend(auxrows)
+	
+		else: 
+			#print('Word: ',node) #debug
+			rows.append((num_fic, num_sentence, node[0], node[1], iob_str))
 
-	df.to_csv('toy_tags.csv', index=False)
+			iob_str = '-'
+
+	return rows
 
 def store_in_lists(tagged_sents):
 	### Store individual entities in lists ###
@@ -90,7 +99,7 @@ def store_in_lists(tagged_sents):
 	aux.close()
 
 
-### MAIN
+### M A I N ###
 		
 ### Open and get text from txt file
 processed_fics = get_processed_fanfics()
@@ -101,11 +110,40 @@ processed_fics = get_processed_fanfics()
 ### NER chunking ###
 tagged_fics = [[nltk.ne_chunk(sent) for sent in fic] for fic in processed_fics] #Entity extraction with NLTK NE chunker
 #print(tagged_fics[0]) #debug
-#print(tagged_fics[0].pos()) #debug
 
+# Create pandas dataframe to store data
+df = pandas.DataFrame(columns=['Fic number', 'Sentence number', 'Word', 'POS', 'IOB'])
 
-### Save results to a csv file
-save_to_csv(tagged_fics)
+# Loop to explore the tagged chunks in tagged_fics
+num_sentence = 0
+num_fic = 0
+
+rows = []
+start = time.time() 
+for fic in tagged_fics:
+	for sentence in fic:
+		#auxfic, auxsen, auxwords, auxpos, auxiob = traverse(sentence, count, num_fic, num_sentence)
+		auxrows = traverse(sentence, num_fic, num_sentence, '-')
+		rows.extend(auxrows)
+		
+		num_sentence+=1
+	
+	num_fic+=1
+
+end = time.time()
+
+print(num_sentence, 'sentences in ',(end-start)/60,'minutes')
+
+### Unzip the tuples into columns and save results to csv file 
+columns = list(zip(*rows))
+
+df['Fic number'] = columns[0]
+df['Sentence number'] = columns[1]
+df['Word'] = columns[2]
+df['POS'] = columns[3]
+df['IOB'] = columns[4]
+
+df.to_csv('toy_NER_tags.csv', index=False)
 
 
 #result.draw() #requires Tkinter library
