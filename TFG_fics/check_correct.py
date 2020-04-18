@@ -7,7 +7,7 @@ HTML_FIC_LISTING_PATH='/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 DELETED_FICS = []
 
 def get_deleted_fics():
-	f = open(HTML_FICS_PATH+'out.txt', 'r')
+	f = open(HTML_FICS_PATH+'deleted.txt', 'r')
 	lines = [line[:-1] for line in f.readlines()]
 	f.close()
 

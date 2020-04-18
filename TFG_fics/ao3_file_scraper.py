@@ -19,7 +19,7 @@ def get_work_links_from_file():
 	return work_links 
 
 def write_out_file(link, reason, index):
-	out_file = open(HTML_FICS_PATH+'out.txt', 'a')
+	out_file = open(HTML_FICS_PATH+'deleted.txt', 'a')
 	out_file.write(link+'\nReason: '+reason+' Index: '+str(index)+'\n')
 	out_file.close()
 
