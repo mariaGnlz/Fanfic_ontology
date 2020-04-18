@@ -3,7 +3,7 @@
 
 #Bigger toy version of an entity recognition process
 
-import nltk, re, pprint, time
+import nltk, re, pprint, time, pickle
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 from nltk.tree import Tree
@@ -104,6 +104,7 @@ start = time.time()
 NER_chunker = NERChunkerv1(train_sents)
 end = time.time()
 
+
 ### Take our chunker for a spin
 
 trial = NER_chunker.parse(pos_tag(word_tokenize('A friendly dessert community where the sun is hot, the moon is beautiful, and misterious lights pass overhead while we all pretend to sleep. Welcome to Night Vale')))
@@ -120,6 +121,13 @@ print('Travel sentence:\n', trial)
 
 print('NER chunker (',(end-start)/60,'mins) \n',NER_chunker.evaluate(test_sents))
 
+
+### Store trained chunker for later use
+f = open('bigger_toy_NER.pickle','wb')
+pickle.dump(NER_chunker, f)
+f.close()
+
+print('NER_chunker successfully pickled')
 
 
 """
