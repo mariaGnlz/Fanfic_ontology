@@ -163,7 +163,7 @@ def save_to_csv(fic_list):
 		df['POS'] = columns[3]
 		df['IOB'] = columns[4]
 
-		df.to_csv('POS_tags.csv', mode='w', index=False)
+		df.to_csv('POS_tags.csv', mode='a', index=False)
 	
 	else:
 		print('Ocurrió algún problema procesando el fic ',num_fic)
