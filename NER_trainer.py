@@ -6,7 +6,6 @@
 import nltk, re, pprint, time, pickle, pandas
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
-#from nltk.tree import Tree
 from nltk.classify import megam
 from NER_chunker import NERChunkerv1
 
@@ -60,13 +59,14 @@ tagged_sentences = get_tagged_tokens_from_csv()
 
 #train_sents = tagged_sentences[:int(len(tagged_sentences)*0.1)] #debug, tarda 20 mins aprox
 
-train_sents = tagged_sentences[:int(len(tagged_sentences)*0.7)] #aprox 4 horas
+train_sents = tagged_sentences[:int(len(tagged_sentences)*0.7)] #aprox 2 horas
 #test_sents = tagged_sentences[int(len(tagged_sentences)*0.8):int(len(tagged_sentences)*0.7)] #Test A
 #test_sents = tagged_sentences[int(len(tagged_sentences)*0.9):int(len(tagged_sentences)*0.8)] #Test B
 test_sents = tagged_sentences[int(len(tagged_sentences)*0.9):] #Test C
 
 
 ### Create and train chunker:
+print('Starting tranining... go for a walk')
 start = time.time()
 NER_chunker = NERChunkerv1(train_sents)
 end = time.time()
