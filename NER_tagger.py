@@ -3,7 +3,7 @@
 
 #Trainer for an entity recognition process
 
-import nltk, re, pprint, time, pickle, pandas
+import nltk, re, pprint, sys, time, pickle, pandas
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 from nltk.tree import Tree
@@ -57,40 +57,58 @@ def traverse(t, num_fic, num_sentence, iob_str):
 
 	return rows
 
+def start_POS_tagging(tagged_senteces):
+	start = time.time()
+	NER_tagged_senteces = [NER_chunker.parse(sent) for sent in tagged_sentences]
+	end = time.time()
+
+	print('Parsed ', len(tagged_sentences),' in ',(end-start)/60,' minutes')
+
+	###Store tagged sentences on CSV
+	# Create pandas dataframe to store data
+	df = pandas.DataFrame(columns=['Fic number', 'Sentence number', 'Word', 'POS', 'IOB'])
+
+	# Loop to explore the tagged chunks in tagged_fics
+	num_sentence = 0
+	num_fic = 0
+	
+	rows = []
+	start = time.time() 
+	for sentence in tagged_sentences:
+		auxrows = traverse(sentence, num_fic, num_sentence, '-')
+		rows.extend(auxrows)
+		
+		num_sentence+=1
+
+	end = time.time()
+
+	print(num_sentence, 'sentences stored in ',(end-start)/60,'minutes')
+
+	return rows
 
 ### M A I N ###
-tagged_sentences = get_tagged_fics_from_csv()
-
 ###Load trained chunker and parse sentences
 f = open('bigger_toy_NER.pickle','rb')
 NER_chunker = pickle.load(f)
 f.close()
 
-start = time.time()
-NER_tagged_senteces = [NER_chunker.parse(sent) for sent in tagged_sentences]
-end = time.time()
+tagged_sentences = get_tagged_fics_from_csv()
 
-print('Parsed ', len(tagged_sentences),' in ',(end-start)/60,' minutes')
 
-###Store tagged sentences on CSV
-# Create pandas dataframe to store data
-df = pandas.DataFrame(columns=['Fic number', 'Sentence number', 'Word', 'POS', 'IOB'])
+if len(sys.argv) == 3:
+	start_index = int(sys.argv[1])
+	end_index = int(sys.argv[2])
+	#print(type(start_index), end_index) #debug
 
-# Loop to explore the tagged chunks in tagged_fics
-num_sentence = 0
-num_fic = 0
+	tagged_sentences = tagged_sentences[start_index:end_index]
+	print(len(tagged_sentences)) #debug
 
-rows = []
-start = time.time() 
-for sentence in tagged_sentences:
-	auxrows = traverse(sentence, num_fic, num_sentence, '-')
-	rows.extend(auxrows)
-		
-	num_sentence+=1
+elif len(sys.argv) == 1:
 
-end = time.time()
 
-print(num_sentence, 'sentences stored in ',(end-start)/60,'minutes')
+else:
+	print(
+
 
 ### Unzip the tuples into columns and save results to csv file 
 columns = list(zip(*rows))
