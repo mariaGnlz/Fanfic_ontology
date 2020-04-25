@@ -8,8 +8,19 @@ from bs4 import BeautifulSoup
 ### VARIABLES ###
 HTML_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_fics/html/'
 HTML_FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
+DELTED_FICS = []
 
 ### FUNCTIONS ###
+def get_deleted_fics():
+	f = open(HTML_FICS_PATH+'deleted.txt', 'r')
+	lines = [line[:-1] for line in f.readlines()]
+	f.close()
+
+	index_lines = [line.split(' ') for line in lines if lines.index(line)%2 != 0]
+	DELETED_FICS = [int(line[len(line)-1]) for line in index_lines]
+
+	return DELETED_FICS
+
 def get_work_links_from_file():
 	link_file = open('fic_work_links.txt', 'r')
 
@@ -122,31 +133,42 @@ def download_works_in_range(work_links, start, end):
 ### M A I N ###
 
 work_links = get_work_links_from_file()
-initial_num = len((open(HTML_FIC_LISTING_PATH, 'r')).readlines())
+num_fics = len((open(HTML_FIC_LISTING_PATH, 'r')).readlines())
+num_deleted = len(get_deleted_fics())
 
 if len(sys.argv) == 3:
 	start_index = int(sys.argv[1])
 	end_index = int(sys.argv[2])
-	print(type(start_index), end_index) #debug
+	#print(type(start_index), end_index) #debug
 
 	start = time.time()
-	num_deleted, num_fics = download_works_in_range(work_links, start_index, end_index)
+	new_deleted, new_fics = download_works_in_range(work_links, start_index, end_index)
 	end = time.time()
 
-	print('Successfully downloaded ',(num_fics-initial_num),' fanfics in ',(end-start)/60,' minutes to '+HTML_FICS_PATH)
-	print('Deleted fics: ',num_deleted)
+	print('Successfully downloaded ',(new_fics-num_fics),' fanfics in ',(end-start)/60,' minutes to '+HTML_FICS_PATH)
+	print('Deleted fics: ',new_deleted, ', total deleted fics: ', new_deleted+num_deleted)
+
+elif len(sys.argv) == 2:
+	if sys.argv[1] == 'd':
+		print('Downloaded ',num_fics,' out of ',len(work_links),' total')
+		print('Deleted fics: ',num_deleted)
+		latest_path = (open(HTML_FIC_LISTING_PATH, 'r')).readlines()
+		print('Path of latest download: ', latest_path[len(latest_path)-1])
+
+	else: print('Error. Correct usage: check_correct.py \ncheck_correct.py [start_index] [end_index] \ncheck_correct_py d')
+		
 
 elif len(sys.argv) == 1:	
 	start = time.time()
-	num_deleted, num_fics = download_works_in_range(work_links, 5147, 6000)
+	#num_deleted, num_fics = download_works_in_range(work_links, 5147, 6000)
 	#num_deleted, num_fics = download_works_in_range(work_links, 0, 10) #debug
 	end = time.time()
 
-	print('Successfully downloaded ',(num_fics-initial_num),' fanfics in ',(end-start)/60,' minutes to '+HTML_FICS_PATH)
-	print('Deleted fics: ',num_deleted)
+	print('Successfully downloaded ',(new_fics-num_fics),' fanfics in ',(end-start)/60,' minutes to '+HTML_FICS_PATH)
+	print('Deleted fics: ',new_deleted, ', total deleted fics: ', new_deleted+num_deleted)
 
 else:
-	print('Error. Correct usage: check_correct.py OR check_correct.py [start_index] [end_index]')
+	print('Error. Correct usage: \ncheck_correct.py \ncheck_correct.py [start_index] [end_index] \ncheck_correct_py d')
 
 
 
