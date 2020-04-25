@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 
 ### VARIABLES ###
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
+POS_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/POS_tags.csv'
 
 ### FUNCTIONS ###
 
@@ -138,22 +139,24 @@ def save_to_csv(fic_list):
 	#I'm not doing IOB tags on this program, but I'll do it in the future so I'm already adding a column for it
 
 	# Loop to explore the tagged chunks in tagged_fics
-	num_sentence = 0
+	total_sentences = 0
 
 	rows = []
 	start = time.time() 
 	for fic, num_fic in fic_list:
+		num_sentence = 0
 		for sentence in fic:
 			#auxfic, auxsen, auxwords, auxpos, auxiob = traverse(sentence, count, num_fic, num_sentence)
 			auxrows = traverse(sentence, num_fic, num_sentence, '')
 			rows.extend(auxrows)
 		
 			num_sentence+=1
+		total_sentences+=num_sentence
 	
 	end = time.time()
 
-	if num_sentence > 0: 
-		print(num_sentence, 'sentences in ',(end-start)/60,'minutes')
+	if total_sentences > 0: 
+		print(total_sentences, 'sentences in ',(end-start)/60,'minutes')
 		### Unzip the tuples into columns and save results to csv file 
 		columns = list(zip(*rows))
 
@@ -163,14 +166,21 @@ def save_to_csv(fic_list):
 		df['POS'] = columns[3]
 		df['IOB'] = columns[4]
 
-		df.to_csv('POS_tags.csv', mode='a', index=False)
+		#df.to_csv(POS_TAGGED_FICS_PATH, mode='a', index=False, encoding='ISO-8859-1')
+		df.to_csv(POS_TAGGED_FICS_PATH, mode='w', index=False)
 	
 	else:
 		print('Ocurrió algún problema procesando el fic ',num_fic)
 		f = open('fic_problems.txt','a')
 		f.write('Problem ocurred on fic '+str(num_fic)+'\n')
 		f.close()
-	
+
+def get_last_tagged_fics():
+	csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH)
+	last_tagged = csv_file['Fic number'][len(csv_file['Fic number'])-1]
+	num_fics = len(set(csv_file['Fic number']))
+
+	return last_tagged, num_fics
 
 ### M A I N ###
 if len(sys.argv) == 3:
@@ -182,18 +192,18 @@ if len(sys.argv) == 3:
 	fic_list = get_tagged_fanfics(start_index, end_index) #returns list of tagged fanfics
 	save_to_csv(fic_list)
 
+elif len(sys.argv) == 2:
+	if sys.argv[1] == 'd': 
+		last_tagged, num_fics = get_last_tagged_fics()
+		print('Number of tagged fics: ',num_fics,'\nID of last tagged fic: ',last_tagged)
+
 elif len(sys.argv) == 1:
 	### Open and get text from HTML files
 	fic_list = get_tagged_fanfics(0,10) #debug #more than 500 at once seems to be too much
 	save_to_csv(fic_list)
 
 else:
-	print('Incorrect use of command')
-
-
-#print('Len: ', len(tagged_fics), '\n',tagged_fics) #debug
-#print(tagged_fics[0])
-#print(type(tagged_fics), type(tagged_fics[0]), type(tagged_fics[0][0]), type(tagged_fics[0][0][0])) #debug
+	print('Error. Correct usage: \nPOS_tagger.py \nNPOS_tagger.py [start_index] [end_index] \nPOS_tagger d')
 
 
 
