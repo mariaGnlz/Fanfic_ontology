@@ -10,7 +10,7 @@
 
 \title{(TITLE)}
 \author{María González Gutiérrez}
-\docdate{(MONTH)}{(2020)}
+\docdate{(MONTH)}{2020}
 
 
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
@@ -73,7 +73,7 @@
 \section{INTRODUCCIÓN Y OBJETIVOS}
 
 
-\section{FANFICTION, WEB ARCHIVE OF OUR OWN Y RELATOS A UTILIZAR}
+\section{FANFICTION, ARCHIVE OF OUR OWN Y RELATOS A UTILIZAR}
 Un fanfic (abreviatura de “fanfiction”, “ficción del fan”) es una historia basada en una historia ya existente. Son, en esencia, historias creadas sin ánimo de lucro por los fans de un libro, película o videojuego. 
 Crear fanfiction, en general, consiste en explorar temas e ideas que uno siente que faltan en la historia original. Puesto que cada fan tiene una interpretación distinta de los personajes y el mensaje que la historia original transmite, el fan convertido en autor puede añadir o quitar a la historia original lo que considere oportuno para contar su propia visión. Esto significa que cada fanfic es efectivamente una “transformación” de la historia original.
 El fanfic cae en una zona gris en términos de derechos de autor, pero suele considerarse “fair use”. A día de hoy, la mayoría de fanfics se publican en sitios web de toda índole, destacando entre ellos \href{archiveofourown.org}{Archive Of Our Own}, que es un archivo open-source y sin ánimo de lucro creado expresamente para alojar obras creadas por fans. Según sus datos de mayo de 2020, tiene más de dos millones de usuarios registrados y más de seis millones de trabajos alojados. En particular elegí descargar los fanfics basados en \textit{Good Omens}, un libro de Terry Pratchett y Neil Gaiman, tanto por la cantidad de relatos existente como por mi familiaridad con esa comunidad.
@@ -104,6 +104,71 @@ Ambos \textit{scrapers} utilizan la librería bs4 y BeautifulSoup para descargar
 \section{LIMPIEZA DE DATOS}
 
 \section{ALGORITMO DE IDENTIFICACIÓN DE ENTIDADES}
+Archivos encargados de realizar la identificación de entidades con nombre (NER, por el inglés) en los textos:
+\begin{enumerate}
+	\item POS\_tagger.py: para poder etiquetar las entidades nombradas es necesario etiquetar cada palabra con su rol morfológico, de modo que este programa se encarga de abrir los archivos html, pasarlos a texto y ponerle sus etiquetas morfológicas. Para ello utiliza los métodos de NLTK word\_tokenize y sent\_tokenize para dividir cada texto en frases y palabras, y pos\_tag para usar el clasificador por defecto de python para asignar etiquetar morfológicas en inglés. Almacena el resultado en un csv, de modo que en vez de tener preparar el archivo html y etiquetarlo cada vez que quiera identificar entidades, sólo tengo que etiquetar cada archivo una vez.
+	\item NER\_trainer.py: entrena el algoritmo identificador de entidades usando el dataset de entrenamiento (descargado de aquí) y guarda el objeto en un archivo binario usando la librería pickle. Una vez entrenado, evalúa la precisión del algoritmo y la imprime por pantalla. Como el dataset no es parte del corpus nativo de NLTK, mucho de éste programa consiste en abrir el csv del dataset y empaquetar sus datos en listas y tuplas que sean compatibles con NLTK, y dividir el resultado en un dataset de entrenamiento y dos para hacer test (80\%, 10\% y 10\% del dataset original, respectivamente). Este programa utliza un objeto de la clase NERChunkerv1, que se encuentra en el archivo NER\_chunker.py, que se explica más abajo.
+	\item NER\_tagger.py: utliza la libraría pickle para deserializar el archivo binario entrenado por NER\_trainer.py, y lo utiliza para etiquetar entidades nombradas en frases (usando etiquetas IOB). Utiliza el archivo csv creado por POS\_tagger para saltarse la parte de asignar etiquetas morfológicas, y guarda sus etiquetas en otro csv, de modo que gran parte de su código se dedica a lidiar con abrir, leer y actualizar archivos csv.
+\end{enumerate}
+
+
+Para manejar los archivos HTML utilizo \textit{BeautifulSoup}, y para los archivos csv utilizo pandas.
+El código que propiamente contiene la lógica para la identificación de entidades se encuentra en NERChunker.py y está basado en este tutorial. NLTK llama ‘chunker’ a los algoritmos que dividen un texto en trozos de forma que no se solapen entre sí, y ‘tagger’ a los que ponen etiquetas. Así que en este programa hay dos clases, una que he llamado “NERChunkerv1” (en realidad tres, NERChunkerv1, v2 y v3. Hice varias para ver cuál iba mejor; la v1 es la que acabado utilizando) y otra que es “NERTagger”. También tiene dos funciones aparte, “feature\_fuction” y “word\_shape”, que son necesarias para NERTagger.
+
+En NERChunkerv1 he utilizado una interfaz de NLTK llamada ChunkParserI. Tiene el constructor y dos métodos:
+\begin{itemize}
+	\item el constructor recibe el dataset en forma de frases etiquetadas y entrena el algoritmo. El dataset que he utilizado venía con etiquetas IOB en forma de tuplas, pero NLTK usa las etiquetas IOB en otro formato, de modo que el constructor se dedica principalmente a manipular las tuplas y aplicarles el método tree2conlltags para que NLTK las entienda. Y después llama a NERTagger y le pasa el dataset ya preparado para entrenar un clasficador.
+	\item parse, que es el método que recibe una frase con etiquetas morfológicas y la etiqueta, con el clasificador ya entrenado. Devuelve la frase etiquetada con etiquetas IOB en forma de árbol, que es el formato de etiqueta que NLTK utiliza.
+	\item evaluate, que evalúa la precisión del algoritmo. Uso el de la superclase, así que en mi código no está definido.
+\end{itemize}
+
+
+En NERTagger he utilizado una interfaz de NLTK llamada TaggerI, de los cuales defino dos métodos:
+
+\begin{itemize}
+	\item el constructor, que recibe el dataset de entramiento preparado por NERChunkerv1. Este dataset viene con etiquetas morfológicas y etiquetas IOB. Como queremos entrenar el clasificador para asignar etiquetas IOB a frases que nunca ha visto, las etiquetas morfológicas se consideran características de las palabras que lo acompañan. Primero hay que aplicar la feature function a cada palabra de la frase, cuya salida es un diccionario llamado “featureset” y después se prepara una lista de tuplas (featureset, tag) para entrenar un clasificador usando el algoritmo megam, que utiliza un modelo de maximización de entropía (maximum entropy model?). Para usar megam es necesario instalar a parte el modelo y configurar NLTK para que encuentre su path.
+	\item tag, que es el método que recibe una frase con etiquetas morfológicas y la etiqueta con etiquetas IOB, con el clasificador ya entrenado. Aplica la feature fuction a cada palabra de la frase y la etiqueta con el clasificador.
+\end{itemize}
+
+Ambos métodos de NERTagger mantienen un historial de etiquetas IOB (una lista) y dependen de feature\_function, una función que recoge ciertas características (featureset) de una palabra y las devuelve en forma de diccionario. Las características que recoge son éstas:
+
+\begin{enumerate}
+	\item la palabra en sí
+	\item la raíz de la palabra, usando un stemmer de NLTK llamado SnowballStemmer
+	\item la forma de la palabra, que llama a una función auxiliar word\_shape, que consiste en una lista de expresiones regulares para determinar la forma de la palabra: number, punct, capitalized, allcaps, alllower, camelcase, mixedcase, wildcard, dot-end, abbreviation, hyphenated u other.
+	\item La etiqueta morfológica asociada a esta palabra
+	\item la palabra anterior a ésta
+	\item la raíz de la palabra anterior
+	\item la forma de la palabra anterior
+	\item la etiqueta morfológica asociada a la palabra anterior
+	\item la palabra anterior a la anterior
+	\item la raíz de la palabra anterior a la anterior
+	\item la forma de la palabra anterior a la anterior
+	\item la etiqueta morfológica de la palabra anterior a la anterior
+	\item la etiqueta IOB de la palabra anterior
+	\item la etiqueta IOB de la palabra anterior a la anterior
+	\item la palabra siguiente a ésta
+	\item la raíz de la palabra siguiente
+	\item la forma de la palabra siguiente
+	\item la etiqueta morfológica de la palabra siguiente
+	\item la palabra siguiente a la siguiente
+	\item la raíz de la palabra siguiente a la siguiente
+	\item la forma de la palabra siguiente a la siguiente
+	\item la etiqueta morfológica de la palabra siguiente a la siguiente
+\end{enumerate}
+
+Algunos problemas encontrados mientras hacía estos programas:
+\begin{itemize}
+	\item Familiarizarme con la biblioteca NLTK, ya que nunca la había utilizado
+	\item Mi conjunto de textos está en inglés pero NLTK no dispone de ningún corpus para entrenar NER en inglés, de modo que tuve que buscar un corpus ajeno, y hacer compatible sus etiquetas con el formato que NLTK utiliza (ambos utilizan etiquetas IOB, pero uno utiliza tuplas mientras que el otro usa árboles)
+	\item descargar el modelo matemático megam y configurar python para que NLTK pueda utilizarlo.
+	\item crear una feature function con los features adecuados, utilizando expresiones regulares para reconocer la “forma” de las palabras analizadas
+	\item Debido a que el algoritmo necesita unas 2 horas para entrenarse, se utilizó la librería pickle para guardar el objeto y no perder el tiempo cada vez que se necesite ejecutar el algoritmo
+	\item NLTK utiliza una estructura de datos tipo árbol para etiquetar los datos. Para recuperar los grupos de palabras y sus etiquetas e introducirlas en un dataframe de pandas es necesario recorrer todo el árbol. Aunque son árboles de como mucho profundidad 2, actualizar el dataframe con cada recursión tardaba demasiado tiempo, con lo que al final tuve que ir guardando el resultado de cada recursión en una lista y después guardar cada miembro de la lista en el dataframe. Descubrir la forma de “traducir” los árboles de NLTK a algo que el dataframe pudiera entender también tuvo su misterio.
+	\item los archivos HTML de los fanfics, además de contener el texto, también contienen notas del autor, prefacios, resúmenes y metadatos sobre la historia, el autor y el sitio web que no me interesan para este trabajo, por lo que muchas funciones en POS\_tagger se dedican a eliminarlos.
+\end{itemize}
+
+\section{EVALUACIÓN DEL SISTEMA}
 
 \section{RECOMENDACIONES}
 

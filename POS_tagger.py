@@ -10,6 +10,8 @@ from bs4 import BeautifulSoup
 ### VARIABLES ###
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 POS_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/POS_tags.csv'
+TYPICAL_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/typical_txt_paths.txt'
+TYPICAL_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/POS_typical_tags.csv'
 
 ### FUNCTIONS ###
 
@@ -93,9 +95,13 @@ def get_plain_text(path):
 
 	return fic_text
 
-def get_tagged_fanfics(start, end): #gets the paths to the fics, opens them
+def get_tagged_fanfics(start, end, typical): #gets the paths to the fics, opens them
                    #and stores their text in a list
-	paths_file = open(FIC_LISTING_PATH, 'r')
+	if typical == 0:
+		paths_file = open(FIC_LISTING_PATH, 'r')
+	else: 
+		paths_file = open(TYPICAL_LISTING_PATH, 'r')
+
 	fic_paths = [line[:-1] for line in paths_file.readlines()]
 	paths_file.close()
 	fic_paths = fic_paths[start:end]
@@ -104,7 +110,9 @@ def get_tagged_fanfics(start, end): #gets the paths to the fics, opens them
 	fic_nums = []
 	for path in fic_paths:
 		num_fic=int((path.split('_')[3]).split('.')[0])
-		text = get_plain_text(path)
+		if typical == 0: text = get_plain_text(path)
+		else: text = open(path, 'r').read()
+
 		untagged_fics.append(text)
 		fic_nums.append(num_fic)
 
@@ -133,7 +141,7 @@ def traverse(t, num_fic, num_sentence, iob_str):
 
 	return rows
 
-def save_to_csv(fic_list):
+def save_to_csv(fic_list, typical):
 	# Create pandas dataframe to store data
 	df = pandas.DataFrame(columns=['Fic number', 'Sentence number', 'Word', 'POS', 'IOB'])
 	#I'm not doing IOB tags on this program, but I'll do it in the future so I'm already adding a column for it
@@ -167,7 +175,10 @@ def save_to_csv(fic_list):
 		df['IOB'] = columns[4]
 
 		#df.to_csv(POS_TAGGED_FICS_PATH, mode='a', index=False, encoding='ISO-8859-1')
-		df.to_csv(POS_TAGGED_FICS_PATH, mode='w', index=False)
+		if typical == 0:
+			df.to_csv(POS_TAGGED_FICS_PATH, mode='w', index=False)
+		else:
+			df.to_csv(TYPICAL_TAGGED_FICS_PATH, mode='w', index=False)
 	
 	else:
 		print('Ocurrió algún problema procesando el fic ',num_fic)
@@ -189,18 +200,21 @@ if len(sys.argv) == 3:
 	#print(type(start_index), end_index) #debug
 
 	### Open and get text from HTML files
-	fic_list = get_tagged_fanfics(start_index, end_index) #returns list of tagged fanfics
-	save_to_csv(fic_list)
+	fic_list = get_tagged_fanfics(start_index, end_index, 0) #returns list of tagged fanfics
+	save_to_csv(fic_list, 0)
 
 elif len(sys.argv) == 2:
 	if sys.argv[1] == 'd': 
 		last_tagged, num_fics = get_last_tagged_fics()
 		print('Number of tagged fics: ',num_fics,'\nID of last tagged fic: ',last_tagged)
+	elif sys.argv[1] == 't':
+		fic_list = get_tagged_fanfics(0,2, 1)
+		save_to_csv(fic_list, 1)
 
 elif len(sys.argv) == 1:
 	### Open and get text from HTML files
-	fic_list = get_tagged_fanfics(0,10) #debug #more than 500 at once seems to be too much
-	save_to_csv(fic_list)
+	fic_list = get_tagged_fanfics(0,10, 0) #debug #more than 500 at once seems to be too much
+	save_to_csv(fic_list, 0)
 
 else:
 	print('Error. Correct usage: \nPOS_tagger.py \nNPOS_tagger.py [start_index] [end_index] \nPOS_tagger d')
