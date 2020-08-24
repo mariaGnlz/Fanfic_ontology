@@ -1,0 +1,12 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}INTRODUCCI\IeC {\'O}N Y OBJETIVOS}{2}{section.1}
+\contentsline {section}{\numberline {2}FANFICTION, WEB ARCHIVE OF OUR OWN Y RELATOS A UTILIZAR}{3}{section.2}
+\contentsline {section}{\numberline {3}RECOGIDA DE FANFICS USANDO LA BASE DE DATOS DE ARCHIVE OF OUR OWN}{4}{section.3}
+\contentsline {section}{\numberline {4}RECOMENDACIONES}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Inserci\IeC {\'o}n de Im\IeC {\'a}genes}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Inserci\IeC {\'o}n de \IeC {\'o}rdenes de l\IeC {\'\i }nea de comandos}{5}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Inserci\IeC {\'o}n de C\IeC {\'o}digo}{5}{subsection.4.3}
+\contentsline {section}{\numberline {5}MEDIOS QUE SE PRETENDEN UTILIZAR}{7}{section.5}
+\contentsline {subsection}{\numberline {5.1}Medios Hardware}{7}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Medios Software}{7}{subsection.5.2}
+\contentsline {section}{\numberline {6}REFERENCIAS}{7}{section.6}
