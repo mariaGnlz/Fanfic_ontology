@@ -168,87 +168,11 @@ Algunos problemas encontrados mientras hacía estos programas:
 	\item los archivos HTML de los fanfics, además de contener el texto, también contienen notas del autor, prefacios, resúmenes y metadatos sobre la historia, el autor y el sitio web que no me interesan para este trabajo, por lo que muchas funciones en POS\_tagger se dedican a eliminarlos.
 \end{itemize}
 
+\section{ALGORITMO DE IDENTIFICACIÓN DE RELACIONES}
+
 \section{EVALUACIÓN DEL SISTEMA}
 
-\section{RECOMENDACIONES}
-
-Aquí habría que insertar tantas secciones como el alumno considere.
-
-A continuación se indican una serie de recomendaciones que seguidas mejorarán la calificación final del trabajo.
-
-\begin{itemize}
- \item Agrupar párrafos. La división del texto en múltiples párrafos independientes de pequeña longitud dificulta la lectura continua del documento.
-\item  Evitar abusar de las listas con viñetas y las enumeraciones.
-\item Utilizar un máximo nivel de profundidad secciones de 3 (hasta 3.1.1). Si se hace necesario una división más baja, no hacerlo con enumeración de subsecciones sino con texto en negrita y/o subrayada que represente el comienzo de cada subsección. 
-\item  Si no hay más de una sección en un nivel no crearla. Es decir, si no hay al menos una 3.2 no crear la 3.1, ya que no tendría sentido dividir la sección 3.
-\item  Utilizar referencias absolutas numéricas a tablas, figuras, secciones, etc. Por ejemplo: en la "Figura 3, se muestra el gráfico que  ..."; "Los resultados finales se encuentran en la Tabla X". Usar los ref y labels para que se actualicen las numeraciones automáticamente. No se debe hablar de ``en la siguiente figura'', ¿Qué pasa si reordeamos el texto o lo hace látex de manera automática?.
-\item Cuando se referencia a una tabla, figura, sección, etc. hacerlo con la primera letra en mayúscula, ``En la Sección 1 ...''
-\item  El texto siempre debe tener una alineación justificada. 
-\item En el inicio de cada sección se debe hacer una breve introducción de lo que contiene y al final, unas pequeñas conclusiones y si es posible un texto de pequeña longitud que una con el siguiente capítulo.
-\end{itemize}
-
-
-\subsection{Inserción de Imágenes}
-
-\begin{figure}[!h]
-\centering
-   \includegraphics[width=8cm]{figures/tree04.jpg}
-\caption{Árbol antiguo}
-\end{figure}
-
-\subsection{Inserción de órdenes de línea de comandos}
-
-\begin{listing}[style=consola, numbers=none]
- gcc  -o e21 e21.c
-\end{listing}
-
-
-
-
-
-\subsection{Inserción de Código}
-
-\begin{lstlisting}[caption=Ejemplo de código,style=C]
-
-##include <stdio.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-int main(void){
-
-int register i;
-int numHijos=4;
-pid_t childpid;
-
-for (i=0;i<numHijos;i++)
-  if (childpid=fork()==0){
-    sleep(1);
-    printf("Proceso %ld con padre %ld\n", (long)getpid(), (long)getppid());
-    exit(0);
-  }
-
-printf("Soy el proceso padre %ld\n", (long)getpid());
-return 0;
-}
-\end{lstlisting}
-
-
-
-
-\section{MEDIOS QUE SE PRETENDEN UTILIZAR}
-
-\subsection{Medios Hardware}
-
-El alumno deberá describir los medios hardware que prevé serán necesarios para el
-desarrollo del proyecto.
-
-
-\subsection{Medios Software}
-
-El alumno deberá describir los medios software (lenguajes, entornos de desarrollo,
-herramientas de gestión y planificación, etc.) que prevé serán necesarios para el
-desarrollo del proyecto
+$hit\_ratio = \frac{correct\_guesses}{total\_number\_of\_guesses}$
 
 
 \section{REFERENCIAS}
