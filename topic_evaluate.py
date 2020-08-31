@@ -223,7 +223,7 @@ def use_lda():
 def use_lsi():
 	fcleaner = FanficCleaner()
 	print(fcleaner.get_fic_listing_path()) #debug
-	fic_list = fcleaner.clean_fanfics_in_range(0,1000)
+	fic_list = fcleaner.clean_fanfics_in_range(0,5000)
 	fic_texts, fic_paths = zip(*fic_list)
 	lsimodel = gensim.models.lsimodel.LsiModel.load(MODEL_PATH+MODEL_NAME+'.gensim')
 

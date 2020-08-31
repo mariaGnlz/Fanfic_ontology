@@ -6,6 +6,7 @@
 import nltk, re, pprint, sys, time, pickle, pandas
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
+from collections import Counter
 #from nltk.tree import Tree
 
 ### VARIABLES ###
@@ -16,16 +17,13 @@ NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
 
 ### FUNCTIONS ###
 
-def get_tagged_fics_from_csv(start_fic, end_fic, typical):
+def get_tagged_fics_from_csv(start_fic, end_fic):
 	#csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH, encoding='ISO-8859-1')
-	if typical == 0:
-		csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH)
-	else:
-		csv_file = pandas.read_csv(POS_TYPICAL_PATH)
+	csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH)
 
 	start_index = csv_file.loc[csv_file['Fic number'] == start_fic].index[0]
-	#end_index = csv_file.loc[csv_file['Fic number'] == end_fic].index[0]+1
-	end_index = csv_file.loc[csv_file['Fic number'] == end_fic-1].index[0]+1
+	end_index = csv_file.loc[csv_file['Fic number'] == end_fic].index[0]+1
+	#end_index = csv_file.loc[csv_file['Fic number'] == end_fic-1].index[0]+1
 	print(start_index, end_index) #debug
 
 	i = 0
@@ -79,10 +77,6 @@ def start_NER_tagging(tagged_fic, num_fic, typical):
 
 	print('Parsed ', len(tagged_fic),' in ',(end-start)/60,' minutes')
 
-	###Store tagged sentences on CSV
-	# Create pandas dataframe to store data
-	df = pandas.DataFrame(columns=['Fic number', 'Sentence number', 'Word', 'POS', 'IOB'])
-
 	# Loop to explore the tagged chunks in tagged_fics
 	num_sentence = 0
 
@@ -92,11 +86,43 @@ def start_NER_tagging(tagged_fic, num_fic, typical):
 		#auxfic, auxsen, auxwords, auxpos, auxiob = traverse(sentence, count, num_fic, num_sentence)
 		auxrows = traverse(sentence, num_fic, num_sentence, '')
 		rows.extend(auxrows)
+		#print(auxrows) #debug
 		
 		num_sentence+=1
 	
 	end = time.time()
 
+	if num_sentence > 0:
+		print(num_sentence, 'sentences stored in ',(end-start)/60,'minutes')
+
+		character_data = []
+		i=0
+		while i < len(rows):
+			if rows[i][4] == 'per':
+				character_data.append((rows[0], rows[i][2], 1))
+				#(fic number, character name, # of mentions of said name)
+				i += 1
+
+			i += 1
+
+		### Unzip the tuples into columns
+		columns = list(zip(*character_data))
+		character_mentions = Counter(columns[1])
+		
+		print(character_mentions) #debug
+		
+		
+		###Store character data on CSV
+		# Create pandas dataframe to store data
+		df = pandas.DataFrame(columns=['Fic number', 'Character name', 'Times mentioned'])
+		df['Fic number'] = columns[0]
+		df['Character name'] = character_mentions.keys
+		df['Times mentioned'] = character_mentions.values
+
+		df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False, encoding='ISO-8859-1')
+
+
+	"""
 	if num_sentence > 0: 
 		print(num_sentence, 'sentences stored in ',(end-start)/60,'minutes')
 		### Unzip the tuples into columns and save results to csv file 
@@ -117,6 +143,7 @@ def start_NER_tagging(tagged_fic, num_fic, typical):
 		f = open('NER_tag_problems.txt','a')
 		f.write('Problem ocurred on fic '+str(num_fic)+'\n')
 		f.close()
+	"""
 
 def get_last_tagged_fics():
 	csv_file = pandas.read_csv(NER_TAGGED_FICS_PATH)
@@ -140,12 +167,12 @@ if len(sys.argv) == 3:
 	f.close()
 
 	###Get POS-tagged fics
-	tagged_fics = get_tagged_fics_from_csv(start_index, end_index, 0)
+	tagged_fics = get_tagged_fics_from_csv(start_index, end_index)
 	#print(len(tagged_fics)) #debug
 
 	###NER-tag fanfics
 	for fic, num_fic in tagged_fics:
-		start_NER_tagging(fic, num_fic, 0)
+		start_NER_tagging(fic, num_fic, 1)
 
 
 elif len(sys.argv) == 2:
@@ -160,12 +187,12 @@ elif len(sys.argv) == 2:
 		f.close()
 
 		###Get POS-tagged fics
-		tagged_fics = get_tagged_fics_from_csv(1, 1, 1)
+		tagged_fics = get_tagged_fics_from_csv(1, 1)
 		#print(len(tagged_fics)) #debug
 
 		###NER-tag fanfics
 		for fic, num_fic in tagged_fics:
-			start_NER_tagging(fic, num_fic, 1)
+			start_NER_tagging(fic, num_fic)
 
 elif len(sys.argv) == 1:
 	###Load trained chunker and parse sentences
@@ -174,7 +201,7 @@ elif len(sys.argv) == 1:
 	f.close()
 
 	###Get POS-tagged fics
-	tagged_fics = get_tagged_fics_from_csv(0,10,0) #debug
+	tagged_fics = get_tagged_fics_from_csv(0,10) #debug
 	
 	#print(len(tagged_fics)) #debug
 	#print(tagged_fics[1][0][len(tagged_fics[1][0])-1],) #debug

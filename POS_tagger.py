@@ -6,6 +6,7 @@ import nltk, re, pprint, sys, time, pandas, html2text
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
 from bs4 import BeautifulSoup
+from fanfic_util import FanficCleaner
 
 ### VARIABLES ###
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
@@ -21,106 +22,17 @@ def tag_fics(fic_list): #divide raw text into words and tag them
 
 	return processed_fics
 
-def clean_text(text, chapter_titles):
-	headers_and_footers = ['See the end of the chapter for more notes', 'See the end of the chapter for notes', 'Summary', 'Chapter Summary', 'Chapter Notes', 'Notes', 'Chapter End Notes']
-	headers_and_footers.extend(chapter_titles)
-
-	fic_text = ''
-	for line in text.splitlines():
-		if line == '## Afterword': break
-		if line not in headers_and_footers and '> ' != line[:2]: fic_text += line+'\n'
-
-	return fic_text
-
-def remove_metadata(text, first_title):
-	chapter_header_index1 = text.find('See the end of the chapter for more notes')
-	chapter_header_index2 = text.find('See the end of the chapter for notes')
-	chapter_header_index3 = text.find(first_title)
-	
-	fic_text = ''
-	if chapter_header_index1 < 0 and chapter_header_index2 < 0:
-		fic_text = text[chapter_header_index3:]
-		
-	elif chapter_header_index1 > 0:
-		if chapter_header_index1 < chapter_header_index2: fic_text = text[chapter_header_index1:]
-		else: fic_text = text[chapter_header_index2:]
-	else: fic_text = text[chapter_header_index2:]
-	
-	
-	""" #debug
-	f = open('no_metadata.txt', 'w')
-	f.write(fic_text)
-	f.close()
-	"""
-
-	return fic_text
-
-def get_plain_text(path):
-	page = open(path, 'r').read()
-	soup = BeautifulSoup(open(path, 'r'), 'html.parser')
-	
-	#Get number of chapters with BeautifulSoup
-	chapter_titles = ['## '+header.text for header in soup.find_all('h2', class_='heading')]
-	num_chapters = len(chapter_titles)
-
-	if num_chapters == 0: #this fic only has one chapter
-		title = soup.find('h1').text
-		chapter_titles = ['## '+title]
-
-	#print(chapter_titles) #debug
-
-
-	#Take HTML tags out with HTML2text
-	to_text = html2text.HTML2Text()
-	to_text.ignore_images = True
-	to_text.ignore_links = True
-
-	text = to_text.handle(page)
-
-	""" #debug
-	f = open('htmlfic.txt', 'w')
-	f.write(text)
-	f.close()
-	"""
-
-	#Take author notes and metadata out
-	fic_text = remove_metadata(text, chapter_titles[0])
-	fic_text = clean_text(fic_text, chapter_titles)
-
-	""" #debug
-	f = open('text.txt', 'w')
-	f.write(fic_text)
-	f.close()
-	"""
-
-	return fic_text
-
 def get_tagged_fanfics(start, end, typical): #gets the paths to the fics, opens them
                    #and stores their text in a list
-	if typical == 0:
-		paths_file = open(FIC_LISTING_PATH, 'r')
-	else: 
-		paths_file = open(TYPICAL_LISTING_PATH, 'r')
-
-	fic_paths = [line[:-1] for line in paths_file.readlines()]
-	paths_file.close()
-	fic_paths = fic_paths[start:end]
-
-	untagged_fics = []
-	fic_nums = []
-	for path in fic_paths:
-		num_fic=int((path.split('_')[3]).split('.')[0])
-		if typical == 0: text = get_plain_text(path)
-		else: text = open(path, 'r').read()
-
-		untagged_fics.append(text)
-		fic_nums.append(num_fic)
-
+	fic_getter = FanficCleaner()
+	untagged_fics = fic_getter.clean_fanfics_in_range(start,end)
 	#print(untagged_fics[0]) #debug
+
+	untagged_fics = [fic_text for fic_text, _ in untagged_fics]
+	#print(type(untagged_fics[0])) #debug
 	tagged_fics = tag_fics(untagged_fics)
 
-	return zip(tagged_fics, fic_nums)
-	#return fic_text
+	return zip(tagged_fics, range(len(tagged_fics)))
 
 def traverse(t, num_fic, num_sentence, iob_str):
 	rows = []

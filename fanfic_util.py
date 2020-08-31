@@ -9,7 +9,7 @@ import string, html2text, sys
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 #TXT_LISTING_PATH = '/'
 #SAVE_TXT_PATH = '/home/maria/Documents/pruebasNLTK/trial_e_fics/'
-#TXT_LISTING_PATH = '/home/maria/Documents/pruebasNLTK/trial_e_txt_paths.txt'
+TXT_LISTING_PATH = '/home/maria/Documents/pruebasNLTK/trial_e_txt_paths.txt'
 
 ### FUNCTIONS ###
 def clean_text(text, chapter_titles):
@@ -180,6 +180,17 @@ class FanficGetter():
 			txt_fics.append(open(path, 'r').read())
 		
 		return txt_fics
+	def get_all_txt_fanfics(self):
+		paths_file = open(TXT_LISTING_PATH, 'r')
+		fic_paths = [line[:-1] for line in paths_file.readlines()]
+		paths_file.close()
+
+		txt_fics = []
+		
+		for path in fic_paths:
+			txt_fics.append(open(path, 'r').read())
+		
+		return txt_fics
 
 	def get_html_fanfics_in_range(self, start, end):
 		paths_file = open(FIC_LISTING_PATH, 'r')
@@ -195,11 +206,16 @@ class FanficGetter():
 		
 		return html_fics
 
+	def set_txt_fic_listing_path(self, new_fic_txt_listing):
+		global TXT_LISTING_PATH
+		TXT_LISTING_PATH = new_fic_txt_listing
+
 	def set_fic_listing_path(self, new_fic_listing):
 		global FIC_LISTING_PATH
 		FIC_LISTING_PATH = new_fic_listing
 	
-	
+	def get_txt_fic_listing_path(self): return TXT_LISTING_PATH
+
 	def get_fic_listing_path(self): return FIC_LISTING_PATH
 
 class FanficHTMLHandler():
@@ -232,7 +248,49 @@ class FanficHTMLHandler():
 		return rating_link.text
 
 	def get_relationships(self, fic_path):
-		print('hello')
+		filehandle = open(fic_path, 'r').read()
+		soup = BeautifulSoup(filehandle, 'html.parser')
+		dt_inf = soup.find_all('dt')
+		dd_inf = soup.find_all('dd')
+		#print(len(dt_inf), len(dd_inf)) #debug
+
+		counter = 0
+		ships = ''
+		for dt in dt_inf:
+			#print(dt) #debug
+			if 'Relationship:' not in dt.text: counter += 1
+			else: 
+				ships = dd_inf[counter].text
+				break
+
+		#print(ships) #debug
+		ships = ships.split(',')
+		ships = [ship[:-len(' (Good Omens)')] for ship in ships]
+
+		return ships
+		
+
+	def get_characters(self, fic_path):
+		filehandle = open(fic_path, 'r').read()
+		soup = BeautifulSoup(filehandle, 'html.parser')
+		dt_inf = soup.find_all('dt')
+		dd_inf = soup.find_all('dd')
+		#print(len(dt_inf), len(dd_inf)) #debug
+		
+		counter = 0
+		chars = ''
+		for dt in dt_inf:
+			#print(dt) #debug
+			if 'Character:' not in dt.text: counter += 1
+			else :
+				chars = dd_inf[counter].text
+				break
+
+		#print(chars) #debug
+		chars = chars.split(',')
+		chars = [char[:-len(' (Good Omens)')] for char in chars]
+
+		return chars
 
 
 
