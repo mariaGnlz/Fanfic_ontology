@@ -5,6 +5,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{todonotes}
+\usepackage{amsmath}
 
 \showhelp  % comenta o borra para eliminar ayudas
 
@@ -102,6 +103,16 @@ El poder ejecutar varias veces el segundo \textit{scraper} sin tener que volver 
 Ambos \textit{scrapers} utilizan la librería bs4 y BeautifulSoup para descargar y manejar los archivos HTTP. El resultado de su ejecución es una carpeta con 818,8 MB de archivos HTML.
 
 \section{LIMPIEZA DE DATOS}
+Los fanfics descargados en HTML vienen con metadatos relacionados con la historia, el autor y cuándo fueron publicados, entre otros. Además, la mayoría de fanfics tienen notas del autor, comentarios y sinopsis que, aunque forman parte del cuerpo del texto, no son relevantes para el análisis que voy a realizar.
+Me interesa poder recuperar fácilmente los metadatos útiles de cada fanfic, además de convertirlo a texto plano eliminando todos los metadatos y los comentarios del autor, por lo que decidí reunir todas estas funciones en dos clases, FanficCleaner y FanficHTMLHandler, encapsuladas en un programa fanfic\_util.py
+
+\begin{itemize}
+	\item FanficCleaner tiene métodos para extraer el cuerpo del texto de un archivo HTML, sin metadatos, comentarios ni notas del autor. También tiene la función de guardar el texto en un archivo txt en un \textit{path} a elegir.
+	\item FanficHTMLHandler tiene métodos que permiten extraer metadatos del archivo HTML de un fanfic, como por ejemplo los personajes principales, el número de capítulos y su clasificación.
+\end{itemize}
+
+Debido a que los archivos HTML están organizados en carpetas, utilizo listas con sus \textit{path} para identificarlos y acceder a ellos. Los métodos de FanficCleaner y FanficHTML reciben tramos de estas listas para acceder y manejar los archivos deseados.
+Para ello, el programa utiliza las librerías BeautifulSoup y html2text.
 
 \section{ALGORITMO DE IDENTIFICACIÓN DE ENTIDADES}
 Archivos encargados de realizar la identificación de entidades con nombre (NER, por el inglés) en los textos:
@@ -165,43 +176,45 @@ Algunos problemas encontrados mientras hacía estos programas:
 	\item crear una feature function con los features adecuados, utilizando expresiones regulares para reconocer la “forma” de las palabras analizadas
 	\item Debido a que el algoritmo necesita unas 2 horas para entrenarse, se utilizó la librería pickle para guardar el objeto y no perder el tiempo cada vez que se necesite ejecutar el algoritmo
 	\item NLTK utiliza una estructura de datos tipo árbol para etiquetar los datos. Para recuperar los grupos de palabras y sus etiquetas e introducirlas en un dataframe de pandas es necesario recorrer todo el árbol. Aunque son árboles de como mucho profundidad 2, actualizar el dataframe con cada recursión tardaba demasiado tiempo, con lo que al final tuve que ir guardando el resultado de cada recursión en una lista y después guardar cada miembro de la lista en el dataframe. Descubrir la forma de “traducir” los árboles de NLTK a algo que el dataframe pudiera entender también tuvo su misterio.
-	\item los archivos HTML de los fanfics, además de contener el texto, también contienen notas del autor, prefacios, resúmenes y metadatos sobre la historia, el autor y el sitio web que no me interesan para este trabajo, por lo que muchas funciones en POS\_tagger se dedican a eliminarlos.
 \end{itemize}
 
 \section{ALGORITMO DE IDENTIFICACIÓN DE RELACIONES}
 
+Para este algoritmo decidí crear un algoritmo LDA, que es un algoritmo de aprendizaje no supervisado que se utiliza típicamente en identificación de temas. Para entrenar este algoritmo, seleccioné un conjunto de fanfics que sirviesen de modelo para la relación que quería que aprendiera a detectar. Por ejemplo, para entrenar un modelo LDA que detecte situaciones sexuales, preparé un conjunto de fanfics de un único capítulo en los que sucedía sexo, excluyendo otros que tenían escenas sexuales pero eran sólo una pequeña parte de una historia más larga. 
+
 \section{EVALUACIÓN DEL SISTEMA}
 
-$hit\_ratio = \frac{correct\_guesses}{total\_number\_of\_guesses}$
 
+Para buscar el modelo LDA más eficiente, creé tres modelos que tenían en cuenta diferentes categorías morfológicas. Primero utilizaba el \textit{tagger} de NLTK para identificar categorías morfológicas, y el algoritmo sólo tenía en cuenta aquellas que resultaran relevantes.
 
-\includegraphics[scale=0.6]{topic_evaluate_table}
+\begin{itemize}
+	\item El modelo B tenía en cuenta sustantivos, adverbios y verbos.
+	\item El modelo C tenía en cuenta sustantivos, adjetivos y verbos.
+	\item El modelo D tenía en cuenta sustantivos, adverbios, adjetivos y verbos.
+\end{itemize}
+
+Además de utilizar distintas categorías morfológicas, también probé distintos tamaños para el set de entrenamiento, de modo que cada modelo tiene dos versiones: una entrenada con 5000 fanfics y otra entrenada con 10000.
+
+Para la evaluación de los modelos, simplemente los puse a clasificar textos nuevos, contando la cantidad de aciertos de cada uno y calculando el \textit{hit ratio} de cada uno. Los resultados aparecen en la primera tabla de la figura \ref{table:topic_evaluation}.
+
+\begin{gather*}
+hit\_ratio = \frac{correct\_guesses}{total\_number\_of\_guesses}
+\end{gather*}
+
+\begin{figure}
+	\caption{Porcentaje de aciertos de cada modelo. Cada prueba se realizó tres veces.}
+	\label{table:topic_evaluation}
+	\includegraphics[scale=0.6]{topic_evaluate_table_v2}
+	\centering
+\end{figure}
+
+Las primeras pruebas mostraron que los modelos B y D eran los que arrojaban mejores resultados. Observando qué otras categorías morfológicas el \textit{tagger} de NLTK puede identificar, pensé que añadir interjecciones a los modelos podría aumentar su precisión. Llamé B+UH y D+UH a los modelos resultantes, y repetí las pruebas. Los resultados están en la segunda tabla de la figura \ref{table:topic_evaluation}.
+
+Curiosamente, el modelo D fue mejorado ligeramente teniendo en cuenta las interjecciones, pero el modelo B empeoró considerablemente.
 
 \section{REFERENCIAS}
 
-En esta sección se incluirán todas las referencias bibliográficas, ordenadas
-alfabéticamente por el primer apellido del primer autor, de las obras de las cuales se
-haya realizado alguna cita en los apartados anteriores. Las referencias deberán contener
-datos básicos como nombre y apellidos de los autores, título de la obra, evento al que
-pertenece, páginas, fecha y lugar de celebración (si se tratara de artículos de congreso),
-ISBN, editorial y ciudad (si se tratara de libro), nombre de revista, páginas, volumen y
-número (si se tratara de revista), etc.
 
-Se empleará un formato de referencia reconocido en el ámbito académico como
-ACM\footnote{http://www.acm.org/sigs/publications/proceedings-templates}\footnote{http://www.cs.ucy.ac.cy/\~{}chryssis/specs/ACM-refguide.pdf}.
-Otros formatos aconsejables son, por ejemplo, IEEE, AMA, APA y AMA.
-
-A continuación una sección de «Referencias» con ejemplos de referencias con formato ACM para:
-
-\begin{itemize}
-\item Un artículo de revista~\cite{Bow93}.
-\item Un informe técnico~\cite{Ding97}.
-\item Un libro~\cite{Tavel07}.
-\item Un capítulo de libro~\cite{Greiner99}.
-\item Un artículo en las actas de un congreso~\cite{Frohlic00}.
-\item Para una página web~\cite{Steele04} (con autores conocidos).
-\item Para una página web~\cite{Oxygen} (con autores desconocidos).
-\end{itemize}
 
 
 \bibliographystyle{alpha}
