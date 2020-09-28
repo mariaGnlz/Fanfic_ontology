@@ -170,11 +170,16 @@ def use_guidedlda():
 	#print((hits/len(fic_texts))*100,'% hits	with ', MODEL_NAME)
 	
 def use_lda():
+
+	start_time = time.time()
 	fcleaner = FanficCleaner()
 	print(fcleaner.get_fic_listing_path()) #debug
-	fic_list = fcleaner.clean_fanfics_in_range(0,5000)
+	fic_list = fcleaner.clean_fanfics_in_range(10000,20000)
 	fic_texts, fic_paths = zip(*fic_list)
 	ldamodel = gensim.models.ldamodel.LdaModel.load(MODEL_PATH+MODEL_NAME+'.gensim')
+
+	end_time = time.time()
+	print("Fanfics gathered and cleaned. Elapsed time: ",(end_time-start_time)/60, "minutes")
 
 	###LDA model
 	start_time = time.time()
@@ -223,7 +228,7 @@ def use_lda():
 def use_lsi():
 	fcleaner = FanficCleaner()
 	print(fcleaner.get_fic_listing_path()) #debug
-	fic_list = fcleaner.clean_fanfics_in_range(0,5000)
+	fic_list = fcleaner.clean_fanfics_in_range(5000,10000)
 	fic_texts, fic_paths = zip(*fic_list)
 	lsimodel = gensim.models.lsimodel.LsiModel.load(MODEL_PATH+MODEL_NAME+'.gensim')
 
