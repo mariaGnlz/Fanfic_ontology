@@ -7,12 +7,13 @@ import nltk, re, pprint, sys, time, pickle, pandas
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 from collections import Counter
-#from nltk.tree import Tree
+from nltk.tree import Tree
+from nltk import conlltags2tree, tree2conlltags
 
 ### VARIABLES ###
 POS_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/POS_tags.csv'
 POS_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/POS_typical_tags.csv'
-NER_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/NER_tags_v2.csv'
+NER_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/NER_tags_v3.csv'
 NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
 
 ### FUNCTIONS ###
@@ -72,11 +73,56 @@ def traverse(t, num_fic, num_sentence, iob_str):
 
 def start_NER_tagging(tagged_fic, num_fic, typical):
 	start = time.time()
-	NER_tagged_senteces = [NER_chunker.parse(sent) for sent in tagged_fic] #NER-tagging
+	NER_tagged_sentences = [NER_chunker.parse(sent) for sent in tagged_fic] #NER-tagging
 	end = time.time()
 
 	print('Parsed ', len(tagged_fic),' in ',(end-start)/60,' minutes')
 
+	tree = Tree ('S',NER_tagged_sentences)
+	
+	character_names = []
+	for chunk in tree.pos():
+		if chunk[1] == 'per' and chunk[0][0] not in ["‘", "’", "-", "–", "_"]: character_names.append(chunk[0][0])
+
+	taga = NER_chunker.parse(pos_tag("My name is James Bond"))
+	for chunk in taga:
+		#print(chunk)
+		if chunk[1] == 'per' : print(chunk[1])
+	
+
+	#print(character_names) #debug
+	
+	character_names = [name.strip() for name in character_names]
+	character_names = [name.strip("‘") for name in character_names]
+	character_names = [name.strip("’") for name in character_names]
+	character_names = [name.strip("–") for name in character_names]
+	character_names = [name.strip("_") for name in character_names]
+	
+	
+	character_mentions = Counter(character_names) #counting the times a character is mentioned
+	
+	fic_number = [0] * len(character_mentions.keys())
+
+	###Store character data on CSV
+	# Create pandas dataframe to store data
+	df = pandas.DataFrame(columns=['Fic number', 'Character name', 'Times mentioned'])
+	df['Fic number'] = fic_number
+	df['Character name'] = character_mentions.keys()
+	df['Times mentioned'] = character_mentions.values()
+
+	#df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False)
+	df.to_csv(NER_TAGGED_FICS_PATH, index=False)
+
+
+	"""
+	for sentence in NER_tagged_sentences:
+		iob_sent = tree2conlltags(sentence)
+		#iob_sent = conlltags2tree(sentence)
+		#print(iob_sent)
+		iob_sentences.append(iob_sent)
+	
+	"""
+	"""
 	# Loop to explore the tagged chunks in tagged_fics
 	num_sentence = 0
 
@@ -102,23 +148,28 @@ def start_NER_tagging(tagged_fic, num_fic, typical):
 		while i < len(rows):
 			if rows[i][4] == 'per':
 				if state:
-					state = False
+					#character_data.append((rows[0], name_str+rows[i][2], 1))
 					character_data.append((rows[0], name_str, 1))
 					#(fic number, character name, # of mentions of said name)
+					state = False
 					name_str = ''
 					#i += 1
 
 				else:
-					name_str = name_str+rows[i][2]
+					name_str = name_str+rows[i][2]+' '
 					state = True
 
-			elif state: name_str = name_str+rows[i][2]
-
+			elif rows[i][4] == '-' and state: name_str = name_str+rows[i][2]+' '
+			else: name_str = ''
 			i += 1
 
 		### Unzip the tuples into columns
 		columns = list(zip(*character_data))
-		character_mentions = Counter(columns[1])
+		character_names = [name.strip() for name in columns[1]]
+		character_names = [name.strip("‘") for name in character_names]
+		character_names = [name.strip("’") for name in character_names]
+		character_names = [name.strip('–') for name in character_names]
+		character_mentions = Counter(character_names)
 		fic_number = [0] * len(character_mentions.keys())
 		#print(character_mentions) #debug
 		
@@ -129,8 +180,9 @@ def start_NER_tagging(tagged_fic, num_fic, typical):
 		df['Character name'] = character_mentions.keys()
 		df['Times mentioned'] = character_mentions.values()
 
-		df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False)
-
+		#df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False)
+		df.to_csv(NER_TAGGED_FICS_PATH, index=False)
+	"""
 
 	"""
 	if num_sentence > 0: 
