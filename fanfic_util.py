@@ -115,15 +115,16 @@ class FanficCleaner():
 
 		return fic_list
 
-	def clean_fanfic_list(self, html_fic_list, save):
+	def clean_fanfic_list(self, fic_paths, save):
 		clean_fics = []
-		for _, path in html_fic_list:
+		for path in fic_paths:
 			fic_text = get_plain_text(path)
 			clean_fics.append((fic_text, path))
 		
 		if save:
 			save_txt_fics(clean_fics)
 	
+		clean_fics, _ = list(zip(*clean_fics))
 		return clean_fics
 
 	def save_txt_fanfics(fic_list):
@@ -161,7 +162,7 @@ class FanficCleaner():
 	def get_txt_listing_path(self): return TXT_LISTING_PATH
 
 class FanficGetter():
-	def get_fanfic_paths_in_range(self, start, end):
+	def get_fanfic_paths_in_file(self):
 		paths_file = open(FIC_LISTING_PATH, 'r')
 		fic_paths = [line[:-1] for line in paths_file.readlines()]
 		paths_file.close()
@@ -180,6 +181,8 @@ class FanficGetter():
 			txt_fics.append(open(path, 'r').read())
 		
 		return txt_fics
+
+	"""
 	def get_all_txt_fanfics(self):
 		paths_file = open(TXT_LISTING_PATH, 'r')
 		fic_paths = [line[:-1] for line in paths_file.readlines()]
@@ -191,6 +194,7 @@ class FanficGetter():
 			txt_fics.append(open(path, 'r').read())
 		
 		return txt_fics
+	"""
 
 	def get_html_fanfics_in_range(self, start, end):
 		paths_file = open(FIC_LISTING_PATH, 'r')
