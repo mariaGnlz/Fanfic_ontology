@@ -1,3 +1,8 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{Bar68}
+
+\bibitem[Bar68]{Barthes}
+Roland Barthes.
+\newblock The death of the author.
+\newblock {\em Manteia}, (5), 1968.
 
 \end{thebibliography}

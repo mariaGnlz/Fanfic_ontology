@@ -1,0 +1,46 @@
+\begin{thebibliography}{Oxy04}
+
+\bibitem[BD93]{Bow93}
+M.~Bowman and L.L. Debray, S.K.and~Peterson.
+\newblock Reasoning about naming systems.
+\newblock {\em ACM Trans. Program. Lang. Syst.}, 15(5):795--825, Nov 1993.
+
+\bibitem[DM97]{Ding97}
+W.~Ding and G.~Marchionini.
+\newblock A study on video browsing strategies. technical report.
+\newblock Technical report, University of Maryland at College Park, 1997.
+
+\bibitem[FP00]{Frohlic00}
+B.~Fr\"ohlich and J.~Plate.
+\newblock The cubic mouse: a new device for three-dimensional input.
+\newblock In {\em Proceedings of the SIGCHI Conference on Human Factors in
+  Computing Systems}, pages 526--531, The Hague, The Netherlands, April 2000.
+  ACM.
+\newblock DOI= \url{http://doi.acm.org/10.1145/332040.332491}.
+
+\bibitem[Gre99]{Greiner99}
+R.~Greiner.
+\newblock {\em The Encyclopedia of Cognitive Science}, chapter
+  Explanation-based learning, pages 301--303.
+\newblock MIT Press, Cambridge, MA, USA., 1999.
+
+\bibitem[Oxy04]{Oxygen}
+Mit project oxygen: Overview.
+\newblock \url{http://oxygen.lcs.mit.edu/Overview.html}, 2004.
+\newblock Computer Science and Artificial Intelligence Laboratory,
+  Massachusetts Institute of Technology.
+
+\bibitem[Ste04]{Steele04}
+B.~Steele.
+\newblock Look, ma, no wires! cornell class project tests wireless networking.
+\newblock
+  \url{http://www.news.cornell.edu/Chronicle/00/5.18.00/wireless_class.html},
+  February 2004.
+\newblock Cornell Chronicle, 31 from Columbia University.
+
+\bibitem[Tav07]{Tavel07}
+P.~Tavel.
+\newblock {\em Modeling and Simulation Design}.
+\newblock AK Peters Ltd., Natick, MA, USA, 2007.
+
+\end{thebibliography}

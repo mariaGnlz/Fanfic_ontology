@@ -1,9 +1,10 @@
 \babel@toc {spanish}{}
 \contentsline {section}{\numberline {1}INTRODUCCI\IeC {\'O}N Y OBJETIVOS}{2}{section.1}
-\contentsline {section}{\numberline {2}FANFICTION, ARCHIVE OF OUR OWN Y RELATOS A UTILIZAR}{2}{section.2}
-\contentsline {section}{\numberline {3}RECOGIDA DE FANFICS USANDO LA BASE DE DATOS DE ARCHIVE OF OUR OWN}{3}{section.3}
-\contentsline {section}{\numberline {4}LIMPIEZA DE DATOS}{4}{section.4}
-\contentsline {section}{\numberline {5}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE ENTIDADES}{5}{section.5}
-\contentsline {section}{\numberline {6}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE RELACIONES}{9}{section.6}
-\contentsline {section}{\numberline {7}EVALUACI\IeC {\'O}N DEL SISTEMA}{9}{section.7}
-\contentsline {section}{\numberline {8}REFERENCIAS}{10}{section.8}
+\contentsline {section}{\numberline {2}FANFICTION, ARCHIVE OF OUR OWN Y RELATOS A UTILIZAR}{3}{section.2}
+\contentsline {section}{\numberline {3}INTELIGENCIA ARTIFICIAL Y AN\IeC {\'A}LISIS DE TEXTO}{5}{section.3}
+\contentsline {section}{\numberline {4}RECOGIDA DE FANFICS USANDO LA BASE DE DATOS DE ARCHIVE OF OUR OWN}{5}{section.4}
+\contentsline {section}{\numberline {5}LIMPIEZA DE DATOS}{6}{section.5}
+\contentsline {section}{\numberline {6}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE ENTIDADES}{7}{section.6}
+\contentsline {section}{\numberline {7}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE RELACIONES}{11}{section.7}
+\contentsline {section}{\numberline {8}EVALUACI\IeC {\'O}N DEL SISTEMA}{11}{section.8}
+\contentsline {section}{\numberline {9}REFERENCIAS}{12}{section.9}

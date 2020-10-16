@@ -73,6 +73,27 @@
 
 \section{INTRODUCCIÓN Y OBJETIVOS}
 
+Empecé el proyecto porque me gusta el fanfiction y el análisis de datos, y AO3 tiene una base de datos muy grande  y accesible. Además, las comunidades de fanfic son muy activas y producen una vasta cantidad de contenido muy detallado; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma.
+
+En literatura comparada se suelen tener en cuenta dos perspectivas a la hora de analizar una obra: la de la teoría del autor, que tiene en cuenta lo que el autor quería comunicar y plasmar en esa obra, y la de la "muerte del autor"\cite{Barthes}, que tiene en cuenta el mensaje con el que los lectores se quedan tras leer la obra (independientemente de si coincide con el que el autor quería comunicar)
+Para entender el mensaje de una obra de forma plena, es necesario tener en cuenta tanto la intención comunicativa del autor, como el mensaje que al final los lectores acaban entendiendo. Y como cada lector es hijo de su padre y de su madre, acaban surgiendo muchas posibles interpretaciones distintas a partir de un único texto.
+Tradicionalmente, los académicos solamente han tenido en cuenta las opiniones de un grupo reducido de personas (compuesto principalmente por otros académicos) a la hora de analizar una obra desde la perspectiva de la muerte del autor, ya que el lector común no suele tener a su disposición las herramientas necesarias para difundir sus interpretaciones. Sin embargo, desde que Internet y los foros como \textit{LiveJournal} se han vuelto accesibles a grandes partes de la población, miles de comunidades fan empezaron a organizarse justamente con la intención de poner en común sus interpretaciones, de expresar sus críticas y opiniones. No todas estas discusiones tienen lugar en forma de fanfiction, pero es un género muy popular en las comunidades fans, y yo personalmente estoy muy familiarizada con sus estructuras y códigos.
+
+Fanfiction es el nombre que recibe un texto basado en una historia ya existente, en particular cuando el autor es fan de la obra de la cual su texto deriva. Son, por lo tanto, textos de ficción sin ánimo de lucro que los fans escriben como expresión de su creatividad. Debido a su naturaleza como obra derivada, un fanfic necesariamente refleja las opiniones y críticas que el autor tiene de la obra original: qué es lo que le gusta, qué temas siente que faltan en la obra, qué cosas tendrían que haberse explicado desde una perspectiva distinta, etc.
+Por ejemplo, es evidente al leer los libros de la saga \textit{Harry Potter} que el texto quiere que pienses que Ron Weasly, el mejor amigo del protagonista, es un chico un poco torpe y bocazas pero con buen corazón, y un buen amigo de Harry. Sin embargo, muchos fans no interpretaron a Ron como torpe y bocazas, sino como egocéntrico e insesible, y hay no pocos fanfics en los que Ron y Harry discuten y dejan de ser amigos, o en los que Ron es directamente un villano aliado con Voldemort.
+
+Por supuesto, las personas que escriben fanfics también leen los fanfics escritos por los demás, con lo que cada autor extiende sus propias ideas pero es también influenciado por las elucubraciones de los autores que lee.
+
+Así que estas comunidades de Internet están generando una cantidad inmensa de opiniones y perspectivas en torno a un tema común en foros públicamente accesibles, y me pareció interesante la idea de crear un sistema que sea capaz de recoger y procesar toda esta información para crear un "abanico" de las distintas interpretaciones que existen en una comunidad fan, especialmente aquellas sobre los personajes y las relaciones entre ellos. El resultado final se podría utilizar como herramienta dentro de la propia comunidad fan, para observar cómo tienden a interpretar a ciertos personajes a nivel de comunidad y cómo estas interpretaciones cambian a lo largo del tiempo, o en distintas subsecciones dentro de la comunidad en general. También se podría utilizar como herramienta general de análisis literario, aplicándola primero a la obra original y luego a un conjunto de fanfics representativos, y observando cuáles son las diferencias entre la perspectiva del autor original y la de los lectores (convertidos en autores fan)
+Al empezar el proyecto, no sabía mucho sobre análisis de texto, por lo que empecé a estudiar sobre análisis de texto natural y extracción de información usando el libro \textit{Natural Language Processing} (Jacob Eisenstein, MIT Press). A priori, el proceso que tenía que seguir consistía en:
+
+\begin{enumerate}
+	\item Identificación de entidades
+	\item Identificación de relaciones entre entidades
+	\item Identificación de eventos
+\end{enumerate}
+
+Sin embargo, otra parte importante del proyecto iba a consistir en la extracción y selección de textos de Internet, llevado a cabo haciendo un \textit{scraper} que se encargue de la tarea.
 
 
 \section{FANFICTION, ARCHIVE OF OUR OWN Y RELATOS A UTILIZAR}
@@ -82,7 +103,7 @@ Hay muchas personas que, al terminar un libro, se quedan con ganas de explorar m
 
 Cuando los fans de una misma obra se reúnen y organizan, se crean comunidades fan llamadas "fandoms", que suelen crear foros donde intercambiar sus impresiones, teorías y, por supuesto, fanfiction y otras formas de arte fan. Algunas teorías acaban popularizándose tanto que el fandom acaba formando, a nivel de comunidad, su propia interpretación de la obra original. Por ejemplo, en Harry Potter, el personaje de Ron Weasly es el mejor amigo del protagonista y es bastante claro que el libro quiere dar el mensaje de que Ron es un buen amigo. Sin embargo, debido a que Ron puede actuar de forma egoísta e insensible, en el fandom de Harry Potter la interpretación dominante es que Ron es en realidad un mal amigo, y muchos escritores de fanfic escriben historias en las que Ron y Harry pelean y dejan de ser amigos, o en las que Ron es directamente un villano.
 
-Éste es sólo uno de las formas de escribir fanfic que hay. Existen muchos fanfics que cambian la historia original de formas mucho más radicales, explorando cómo hubiese sido Star Wars si Luke Skywalker hubiese caído al lado oscuro, o cómo actuarían los personajes de Juego de Tronos si fuesen trabajadores normales en una cafetería de Toronto, por poner algunos ejemplos. El fan convertido en autor puede añadir o quitar a la historia original lo que considere oportuno para contar su propia visión personal.
+Ésta es sólo una de las formas de escribir fanfic que hay. Existen muchos fanfics que cambian la historia original de formas mucho más radicales, explorando cómo hubiese sido Star Wars si Luke Skywalker hubiese caído al lado oscuro, o cómo actuarían los personajes de Juego de Tronos si fuesen trabajadores normales en una cafetería de Toronto, por poner algunos ejemplos. El fan convertido en autor puede añadir o quitar a la historia original lo que considere oportuno para contar su propia visión personal.
 
 En resumen, las comunidades fan tienen una interpretación propia de la obra original, que influencian los fanfics que los miembros de dicha comunidad van a escribir y, a su vez, los escritores de fanfic también crean y popularizan interpretaciones que se acaban convirtiendo en dominantes. 
 
@@ -151,7 +172,7 @@ En NERChunkerv1 he utilizado una interfaz de NLTK llamada ChunkParserI. Tiene el
 \begin{itemize}
 	\item el constructor recibe el dataset en forma de frases etiquetadas y entrena el algoritmo. El dataset que he utilizado venía con etiquetas IOB en forma de tuplas, pero NLTK usa las etiquetas IOB en otro formato, de modo que el constructor se dedica principalmente a manipular las tuplas y aplicarles el método tree2conlltags para que NLTK las entienda. Y después llama a NERTagger y le pasa el dataset ya preparado para entrenar un clasficador.
 	\item parse, que es el método que recibe una frase con etiquetas morfológicas y la etiqueta, con el clasificador ya entrenado. Devuelve la frase etiquetada con etiquetas IOB en forma de árbol, que es el formato de etiqueta que NLTK utiliza.
-	\item evaluate, que evalúa la precisión del algoritmo. Uso el de la superclase, así que en mi código no está definido.
+	\item evaluate, que evalúa la precisión del algoritmo. Uso el de laIdentificación de eventos superclase, así que en mi código no está definido.
 \end{itemize}
 
 
@@ -240,7 +261,8 @@ Curiosamente, el modelo D fue mejorado ligeramente teniendo en cuenta las interj
 
 \bibliographystyle{alpha}
 \singlespacing
-\bibliography{ejemplo}
+%\bibliography{ejemplo}
+\bibliography{bib_tfg}
 
 
 \end{document}
