@@ -1,8 +1,16 @@
 \begin{thebibliography}{Bar68}
 
 \bibitem[Bar68]{Barthes}
-Roland Barthes.
+Ronald Barthes.
 \newblock The death of the author.
 \newblock {\em Manteia}, (5), 1968.
+
+\bibitem[Swi98]{Woosh}
+Jonathan Swift.
+\newblock Copyright 101: A brief introduction to copyright for fan fiction
+  writers.
+\newblock \url{http://www.whoosh.org/issue25/lee1a.html#41}, October 1998.
+\newblock Woosh Magazine, Birthplace of the International Association of Xena
+  Studies.
 
 \end{thebibliography}
