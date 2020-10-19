@@ -1,10 +1,12 @@
 \babel@toc {spanish}{}
 \contentsline {section}{\numberline {1}INTRODUCCI\IeC {\'O}N Y OBJETIVOS}{2}{section.1}
-\contentsline {section}{\numberline {2}FANFICTION, ARCHIVE OF OUR OWN Y RELATOS A UTILIZAR}{3}{section.2}
-\contentsline {section}{\numberline {3}INTELIGENCIA ARTIFICIAL Y AN\IeC {\'A}LISIS DE TEXTO}{5}{section.3}
-\contentsline {section}{\numberline {4}RECOGIDA DE FANFICS USANDO LA BASE DE DATOS DE ARCHIVE OF OUR OWN}{5}{section.4}
-\contentsline {section}{\numberline {5}LIMPIEZA DE DATOS}{7}{section.5}
-\contentsline {section}{\numberline {6}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE ENTIDADES}{7}{section.6}
-\contentsline {section}{\numberline {7}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE RELACIONES}{11}{section.7}
-\contentsline {section}{\numberline {8}EVALUACI\IeC {\'O}N DEL SISTEMA}{11}{section.8}
-\contentsline {section}{\numberline {9}REFERENCIAS}{12}{section.9}
+\contentsline {section}{\numberline {2}FANFICTION Y ARCHIVE OF OUR OWN}{3}{section.2}
+\contentsline {section}{\numberline {3}INTELIGENCIA ARTIFICIAL Y AN\IeC {\'A}LISIS DE TEXTO}{6}{section.3}
+\contentsline {section}{\numberline {4}RECOGIDA Y LIMPIEZA DE DATOS}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}LIMPIEZA DE DATOS}{7}{subsection.4.2}
+\contentsline {section}{\numberline {5}EXTRACCI\IeC {\'O}N DE DATOS A PARTIR DE TEXTO}{8}{section.5}
+\contentsline {subsection}{\numberline {5.1}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE ENTIDADES}{8}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE RELACIONES}{11}{subsection.5.2}
+\contentsline {section}{\numberline {6}EVALUACI\IeC {\'O}N DEL SISTEMA}{13}{section.6}
+\contentsline {section}{\numberline {7}REFERENCIAS}{13}{section.7}
