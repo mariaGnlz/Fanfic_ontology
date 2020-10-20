@@ -149,9 +149,40 @@ consectetur adipiscing elit \todo[size=\tiny]{explicar bag of words + función q
 \subsection{CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}
 \label{sec:recogidadatos}
 
-En el momento en el que decidí utilizar los fanfics de \textit{Good Omens} para el proyecto, dicho libro tenía unos 22000 fanfics en \href{archiveofourown.org}{Archive Of Our Own} (AO3 para abreviar). Sin embargo, de todos esos relatos sólo me interesaban los que están en inglés y los que realmente contuvieran texto (puesto que, aunque AO3 se centra en texto, permite todo tipo de archivos multimedia), de modo que utilicé el sistema de filtrado del sitio para seleccionar sólo los fanfics en inglés y que no estuvieran etiquetadas como "fanart", "podfic", etc, ya que indican que la obra no tiene texto. Tras este filtrado, quedaron 20190 relatos. \todo{literaturizar esta sección}
+En el momento en el que decidí utilizar los fanfics de \textit{Good Omens} para el proyecto, dicho libro tenía unos 22000 fanfics en \href{archiveofourown.org}{Archive Of Our Own} (AO3 para abreviar). Sin embargo, de todos esos relatos sólo me interesaban los que están en inglés y los que realmente contuvieran texto (puesto que, aunque AO3 se centra en relatos, permite alojar todo tipo de archivos multimedia).
 
-AO3 crea un enlace que lleva siempre a ese subconjunto de relatos, al cual puedo enviar peticiones HTTP GET y navegar las páginas. Cada página contiene un máximo de 20 fanfics, y antes de descargarlos es necesario llevar a cabo un segundo filtrado para evitar las obras sin texto que no hayan sido etiquetadas como tal por su autor. Decidí crear dos \textit{scrapers} distintos, uno para navegar por las páginas, filtrar y guardar los \textit{links} en un archivo, y otro que simplemente lee dicho archivo y realiza descargas.
+Por suerte, AO3 fue creado con la intención específica de funcionar como archivo, por lo que tiene una herramienta de búsqueda y filtrado muy completa y sencilla de usar. Esta herramienta permite filtrar por características como título, autor, idioma y cantidad de palabras, pero su mayor utilidad viene de su sistema de etiquetas. AO3 permite a los autores añadir tantas etiquetas como quieran para que los posibles lectores puedan saber más de su obra a simple vista: temática, personajes principales, parejas en las que se centra, qué medio utiliza, si hay ilustraciones, si trata sobre un evento de la historia original particular... Las etiquetas añaden una gran cantidad de información sobre las historias a las que acompañan, y aunque no es obligatorio poner ninguna, en general los autores se preocupan de etiquetar correctamente sus obras.
+
+\begin{figure}
+	\label{fig:ao3_search}
+	\includegraphics[scale=0.5]{ao3_searchbox}
+	\caption{Herramienta de filtrado de AO3. Permite excluir (o incluir) obras que contengan etiquetas específicas, así cómo aquellas no escritas en un idioma particular}
+	\centering
+\end{figure}
+
+AO3 tiene etiquetas específicas para indicar que una obra no es principalmente texto: \textit{'Fanart'}, para ilustraciones, y \textit{'Podfic'} para archivos de audio, así que aproveché la herramienta de búsqueda para llevar a cabo un primer filtrado que eliminara todas las obras que las contuvieran, además de todas las que no estuviesen en inglés. El resultado fue un subconjunto de 20190 fanfics, todos en inglés y cuyos autores no habían incluido ninguna etiqueta que indicara que no fuera puro texto. La herramienta además genera un link permanente que siempre lleva a este subconjunto particular, por lo que no es necesario utilizar esta herramienta nada más que una vez.
+
+\begin{figure}
+	\label{fig:ao3_inspect}
+	\includegraphics[angle=90,scale=0.5]{ao3_inspect}
+	\caption{Exploración de la estructura de la página AO3 usando la herramienta 'Inspeccionar elemento' de \textit{Firefox}. Se puede ver que el sitio utiliza una clase HTML llamada \textit{'work blurb group'} para mostrar cada obra.}
+	\centering
+\end{figure} 
+
+Una vez localizado el conjunto de textos y el link a los mismos, viene la parte de crear el \textit{scraper} en sí. Utilizando la herramienta de inspeccionar elemento de \textit{Firefox} para explorar la estructura del sitio, y enseguida se hizo obvio que los fanfics estaban organizados en páginas con un máximo de 20 fanfics cada una. En el HTML de la página, cada fanfic se presenta dentro de una clase llamada \textit{'work blurb group'}. No se puede extraer un link de descarga directamente de ésta clase, pero sí el identificador del fanfic.
+
+En AO3, cada fanfic tiene un número que lo identifica de forma única. Es posible acceder a la página de cualquier fanfic simplemente añadiendo ese número al final de 'http://www.archiveofourown.org/works/' en la barra de direcciones, y en esa página sí que se pueden encontrar links de descarga.
+
+\begin{figure}[h]
+	\label{fig:ao3_structure}
+	\includegraphics[scale=0.6]{ao3_structure}
+	\caption{Concepto para el \textit{scraper}. El objetivo es obtener los links de descarga navegando las páginas de búsqueda.}
+	\centering
+\end{figure}
+
+Por tanto la idea básica para el \textit{scraper} es explorar los veinte \textit{'work blurb group'} de cada página, extraer el identificador de cada fanfic, utilizarlo para acceder a la página del mismo y extraer el link de descarga. Y así con cada página del listado, hasta llegar a la última. La \ref{fig:ao3_structure} ilustra el proceso con un esquema. 
+
+AO3 crea un enlace que lleva siempre a ese subconjunto de relatos, al cual puedo enviar peticiones HTTP GET y navegar las páginas. Cada página contiene un máximo de 20 fanfics, y antes de descargarlos es necesario llevar a cabo un segundo filtrado para evitar las obras sin texto que no hayan sido etiquetadas como tal por su autor. Decidí crear dos \textit{scrapers} distintos, uno para navegar por las páginas, filtrar y guardar los links en un archivo, y otro que simplemente lee dicho archivo y realiza descargas.
 
 \begin{itemize}
 	\item El primer \textit{scraper} envía peticiones a AO3, explora el HTML de cada página para encontrar los objetos que encapsulan la información de cada fanfic, selecciona aquellos que tengan al menos 40 palabras por capítulo y crea una lista con los enlaces, que guarda en un archivo \textit{txt}.

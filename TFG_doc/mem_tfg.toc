@@ -4,9 +4,9 @@
 \contentsline {section}{\numberline {3}INTELIGENCIA ARTIFICIAL Y AN\IeC {\'A}LISIS DE TEXTO}{6}{section.3}
 \contentsline {section}{\numberline {4}RECOGIDA Y LIMPIEZA DE DATOS}{6}{section.4}
 \contentsline {subsection}{\numberline {4.1}CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}{6}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}LIMPIEZA DE DATOS}{7}{subsection.4.2}
-\contentsline {section}{\numberline {5}EXTRACCI\IeC {\'O}N DE DATOS A PARTIR DE TEXTO}{8}{section.5}
-\contentsline {subsection}{\numberline {5.1}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE ENTIDADES}{8}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE RELACIONES}{11}{subsection.5.2}
-\contentsline {section}{\numberline {6}EVALUACI\IeC {\'O}N DEL SISTEMA}{13}{section.6}
-\contentsline {section}{\numberline {7}REFERENCIAS}{13}{section.7}
+\contentsline {subsection}{\numberline {4.2}LIMPIEZA DE DATOS}{10}{subsection.4.2}
+\contentsline {section}{\numberline {5}EXTRACCI\IeC {\'O}N DE DATOS A PARTIR DE TEXTO}{11}{section.5}
+\contentsline {subsection}{\numberline {5.1}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE ENTIDADES}{11}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE RELACIONES}{15}{subsection.5.2}
+\contentsline {section}{\numberline {6}EVALUACI\IeC {\'O}N DEL SISTEMA}{16}{section.6}
+\contentsline {section}{\numberline {7}REFERENCIAS}{16}{section.7}
