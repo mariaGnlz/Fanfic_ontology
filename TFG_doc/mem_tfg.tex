@@ -3,6 +3,7 @@
 \usepackage{listings}
 \usepackage{formular}
 \usepackage[pdftex]{graphicx}
+\usepackage[rightcaption]{sidecap}
 \usepackage{hyperref}
 \usepackage{todonotes}
 \usepackage{amsmath}
@@ -171,7 +172,7 @@ AO3 tiene etiquetas específicas para indicar que una obra no es principalmente 
 
 Una vez localizado el conjunto de textos y el link a los mismos, viene la parte de crear el \textit{scraper} en sí. Utilizando la herramienta de inspeccionar elemento de \textit{Firefox} para explorar la estructura del sitio, y enseguida se hizo obvio que los fanfics estaban organizados en páginas con un máximo de 20 fanfics cada una. En el HTML de la página, cada fanfic se presenta dentro de una clase llamada \textit{'work blurb group'}. No se puede extraer un link de descarga directamente de ésta clase, pero sí el identificador del fanfic.
 
-En AO3, cada fanfic tiene un número que lo identifica de forma única. Es posible acceder a la página de cualquier fanfic simplemente añadiendo ese número al final de 'http://www.archiveofourown.org/works/' en la barra de direcciones, y en esa página sí que se pueden encontrar links de descarga.
+En AO3, cada fanfic tiene un número que lo identifica de forma única. Es posible acceder a la página de cualquier fanfic simplemente añadiendo ese número al final de \newline 'http://www.archiveofourown.org/works/' \newline en la barra de direcciones, y en esa página sí que se pueden encontrar links de descarga.
 
 \begin{figure}[h]
 	\label{fig:ao3_structure}
@@ -180,7 +181,46 @@ En AO3, cada fanfic tiene un número que lo identifica de forma única. Es posib
 	\centering
 \end{figure}
 
-Por tanto la idea básica para el \textit{scraper} es explorar los veinte \textit{'work blurb group'} de cada página, extraer el identificador de cada fanfic, utilizarlo para acceder a la página del mismo y extraer el link de descarga. Y así con cada página del listado, hasta llegar a la última. La \ref{fig:ao3_structure} ilustra el proceso con un esquema. 
+Por tanto la idea básica para el \textit{scraper} es utilizar las librerías \textit{requests} y \textit{BeautifulSoup} de python para explorar los veinte \textit{'work blurb group'} de cada página, localizar el identificador de cada uno, utilizarlo para acceder a la página del fanfic y extraer el link de descarga. Y así con cada página del listado, hasta llegar a la última. La \ref{fig:ao3_structure} ilustra el proceso con un esquema.
+
+El proceso de descarga de archivos, en principio, tendría estos pasos:
+
+\begin{enumerate}
+	\item Enviar una petición HTTP GET al link permanente del conjunto de datos, generado por la herramienta de búsqueda de AO3.
+	\item Iterar entre los 20 \textit{'work blurb group'} y extraer el identificador de cada uno.
+	\item Usar el identificador para acceder a la página de cada fanfic, extraer el link de descarga de la página, y descargar el fanfic como archivo HTML. Hacer esto con los 20 identificadores.
+	\item Pasar a la siguiente página y repetir, hasta llegar a la última.
+\end{enumerate}
+
+Utilizando la librería \textit{requests} de python, el primer paso es trivial, y se puede observar en la \ref{code:scraper1}.
+
+\begin{figure}
+	\label{code:scraper2}
+	\includegraphics[scale=0.5]{scraper_code2}
+	\caption{Código perteneciente al \textit{scraper} 'ao3\_link\_scraper'. Utiliza un bucle \textit{while} para iterar entre las páginas de la búsqueda, y en cada página, usa la librería \textit{BeautifulSoup} para extraer los objetos textit{'work blurb group'} en una lista llamada 'blurbs' (línea 42). De cada 'blurb' extrae el identificador del fanfic y comprueba si tiene texto (líneas 46-49), y si lo contiene forma el enlace a la página del fanfic y lo añade a una lista llamada 'work\_links' (línea 50). Si no contiene texto, se añade a otra lista llamada 'discarded\_links' (línea 52).}
+\end{figure}
+
+Encontrar los identificadores tampoco es complicado. Se puede apreciar en \ref{fig:ao3_structure} que el identificador del fanfic también es el ID del objeto \textit{'work blurb group'} al que pertenece, y expandiendo la clase se puede ver que el identificador completo se puede encontrar dentro del objeto, como un objeto de tipo \textit{h4}. Por tanto, usando \textit{BeautifulSoup} para manejar los datos resultantes de la petición HTTP GET como objeto HTML, se pueden obtener todos los objetos \textit{'work blurb group'} usando la función \textit{find(class\_=<nombre clase>)}, cuyo resultado es una lista con los 20 objetos, sobre los cuales se itera para encontrar los identificadores usando de nuevo la función \textit{find()}. En \ref{code:scraper2} se puede observar un fragmento del código que realiza este trabajo; el código completo se puede consultar en ref.\todo[size=\tiny]{ref: apéndice código link scraper}
+
+
+y requiere explorar un poco más la estructura de las páginas de búsqueda de AO3.
+
+\begin{SCfigure}
+	\label{fig:ao3_structure2}
+	\caption{Navegación de páginas de búsqueda de AO3. Todos los botones vienen con su número de página, y se puede ver cuál es la última}
+	\includegraphics[angle=90, scale=0.5]{ao3_structure2}
+	%\centering
+\end{SCfigure}
+
+\begin{figure}
+	\label{code:scraper1}
+	\includegraphics[scale=0.5]{scraper_code}
+	\caption{Código perteneciente al \textit{scraper} 'ao3\_link\_scraper'. Utiliza la librería \textit{requests} para enviar una petición HTTP GET al link permanente del conjunto de datos (línea 30), y \textit{BeautifulSoup} para navegar el resultado como un objeto HTML del que poder extraer datos útiles, como la cantidad total de páginas (líneas 33-35).}
+	\centering
+\end{figure}
+
+Todas las páginas de resultados de búsqueda de AO3 contienen botones para avanzar, retroceder y saltar a páginas concretas. Es posible saber cuántas páginas en total tiene la búsqueda simplemente mirando el botón de la última, tal y como se ve en la \ref{fig:ao3_structure2}. En la figura no aparece, pero la clase HTML a la que pertenece dicho botón se llama \textit{'pagination actions'}, y es posible extraerla gracias a la función \textit{find(class\_=<nombre\_clase>)} de \textit{BeautifulSoup}. Y ya con ese objeto, se puede utilizar la función \textit{find()} para buscar todos los objetos hijos de la clase \textit{'pagination actions'} que sean de tipo \textit{li}. El último será el que contenga la cantidad total de páginas. En \ref{code:scraper1} se ve parte del código que realiza este proceso; el código completo se puede consultar en ref.\todo[size=\small]{ref:apéndice código link scraper}
+
 
 AO3 crea un enlace que lleva siempre a ese subconjunto de relatos, al cual puedo enviar peticiones HTTP GET y navegar las páginas. Cada página contiene un máximo de 20 fanfics, y antes de descargarlos es necesario llevar a cabo un segundo filtrado para evitar las obras sin texto que no hayan sido etiquetadas como tal por su autor. Decidí crear dos \textit{scrapers} distintos, uno para navegar por las páginas, filtrar y guardar los links en un archivo, y otro que simplemente lee dicho archivo y realiza descargas.
 
