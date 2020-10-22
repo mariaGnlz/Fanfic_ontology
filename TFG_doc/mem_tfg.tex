@@ -62,6 +62,10 @@
 
 \renewcommand*\lstlistingname{Listado}
 
+%% PLACEHOLDERS %%
+\newcommand{\refToLinkScraperCode}{placeholder ref}
+\newcommand{\refToScraperExecution}{placeholder ref}
+
 
 
 \begin{document}
@@ -74,7 +78,7 @@
 
 \section{INTRODUCCIÓN Y OBJETIVOS}
 
-Empecé el proyecto porque me gusta el fanfiction y el análisis de datos, y AO3 tiene una base de datos muy grande  y accesible. Además, las comunidades de fanfic son muy activas y producen una vasta cantidad de contenido muy detallado; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma.
+Empecé el proyecto\todo[size=\tiny]{RELLENAR PLACEHOLDERS} porque me gusta el fanfiction y el análisis de datos, y AO3 tiene una base de datos muy grande  y accesible. Además, las comunidades de fanfic son muy activas y producen una vasta cantidad de contenido muy detallado; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma.
 
 En literatura comparada se suelen tener en cuenta dos perspectivas a la hora de analizar una obra: la de la teoría del autor, que tiene en cuenta lo que el autor quería comunicar y plasmar en esa obra, y la de la "muerte del autor"\cite{Barthes}, que tiene en cuenta el mensaje con el que los lectores se quedan tras leer la obra (independientemente de si coincide con el que el autor quería comunicar).
 Para entender el mensaje de una obra de forma plena\cite{ellis_2018}, es necesario tener en cuenta tanto la intención comunicativa del autor, como el mensaje que al final los lectores acaban entendiendo. Y como cada lector es hijo de su padre y de su madre, acaban surgiendo muchas posibles interpretaciones distintas a partir de un único texto.
@@ -154,12 +158,12 @@ En el momento en el que decidí utilizar los fanfics de \textit{Good Omens} para
 
 Por suerte, AO3 fue creado con la intención específica de funcionar como archivo, por lo que tiene una herramienta de búsqueda y filtrado muy completa y sencilla de usar. Esta herramienta permite filtrar por características como título, autor, idioma y cantidad de palabras, pero su mayor utilidad viene de su sistema de etiquetas. AO3 permite a los autores añadir tantas etiquetas como quieran para que los posibles lectores puedan saber más de su obra a simple vista: temática, personajes principales, parejas en las que se centra, qué medio utiliza, si hay ilustraciones, si trata sobre un evento de la historia original particular... Las etiquetas añaden una gran cantidad de información sobre las historias a las que acompañan, y aunque no es obligatorio poner ninguna, en general los autores se preocupan de etiquetar correctamente sus obras.
 
-\begin{figure}
+\begin{SCfigure}
 	\label{fig:ao3_search}
-	\includegraphics[scale=0.5]{ao3_searchbox}
 	\caption{Herramienta de filtrado de AO3. Permite excluir (o incluir) obras que contengan etiquetas específicas, así cómo aquellas no escritas en un idioma particular}
+	\includegraphics[scale=0.5]{ao3_searchbox}
 	\centering
-\end{figure}
+\end{SCfigure}
 
 AO3 tiene etiquetas específicas para indicar que una obra no es principalmente texto: \textit{'Fanart'}, para ilustraciones, y \textit{'Podfic'} para archivos de audio, así que aproveché la herramienta de búsqueda para llevar a cabo un primer filtrado que eliminara todas las obras que las contuvieran, además de todas las que no estuviesen en inglés. El resultado fue un subconjunto de 20190 fanfics, todos en inglés y cuyos autores no habían incluido ninguna etiqueta que indicara que no fuera puro texto. La herramienta además genera un link permanente que siempre lleva a este subconjunto particular, por lo que no es necesario utilizar esta herramienta nada más que una vez.
 
@@ -172,7 +176,7 @@ AO3 tiene etiquetas específicas para indicar que una obra no es principalmente 
 
 Una vez localizado el conjunto de textos y el link a los mismos, viene la parte de crear el \textit{scraper} en sí. Utilizando la herramienta de inspeccionar elemento de \textit{Firefox} para explorar la estructura del sitio, y enseguida se hizo obvio que los fanfics estaban organizados en páginas con un máximo de 20 fanfics cada una. En el HTML de la página, cada fanfic se presenta dentro de una clase llamada \textit{'work blurb group'}. No se puede extraer un link de descarga directamente de ésta clase, pero sí el identificador del fanfic.
 
-En AO3, cada fanfic tiene un número que lo identifica de forma única. Es posible acceder a la página de cualquier fanfic simplemente añadiendo ese número al final de \newline 'http://www.archiveofourown.org/works/' \newline en la barra de direcciones, y en esa página sí que se pueden encontrar links de descarga.
+En AO3, cada fanfic tiene un número que lo identifica de forma única. Es posible acceder a la página de cualquier fanfic simplemente añadiendo ese número al final de \newline 'https://www.archiveofourown.org/works/' en la barra de direcciones, y en esa página sí que se pueden encontrar links de descarga.
 
 \begin{figure}[h]
 	\label{fig:ao3_structure}
@@ -200,17 +204,9 @@ Utilizando la librería \textit{requests} de python, el primer paso es trivial, 
 	\caption{Código perteneciente al \textit{scraper} 'ao3\_link\_scraper'. Utiliza un bucle \textit{while} para iterar entre las páginas de la búsqueda, y en cada página, usa la librería \textit{BeautifulSoup} para extraer los objetos textit{'work blurb group'} en una lista llamada 'blurbs' (línea 42). De cada 'blurb' extrae el identificador del fanfic y comprueba si tiene texto (líneas 46-49), y si lo contiene forma el enlace a la página del fanfic y lo añade a una lista llamada 'work\_links' (línea 50). Si no contiene texto, se añade a otra lista llamada 'discarded\_links' (línea 52).}
 \end{figure}
 
-Encontrar los identificadores tampoco es complicado. Se puede apreciar en \ref{fig:ao3_structure} que el identificador del fanfic también es el ID del objeto \textit{'work blurb group'} al que pertenece, y expandiendo la clase se puede ver que el identificador completo se puede encontrar dentro del objeto, como un objeto de tipo \textit{h4}. Por tanto, usando \textit{BeautifulSoup} para manejar los datos resultantes de la petición HTTP GET como objeto HTML, se pueden obtener todos los objetos \textit{'work blurb group'} usando la función \textit{find(class\_=<nombre clase>)}, cuyo resultado es una lista con los 20 objetos, sobre los cuales se itera para encontrar los identificadores usando de nuevo la función \textit{find()}. En \ref{code:scraper2} se puede observar un fragmento del código que realiza este trabajo; el código completo se puede consultar en ref.\todo[size=\tiny]{ref: apéndice código link scraper}
+Encontrar los identificadores tampoco es complicado. Se puede apreciar en \ref{fig:ao3_structure} que el identificador del fanfic también es el ID del objeto \textit{'work blurb group'} al que pertenece, y expandiendo la clase se puede ver que el identificador completo se puede encontrar dentro del objeto, como un objeto de tipo \textit{h4}. Por tanto, usando \textit{BeautifulSoup} para manejar los datos resultantes de la petición HTTP GET como objeto HTML, se pueden obtener todos los objetos \textit{'work blurb group'} usando la función \textit{find(class\_=<nombre clase>)}, cuyo resultado es una lista con los 20 objetos, sobre los cuales se itera para encontrar los identificadores usando de nuevo la función \textit{find()}. En \ref{code:scraper2} se puede observar un fragmento del código que realiza este trabajo; el código completo se puede consultar en \refToLinkScraperCode.
 
-
-y requiere explorar un poco más la estructura de las páginas de búsqueda de AO3.
-
-\begin{SCfigure}
-	\label{fig:ao3_structure2}
-	\caption{Navegación de páginas de búsqueda de AO3. Todos los botones vienen con su número de página, y se puede ver cuál es la última}
-	\includegraphics[angle=90, scale=0.5]{ao3_structure2}
-	%\centering
-\end{SCfigure}
+Las complicaciones empiezan una vez se tienen los identificadores. Para formar la dirección completa, hay que añadir el identificador al final de \textit{'https://www.archiveofourown.org'}, mandar otra petición HTTP GET a dicha dirección, buscar ahí el link de descarga, solicitarla, esperar a que la descarga termine, y repetir todo esto otras 19 veces hasta tener descargados todos los fanfics de la página. Esto significa que por cada iteración del bucle que explora cada página es necesario introducir otro bucle que haga las descargas.
 
 \begin{figure}
 	\label{code:scraper1}
@@ -219,22 +215,45 @@ y requiere explorar un poco más la estructura de las páginas de búsqueda de A
 	\centering
 \end{figure}
 
-Todas las páginas de resultados de búsqueda de AO3 contienen botones para avanzar, retroceder y saltar a páginas concretas. Es posible saber cuántas páginas en total tiene la búsqueda simplemente mirando el botón de la última, tal y como se ve en la \ref{fig:ao3_structure2}. En la figura no aparece, pero la clase HTML a la que pertenece dicho botón se llama \textit{'pagination actions'}, y es posible extraerla gracias a la función \textit{find(class\_=<nombre\_clase>)} de \textit{BeautifulSoup}. Y ya con ese objeto, se puede utilizar la función \textit{find()} para buscar todos los objetos hijos de la clase \textit{'pagination actions'} que sean de tipo \textit{li}. El último será el que contenga la cantidad total de páginas. En \ref{code:scraper1} se ve parte del código que realiza este proceso; el código completo se puede consultar en ref.\todo[size=\small]{ref:apéndice código link scraper}
+\begin{SCfigure}
+	\label{fig:ao3_structure2}
+	\caption{Navegación de páginas de búsqueda de AO3. Todos los botones vienen con su número de página, y se puede ver cuál es la última}
+	\includegraphics[angle=90, scale=0.5]{ao3_structure2}
+	%\centering
+\end{SCfigure}
 
+La última parte, la de pasar a la página siguiente, es más complicada de explicar que de ejecutar. Todas las páginas de resultados de búsqueda de AO3 contienen botones para avanzar, retroceder y saltar a páginas concretas. Es posible saber cuántas páginas en total tiene la búsqueda simplemente observando el texto del botón de la última, tal y como se ve en la \ref{fig:ao3_structure2}. En la figura no aparece, pero la clase HTML a la que pertenece dicho botón se llama \textit{'pagination actions'}, y es posible extraerla gracias a la función \textit{find(class\_=<nombre\_clase>)} de \textit{BeautifulSoup}. Y ya con ese objeto, se puede utilizar la función \textit{find()} para buscar todos los objetos hijos de la clase \textit{'pagination actions'} que sean de tipo \textit{li}. El último será el que contenga la cantidad total de páginas, y solicitar la siguiente consiste simplemente en sustituir la referencia en el link a la página 1 por una referencia a la última página. En \ref{code:scraper1} se ve parte del código que realiza este proceso; el código completo se puede consultar en el anexo \refToLinkScraperCode.
 
-AO3 crea un enlace que lleva siempre a ese subconjunto de relatos, al cual puedo enviar peticiones HTTP GET y navegar las páginas. Cada página contiene un máximo de 20 fanfics, y antes de descargarlos es necesario llevar a cabo un segundo filtrado para evitar las obras sin texto que no hayan sido etiquetadas como tal por su autor. Decidí crear dos \textit{scrapers} distintos, uno para navegar por las páginas, filtrar y guardar los links en un archivo, y otro que simplemente lee dicho archivo y realiza descargas.
+Es evidente que la parte de solicitar las descargas en un bucle anidado ralentiza el programa, enturbia el código y además, hace que sea complicado parar o interrumpir el programa si hay algún error de red, pues para reanudar la ejecución por donde se quedó sería necesario almacenar en alguna parte el número de página por el que iba y el número del fanfic dentro de esa página, y programar los bucles para que salten directamente a la iteración deseada.
 
-\begin{itemize}
-	\item El primer \textit{scraper} envía peticiones a AO3, explora el HTML de cada página para encontrar los objetos que encapsulan la información de cada fanfic, selecciona aquellos que tengan al menos 40 palabras por capítulo y crea una lista con los enlaces, que guarda en un archivo \textit{txt}.
-	\item El segundo \textit{scraper} recorre los enlaces de dicho archivo y los descarga en una carpeta del sistema. Está hecho de tal manera que se le puede indicar qué tramo de la lista tiene que descargar (por ejemplo, del número 5000 al 6000).
-	
-\end{itemize}
+Ninguna de estas cosas me convenía, ya que descargar más de 20000 archivos ya iba a ser lento de por sí y hacerlo de una sentada sería prácticamente imposible, de modo que decidí dividir el programa en dos: uno que llamé 'link \textit{scraper}' y otro '\textit{file scraper}'.
+
+\begin{figure}[h]
+	\label{fig:scrapers_structure}
+	\includegraphics[scale=0.6]{scrapers_structure}
+	\caption{Proceso de descarga de fanfics de AO3 utilizando los programas 'ao3\_link\_scraper.py' y 'ao3\_file\_scraper.py'.}
+	\centering
+\end{figure}
+
+El link \textit{scraper} se ejecutaría una vez y exploraría todas las páginas de búsqueda, extrayendo los links a los fanfics de cada una, y los va almacenando en un archivo de texto. Por tanto, al terminar su ejecución este \textit{scraper} ha generado un archivo llamado '\textit{fic\_work\_links.txt}' que almacena los enlaces a cada fanfic. El \textit{file scraper} utiliza esta lista para saber dónde buscar las descargas, y el usuario le indica en la línea de comando los índices que acotan el tramo de la lista a descargar, tal y como se ilustra en el esquema de \ref{fig:scrapers_structure}. De este modo, es posible indicarle al programa que descargue desde el link 0 al link 1000 de la lista, permitiendo descargar los 20000 archivos en porciones manejables. Además, el programa anuncia en pantalla qué link está descargando en cada momento, por lo que si sucede un error de red mientras descargaba el link número 866, es posible reanudar el programa fácilmente e indicarle que continúe desde el 866 al 1000 \refToScraperExecution.
+
+Esta división del trabajo en dos programas además me daba la oportunidad de realizar un segundo filtrado de forma sencilla durante el proceso de exploración que realiza el link \textit{scraper}. Si el primer filtrado se encargaba de cribar los fanfics que habían sido etiquetados por sus autores como imágenes o audio, este segundo filtrado pretende detectar los fanfics que tampoco contienen texto, pero no han sido etiquetados como tal por sus autores. Para ello usé el criterio de la relación palabras/capítulo de cada fanfic: si una obra tiene menos de 40 palabras por capítulo, se considera como fanfic "sin texto", y se elimina. Escogí 40 palabras como umbral tras investigar un poco con la herramienta de búsqueda de AO3, que como se puede ver en la \ref{fig:ao3_search}, tiene una opción para filtrar por cantidad total de palabras. Tras probar varios umbrales, 40 parecía ser el que descartaba todas las obras sin texto sin sacrificar muchos microrelatos en el proceso.
+
+Introducir este filtrado en el \textit{scraper} fue sencillo, puesto que el número de palabras y capítulos de la obra es información que se puede extraer de la clase \textit{work blurb group} de cada fic, y su implementación en el bucle aparece en \ref{code:scraper2}; el código completo se puede consultar en \refToLinkScraperCode. Por tanto, el link \textit{scraper} realiza estos pasos:
+\begin{enumerate}
+	\item Enviar una petición HTTP GET al link permanente del conjunto de datos, generado por la herramienta de búsqueda de AO3.
+	\item Iterar entre los 20 \textit{'work blurb group'}, comprobar si contienen texto, y descartar los identificadores de los que no.
+	\item Utilizar cada identificador para generar el link de la página de cada fanfic y almacenarlos en un archivo de texto.
+	\item Pasar a la siguiente página y repetir, hasta llegar a la última.
+\end{enumerate}
+
+\missingfigure{fig: pantallazo ejecución file scraper}
+
+Por su parte, el \textit{file scraper}\todo{proceso y funciones del file scraper}
 
 Ambos \textit{scrapers} se encontraban de vez en cuando con el error 429 (Too Many Requests) y el 404 (Page Not Found). Se capturan fácilmente con un \textit{try-catch} que detecta el status de la página; para el 429 simplemente lanza una espera de dos minutos tras la cual reanuda su ejecución por donde la dejó, y para el 404 simplemente pasa a la siguiente, pues este error indica que el autor ha borrado su obra de la página y ya no está accesible.
  
-Decidí dividir este proceso en dos programas (el de navegación y filtrado, y el que únicamente descarga) en vez de hacerlo todo en uno porque descargar los más de 20000 archivos de una vez lógicamente tardaría varias horas, y pensé que sería más pragmático si ejecuto una vez el \textit{scraper} crea una lista de enlaces, y luego ya ejecuto todas las veces que sean necesarias el \textit{scraper} que descarga, descargando cada vez un tramo distinto de la lista. De esta forma, pude descargar todos los fanfics en grupos de 2000 (alrededor de una hora y media), pudiendo tener el ordenador libre el resto del tiempo.
-
-El poder ejecutar varias veces el segundo \textit{scraper} sin tener que volver a empezar desde el principio también demostró ser útil para lidiar con errores de red.
+%Decidí dividir este proceso en dos programas (el de navegación y filtrado, y el que únicamente descarga) en vez de hacerlo todo en uno porque descargar los más de 20000 archivos de una vez lógicamente tardaría varias horas, y pensé que sería más pragmático si ejecuto una vez el \textit{scraper} crea una lista de enlaces, y luego ya ejecuto todas las veces que sean necesarias el \textit{scraper} que descarga, descargando cada vez un tramo distinto de la lista. De esta forma, pude descargar todos los fanfics en grupos de 2000 (alrededor de una hora y media), pudiendo tener el ordenador libre el resto del tiempo.
 
 Ambos \textit{scrapers} utilizan la librería bs4 y BeautifulSoup para descargar y manejar los archivos HTTP. El resultado de su ejecución es una carpeta con 818,8 MB de archivos HTML
 
