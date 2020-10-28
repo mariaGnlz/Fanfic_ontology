@@ -3,7 +3,7 @@
 
 #Tagger for NER tags, using a previously trained NER chunker
 
-import nltk, re, pprint, sys, time, pickle, pandas
+import nltk, re, pprint, sys, time, pickle, pandas, numpy
 from nltk.tokenize import word_tokenize
 from nltk.tag import pos_tag
 from collections import Counter
