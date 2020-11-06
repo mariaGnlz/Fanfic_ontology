@@ -56,6 +56,9 @@ text = [first_half] #debug
 
 print(len(first_half), len(second_half))
 
+mentions = []
+sentences = []
+coref_chain = []
 with CoreNLPClient(
 	annotators = ['tokenize', 'ssplit', 'pos', 'lemma', 'ner', 'parse', 'depparse','coref'],
         timeout=120000,
@@ -63,41 +66,19 @@ with CoreNLPClient(
 		for half in text:		
 			ann = client.annotate(half)
 
-			tokens = (ann.sentence[0]).token
-			i = 0
-			for token in tokens:
-				print(token.value, token.pos, token.ner, '(',i,')')
-				i+=1
-
 			mentions = ann.mentions
-			print(mentions[0])
+			coref_chain = ann.corefChain
 
-	
-			print(ann.corefChain)
-			"""
-			i = 0
-			sentences = ann.sentence
-			for sent in sentences:
-				print(type(sent))
-				print(sent.entities)
-				i += 1
-				if i == 5: break
-			"""
-			
+			#print(mentions[0]) #debug
+			#print(ann.corefChain) #debug <class 'google.protobuf.pyext._message.RepeatedCompositeContainer>
 
-		"""
-		#Semgrex pattern to find who loves who
-		pattern = '{word:love} >nsubj {}=subject >obj {}=object'
-		matches = client.semgrex(first_half, pattern)
-		print(len(matches["sentences"]))
-		
-		print(matches["sentences"][1]["0"]["text"])
-		print(matches["sentences"][1]["0"]["$subject"]["text"])
-		print(matches["sentences"][1]["0"]["$object"]["text"])
+			for sen in ann.sentence: sentences.append(sen)
+				
 
-		#Tregex to find the verb "love" in the text
-		pattern = 'VB'
-		matches = client.tregex(first_half, pattern)
-		print(matches['sentences'][1]['1']['match'])
-		"""
+print(sentences[55].token[5]) #debug #example of accessing data in sentences
+
+pronominal = []
+for sen in sentences:
+	for token in sen.token:
+		if token.corefClustedID == 553 and token.ner = "O": pronominal.append(token) #get pronominal mentions of character with id 553
 
