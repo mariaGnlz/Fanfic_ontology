@@ -1,13 +1,17 @@
 #!/bin/bash/python3
 
-import nltk, re, pprint, sys, time, pickle, pandas
+import nltk, re, pprint, sys, time, pickle, pandas, numpy
 from nltk.tokenize import word_tokenize, sent_tokenize
-from stanza import Pipeline
-from stanza.server import CoreNLPClient
 from nltk.tag import pos_tag
+from sklearn.cluster import KMeans
+from sklearn.feature_extraction import DictVectorizer
+from stanza.server import CoreNLPClient
+
 from collections import Counter
 from NER_tagger_v3 import NERTagger
 from fanfic_util import FanficCleaner
+
+import matplotlib.pyplot as plt
 
 ### VARIABLES ###
 POS_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/POS_tags.csv'
@@ -18,6 +22,47 @@ NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
 VERB_TAGS = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
 ### FUNCTIONS ###
 
+def get_longest_lists(coref_chains): #returns the two longest chains in the coreference graph
+	longest = []
+	longest.append(max(list(coref_chains), key=len))
+
+	coref_chains.remove(longest[0])
+
+	longest.append(max(list(coref_chains), key=len))
+
+	return longest
+	
+
+class CharacterMention():
+	def __init__(self, ID, word, canonicalName, gender, animacy, number, corefClusterID, nerEntityID, corefMentions, nerMentions):
+		self.ID = ID
+		self.word = word
+		self.canonicalName = canonicalName
+		self.gender = gender
+		self.animacy = animacy
+		self.number = number
+
+		self.corefClusterID = corefClusterID
+		self.nerEntityID = nerEntityID
+		self.corefMentions = corefMentions
+		self.nerMentions = nerMentions
+
+
+	def getDictRepresentation(self):
+		return {
+			'name': self.canonicalName,
+			'gender': self.gender,
+			'animacy': self.animacy,
+			'number': self.number,
+
+			'clusterID': self.corefClusterID,
+			'nerID': self.nerEntityID,
+		}
+
+	def getID(self): return self.ID
+			
+
+	
 
 ### MAIN ###
 
@@ -57,7 +102,10 @@ for sent in fic_sents[half_index:]:
 #text = [first_half, second_half]
 text = [first_half] #debug
 
-print(len(first_half), len(second_half))
+#print(len(first_half), len(second_half))#debug
+
+print("\n###### Starting client and calling CoreNLP server ######\n")
+start= time.time()
 
 sentences = []
 nerMentions = []
@@ -68,33 +116,82 @@ with CoreNLPClient(
         timeout=120000,
 	be_quiet = True,
         memory='4G') as client:	
+		
+		print("Annotating data . . .")
 		ann = client.annotate(first_half)
+
+		print("...done")
 
 		sentences = ann.sentence
 		nerMentions = ann.mentions #NERMention[]
 		corefMentions = ann.mentionsForCoref #Mention[]
 		chain = ann.corefChain #CorefChain[], made up of CorefMention[]
 
-		for i in range(0, len(chain)): #debug, cambiar luego a len(chain)
+		for i in range(0, len(chain)): #debug
 			coref_chains.append(chain[i].mention)
 
 
 #print(len(coref_chains)) #debug
 
+end = time.time()
+print("Client closed. "+ str((end-start)/60) +" mins elapsed")
+
+start = time.time()
+print("Processing annotation data...")
+
+
+coref_chains = get_longest_lists(coref_chains) #debug
+
+characterMentions = []
 i = 0
 for chain in coref_chains:
 	print(" =========== CHAIN #"+ str(i) +" ===========")
 	for mention in chain:
-		senIndex = str(mention.sentenceIndex)
-		tokBIndex = str(mention.beginIndex)
-		tokEIndex = str(mention.endIndex)
-		clusterID = str(corefMentions[mention.mentionID].corefClusterID)
-		entityID = str(nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].canonicalEntityMentionIndex)
+		senIndex = mention.sentenceIndex
+		tokBIndex = mention.beginIndex
+		tokEIndex = mention.endIndex
+		clusterID = corefMentions[mention.mentionID].corefClusterID
+		entityID = nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].canonicalEntityMentionIndex
 		entityName = nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].entityMentionText
+		mentionText = sentences[mention.sentenceIndex].token[mention.beginIndex].originalText
+		
+		character = CharacterMention(i, mentionText, entityName, nerMentions[entityID].gender, corefMentions[mention.mentionID].animacy, corefMentions[mention.mentionID].number, clusterID, entityID, [], [])
+		characterMentions.append(character)
 
-		print("Sentence "+ senIndex +"	|	tokens "+ tokBIndex +"-"+ tokEIndex +"	|	"+ mention.mentionType +"	|	cluster  "+ clusterID +"	|	entity "+ entityID +" "+ entityName +"	|	text: "+  sentences[mention.sentenceIndex].token[mention.beginIndex].originalText)	
+		i+=1
 
-	i+=1
+
+		#print("Sentence "+ senIndex +"	|	tokens "+ tokBIndex +"-"+ tokEIndex +"	|	"+ mention.mentionType +"	|	cluster  "+ clusterID +"	|	entity "+ entityID +" "+ entityName +"	|	text: "+  mentionText) #for visualization purposes
+
+print(len(characterMentions)) #debug
+characterDicts = [char.getDictRepresentation() for char in characterMentions]
+
+end = time.time()
+print("Annotations processed. "+ str((end-start)/60) +" mins elapsed")
+
+print("\n###### Starting clustering process ######\n")
+
+start = time.time()
+print("Get dictionary vectorization...")
+vec = DictVectorizer()
+vec_data = vec.fit_transform(characterDicts) #toarray?
+end = time.time()
+print("...done. "+ str((end-start)/60) +" mins elapsed.")
+
+start = time.time()
+print("Initializing  and fitting KMeans model...")
+model = KMeans(init='k-means++', n_clusters=2, n_init=5)
+model.fit(vec_data)
+
+predict = model.predict(vec_data)
+end = time.time()
+print("...done. "+ str((end-start)/60) +" mins elapsed.")
+
+#Generate scatterplot
+colors = list(map(lambda x: '#3b4cc0' if x == 1 else '#b40426', predict))
+
+plt.scatter(vec_data.toarray(), c=colors, marker="o", picker=True)
+plt.show()
 				
 """
 print(sentences[55].token[5]) #debug #example of accessing data in sentences
