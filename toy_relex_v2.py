@@ -18,6 +18,9 @@ NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
 VERB_TAGS = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
 ### FUNCTIONS ###
 
+
+### MAIN ###
+
 fCleaner = FanficCleaner()
 NERtagger = NERTagger()
 
@@ -56,29 +59,50 @@ text = [first_half] #debug
 
 print(len(first_half), len(second_half))
 
-mentions = []
 sentences = []
-coref_chain = []
+nerMentions = []
+corefMentions = []
+coref_chains = []
 with CoreNLPClient(
 	annotators = ['tokenize', 'ssplit', 'pos', 'lemma', 'ner', 'parse', 'depparse','coref'],
         timeout=120000,
-        memory='4G') as client:
-		for half in text:		
-			ann = client.annotate(half)
+	be_quiet = True,
+        memory='4G') as client:	
+		ann = client.annotate(first_half)
 
-			mentions = ann.mentions
-			coref_chain = ann.corefChain
+		sentences = ann.sentence
+		nerMentions = ann.mentions #NERMention[]
+		corefMentions = ann.mentionsForCoref #Mention[]
+		chain = ann.corefChain #CorefChain[], made up of CorefMention[]
 
-			#print(mentions[0]) #debug
-			#print(ann.corefChain) #debug <class 'google.protobuf.pyext._message.RepeatedCompositeContainer>
+		for i in range(0, len(chain)): #debug, cambiar luego a len(chain)
+			coref_chains.append(chain[i].mention)
 
-			for sen in ann.sentence: sentences.append(sen)
+
+#print(len(coref_chains)) #debug
+
+i = 0
+for chain in coref_chains:
+	print(" =========== CHAIN #"+ str(i) +" ===========")
+	for mention in chain:
+		senIndex = str(mention.sentenceIndex)
+		tokBIndex = str(mention.beginIndex)
+		tokEIndex = str(mention.endIndex)
+		clusterID = str(corefMentions[mention.mentionID].corefClusterID)
+		entityID = str(nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].canonicalEntityMentionIndex)
+		entityName = nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].entityMentionText
+
+		print("Sentence "+ senIndex +"	|	tokens "+ tokBIndex +"-"+ tokEIndex +"	|	"+ mention.mentionType +"	|	cluster  "+ clusterID +"	|	entity "+ entityID +" "+ entityName +"	|	text: "+  sentences[mention.sentenceIndex].token[mention.beginIndex].originalText)	
+
+	i+=1
 				
-
+"""
 print(sentences[55].token[5]) #debug #example of accessing data in sentences
 
 pronominal = []
 for sen in sentences:
 	for token in sen.token:
 		if token.corefClustedID == 553 and token.ner = "O": pronominal.append(token) #get pronominal mentions of character with id 553
+
+"""
 
