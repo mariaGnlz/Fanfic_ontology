@@ -5,6 +5,7 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction import DictVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
 from stanza.server import CoreNLPClient
 
 from collections import Counter
@@ -20,6 +21,7 @@ NER_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/NER_tags.csv'
 NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
 
 VERB_TAGS = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
+COLORMAP  = {0: 'red', 1: 'blue'}
 ### FUNCTIONS ###
 
 def get_longest_lists(coref_chains): #returns the two longest chains in the coreference graph
@@ -152,11 +154,13 @@ for chain in coref_chains:
 		tokEIndex = mention.endIndex
 		clusterID = corefMentions[mention.mentionID].corefClusterID
 		entityID = nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].canonicalEntityMentionIndex
-		entityName = nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].entityMentionText
+		entityName = str(nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].entityMentionText)
 		mentionText = sentences[mention.sentenceIndex].token[mention.beginIndex].originalText
 		
-		character = CharacterMention(i, mentionText, entityName, nerMentions[entityID].gender, corefMentions[mention.mentionID].animacy, corefMentions[mention.mentionID].number, clusterID, entityID, [], [])
+		character = CharacterMention(i, mentionText, entityName, corefMentions[mention.mentionID].gender, corefMentions[mention.mentionID].animacy, corefMentions[mention.mentionID].number, clusterID, entityID, [], [])
 		characterMentions.append(character)
+
+		#if i < 10: print(character.getDictRepresentation()) #debug
 
 		i+=1
 
@@ -172,27 +176,52 @@ print("Annotations processed. "+ str((end-start)/60) +" mins elapsed")
 print("\n###### Starting clustering process ######\n")
 
 start = time.time()
-print("Get dictionary vectorization...")
-vec = DictVectorizer()
-vec_data = vec.fit_transform(characterDicts) #toarray?
+print("Get dictionary and Tfid vectorization...")
+vec1 = DictVectorizer()
+vec2 = TfidfTransformer() #this one is for normalization
+
+vec_data = vec1.fit_transform(characterDicts) #toarray?
+#print("before tfid", vec_data.shape) #debug
+#vec_data = vec2.fit_transform(vec_data)
+#print("after tfid", vec_data.shape) #debug
+#print(vec1.get_feature_names()) #debug
+
+data = pandas.DataFrame(vec_data.toarray(), columns = vec1.get_feature_names())
+
+
 end = time.time()
 print("...done. "+ str((end-start)/60) +" mins elapsed.")
 
 start = time.time()
 print("Initializing  and fitting KMeans model...")
 model = KMeans(init='k-means++', n_clusters=2, n_init=5)
-model.fit(vec_data)
+model.fit(data)
+predict = model.predict(data)
 
-predict = model.predict(vec_data)
+data['category'] = model.labels_
+
+#for i in range(0,1): print(data.iloc[i,:]) #debug
 end = time.time()
 print("...done. "+ str((end-start)/60) +" mins elapsed.")
 
+#Print who belongs to which cluster
+#print(data.shape)	
+
+#selection = data.loc[['category','clusterID','nerID']]
+#print(selection)
+
+print(data[['category','clusterID','nerID']].values)
+
+"""
 #Generate scatterplot
 colors = list(map(lambda x: '#3b4cc0' if x == 1 else '#b40426', predict))
 
-plt.scatter(vec_data.toarray(), c=colors, marker="o", picker=True)
-plt.show()
-				
+data = vec1.inverse_transform(data)
+colors = data.apply(lambda row: COLORMAP[row.category], axis=1)
+
+ax = data.plot(kind='scatter', x='name', y='gender', alpha=0.2, s=300, c=colors)
+
+"""			
 """
 print(sentences[55].token[5]) #debug #example of accessing data in sentences
 
