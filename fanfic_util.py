@@ -12,21 +12,54 @@ FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 TXT_LISTING_PATH = '/home/maria/Documents/pruebasNLTK/trial_e_txt_paths.txt'
 
 ### FUNCTIONS ###
-def clean_text(text, chapter_titles):
+#def clean_text(text, chapter_titles):
+def clean_text(text, num_chapters):
 	headers_and_footers = ['See the end of the chapter for more notes', 'See the end of the chapter for notes', 'Summary', 'Chapter Summary', 'Chapter Notes', 'Notes', 'Chapter End Notes']
-	headers_and_footers.extend(chapter_titles)
+	#headers_and_footers.extend(chapter_titles)
 
+	chapters = []
+	for i in range(0,num_chapters):
+		header1_index = text.find('## ')
+
+		if header1_index < 0: print("menos de 0", text[:100]) #esto no deberia pasar
+		else:
+			header2_index = text[header1_index+3:].find('## ')
+			chapters.append(text[header1_index:header2_index])
+
+			#print(header1_index, header2_index) #debug
+
+			text = text[header2_index:]
+			#print(text[:100]) #debug
+			#print("\n N E X T  C H A P T E R") #debug
+
+	chapter_text = ''
+	clean_chapters = []
+	for chapter in chapters:
+		for line in chapter.splitlines():
+			if line not in headers_and_footers and '> ' != line[:2]: chapter_text += line+'\n'
+
+		clean_chapters.append(chapter_text)
+		chapter_text = ''
+	
+
+
+	"""
 	fic_text = ''
 	for line in text.splitlines():
 		if line == '## Afterword': break
-		if line not in headers_and_footers and '> ' != line[:2]: fic_text += line+'\n'
+		if line not in headers_and_footers and '> ' != line[:2] and '## ' != line[:3]: fic_text += line+'\n'
 
-	return fic_text
+	"""
+	#print(fic_text[:10000]) #debug
 
-def remove_metadata(text, first_title):
+	return clean_chapters
+
+def remove_metadata(text):
 	chapter_header_index1 = text.find('See the end of the chapter for more notes')
 	chapter_header_index2 = text.find('See the end of the chapter for notes')
-	chapter_header_index3 = text.find(first_title)
+	chapter_header_index3 = text[3:].find('## ')
+
+	#print(text[:10000])
 	
 	fic_text = ''
 	if chapter_header_index1 < 0 and chapter_header_index2 < 0:
@@ -35,7 +68,12 @@ def remove_metadata(text, first_title):
 	elif chapter_header_index1 > 0:
 		if chapter_header_index1 < chapter_header_index2: fic_text = text[chapter_header_index1:]
 		else: fic_text = text[chapter_header_index2:]
-	else: fic_text = text[chapter_header_index2:]
+	elif chapter_header_index2>0:
+		if chapter_header_index2 < chapter_header_index3: fic_text = text[chapter_header_index2:]
+		else: fic_text = text[chapter_header_index3:]
+
+	#print(fic_text[:10000]) #debug
+	#print(chapter_header_index1, chapter_header_index2, chapter_header_index3) #debug
 	
 	
 	""" #debug
@@ -46,7 +84,7 @@ def remove_metadata(text, first_title):
 
 	return fic_text
 
-def get_plain_text(path):
+def get_chapterised_fic(path): #Transforms the HTML file in a list of chapters (a list of str)
 	page = open(path, 'r').read()
 	soup = BeautifulSoup(open(path, 'r'), 'html.parser')
 	
@@ -75,57 +113,68 @@ def get_plain_text(path):
 	"""
 
 	#Take author notes and metadata out
-	fic_text = remove_metadata(text, chapter_titles[0])
-	fic_text = clean_text(fic_text, chapter_titles)
+	fic_text = remove_metadata(text)
+	chapterised_fic = clean_text(fic_text, num_chapters)
 
-	""" #debug
+	"""
+	print(len(chapterised_fic)) #debug
+	for chapter in chapterised_fic: #debug
+		print(chapter[:100])
+		print(". . .")
+		print(chapter[-100:])
+
+	#debug
 	f = open('text.txt', 'w')
 	f.write(fic_text)
 	f.close()
 	"""
 
-	return fic_text
+	return chapterised_fic
 
-def clean_fanfics(start, end): #gets the paths to the fics, opens them
-                   #and stores their text in a list
+def get_fanfics(start, end): #gets the paths to the fics, opens them
+                   #and stores them in chapterised form in a list of Fanfic objects
 	paths_file = open(FIC_LISTING_PATH, 'r')
 	fic_paths = [line[:-1] for line in paths_file.readlines()]
 	paths_file.close()
 	fic_paths = fic_paths[start:end]
 
-	untagged_fics = []
-	#fic_nums = []
+	fic_list = []
 	for path in fic_paths:
-		#num_fic=int((path.split('_')[3]).split('.')[0])
-		text = get_plain_text(path)
-		untagged_fics.append(text)
-		#fic_nums.append(num_fic)
+		num_fic=int((path.split('_')[3]).split('.')[0])
+		chapterised_fic = get_chapterised_fic(path)
+		fic_list.append(Fanfic(num_fic, chapterised_fic, None))
 
-	#print(untagged_fics[0]) #debug
-	#tagged_fics = tag_fics(untagged_fics)
+	return fic_list
 
-	return zip(untagged_fics, fic_paths)
-	#return untagged_fics
+### CLASSES ###
 
-class FanficCleaner():
-	def clean_fanfics_in_range(self, start_index, end_index):
-		fic_list = clean_fanfics(start_index, end_index)
-		#fic_texts = [fic for fic, _ in fic_list]
-		#for fic, _ in fic_list:
+class Fanfic():
+	def __init__(self, index, chapters, annotations):
+		self.index = index
+		self.chapters = chapters
+		self.annotations = annotations
+
+	def get_chapter(self, index):
+		return self.chapters[index]
+
+	def set_annotations(self, ann):
+		self.annotations = ann
+
+
+class FanficGetter():
+	def get_fanfics_in_range(self, start_index, end_index):
+		fic_list = get_fanfics(start_index, end_index)
+
 
 		return fic_list
 
-	def clean_fanfic_list(self, fic_paths, save):
-		clean_fics = []
-		for path in fic_paths:
-			fic_text = get_plain_text(path)
-			clean_fics.append((fic_text, path))
-		
-		if save:
-			save_txt_fics(clean_fics)
-	
-		clean_fics, _ = list(zip(*clean_fics))
-		return clean_fics
+	def get_fic_paths_in_range(self, start_index, end_index):
+		paths_file = open(FIC_LISTING_PATH, 'r')
+		fic_paths = [line[:-1] for line in paths_file.readlines()]
+		paths_file.close()
+		fic_paths = fic_paths[start_index:end_index]
+
+		return fic_paths
 
 	def save_txt_fanfics(fic_list):
 		for fic, path in fic_list:
@@ -152,75 +201,11 @@ class FanficCleaner():
 		global SAVE_TXT_PATH
 		SAVE_TXT_PATH = new_fic_save_path
 
-	def set_txt_listing_path(self, new_txt_listing_path):
-		global TXT_LISTING_PATH
-		TXT_LISTING_PATH = new_txt_listing_path
 	def get_fic_listing_path(self): return FIC_LISTING_PATH
 
 	def get_save_txt_path(self): return SAVE_TXT_PATH
-	
-	def get_txt_listing_path(self): return TXT_LISTING_PATH
 
-class FanficGetter():
-	def get_fanfic_paths_in_file(self):
-		paths_file = open(FIC_LISTING_PATH, 'r')
-		fic_paths = [line[:-1] for line in paths_file.readlines()]
-		paths_file.close()
-		
-		return fic_paths
 
-	def get_txt_fanfics_in_range(self, start, end):
-		paths_file = open(TXT_LISTING_PATH, 'r')
-		fic_paths = [line[:-1] for line in paths_file.readlines()]
-		paths_file.close()
-
-		txt_fics = []
-		
-		for i in range(start, end):
-			path = fic_paths[i]
-			txt_fics.append(open(path, 'r').read())
-		
-		return txt_fics
-
-	"""
-	def get_all_txt_fanfics(self):
-		paths_file = open(TXT_LISTING_PATH, 'r')
-		fic_paths = [line[:-1] for line in paths_file.readlines()]
-		paths_file.close()
-
-		txt_fics = []
-		
-		for path in fic_paths:
-			txt_fics.append(open(path, 'r').read())
-		
-		return txt_fics
-	"""
-
-	def get_html_fanfics_in_range(self, start, end):
-		paths_file = open(FIC_LISTING_PATH, 'r')
-		fic_paths = [line[:-1] for line in paths_file.readlines()]
-		paths_file.close()
-
-		html_fics = []
-		
-		for i in range(start, end):
-			path = fic_paths[i]
-			text = open(path, 'r').read()
-			html_fics.append((text,path))
-		
-		return html_fics
-
-	def set_txt_fic_listing_path(self, new_fic_txt_listing):
-		global TXT_LISTING_PATH
-		TXT_LISTING_PATH = new_fic_txt_listing
-
-	def set_fic_listing_path(self, new_fic_listing):
-		global FIC_LISTING_PATH
-		FIC_LISTING_PATH = new_fic_listing
-	
-	def get_txt_fic_listing_path(self): return TXT_LISTING_PATH
-
-	def get_fic_listing_path(self): return FIC_LISTING_PATH
 
 class FanficHTMLHandler():
 	def get_chapters(self, fic_path):
