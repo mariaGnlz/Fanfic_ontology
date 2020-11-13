@@ -1,31 +1,31 @@
 #!/bin/bash/python3
 
-import nltk, re, pprint, sys, time, pickle, pandas
+import nltk, re, pprint
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
-from collections import Counter
 from NER_tagger_v3 import NERTagger
-from fanfic_util import FanficCleaner
+from fanfic_util import FanficGetter, Fanfic
 #from nltk.tree import Tree
 
 ### VARIABLES ###
-POS_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/POS_tags.csv'
-POS_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/POS_typical_tags.csv'
-NER_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/NER_tags.csv'
-NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
 
 VERB_TAGS = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
 ### FUNCTIONS ###
 
-fCleaner = FanficCleaner()
+fGetter = FanficGetter()
 NERtagger = NERTagger()
 
-fic_list = fCleaner.clean_fanfics_in_range(8,9)
-fic_text, fic_num = list(zip(*fic_list))
-#print(fic_text[0]) #debug
-print(fic_num) #debug
+fic_list = fGetter.get_fanfics_in_range(8,9)
+#print(fic_list[0].get_chapter(0)) #debug
 
-fic_sents = sent_tokenize(fic_text[0])
+fic_chapters = fic_list[0].chapters
+#print(type(fic_chapters[0])) #debug
+
+fic_text = ''
+for chapter in fic_chapters: fic_text+=chapter
+
+
+fic_sents = sent_tokenize(fic_text)
 
 pos_fic = [pos_tag(word_tokenize(sent)) for sent in fic_sents]
 #print(pos_fic) #debug
@@ -54,7 +54,7 @@ for sent in ner_fic:
 		
 		"""
 		if pos in VERB_TAGS and word == "love":
-			#print(sent)
+			print(sent)
 			#Match tree structure to S->VB->Direct object, and extrat S (subject) and direct object
 			break
 

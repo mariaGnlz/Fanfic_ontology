@@ -13,12 +13,11 @@ EXPLICIT_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/explicit_fic_path
 OUT = '/home/maria/Documents/Fanfic_ontology/generate_fic_discarded.txt'
 
 fgetter = FanficGetter()
-print(fgetter.get_fic_listing_path()) #debug
-#0 5000
-
 handler = FanficHTMLHandler()
+print(fgetter.get_fic_listing_path()) #debug
 
-html_fics = fgetter.get_html_fanfics_in_range(0,10000)
+#0 5000
+html_fics = fgetter.get_fic_paths_in_range(0,10000)
 
 
 romance_fics = []
@@ -27,7 +26,7 @@ explicit_fics = []
 
 romance = False
 friendship = False
-for fic, path in html_fics:
+for path in html_fics:
 	chapters = handler.get_chapters(path)
 	rating = handler.get_rating(path)
 	ships = handler.get_relationships(path)

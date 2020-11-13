@@ -1,24 +1,17 @@
 #!/bin/bash/python3
 
-import nltk, re, pprint, sys, time, pickle, pandas, numpy
-from nltk.tokenize import word_tokenize, sent_tokenize
-from nltk.tag import pos_tag
+import sys, time, pickle, pandas, numpy
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from stanza.server import CoreNLPClient
 
-from collections import Counter
 from NER_tagger_v3 import NERTagger
-from fanfic_util import FanficCleaner
+from fanfic_util import FanficGetter, Fanfic
 
 import matplotlib.pyplot as plt
 
 ### VARIABLES ###
-POS_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/POS_tags.csv'
-POS_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/POS_typical_tags.csv'
-NER_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/NER_tags.csv'
-NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
 
 VERB_TAGS = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
 COLORMAP  = {0: 'red', 1: 'blue'}
@@ -59,7 +52,7 @@ class CharacterMention():
 
 			'clusterID': self.corefClusterID,
 			'nerID': self.nerEntityID,
-		}
+			}
 
 	def getID(self): return self.ID
 			
@@ -68,43 +61,14 @@ class CharacterMention():
 
 ### MAIN ###
 
-fCleaner = FanficCleaner()
+fGetter = FanficGetter()
 NERtagger = NERTagger()
 
-fic_list = fCleaner.clean_fanfics_in_range(8,9)
-fic_text, fic_num = list(zip(*fic_list))
-#print(fic_text[0]) #debug
-#print(fic_num) #debug
+fic_list = fGetter.get_fanfics_in_range(8,9)
+fic_text = fic_list[0].get_chapter(0)
 
+#print(fic_text) #debug
 
-fic_sents = [word_tokenize(sent) for sent in sent_tokenize(fic_text[0])]
-"""
-nlp = Pipeline(lang='en', processors='tokenize', tokenize_pretokenized=True)
-
-doc = nlp(fic_sents)
-
-for i, sent in enumerate(doc.sentences):
-	print(f'==== Sentence {i+1} tokens ====')
-	print(*[f'id:: {token.id}\ttext: {token.text}' for token in sent.tokens], sep='\n')
-
-	if i == 11: break
-"""
-#print(len(fic_sents)/2) #debug
-
-half_index = int(len(fic_sents)/2)
-
-first_half = ''
-for sent in fic_sents[:half_index]:
-	for word in sent: first_half += str(word)+' '
-
-second_half = ''
-for sent in fic_sents[half_index:]:
-	for word in sent: second_half += str(word)+' '
-
-#text = [first_half, second_half]
-text = [first_half] #debug
-
-#print(len(first_half), len(second_half))#debug
 
 print("\n###### Starting client and calling CoreNLP server ######\n")
 start= time.time()
@@ -120,7 +84,7 @@ with CoreNLPClient(
         memory='4G') as client:	
 		
 		print("Annotating data . . .")
-		ann = client.annotate(first_half)
+		ann = client.annotate(fic_text)
 
 		print("...done")
 
@@ -147,7 +111,7 @@ coref_chains = get_longest_lists(coref_chains) #debug
 characterMentions = []
 i = 0
 for chain in coref_chains:
-	print(" =========== CHAIN #"+ str(i) +" ===========")
+	#print(" =========== CHAIN #"+ str(i) +" ===========") #for visualization purposes
 	for mention in chain:
 		senIndex = mention.sentenceIndex
 		tokBIndex = mention.beginIndex
@@ -205,12 +169,19 @@ end = time.time()
 print("...done. "+ str((end-start)/60) +" mins elapsed.")
 
 #Print who belongs to which cluster
-#print(data.shape)	
+#print(data.shape) #debug
 
-#selection = data.loc[['category','clusterID','nerID']]
-#print(selection)
+#print(data[['category','clusterID','nerID']].values) #debug
 
-print(data[['category','clusterID','nerID']].values)
+clusterCharas = []
+for char in sorted(characterDicts, key=lambda k:k['nerID']):
+	clusterCharas.append([char['name'], char['clusterID'], char['gender'], char['number'], char['animacy']])
+	print(char['nerID'], char['name'], char['gender'], char['number'], char['animacy'])
+
+
+
+
+	
 
 """
 #Generate scatterplot
