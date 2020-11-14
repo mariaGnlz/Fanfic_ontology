@@ -2,17 +2,52 @@
 
 from stanza.server import CoreNLPClient
 
+def split_chapter(chapter):
+	len_chapter = len(chapter)
+
+	divisions = int(len_chapter/100000)
+
+	div_chapters = []	
+	while len(chapter) > 99900:
+		div_chapters.append(chapter[:99900])
+		chapter = chapter[99900:]
+
+	if len(chapter) != 0: div_chapters.append(chapter)
+
+
+	if len(div_chapters) == divisions: print("Correct!")
+	else: print("INCORRECT")
+
+	return div_chapters
+
+def compress_chapters(fic_chapters):
+	compressed_chapters = []
+
+	processed_chapters = 0
+	while processed_chapters < len(fic_chapters):
+		chapter_text = ''
+		while len(chapter_text) < 99900:
+			chapter_text += fic_chapters[processed_chapters]
+			processed_chapters += 1
+
+		compressed_chapters.append(chapter_text)
+
+	return processed_chapters
+
 class CoreClient():
 
-	def __init__(self):
-		print("\n###### Starting client and calling CoreNLP server ######\n")
-
 	def parse(self, fic_chapters):
-		for chapter in fic_chapters:
+		#First we check that all chapters are strings, and none of them are longer than 100000 caracters
+		for i, chapter in enumerate(fic_chapters):
 			if not type(chapter) is str: raise TypeError("[corenlp_client] The input for the client must be a string")
-			elif len(chapter) > 100000: raise Exception("[corenlp_client] String input must have less than 100000 caracters")
+			elif len(chapter) > 100000: 
+				div_chapters = split_chapter(chapter)
+				fic_chapters[i:i] = div_chapters
+
+		
 
 		annotations = []
+		
 		with CoreNLPClient(
 			annotators = ['tokenize', 'ssplit', 'pos', 'lemma', 'ner', 'parse', 'depparse','coref'],
 		        timeout=120000,
@@ -24,5 +59,5 @@ class CoreClient():
 				fic.set_annotations(annotations)
 
 				print("...done")
-
+		
 		return annotations
