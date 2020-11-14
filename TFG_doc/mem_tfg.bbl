@@ -1,15 +1,35 @@
-\begin{thebibliography}{Bar68}
+\begin{thebibliography}{Wic09}
 
 \bibitem[Bar68]{Barthes}
 Ronald Barthes.
 \newblock La mort de l'auteur.
 \newblock {\em Manteia}, (5), 1968.
 
+\bibitem[Bir12]{bird_2012}
+Steven Bird.
+\newblock Natural language processing with python.
+\newblock \url{https://www.nltk.org/book_1ed/ch07.html}, October 2012.
+
+\bibitem[Cul07]{culotta_2007}
+Aron Culotta.
+\newblock Canonicalization of database records using adaptive similarity
+  measures.
+\newblock 2007.
+
 \bibitem[Ell18]{ellis_2018}
 Lindsay Ellis.
 \newblock Death of the author.
 \newblock \url{https://www.youtube.com/watch?v=MGn9x4-Y_7A}, December 2018.
 \newblock Youtube.
+
+\bibitem[iva]{ivanov_2016}
+Complete guide to build your own named entity recognizer with python.
+\newblock \url{https://nlpforhackers.io/named-entity-extraction/}.
+\newblock NLP for Hackers.
+
+\bibitem[jos17]{jose_2017}
+Information extraction.
+\newblock \url{https://github.com/rohitjose/InformationExtraction}, 2017.
 
 \bibitem[Stu17]{uncanny_2017}
 Alasdair Stuart.
@@ -24,5 +44,15 @@ Jonathan Swift.
 \newblock \url{http://www.whoosh.org/issue25/lee1a.html#41}, October 1998.
 \newblock Woosh Magazine, Birthplace of the International Association of Xena
   Studies.
+
+\bibitem[Wic09]{wick_2009}
+Michael Wick.
+\newblock An entity based model for coreference resolution.
+\newblock 2009.
+
+\bibitem[Zel03]{zelenko_2003}
+Dimitri Zelenko.
+\newblock Kernel methods for relation extraction.
+\newblock {\em Journal of Machine Learning Research}, (3):1083--1106, 2003.
 
 \end{thebibliography}
