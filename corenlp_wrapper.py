@@ -15,8 +15,7 @@ def split_chapter(chapter):
 	if len(chapter) != 0: div_chapters.append(chapter)
 
 
-	if len(div_chapters) == divisions: print("Correct!")
-	else: print("INCORRECT")
+	if len(div_chapters) != divisions: raise Exception("[corenlp_wrapper] An error ocurred while slicing chapters")
 
 	return div_chapters
 
@@ -39,7 +38,7 @@ class CoreClient():
 	def parse(self, fic_chapters):
 		#First we check that all chapters are strings, and none of them are longer than 100000 caracters
 		for i, chapter in enumerate(fic_chapters):
-			if not type(chapter) is str: raise TypeError("[corenlp_client] The input for the client must be a string")
+			if not type(chapter) is str: raise TypeError("[corenlp_wrapper] The input for the client must be a string")
 			elif len(chapter) > 100000: 
 				div_chapters = split_chapter(chapter)
 				fic_chapters[i:i] = div_chapters
@@ -56,7 +55,7 @@ class CoreClient():
 				print("Annotating data . . .")
 
 				for chapter in fic_chapters: annotations.append(client.annotate(chapter))
-				fic.set_annotations(annotations)
+				
 
 				print("...done")
 		
