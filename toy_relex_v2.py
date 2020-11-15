@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 
 VERB_TAGS = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
 COLORMAP  = {0: 'red', 1: 'blue'}
+
 ### FUNCTIONS ###
 
 def get_longest_lists(coref_chains): #returns the two longest chains in the coreference graph
@@ -26,7 +27,14 @@ def get_longest_lists(coref_chains): #returns the two longest chains in the core
 	longest.append(max(list(coref_chains), key=len))
 
 	return longest
-	
+
+def print_coref_mention(mention):
+	print(mention.mentionID, mention.corefClusterID, mention.mentionType, mention.gender, mention.animacy, mention.number)
+
+def print_ner_mention(mention):	
+	print(mention.entityMentionIndex, mention.canonicalEntityMentionIndex, mention.ner, mention.gender, mention.entityMentionText)
+
+### CLASSES ###
 
 class CharacterMention():
 	def __init__(self, ID, word, canonicalName, gender, animacy, number, corefClusterID, nerEntityID, corefMentions, nerMentions):
@@ -65,7 +73,11 @@ fGetter = FanficGetter()
 NERtagger = NERTagger()
 
 fic_list = fGetter.get_fanfics_in_range(8,9)
-fic_text = fic_list[0].get_chapter(0)
+
+fic_text = ''
+
+for i in range(7,10):
+	fic_text += fic_list[0].get_chapter(i)
 
 #print(fic_text) #debug
 
@@ -131,7 +143,8 @@ for chain in coref_chains:
 
 		#print("Sentence "+ senIndex +"	|	tokens "+ tokBIndex +"-"+ tokEIndex +"	|	"+ mention.mentionType +"	|	cluster  "+ clusterID +"	|	entity "+ entityID +" "+ entityName +"	|	text: "+  mentionText) #for visualization purposes
 
-print(len(characterMentions)) #debug
+print("CanonicalEntityMentionIndex for nerMentions[0]: ",nerMentions[0].canonicalEntityMentionIndex) #debug
+#print(len(characterMentions)) #debug
 characterDicts = [char.getDictRepresentation() for char in characterMentions]
 
 end = time.time()
@@ -168,17 +181,64 @@ data['category'] = model.labels_
 end = time.time()
 print("...done. "+ str((end-start)/60) +" mins elapsed.")
 
-#Print who belongs to which cluster
+# Print who belongs to which cluster
 #print(data.shape) #debug
 
 #print(data[['category','clusterID','nerID']].values) #debug
 
+"""
 clusterCharas = []
 for char in sorted(characterDicts, key=lambda k:k['nerID']):
 	clusterCharas.append([char['name'], char['clusterID'], char['gender'], char['number'], char['animacy']])
 	print(char['nerID'], char['name'], char['gender'], char['number'], char['animacy'])
 
+"""
 
+print("Navigate sentences with relevant keyword verb 'love'\n")
+for sentence in sentences:
+	printsentence = False
+	sen = ''
+	ner_indexes = []
+	coref_indexes = []
+
+	for token in sentence.token:
+		#sen += token.originalText+' '
+
+		if token.pos in VERB_TAGS and token.originalText == 'love':
+			printsentence = True
+			#print(token.corefMentionIndex)
+			
+			#for mention in sentence.mentions: print_ner_mention(mention)
+			#for mention in sentence.mentionsForCoref: print_coref_mention(mention)
+
+	if printsentence:
+		for token in sentence.token:
+			if token.ner == 'PERSON':
+				print(token.originalText, token.ner, token.gender)
+				print(nerMentions[token.entityMentionIndex].canonicalEntityMentionIndex, nerMentions[token.entityMentionIndex].ner, nerMentions[token.entityMentionIndex].gender, nerMentions[token.entityMentionIndex].entityMentionText)
+				if len(token.corefMentionIndex) > 0:
+					for index in token.corefMentionIndex: print(corefMentions[index].corefClusterID)
+
+			elif len(token.corefMentionIndex) > 0:
+				for index in token.corefMentionIndex:
+					if corefMentions[index].mentionType == 'PRONOMINAL':
+						character = list(filter(lambda char: char['clusterID'] == corefMentions[index].corefClusterID, characterDicts)) #find the character with the same cluster ID
+
+						if len(character) < 1:
+							print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+
+						else:
+							character = character[0]
+							if character['name'] != '': print(character['name'], corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+
+							else: print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+
+					else: print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+
+			else: print(token.originalText)
+
+		print("\n\n")
+			
 
 
 	
