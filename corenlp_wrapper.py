@@ -48,7 +48,7 @@ class CoreClient():
 		annotations = []
 		
 		with CoreNLPClient(
-			annotators = ['tokenize', 'ssplit', 'pos', 'lemma', 'ner', 'parse', 'depparse','coref'],
+			annotators = ['tokenize', 'sentiment', 'ssplit', 'pos', 'lemma', 'ner', 'parse', 'depparse','coref'],
 		        timeout=120000,
 			be_quiet = True,
 		        memory='4G') as client:

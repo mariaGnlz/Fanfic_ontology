@@ -238,7 +238,7 @@ for sentence in sentences:
 			else: print(token.originalText)
 
 		print("\n\n")
-			
+
 
 
 	
