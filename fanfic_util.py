@@ -144,12 +144,13 @@ def get_chapterised_fic(path, num_fic): #Transforms the HTML file in a list of c
 
 	return chapterised_fic
 
-def get_fanfics(start, end): #gets the paths to the fics, opens them
+def get_fanfics(start, end, slicing): #gets the paths to the fics, opens them
                    #and stores them in chapterised form in a list of Fanfic objects
 	paths_file = open(FIC_LISTING_PATH, 'r')
 	fic_paths = [line[:-1] for line in paths_file.readlines()]
 	paths_file.close()
-	fic_paths = fic_paths[start:end]
+
+	if slicing: fic_paths = fic_paths[start:end] #slices the list, if not all of it is required
 
 	fic_list = []
 	for path in fic_paths:
@@ -170,14 +171,25 @@ class Fanfic():
 	def get_chapter(self, index):
 		return self.chapters[index]
 
+	def get_string_chapters(self):
+		chaps = ''
+		for chapter in self.chapters: chaps += chapter+'\n'
+
+		return chaps
+
 	def set_annotations(self, ann):
 		self.annotations = ann
 
 
 class FanficGetter():
 	def get_fanfics_in_range(self, start_index, end_index):
-		fic_list = get_fanfics(start_index, end_index)
+		fic_list = get_fanfics(start_index, end_index, True)
 
+
+		return fic_list
+
+	def get_fanfics_in_list(self):
+		fic_list = get_fanfics(0, 0, False)
 
 		return fic_list
 
@@ -186,6 +198,13 @@ class FanficGetter():
 		fic_paths = [line[:-1] for line in paths_file.readlines()]
 		paths_file.close()
 		fic_paths = fic_paths[start_index:end_index]
+
+		return fic_paths
+
+	def get_fic_paths_in_list(self):
+		paths_file = open(FIC_LISTING_PATH, 'r')
+		fic_paths = [line[:-1] for line in paths_file.readlines()]
+		paths_file.close()
 
 		return fic_paths
 
@@ -256,20 +275,54 @@ class FanficHTMLHandler():
 		dd_inf = soup.find_all('dd')
 		#print(len(dt_inf), len(dd_inf)) #debug
 
-		counter = 0
+		index = 0
 		ships = ''
 		for dt in dt_inf:
 			#print(dt) #debug
-			if 'Relationship:' not in dt.text: counter += 1
+			if 'Relationship:' not in dt.text: index += 1
 			else: 
-				ships = dd_inf[counter].text
+				ships = dd_inf[index].text
 				break
 
 		#print(ships) #debug
 		ships = ships.split(',')
-		ships = [ship[:-len(' (Good Omens)')] for ship in ships]
+		if len(ships) == 1 and ships[0] == '': ships = []
+		else:
+			for i in range(len(ships)):
+				if ' (Good Omens)' in ships[i]: ships[i] = ships[i][:-len(' (Good Omens)')]
 
 		return ships
+
+	def get_tags(self, fic_path):
+		filehandle = open(fic_path, 'r').read()
+		soup = BeautifulSoup(filehandle, 'html.parser')
+
+		dt_inf = soup.find_all('dt')
+		dd_inf = soup.find_all('dd')
+
+		tags = ''
+		index = 0
+		for dt in dt_inf:
+			if 'Archive Warning:' not in dt.text: index +=1
+			else:
+				tags = dd_inf[index].text
+
+		tags += ', '
+		index = 0
+		for dt in dt_inf:
+			if 'Additional Tags:' not in dt.text: index += 1
+			else:
+				tags += dd_inf[index].text
+
+		#print(tags) #debug
+		tags = tags.split(',')
+		if len(tags) == 1 and tags[0] == '': tags = [] #I don't think this ever happens, but just in case
+		else:
+			tags = [tag.strip() for tag in tags]
+			for i in range(len(tags)):
+				if ' (Good Omens)' in tags[i]: tags[i] = tags[i][:-len(' (Good Omens)')]
+
+		return tags
 		
 
 	def get_characters(self, fic_path):
@@ -279,18 +332,21 @@ class FanficHTMLHandler():
 		dd_inf = soup.find_all('dd')
 		#print(len(dt_inf), len(dd_inf)) #debug
 		
-		counter = 0
+		index = 0
 		chars = ''
 		for dt in dt_inf:
 			#print(dt) #debug
-			if 'Character:' not in dt.text: counter += 1
+			if 'Character:' not in dt.text: index += 1
 			else :
-				chars = dd_inf[counter].text
+				chars = dd_inf[index].text
 				break
 
 		#print(chars) #debug
 		chars = chars.split(',')
-		chars = [char[:-len(' (Good Omens)')] for char in chars]
+		if len(chars) == 1 and chars[0] == '': chars = []
+		else:
+			for i in range(len(chars)):
+				if ' (Good Omens)' in chars[i]: chars[i] = chars[i][:-len(' (Good Omens)')]
 
 		return chars
 

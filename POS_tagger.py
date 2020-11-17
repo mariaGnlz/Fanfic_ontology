@@ -6,7 +6,7 @@ import nltk, re, pprint, sys, time, pandas, html2text
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
 from bs4 import BeautifulSoup
-from fanfic_util import FanficCleaner
+from fanfic_util import FanficGetter
 
 ### VARIABLES ###
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
@@ -24,9 +24,9 @@ def tag_fics(fic_list): #divide raw text into words and tag them
 
 def get_tagged_fanfics(start, end, typical): #gets the paths to the fics, opens them
                    #and stores their text in a list
-	fic_getter = FanficCleaner()
-	untagged_fics = fic_getter.clean_fanfics_in_range(start,end)
-	#print(untagged_fics[0]) #debug
+	fic_getter = FanficGetter()
+	fic_list = fic_getter.get_fanfics_in_range(start,end)
+	#print(fic_list[0].get_chapter(0)) #debug
 
 	untagged_fics = [fic_text for fic_text, _ in untagged_fics]
 	#print(type(untagged_fics[0])) #debug
