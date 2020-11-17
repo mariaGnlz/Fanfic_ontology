@@ -376,9 +376,9 @@ Fue más o menos a estas alturas del proyecto cuando decidí separar el proceso 
 
 \subsection{ALGORITMO DE IDENTIFICACIÓN DE RELACIONES}
 
-La tarea de extracción de relaciones es compleja, y la naturaleza de los datos del proyecto la complica aún más, puesto que la ficción literaria se nutre de la ambigüedad, la heterogeneidad y la experimentación. No es razonable esperar que un conjunto de obras artísticas represente un mismo tema de forma uniforme, mucho menos relaciones sentimentales (incluso si es la misma relación entre los mismos personajes).
+Las relaciones que definen un fanfic son las amistades, los enemigos y, principalmente, los amantes. Extraer relaciones a partir de texto natural es una tarea compleja de por sí, y tratar de detectar este tipo concreto de relaciones en literatura de género puede presentar un reto mayor, puesto que las relaciones sentimentales tienden a representarse de forma implícita, de modo que el lector aprende quiénes son amigos y quiénes enemigos a través de las acciones de los personajes. Además, la ambigüedad, la heterogeneidad y la experimentación son partes naturales de cualquier proceso creativo, por lo que un conjunto de obras no representará una misma relación de forma uniforme, incluso si es entre los mismos personajes.
 
-Encontrar una estrategia válida para detectar relaciones sociales entre personajes requirió exploración y creatividad, y ya que había empezado el proyecto con NLTK, me pareció natural comenzar la búsqueda por ahí.
+Encontrar una estrategia para abordar este problema requiere exploración y creatividad, y ya que había empezado el proyecto con NLTK, me pareció natural comenzar la búsqueda por ahí.
 
 El extractor de relaciones de NLTK funciona mediante reglas: después de extraer las entidades nombradas del texto, se puede utilizar el módulo \textit{relextract} para dividir el texto en listas de fragmentos del texto que contienen dichas entidades, y aplicar reglas basadas en expresiones regulares que definan la relación entre las entidades. La regla puede incluir etiquetas de rol morfológico en la expresión regular, y \textit{relextract} permite filtrar por etiqueta IOB, lo que le da algo más de flexibilidad.
 
@@ -396,12 +396,20 @@ Existen proyectos que utilizan este módulo de NLTK para extraer relaciones como
 
 Estos programas basados en reglas dependen de localizar palabras claves en el texto, y aunque existen palabras clave para identificar relaciones sociales (\textit{"love"}, \textit{"kiss"}, \textit{"hug"}, \textit{"friend"}, \textit{"kill"}, \textit{"hate"}, etc), lo cierto es que la naturaleza de la expresión literaria hace que este método, incluso a simple vista, parezca bastante ingenuo. No sólo es perfectamente posible expresar amor, amistad y odio sin usar "palabras clave" asociadas con dichos sentimientos, sino que en un texto literario raramente se escribe explícitamente \textit{Romeo loved Juliette}, si no que es más normal encontrar estructuras como \textit{'I love you', said Romeo}. En una frase así, no se menciona explícitamente a Julieta, pero pero un lector humano sabe si se refiere a ella por el contexto de la escena. Pero un programa que únicamente se preocupa de las etiquetas IOB de una frase no será capaz de unir ese \textit{you} con Julieta (ni, ya puestos, el \textit{I} con Romeo).
 
-Descartado el extractor de relaciones de NLTK, es necesario buscar más opciones fuera de la librería. El Stanford Natural Language Processing Group publicó un extractor de relaciones accesible a través de CoreNLP, pero las relaciones que está entrenado para detectar (\textit{Live\_In, Located\_In, OrgBased\_In, Work\_For, None}) no parecen útiles para el proyecto. Por tanto, entrenar mi propio modelo para relaciones sociales parece la única solución.
+Descartado el extractor de relaciones de NLTK, empiezo a buscar opciones en otras librerías. El Stanford Natural Language Processing Group publicó un extractor de relaciones como parte de las funciones de CoreNLP, pero las relaciones que está entrenado para detectar (\textit{Live\_In, Located\_In, OrgBased\_In, Work\_For, None}) no parecen útiles para el proyecto. Por tanto, entrenar mi propio modelo para relaciones sociales parece la única solución.
 
-Crear un modelo de regresión logística con NLTK, similar al identificador de entidades, requería que el texto ya estuviera etiquetado con las relaciones. Es posible extraer las relaciones a partir del archivo HTML de cada fanfic, pero es una etiqueta a nivel del texto completo, no a nivel de frase, que es como trabaja NLTK. Dejando de lado NLTK por el momento, decidí explorar soluciones usando clustering y modelado de temas.
+Crear un modelo de regresión logística con NLTK, similar al identificador de entidades, requería que el texto ya estuviera etiquetado con las relaciones. Los autores de AO3 usan etiquetas que es posible extraer las relaciones a partir del archivo HTML de cada fanfic, pero es una etiqueta a nivel del texto completo, no a nivel de frase, que es como trabaja NLTK. Dejando de lado NLTK por el momento, decidí explorar soluciones usando clustering y modelado de temas.
 
 \subsubsection{Primeras estrategias: Clustering y LDA}
+Decidir si dos personajes son amigos, enemigos o amantes (sin tener ninguna información previa sobre la obra) puede requerir leer el texto completo, con lo cual es razonable utilizarlo para el análisis y asignar una etiqueta de "romance", "amistad" o "enemistad" al texto en su conjunto, más que etiquetar ciertas palabras y personajes del mismo.
 
+Por tanto, dado un conjunto de textos al azar, podría llegarse a la conclusión de cuáles se centran en el romance, cuáles en la amistad y cuáles en la enemistad observando si hay similitudes entre ellos. Con este enfoque, parece una tarea adecuada para un algoritmo de clustering.
+
+
+
+
+
+Por tanto, es posible utilizar las etiquetas de los propios autores para obtener tres conjuntos: uno de obras centradas en romance, otro de obras centradas en la amistad, y un tercero para obras 
 
 Para este algoritmo decidí crear un algoritmo LDA, que es un algoritmo\todo{mejorar estoooOOOOOOO} de aprendizaje no supervisado que se utiliza típicamente en identificación de temas. Para entrenar este algoritmo, seleccioné un conjunto de fanfics que sirviesen de modelo para la relación que quería que aprendiera a detectar. Por ejemplo, para entrenar un modelo LDA que detecte situaciones sexuales, preparé un conjunto de fanfics de un único capítulo en los que sucedía sexo, excluyendo otros que tenían escenas sexuales pero eran sólo una pequeña parte de una historia más larga. 
 
