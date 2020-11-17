@@ -7,37 +7,40 @@ import string, sys, re
 
 ### VARIABLES ###
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
-ROMANCE_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths2.txt'
+ROMANCE_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
 FRIENDSHIP_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_paths.txt'
-EXPLICIT_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/explicit_fic_paths.txt'
-OUT = '/home/maria/Documents/Fanfic_ontology/generate_fic_discarded.txt'
+ENEMY_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths.txt'
+OUT = '/home/maria/Documents/Fanfic_ontology/generate_list_discarded.txt'
 
+ENEMY_TAGS = ['Graphic Depictions Of Violence', 'Rape/Non-con', 'Torture', 'Mind Rape', 'Dead Dove: Do Not Eat']
+
+### MAIN ###
+
+#Initialize handlers, get fanfic paths
 fgetter = FanficGetter()
 handler = FanficHTMLHandler()
-print(fgetter.get_fic_listing_path()) #debug
 
-#0 5000
-html_fics = fgetter.get_fic_paths_in_range(0,10000)
+html_fics = fgetter.get_fic_paths_in_list()
+print(fgetter.get_fic_listing_path()) #debug
+#print(html_fics[:10]) #debug
 
 
 romance_fics = []
 friendship_fics = []
-explicit_fics = []
+enemy_fics = []
 
 romance = False
 friendship = False
 for path in html_fics:
 	chapters = handler.get_chapters(path)
-	rating = handler.get_rating(path)
 	ships = handler.get_relationships(path)
 
 	#if chapters[0] == 1 : print(chapters, rating) #debug
 
+	#This hand of the IF-ELSE handles romance and frienship. Because they're very popular, and can feature in long fics, we're restricting it to fics than only have one chapter to ensure that we get the essential characteristics
 	if chapters == [1,1]:
-		if rating in ['Explicit','Mature']:
-			explicit_fics.append(path)
-
-		else:
+		
+		if len(ships) > 0:
 			for ship in ships:
 				if re.match('(\s*\w* \w*/\w* \w*)|(\s*\w*/\w*)', ship): #If the fic has a romantic relationship tag
 					romance = True
@@ -60,13 +63,29 @@ for path in html_fics:
 				f.close()
 
 			romance = friendship = False
+		
+
+	elif int(chapters[0]) < 6: #This hand of the IF-ELSE handles enemy relationships. It's much less popular, so we admit longer fics
+		if len(ships) < 2: #We do not want friendship or romance here, we admit one at max
+			tags = handler.get_tags(path)
+
+			if any(tag in ENEMY_TAGS for tag in tags): enemy_fics.append(path)
+			
+
+#Sometimes, fics about rape contain "romance" relationship tags, let's take them out
+for path in romance_fics:
+	tags = handler.get_tags(path)
+	if 'Rape/Non-con' in tags: romance_fics.remove(path)
+			
+				
 
 
-print("Total PG romance fics: ", len(romance_fics))
+print("Total romance fics: ", len(romance_fics))
 print("Total friendship fics: ", len(friendship_fics))
-print("Total explicit fics: ", len(explicit_fics))
+print("Total enemy fics: ", len(enemy_fics))
 
 #Save path lists
+
 for path in romance_fics:
 	f = open(ROMANCE_LISTING_PATH, 'a')
 	f.write(path+'\n')
@@ -78,9 +97,8 @@ for path in friendship_fics:
 	f.write(path+'\n')
 	f.close()
 
-
-for path in explicit_fics:
-	f = open(EXPLICIT_LISTING_PATH, 'a')
+for path in enemy_fics:
+	f = open(ENEMY_LISTING_PATH, 'a')
 	f.write(path+'\n')
 	f.close()
 
