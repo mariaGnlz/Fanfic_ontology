@@ -3,28 +3,30 @@
 from nltk import word_tokenize
 from nltk.tokenize import RegexpTokenizer, sent_tokenize
 from nltk.tag import pos_tag
-from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
-from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import CountVectorizer
+#from gensim.model import CoherenceModel
 from gensim import corpora
+
 import pandas as pd
 import matplotlib.pyplot as ptl
 from bs4 import BeautifulSoup
-from fanfic_util import FanficGetter, FanficCleaner
+from fanfic_util import FanficGetter, Fanfic
 
 import string, html2text, pickle, gensim, sys, time
 
 ### VARIABLES ###
-FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
-#FIC_LISTING_PATH = '/home/maria/Documents/pruebasNLTK/typical_fic_paths_5000nme.txt'
-#FIC_LISTING_PATH = '/home/maria/Documents/pruebasNLTK/typical_fic_paths_10000nme.txt'
+#FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
+RFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
+FFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_paths.txt'
+EFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths.txt'
+
 MODEL_NAME = 'model0.gensim' #default name
 MODEL_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_models/'
 DICTIONARY_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_dictionaries/'
-NUM_TOPICS = 1
+NUM_TOPICS = 3
 
 #INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR','VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] #nouns, adjectives and verbs (all kinds) aka C
 #INTERESTING_POS = ['NN', 'NNS', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] #nouns, adverbs and verbs (all kinds) aka B
@@ -45,32 +47,51 @@ def get_lemma(word):
 		return word
 	else: return lemma
 
-def fic_tokenize(fic):
-	#tokenize text and filter out stopwords
-	en_stop = stopwords.words('english')
-	en_stop.extend(INTERESTING_POS)
-	tokenizer = RegexpTokenizer(r'\w+')
+def get_stopwords():
+	# Tokenize and lemmatize stopwords
+	stop = stopwords.words('english')
+	#tokenizer = RegexpTokenizer(r'\w+')
+	#stop = [tokenizer.tokenize(word) for word in stop]
+	stop = [word_tokenize(word) for word in stop]
 
-	#word_tokens = word_tokenize(fic)
-	word_tokens = tokenizer.tokenize(fic)
-	word_tokens = [word.lower() for word in word_tokens]
-	#print(type(word_tokens[0])) #debug
-	filtered_tokens = [word for word in word_tokens if word not in en_stop]
+	words = []
+	for item in stop:
+		if type(item) == list: 
+			for w in item: words.append(w)
+
+		else: words.append(word)
+
+
+	words = [get_lemma(word) for word in words]
+	#print(words[:10]) #debug
+
+	words.extend(["’","“","”","'","``","","''","_","-","--",";",":",".","*","–","‘","(",")","'m"])
+	return words
+
+
+def fic_tokenizev1(fic):
+	sent_tokens = sent_tokenize(fic)
+	#tokenizer = RegexpTokenizer(r'\w+')
+	#word_tokens = [tokenizer.tokenize(sent) for sent in sent_tokens]
+	word_tokens = [word_tokenize(sent) for sent in sent_tokens]
+
+	words = []
+	for item in word_tokens:
+		if type(item) == list:
+			for w in item: words.append(w)
+
+		else: words.append(word)
 	
-	#stem words
-	#stemmer = PorterStemmer()
-	#processed_tokens = [stemmer.stem(t) for t in filtered_tokens]
-	processed_tokens = [get_lemma(word) for word in filtered_tokens]
-	
-	#print(processed_tokens[0:20]) #debug
-	#return word_tokenize(fic.translate(string.punctuation))
+
+	processed_tokens = [get_lemma(word) for word in words]
+
 	return processed_tokens
 
 def fic_tokenizev2(fic):
 	sent_tokens = sent_tokenize(fic)
-	tokenizer = RegexpTokenizer(r'\w+')
-	pos_tokens = [pos_tag(tokenizer.tokenize(sent)) for sent in sent_tokens]
-	#pos_tokens = [pos_tag(word_tokenize(sent)) for sent in sent_tokens]
+	#tokenizer = RegexpTokenizer(r'\w+')
+	#pos_tokens = [pos_tag(tokenizer.tokenize(sent)) for sent in sent_tokens]
+	pos_tokens = [pos_tag(word_tokenize(sent)) for sent in sent_tokens]
 
 	interesting_words = []
 	for token in pos_tokens:
@@ -78,22 +99,24 @@ def fic_tokenizev2(fic):
 			#word = word.strip()
 			if pos in INTERESTING_POS: interesting_words.append(word)
 
-	processed_tokens = [get_lemma(word) for word in interesting_words if get_lemma(word) not in UNINTERESTING_TOKENS]
+	processed_tokens = [get_lemma(word) for word in interesting_words]
 
 	return processed_tokens
 
 def process_text(unprocessed_fics):
-
-	#word_tokens = [word_tokenize(fic) for fic in unprocessed_fics]
-	
-	word_tokens = []
+	processed_fics = []
 	for fic in unprocessed_fics:
-		word_tokens.append(fic_tokenizev2(fic))
-	
-	
-	
-	#return [fic_tokenizev2(fic) for fic in unprocessed_fics]
-	return word_tokens
+		#Get lemmatized tokens
+		#tokens = fic_tokenizev1(fic)
+		tokens = fic_tokenizev2(fic)
+
+		#Filter out stopwords
+		stopwords = get_stopwords()
+
+		word_tokens = [word for word in tokens if word not in stopwords]
+		processed_fics.append(word_tokens)
+
+	return processed_fics
 	
 def plot_stuff():
 	vectorizer = CountVectorizer(min_df=5, max_df=0.9)
@@ -128,27 +151,38 @@ if len(sys.argv) == 2:
 	MODEL_NAME = (sys.argv[1]).strip()
 	print(MODEL_NAME) #debug
 
-	###Fanfic gathering and cleaning
-	#fanfic_texts = get_fanfics()
-	fanfic_getter = FanficGetter()
-	fanfic_cleaner = FanficCleaner()
+	
+	print('Fetching fic texts...')
+	start = time.time()
+	
+	getter = FanficGetter()
 
-	fanfic_getter.set_fic_listing_path(FIC_LISTING_PATH)
-	fanfic_paths = fanfic_getter.get_fanfic_paths_in_file()
+	getter.set_fic_listing_path(EFIC_LISTING_PATH)
+	efics = getter.get_fanfics_in_list()
 
-	fanfic_texts = fanfic_cleaner.clean_fanfic_list(fanfic_paths, False)
+	getter.set_fic_listing_path(FFIC_LISTING_PATH)
+	ffics = getter.get_fanfics_in_list()
 
-	end_time = time.time()
-	print('Fanfics gathered and cleaned. Elapsed time: ',(end_time-start_time)/60, ' minutes')
+	getter.set_fic_listing_path(RFIC_LISTING_PATH)
+	rfics = getter.get_fanfics_in_range(0,1000) # There are a lot of romance fanfics, so we're going to tone it down a bit
 
-	#fanfic_texts = ["This is the first document.", "This document is the second document.", "And this is the third one.", "Is this the first document?"]
-	#print(len(fanfic_texts)) #debug
+	fics = efics + ffics + rfics
 
-	###Processing fanfics
+
+	fanfic_texts = [fic.get_string_chapters() for fic in fics]
+	#print(len(fics)) #debug
+	#print(len(fanfic_texts), len(name_labels)) #debug
+
+	end = time.time()
+
+	print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
+
+
+	print('Preprocessing fanfics and creating dictionaries...')
 	start_time = time.time()
 
 	processed_fics = process_text(fanfic_texts)
-	#print(type(processed_fics)) #debug
+	print(type(processed_fics), processed_fics[0][:10]) #debug
 
 	dictionary = corpora.Dictionary(processed_fics)
 	corpus = [dictionary.doc2bow(fic) for fic in processed_fics]
@@ -159,33 +193,20 @@ if len(sys.argv) == 2:
 	end_time = time.time()
 	print('Processing elapsed time: ',(end_time-start_time)/60,' minutes')
 	
-	###LDA model
 	start_time = time.time()
+	print('Training LDA model. . .')
 	ldamodel = gensim.models.ldamodel.LdaModel(corpus=corpus, num_topics=NUM_TOPICS, id2word=dictionary, passes=20)
 	ldamodel.save(MODEL_PATH +'lda_'+MODEL_NAME+'.gensim')
+	coherence = gensim.models.coherencemodel.CoherenceModel(model=ldamodel, texts=processed_fics, dictionary=dictionary, coherence='c_v')
 
 	end_time = time.time()
-	print('LDA elapsed time: ',(end_time-start_time)/60,' minutes')
+	print('...LDA elapsed time: ',(end_time-start_time)/60,' minutes')
 
+	print('LDA Coherence score: ', coherence.get_coherence())
 	topics = ldamodel.print_topics(num_words=10)
 
-	print('LDA model:')
+	print('Topics in LDA model:')
 	for topic in topics: print(topic)
-
-	###LSI model
-	start_time = time.time()
-
-	lsimodel = gensim.models.lsimodel.LsiModel(corpus=corpus, num_topics=NUM_TOPICS, id2word=dictionary)
-	lsimodel.save(MODEL_PATH +'lsi_'+MODEL_NAME+'.gensim')
-
-	end_time = time.time()
-	print('LSI elapsed time: ',(end_time-start_time)/60,' minutes')
-
-	topics = lsimodel.print_topics(10)
-
-	print('LSI model:')
-	for topic in topics: print(topic)
-	
 
 	###Plotting stuff with sci-kit
 
