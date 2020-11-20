@@ -227,8 +227,8 @@ for fic in fic_texts:
 
 							else: print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
 
-						else: print(token.originalText)
+					else: print(token.originalText)
 
-					print("\n\n")
+				print("\n\n")
 
 
