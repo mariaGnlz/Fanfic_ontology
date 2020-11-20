@@ -31,6 +31,12 @@ Complete guide to build your own named entity recognizer with python.
 Information extraction.
 \newblock \url{https://github.com/rohitjose/InformationExtraction}, 2017.
 
+\bibitem[skl]{sklearn_feature}
+Feature extraction: Tf–idf term weighting.
+\newblock
+  \url{https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction}.
+\newblock Scikit Learn User Guide.
+
 \bibitem[Stu17]{uncanny_2017}
 Alasdair Stuart.
 \newblock Dean winchester and commander shepard walk into a bar: Why fanon

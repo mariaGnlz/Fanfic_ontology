@@ -33,7 +33,7 @@
 \citation{uncanny_2017}
 \citation{woosh_1998}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:graph_hp}{{\caption@xref {fig:graph_hp}{ on input line 135}}{5}{FANFICTION Y ARCHIVE OF OUR OWN}{figure.caption.3}{}}
+\newlabel{fig:graph_hp}{{\caption@xref {fig:graph_hp}{ on input line 138}}{5}{FANFICTION Y ARCHIVE OF OUR OWN}{figure.caption.3}{}}
 \@writefile{tdo}{\contentsline {todo}{continuar parejas y fandom}{5}{section*.2}}
 \pgfsyspdfmark {pgfid6}{15194314}{21443196}
 \pgfsyspdfmark {pgfid9}{37214773}{21433755}
@@ -58,7 +58,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {4}RECOGIDA Y LIMPIEZA DE DATOS}{6}{section.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}{6}{subsection.4.1}}
 \newlabel{sec:recogidadatos}{{4.1}{6}{CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}{subsection.4.1}{}}
-\newlabel{SC@1}{{\caption@xref {??}{ on input line 176}}{7}{CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}{figure.caption.7}{}}
+\newlabel{SC@1}{{\caption@xref {??}{ on input line 179}}{7}{CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}{figure.caption.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Herramienta de filtrado de AO3. Permite excluir (o incluir) obras que contengan etiquetas espec\IeC {\'\i }ficas, as\IeC {\'\i } c\IeC {\'o}mo aquellas no escritas en un idioma particular\relax }}{7}{figure.caption.7}}
 \newlabel{fig:ao3_search}{{1}{7}{Herramienta de filtrado de AO3. Permite excluir (o incluir) obras que contengan etiquetas específicas, así cómo aquellas no escritas en un idioma particular\relax }{figure.caption.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Exploraci\IeC {\'o}n de la estructura de la p\IeC {\'a}gina AO3 usando la herramienta 'Inspeccionar elemento' de \textit  {Firefox}. Se puede ver que el sitio utiliza una clase HTML llamada \textit  {'work blurb group'} para mostrar cada obra.\relax }}{8}{figure.caption.8}}
@@ -69,7 +69,7 @@
 \newlabel{code:scraper2}{{4}{10}{Código perteneciente al \textit {scraper} 'ao3\_link\_scraper'. Utiliza un bucle \textit {while} para iterar entre las páginas de la búsqueda, y en cada página, usa la librería \textit {BeautifulSoup} para extraer los objetos textit{'work blurb group'} en una lista llamada 'blurbs' (línea 42). De cada 'blurb' extrae el identificador del fanfic y comprueba si tiene texto (líneas 46-49), y si lo contiene forma el enlace a la página del fanfic y lo añade a una lista llamada 'work\_links' (línea 50). Si no contiene texto, se añade a otra lista llamada 'discarded\_links' (línea 52).\relax }{figure.caption.10}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces C\IeC {\'o}digo perteneciente al \textit  {scraper} 'ao3\_link\_scraper'. Utiliza la librer\IeC {\'\i }a \textit  {requests} para enviar una petici\IeC {\'o}n HTTP GET al link permanente del conjunto de datos (l\IeC {\'\i }nea 30), y \textit  {BeautifulSoup} para navegar el resultado como un objeto HTML del que poder extraer datos \IeC {\'u}tiles, como la cantidad total de p\IeC {\'a}ginas (l\IeC {\'\i }neas 33-35).\relax }}{11}{figure.caption.11}}
 \newlabel{code:scraper1}{{5}{11}{Código perteneciente al \textit {scraper} 'ao3\_link\_scraper'. Utiliza la librería \textit {requests} para enviar una petición HTTP GET al link permanente del conjunto de datos (línea 30), y \textit {BeautifulSoup} para navegar el resultado como un objeto HTML del que poder extraer datos útiles, como la cantidad total de páginas (líneas 33-35).\relax }{figure.caption.11}{}}
-\newlabel{SC@2}{{\caption@xref {??}{ on input line 233}}{12}{CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}{figure.caption.12}{}}
+\newlabel{SC@2}{{\caption@xref {??}{ on input line 236}}{12}{CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}{figure.caption.12}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Navegaci\IeC {\'o}n de p\IeC {\'a}ginas de b\IeC {\'u}squeda de AO3. Todos los botones vienen con su n\IeC {\'u}mero de p\IeC {\'a}gina, y se puede ver cu\IeC {\'a}l es la \IeC {\'u}ltima\relax }}{12}{figure.caption.12}}
 \newlabel{fig:ao3_structure2}{{6}{12}{Navegación de páginas de búsqueda de AO3. Todos los botones vienen con su número de página, y se puede ver cuál es la última\relax }{figure.caption.12}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Proceso de descarga de fanfics de AO3 utilizando los programas 'ao3\_link\_scraper.py' y 'ao3\_file\_scraper.py'.\relax }}{13}{figure.caption.13}}
@@ -92,31 +92,34 @@
 \pgfsyspdfmark {pgfid36}{37214773}{11918260}
 \pgfsyspdfmark {pgfid37}{38345269}{11662281}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE RELACIONES}{19}{subsection.5.2}}
-\citation{bird_2012}
-\citation{bird_2012}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Frase etiquetada por NLTK. Las etiquetas de entidad se encuentran en los nodos, encontr\IeC {\'a}ndose todas las palabras pertenecientes a una secuencia de entidad en la profundidad 2 del \IeC {\'a}rbol. Las palabras que no pertenecen a ninguna secuencia de entidad se encuentran en la profundidad 1. Cada hoja del \IeC {\'a}rbol contiene una tupla formada por la palabra y su etiqueta de rol morfol\IeC {\'o}gico.\relax }}{20}{figure.caption.16}}
 \newlabel{fig:tags2}{{9}{20}{Frase etiquetada por NLTK. Las etiquetas de entidad se encuentran en los nodos, encontrándose todas las palabras pertenecientes a una secuencia de entidad en la profundidad 2 del árbol. Las palabras que no pertenecen a ninguna secuencia de entidad se encuentran en la profundidad 1. Cada hoja del árbol contiene una tupla formada por la palabra y su etiqueta de rol morfológico.\relax }{figure.caption.16}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Ejemplo de c\IeC {\'o}digo que utiliza el m\IeC {\'o}dulo \textit  {regexp} de NLTK para extraer relaciones de lugar y mostrarlas por pantalla. Adaptado del cap\IeC {\'\i }tulo 7 de Natural Language Processing with Python\cite  {bird_2012}}{20}{lstlisting.1}}
+\citation{bird_2012}
+\citation{bird_2012}
 \citation{jose_2017}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Primeras estrategias: Clustering y LDA}{22}{subsubsection.5.2.1}}
+\citation{sklearn_feature}
+\newlabel{for:idf}{{1}{23}{Primeras estrategias: Clustering y LDA}{equation.5.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Componente idf del vectorizador Tf-Idf. \textit  {t} se refire al t\IeC {\'e}rmino cuyo peso est\IeC {\'a} determinando, \textit  {n} al n\IeC {\'u}mero total de documentos y \textit  {df} a la frecuencia de \textit  {t} en este documento.\relax }}{23}{figure.caption.18}}
+\newlabel{for:ineria}{{2}{24}{Primeras estrategias: Clustering y LDA}{equation.5.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Criterio de la suma de cuadrados. \textit  {n} es el total de textos, con \textit  {x} perteneciendo a \textit  {n}. \textit  {C} es el n\IeC {\'u}mero de clusters, con mu siendo la media de las muestras \textit  {x} de cada cluster. El algoritmo KMeans reduce esta suma todo lo posible.\relax }}{24}{figure.caption.19}}
+\newlabel{fig:kmeanresult}{{\caption@xref {fig:kmeanresult}{ on input line 446}}{24}{Primeras estrategias: Clustering y LDA}{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Porcentaje de aciertos de cada modelo. Cada prueba se realiz\IeC {\'o} tres veces.\relax }}{25}{figure.caption.21}}
+\newlabel{table:topic_evaluation}{{13}{25}{Porcentaje de aciertos de cada modelo. Cada prueba se realizó tres veces.\relax }{figure.caption.21}{}}
 \bibstyle{alpha}
 \bibdata{bib_tfg}
 \bibcite{Barthes}{Bar68}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Primeras estrategias: Clustering y LDA}{22}{subsubsection.5.2.1}}
-\@writefile{tdo}{\contentsline {todo}{mejorar estoooOOOOOOO}{22}{section*.18}}
-\pgfsyspdfmark {pgfid38}{28607628}{48053743}
-\pgfsyspdfmark {pgfid41}{37214773}{48044302}
-\pgfsyspdfmark {pgfid42}{38345269}{47788323}
 \bibcite{bird_2012}{Bir12}
 \bibcite{culotta_2007}{Cul07}
 \bibcite{ellis_2018}{Ell18}
 \bibcite{ivanov_2016}{iva}
 \bibcite{jose_2017}{jos17}
+\bibcite{sklearn_feature}{skl}
 \bibcite{uncanny_2017}{Stu17}
 \bibcite{woosh_1998}{Swi98}
 \bibcite{wick_2009}{Wic09}
 \bibcite{zelenko_2003}{Zel03}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Porcentaje de aciertos de cada modelo. Cada prueba se realiz\IeC {\'o} tres veces.\relax }}{23}{figure.caption.19}}
-\newlabel{table:topic_evaluation}{{10}{23}{Porcentaje de aciertos de cada modelo. Cada prueba se realizó tres veces.\relax }{figure.caption.19}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Correferencia con CoreNLP}{23}{subsubsection.5.2.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}EVALUACI\IeC {\'O}N DEL SISTEMA}{23}{section.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}REFERENCIAS}{23}{section.7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Correferencia con CoreNLP}{26}{subsubsection.5.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}EVALUACI\IeC {\'O}N DEL SISTEMA}{26}{section.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}REFERENCIAS}{26}{section.7}}
