@@ -7,12 +7,11 @@ from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import CountVectorizer
-#from gensim.model import CoherenceModel
+from sklearn.feature_extraction.text import TfidfVectorizer
 from gensim import corpora
 
 import pandas as pd
 import matplotlib.pyplot as ptl
-from bs4 import BeautifulSoup
 from fanfic_util import FanficGetter, Fanfic
 
 import string, html2text, pickle, gensim, sys, time
@@ -32,11 +31,11 @@ NUM_TOPICS = 3
 #INTERESTING_POS = ['NN', 'NNS', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] #nouns, adverbs and verbs (all kinds) aka B
 #INTERESTING_POS = ['NN', 'NNS', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'UH'] #nouns, adverbs and verbs (all kinds) aka BUH
 #INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] #nouns, adjectives, adverbs and verbs (all kinds) aka D
-INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'UH'] #nouns, adjectives, adverbs and verbs (all kinds) aka DUH
-#INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ','UH', 'RP', 'IN', 'CC'] #nouns, adjectives, adverbs and verbs (all kinds) aka DUH2
+#INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'UH'] #nouns, adjectives, adverbs and verbs (all kinds) aka DUH
+INTERESTING_POS = ['JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ','UH', 'RP', 'IN', 'CC'] #nouns, adjectives, adverbs and verbs (all kinds) aka DUH2
 #INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS'] #nouns, adjectives and adverbs (all kinds)
 
-UNINTERESTING_TOKENS = ['be', 'are', 'wasn', 'wa', 'have', 'say', 'do', 'don', 'get', 're', 'll', 've', 'd', 'm', 's', 't','_']
+UNINTERESTING_POS = ['PRP','PRP$','POS','CC','CD','TO','DT','IN']
 
 ### FUNCTIONS ###
 
@@ -65,7 +64,7 @@ def get_stopwords():
 	words = [get_lemma(word) for word in words]
 	#print(words[:10]) #debug
 
-	words.extend(["’","“","”","'","``","","''","_","-","--",";",":",".","*","–","‘","(",")","'m"])
+	words.extend(["’","“","”","'","``","","''","_","-","--",";",":",".",",","?","!","*","–","‘","(",")"])
 	return words
 
 
@@ -97,7 +96,7 @@ def fic_tokenizev2(fic):
 	for token in pos_tokens:
 		for word, pos in token:
 			#word = word.strip()
-			if pos in INTERESTING_POS: interesting_words.append(word)
+			if pos not in UNINTERESTING_POS: interesting_words.append(word)
 
 	processed_tokens = [get_lemma(word) for word in interesting_words]
 
@@ -118,32 +117,7 @@ def process_text(unprocessed_fics):
 
 	return processed_fics
 	
-def plot_stuff():
-	vectorizer = CountVectorizer(min_df=5, max_df=0.9)
 
-	#print(processed_fics[0][0])
-	data_vectorized = [vectorizer.fit_transform(fic) for fic in processed_fics]
-
-	svd = TruncatedSVD(n_components=2)
-	documents_2d = svd.fit_transform(data_vectorized)
- 
-	df = pd.DataFrame(columns=['x', 'y', 'document'])
-	df['x'], df['y'], df['document'] = documents_2d[:,0], documents_2d[:,1], 	range(len(processed_fics))
-	df.plot(kind='scatter', x='x', y='y')
-	plt.show()
-
-	"""
-	source = ColumnDataSource(ColumnDataSource.from_df(df))
-	labels = LabelSet(x="x", y="y", text="document", y_offset=8,
-                  text_font_size="8pt", text_color="#555555",
-                  source=source, text_align='center')
- 
-	plot = figure(plot_width=600, plot_height=600)
-	plot.circle("x", "y", size=12, source=source, line_color="black", fill_alpha=0.8)
-	plot.add_layout(labels)
-	show(plot, notebook_handle=True)
-
-	"""
 ### MAIN ###
 
 if len(sys.argv) == 2:
@@ -161,10 +135,10 @@ if len(sys.argv) == 2:
 	efics = getter.get_fanfics_in_list()
 
 	getter.set_fic_listing_path(FFIC_LISTING_PATH)
-	ffics = getter.get_fanfics_in_list()
+	ffics = getter.get_fanfics_in_range(0,180)
 
 	getter.set_fic_listing_path(RFIC_LISTING_PATH)
-	rfics = getter.get_fanfics_in_range(0,1000) # There are a lot of romance fanfics, so we're going to tone it down a bit
+	rfics = getter.get_fanfics_in_range(0,220) # There are a lot of romance fanfics, so we're going to tone it down a bit
 
 	fics = efics + ffics + rfics
 
@@ -182,7 +156,7 @@ if len(sys.argv) == 2:
 	start_time = time.time()
 
 	processed_fics = process_text(fanfic_texts)
-	print(type(processed_fics), processed_fics[0][:10]) #debug
+	#print(type(processed_fics), processed_fics[0][:10]) #debug
 
 	dictionary = corpora.Dictionary(processed_fics)
 	corpus = [dictionary.doc2bow(fic) for fic in processed_fics]
@@ -207,8 +181,6 @@ if len(sys.argv) == 2:
 
 	print('Topics in LDA model:')
 	for topic in topics: print(topic)
-
-	###Plotting stuff with sci-kit
 
 
 else:
