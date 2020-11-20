@@ -417,7 +417,7 @@ Crear un conjunto con relaciones de enemistad u odio es una tarea más complicad
 El resultado fueron 12520 relatos en el conjunto de romance, 784 en el de amistad y 155 en el de enemistad. Para equilibrar los \textit{datasets}, reduje el conjunto de romance a 220 y el de amistad a 180.
 
 Una vez creados los conjuntos, utilicé la librería \textit{Scikit-Learn} en conjunto con NLTK para crear el programa de clustering. Para preprocesar el texto se utilizan los métodos de NLTK para \textit{tokenizar} y \textit{lemmatizar} los textos, además de crear un conjunto de \textit{stopwords}, palabras comunes en inglés pero que no aportan mucha información sobre el mismo (preposiciones, pronombres, puntuación, demostrativos, etc).
-Después de preprocesar el texto se procede a extraer las características relevantes del mismo, para lo cual se utiliza el módulo \textit{TfidfVectorizer} de \textit{Scikit-Learn}. Su trabajo es 'vectorizar' el texto de manera que sus características principales queden expresadas en un formato que el algoritmo de clustering pueda entender, cosa que hace asignando un peso a cada palabra dependiendo del número de ocurrencias de la misma. Hay vectorizadores que asignan más peso cuanta más frecuencia, pero esto hace que palabras muy comunes pero con poco valor informativo roben protagonismo a palabras menos frecuentes pero más interesantes. El vectorizador 'Tf-Idf' (\textit{Term frequency-Inverse document frequency}), en cambio, multiplica la frecuencia de una palabra en un documento por un componente \textit{idf} que, como se ve en la fórmula \ref{for:idf}, está basado en la frecuencia de ese término en todos los documentos. Los vectores resultantes se normalizan usando la norma de Euclides; más información está disponible en la guía de usuario de \textit{Scikit-Learn} \cite{sklearn_feature}. 
+Después de preprocesar el texto se procede a extraer las características relevantes del mismo, para lo cual se utiliza el módulo \textit{TfidfVectorizer} de \textit{Scikit-Learn}. Su trabajo es 'vectorizar' el texto de manera que sus características principales queden expresadas en un formato que el algoritmo de clustering pueda entender, cosa que hace asignando un peso a cada palabra dependiendo del número de ocurrencias de la misma (esto se llama \textit{bag of words}). Hay vectorizadores que asignan más peso cuanta más frecuencia, pero esto hace que palabras muy comunes pero con poco valor informativo roben protagonismo a palabras menos frecuentes pero más interesantes. El vectorizador 'Tf-Idf' (\textit{Term frequency-Inverse document frequency}), en cambio, multiplica la frecuencia de una palabra en un documento por un componente \textit{idf} que, como se ve en la fórmula \ref{for:idf}, está basado en la frecuencia de ese término en todos los documentos. Los vectores resultantes se normalizan usando la norma de Euclides; más información está disponible en la guía de usuario de \textit{Scikit-Learn} \cite{sklearn_feature}. 
 
 \begin{figure}
 	\begin{equation}
@@ -443,19 +443,19 @@ Con los textos ya preprocesados y convertidos en vectores \textit{tf-idf} se pue
 Además del código necesario para crear el modelo KMeans y procesar los daños, añadí código para evaluar el modelo e imprimir un diagrama de puntos con los clusters. Tras probar dos tokenizers distintos y varias combinaciones con los parámetros del vectorizador y el modelo, los resultados se pueden ver en la figura \ref{fig:kmeanresult}.
 
 \begin{figure}[!h]
-	\label{fig:kmeanresult}
 	\centering
 	
 	\begin{subfigure}{.4\textwidth}
 		\includegraphics[scale=0.4]{kmeans_tokenizer2}
-		\caption{Diagrama de clustering.}
+		\caption{El código utilizado para crear este diagrama fue escrito por \href{https://stackoverflow.com/questions/57626286/how-to-plot-text-clusters}{Matt L en StackOverflow}.}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
 		\includegraphics[scale=0.3]{ejecucion_kmeans_tokv2_0}
-		\caption{Ejecución del programa de clustering mostrando su evaluación.}
 	\end{subfigure}
 		
+	\caption{A la derecha, ejecución de \textit{toy\_relex\_kmeans}, mostrando su evaluación. La homogeneidad se cumple cuando ningún cluster contiene miembros que pertenezcan a categorías distintas en los datos reales. La completitud se satisface si todos los miembros de una de las categorías reales pertenecen al mismo cluster. A la izquierda, el diagrama creado por el programa.}
+	\label{fig:kmeanresult}
 \end{figure}
 
 Los resultados no son muy buenos. Aunque los términos de cada cluster parecen prometedores, ninguna métrica sube del 0.1, lo que indica que las categorías del clustering son sólo un poco mejores que haberlas asignado al azar, y que hay mucho solapamiento entre clusters.
@@ -464,7 +464,29 @@ Puesto que para crear el modelo he utilizado datos filtrados a propósito para m
 
 Busqué entonces otra estrategia, utilizando un modelo de temas más que uno de clustering. El modelado de temas con el algoritmo LDA parece también una buena opción para este problema, puesto que al contrario que el clustering clásico, LDA asigna a cada documento una distribución de temas en cada uno. Esto se ajusta a este análisis, puesto que aunque he intentado crear \textit{datasets} 'perfectos' que traten un único tipo de relación en cada uno, lo cierto es que lo normal en un relato es que estén mezcladas.
 
-LDA es un algoritmo que descubre temas de forma no supervisada. Trabaja bajo la asunción de que cada documento es un conjunto de temas, y que cada tema es un conjunto de palabras.
+LDA es un algoritmo que descubre temas de forma no supervisada. Trabaja bajo la asunción de que cada documento es un conjunto de temas, y que cada tema es un conjunto de palabras. Empieza asignando cada a palabra a un conjunto al azar de temas, y en cada iteración mejora la asignación. 
+
+Al igual que en el programa anterior, LDA requiere un preprocesado del texto, con lo que utilizo los dos \textit{tokenizers} del algoritmo de clustering. \textit{Scikit-Learn} carece de modelo LDA, por lo que utilizo el de la librería \textit{gensim}. LDA también trata los textos como un \textit{bag of words}, pero no es necesario vectorizarlos antes de usarlos para entrenar el modelo, que devolverá  lista de palabras por tema, junto con la probabilidad de que esa palabra pertenezca a dicho tema.
+
+Tras preprocesar los textos de forma similar a como se hizo con clustering y entrenar el modelo LDA, se observan los resultados en la figura \ref{fig:topicresult1}.
+
+\begin{figure}
+	\hspace{-2cm}
+	\includegraphics[scale=0.35]{ejecucion_topic_v1_0}
+	\caption{Ejecución de \textit{toy\_relex\_lda}, filtrando sólo la puntuación. Se muestra los 10 términos más relevantes de cada tema, y su probabilidad de pertenecer a dicho tema.}
+	\label{fig:topicresult1}
+\end{figure}
+
+Los resultados son un poco decepcionantes, pues ninguno de los 10 términos más relevantes por tema tiene siquiera un 0.1\% de probabilidad de pertenecer a su tema.
+Tampoco es sorprende que no sean muy relevantes, pues aparecen muchos pronombres, determinantes e incluso algún número. Aprovechando el etiquetado de rol morfológico de NLTK, elimino esas palabras y creo un nuevo modelo en la figura \ref{fig:topicresult2}.
+
+\begin{figure}
+	\hspace{-2cm}
+	\includegraphics[scale=0.35]{ejecucion_topic_v2_0}
+	\caption{Ejecución de \textit{toy\_relex\_lda}, filtrando puntuación, pronombres, determinantes, etc. Se muestra los 10 términos más relevantes de cada tema, y su probabilidad de pertenecer a dicho tema.}
+	\label{fig:topicresult2}
+\end{figure}
+
 
 Para buscar el modelo LDA más eficiente, creé tres modelos que tenían en cuenta diferentes categorías morfológicas. Primero utilizaba el \textit{tagger} de NLTK para identificar categorías morfológicas, y el algoritmo sólo tenía en cuenta aquellas que resultaran relevantes.
 
