@@ -8,12 +8,12 @@ from nltk.corpus import wordnet
 from sklearn import metrics
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.manifold import TSNE
+from sklearn.decomposition import PCA
 from fanfic_util import FanficGetter, Fanfic
+from NER_tagger_v3 import NERTagger
 
 from matplotlib import pyplot as plt
 from pprint import pprint
-#from copy import deepcopy
 import string, time, html2text
 import numpy as np
 
@@ -63,8 +63,11 @@ def get_stopwords():
 def fic_tokenizev1(fic):
 	sent_tokens = sent_tokenize(fic)
 	#tokenizer = RegexpTokenizer(r'\w+')
-	#word_tokens = [tokenizer.tokenize(sent) for sent in sent_tokens]
-	word_tokens = [word_tokenize(sent) for sent in sent_tokens]
+	word_tokens = [word_tokenize(sen) for sen in sent_tokens]
+
+	#print(character_mentions) #debug
+	
+	#Remove character names from text
 	words = []
 	for item in word_tokens:
 		if type(item) == list:
@@ -72,6 +75,7 @@ def fic_tokenizev1(fic):
 
 		else: words.append(word)
 
+	#Lemmatize words
 	processed_tokens = [get_lemma(word) for word in words]
 
 	return processed_tokens
@@ -92,15 +96,34 @@ def fic_tokenizev2(fic):
 
 	return processed_tokens
 
+def remove_characters(fic_texts):
+	ner_tagger = NERTagger()
+	
+	for text in fic_texts:
+		sent_tokens = sent_tokenize(text)
+		pos_tokens = [pos_tag(word_tokenize(sent)) for sent in sent_tokens]
+		character_mentions = ner_tagger.parse(pos_tokens)
+
+		for name, _ in character_mentions.items(): text = text.replace(name, '')
+
+	return 	fic_texts
+
 def cluster_texts(texts, name_labels):
 	#print(texts[0][:100]) #debug
 
-	stop_words = get_stopwords()
-
-	print("Creating vectorizer, transforming texts to tf-id coordinates...")
+	print("Creating stopwords and removing character names from texts...")
 	start = time.time()
-	vectorizer = TfidfVectorizer(tokenizer=fic_tokenizev1, stop_words=stop_words, max_df=0.5, min_df=0.1, lowercase=True)
-	#vectorizer = TfidfVectorizer(tokenizer=fic_tokenizev2, stop_words=stop_words, max_df=0.5, min_df=0.1, lowercase=True)
+
+	stop_words = get_stopwords()
+	#texts = [remove_characters(text) for text in texts]
+
+	end = time.time()
+	print("...done in ", (end-start)/60," mins")
+
+	print("Creating vectorizer, transforming texts to tf-idf coordinates...")
+	start = time.time()
+	#vectorizer = TfidfVectorizer(tokenizer=fic_tokenizev1, stop_words=stop_words, max_df=0.5, min_df=0.3, lowercase=True)
+	vectorizer = TfidfVectorizer(tokenizer=fic_tokenizev2, stop_words=stop_words, max_df=0.5, min_df=0.3, lowercase=True)
 
 	#print(type(texts),type(texts[0])) #debug
 	vectorized_data = vectorizer.fit_transform(texts)
@@ -112,7 +135,7 @@ def cluster_texts(texts, name_labels):
 	print("Creating the K-Means model and fitting data..")
 	start = time.time()
 	k_labels = np.unique(name_labels).shape[0]
-	km_model = KMeans(n_clusters=k_labels, init='k-means++', n_init=1)
+	km_model = KMeans(n_clusters=k_labels, init='k-means++', n_init=10)
 
 	data = km_model.fit_transform(vectorized_data)
 	centroids = km_model.cluster_centers_
@@ -128,7 +151,7 @@ def cluster_texts(texts, name_labels):
 	print("Completeness: %0.3f" % metrics.completeness_score(name_labels, km_model.labels_))
 	print("V-measure: %0.3f" % metrics.v_measure_score(name_labels, km_model.labels_))
 	print("Adjusted Rand-Index: %.3f" % metrics.adjusted_rand_score(name_labels, km_model.labels_))
-	print("Silhouette Coefficient: %0.3f" % metrics.silhouette_score(data, km_model.labels_, sample_size=1000))
+	print("Silhouette Coefficient: %0.3f" % metrics.silhouette_score(data, km_model.labels_, sample_size=100))
 
 
 	print("\nTop terms per cluster:")
@@ -141,18 +164,17 @@ def cluster_texts(texts, name_labels):
 		print(all_terms+'\n')
  
 
-	### plotting stuff
-	#pprint(centroids) #debug
-	model = TSNE(n_components=2, random_state=1, init='random', perplexity=20.0, early_exaggeration=4.0, learning_rate=1000)
+	### Plot the data
 
-	trans_centroids = model.fit_transform(centroids)
-	trans_points = model.fit_transform(data)
+	model = PCA(n_components=2)
+	scatter_points = model.fit_transform(vectorized_data.toarray())
+	kmean_indices = km_model.fit_predict(vectorized_data)
 
-	for i in range(NUM_CLUSTERS):
-		plt.scatter(trans_centroids[i][0], trans_centroids[i][1], marker='*', c=COLOURS[i])
-		#plt.scatter(trans_clusters[i][0], trans_clusters[i][1], marker='.', c=COLOURS[i])
+	x_axis = [x[0] for x in scatter_points]
+	y_axis = [y[1] for y in scatter_points]
 
-	plt.scatter(trans_points[:,0], trans_points[:,1], marker='.')
+	plt.scatter(x_axis, y_axis, c=[COLOURS[d] for d in kmean_indices])
+
 	plt.show()
 
 
@@ -169,11 +191,11 @@ efics = getter.get_fanfics_in_list()
 elabels = ['enemy'] * len(efics)
 
 getter.set_fic_listing_path(FFIC_LISTING_PATH)
-ffics = getter.get_fanfics_in_list()
+ffics = getter.get_fanfics_in_range(0,180)
 flabels = ['friendship'] * len(ffics)
 
 getter.set_fic_listing_path(RFIC_LISTING_PATH)
-rfics = getter.get_fanfics_in_range(0,1000) # There are a lot of romance fanfics, so we're going to tone it down a bit
+rfics = getter.get_fanfics_in_range(0,220) # There are a lot of romance fanfics, so we're going to tone it down a bit
 rlabels = ['romance'] * len(rfics)
 
 fics = efics + ffics + rfics

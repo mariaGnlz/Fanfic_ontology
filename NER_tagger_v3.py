@@ -17,39 +17,6 @@ NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
 
 ### FUNCTIONS ###
 
-def get_tagged_fics_from_csv(start_fic, end_fic):
-	#csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH, encoding='ISO-8859-1')
-	csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH)
-
-	start_index = csv_file.loc[csv_file['Fic number'] == start_fic].index[0]
-	end_index = csv_file.loc[csv_file['Fic number'] == end_fic].index[0]+1
-	#end_index = csv_file.loc[csv_file['Fic number'] == end_fic-1].index[0]+1
-	print(start_index, end_index) #debug
-
-	i = 0
-	sentences = []
-	tagged_fics = []
-	current_sent = []
-	for i in range(start_index, end_index):
-		if i == 0:
-			current_sent.append((csv_file['Word'][i], csv_file['POS'][i]))
-			
-		elif csv_file['Sentence number'][i] != csv_file['Sentence number'][i-1]:
-			#print(current_sent) #debug
-			sentences.append(current_sent)
-
-			if csv_file['Fic number'][i] != csv_file['Fic number'][i-1]:
-				tagged_fics.append((sentences, csv_file['Fic number'][i-1])) 
-
-			current_sent = []
-			current_sent.append((csv_file['Word'][i], csv_file['POS'][i]))
- 
-		else:
-			current_sent.append((csv_file['Word'][i], csv_file['POS'][i]))
-
-		
-
-	return tagged_fics #returns the fanfics in the form of a list of POS-tagged sentences that NLTK can understand
 
 def traverse(t, num_fic, num_sentence, iob_str):
 	rows = []
@@ -108,19 +75,21 @@ def start_NER_tagging(tagged_fic, num_fic, typical):
 	end = time.time()
 
 
-def get_last_tagged_fics():
-	csv_file = pandas.read_csv(NER_TAGGED_FICS_PATH)
-	last_tagged = csv_file['Fic number'][len(csv_file['Fic number'])-1]
-	num_fics = len(set(csv_file['Fic number']))
-
-	return last_tagged, num_fics
-
-
 ### M A I N ###
 
 class NERTagger():
+	"""
+	def parse(self, tagged_fic): #fanfic must be pos-tagged previously
+		###Load trained chunker and parse sentences
+		f = open('NER_training.pickle','rb')
+		NER_chunker = pickle.load(f)
+		f.close()
 
-	def parse(tagged_fic): #fanfic must be pos-tagged previously
+		NER_tagged_sentences = [NER_chunker.parse(sent) for sent in tagged_fic] #NER-tagging
+
+		return nltk.chunk.tree2conlltags(NER_tagged_sentences)
+	"""
+	def parse(self, tagged_fic): #fanfic must be pos-tagged previously
 		###Load trained chunker and parse sentences
 		f = open('NER_training.pickle','rb')
 		NER_chunker = pickle.load(f)
@@ -145,81 +114,16 @@ class NERTagger():
 				
 		#print(len(per_entities)) #debug
 		
-		named_mentions = set(per_entities)
-		numbered_mentions = []
-		for name in named_mentions:
+		names = set(per_entities)
+		character_mentions = {}
+		for name in names:
 			num = per_entities.count(name)
-			numbered_mentions.append((num, name))
+			character_mentions[name] = num
 	
 		#print(numbered_mentions) #debug
 		#print(len(numbered_mentions)) #debug
 
-		return numbered_mentions, NER_tagged_sentences
+		return character_mentions
+	
 
 ### END NERTAGGER CLASS
-
-if len(sys.argv) == 3:
-	start_index = int(sys.argv[1])
-	end_index = int(sys.argv[2])
-	#print(type(start_index), end_index) #debug
-
-
-	###Load trained chunker and parse sentences
-	f = open('NER_training.pickle','rb')
-	NER_chunker = pickle.load(f)
-	f.close()
-
-	###Get POS-tagged fics
-	tagged_fics = get_tagged_fics_from_csv(start_index, end_index)
-	#print(len(tagged_fics)) #debug
-
-	###NER-tag fanfics
-	for fic, num_fic in tagged_fics:
-		start_NER_tagging(fic, num_fic, 1)
-
-
-elif len(sys.argv) == 2:
-	if sys.argv[1] == 'd': 
-		last_tagged, num_fics = get_last_tagged_fics()
-		print('Number of tagged fics: ',num_fics,'\nID of last tagged fic: ',last_tagged)
-
-	elif sys.argv[1] == 't': #tag typical fics
-		###Load trained chunker and parse sentences
-		f = open('NER_training.pickle','rb')
-		NER_chunker = pickle.load(f)
-		f.close()
-
-		###Get POS-tagged fics
-		tagged_fics = get_tagged_fics_from_csv(1, 1)
-		#print(len(tagged_fics)) #debug
-
-		###NER-tag fanfics
-		for fic, num_fic in tagged_fics:
-			start_NER_tagging(fic, num_fic)
-"""
-elif len(sys.argv) == 1:
-	###Load trained chunker and parse sentences
-	f = open('NER_training.pickle','rb')
-	NER_chunker = pickle.load(f)
-	f.close()
-
-	###Get POS-tagged fics
-	tagged_fics = get_tagged_fics_from_csv(0,10) #debug
-	
-	#print(len(tagged_fics)) #debug
-	#print(tagged_fics[1][0][len(tagged_fics[1][0])-1],) #debug
-	
-	###NER-tag fanfics
-	for fic, num_fic in tagged_fics:
-		start_NER_tagging(fic, num_fic, 0)
-	
-	
-
-else:
-	print('Error. Correct usage: \nNER_tagger.py \nNER_tagger.py [start_index] [end_index] \nNER_tagger d')
-
-
-"""	
-
-
-
