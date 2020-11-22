@@ -5,19 +5,15 @@ from nltk.tokenize import RegexpTokenizer, sent_tokenize
 from nltk.tag import pos_tag
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
-from sklearn.decomposition import TruncatedSVD
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfVectorizer
 from gensim import corpora
 
 import pandas as pd
-import matplotlib.pyplot as ptl
 from fanfic_util import FanficGetter, Fanfic
 
-import string, html2text, pickle, gensim, sys, time
+import string, pickle, gensim, sys, time
 
 ### VARIABLES ###
-#FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
+FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 RFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
 FFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_paths.txt'
 EFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths.txt'
@@ -131,6 +127,7 @@ if len(sys.argv) == 2:
 	
 	getter = FanficGetter()
 
+	
 	getter.set_fic_listing_path(EFIC_LISTING_PATH)
 	efics = getter.get_fanfics_in_list()
 
@@ -142,6 +139,7 @@ if len(sys.argv) == 2:
 
 	fics = efics + ffics + rfics
 
+	
 
 	fanfic_texts = [fic.get_string_chapters() for fic in fics]
 	#print(len(fics)) #debug
