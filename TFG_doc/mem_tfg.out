@@ -1,12 +1,12 @@
 \BOOKMARK [1][-]{section.1}{INTRODUCCI\323N Y OBJETIVOS}{}% 1
 \BOOKMARK [1][-]{section.2}{FANFICTION Y ARCHIVE OF OUR OWN}{}% 2
-\BOOKMARK [1][-]{section.3}{INTELIGENCIA ARTIFICIAL Y AN\301LISIS DE TEXTO}{}% 3
+\BOOKMARK [1][-]{section.3}{EXTRACCI\323N DE INFORMACI\323N EN OTROS TRABAJOS}{}% 3
 \BOOKMARK [1][-]{section.4}{RECOGIDA Y LIMPIEZA DE DATOS}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{LIMPIEZA DE DATOS}{section.4}% 6
+\BOOKMARK [2][-]{subsection.4.1}{Creando un scraper para Archive of our Own}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{Limpieza de datos y creaci\363n de datasets}{section.4}% 6
 \BOOKMARK [1][-]{section.5}{EXTRACCI\323N DE DATOS A PARTIR DE TEXTO}{}% 7
-\BOOKMARK [2][-]{subsection.5.1}{ALGORITMO DE IDENTIFICACI\323N DE ENTIDADES}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.2}{ALGORITMO DE IDENTIFICACI\323N DE RELACIONES}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.1}{Algoritmo de identificaci\363n de entidades}{section.5}% 8
+\BOOKMARK [2][-]{subsection.5.2}{Algoritmo de identificaci\363n de relaciones}{section.5}% 9
 \BOOKMARK [3][-]{subsubsection.5.2.1}{Primeras estrategias: Clustering y LDA}{subsection.5.2}% 10
 \BOOKMARK [3][-]{subsubsection.5.2.2}{Correferencia con CoreNLP}{subsection.5.2}% 11
 \BOOKMARK [1][-]{section.6}{EVALUACI\323N DEL SISTEMA}{}% 12

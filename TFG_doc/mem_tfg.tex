@@ -89,16 +89,19 @@
 
 \section{INTRODUCCIÓN Y OBJETIVOS}
 
-Empecé el proyecto\todo[size=\tiny]{RELLENAR PLACEHOLDERS} porque me gusta el fanfiction y el análisis de datos, y AO3 tiene una base de datos muy grande  y accesible. Además, las comunidades de fanfic son muy activas y producen una vasta cantidad de contenido muy detallado; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma.
+Empecé el proyecto\todo[size=\tiny]{RELLENAR PLACEHOLDERS} porque me gusta el fanfiction y el análisis de datos. Existen en internet numerosas comunidades de fan que son muy activas y producen una vasta cantidad de contenido muy detallado; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma. A veces, estas comunidades crean enormes proyectos de calidad profesional de forma totalmente gratuita, simplemente para mejorar el espacio y las experiencias del resto de miembros. Uno de los mayores ejemplos de este tipo de 'trabajo fan' es la \href{https://www.transformativeworks.org/}{Organizaton for Transformative Works}, una organización sin ánimo de lucro creado 'por fans y para fans' que crea y mantiene proyectos como \href{https://fanlore.org/wiki/Main_Page}{FanLore}, una wiki sobre la cultura fan, o su comité legal, que se encarga tanto de educar sobre leyes de propiedad intelectual y el \textit{fair use} del mismo como de involucrarse en los procesos jurídicos sobre copyright de diversos gobiernos (especialmente Estados Unidos) para defender el derecho del público general a crear obras derivadas.
+
+Uno de sus proyectos más famosos es \href{https://archiveofourown.org/}{Archive of our Own}, comúnmente acortado a AO3, un sitio web que aloja principalmente fanfiction y cuyo objetivo es, por un lado, facilitar la tarea de encontrar fanfics para aquellos que quieran leerlos y, por otro, funcionar como un archivo que clasifique y documente el fenómeno fanfic a nivel global. En sus datos de mayo de 2020, aparecen más de dos millones de usuarios registrados, y más de seis millones de trabajos alojados. AO3 se ha convertido en una parte fundamental de la cultura fan, especialmente la dedicada al fanfiction, y en este proyecto lo utilizaré como fuente de información.
+
 
 En literatura comparada se suelen tener en cuenta dos perspectivas a la hora de analizar una obra: la de la teoría del autor, que tiene en cuenta lo que el autor quería comunicar y plasmar en esa obra, y la de la "muerte del autor"\cite{Barthes}, que tiene en cuenta el mensaje con el que los lectores se quedan tras leer la obra (independientemente de si coincide con el que el autor quería comunicar).
 Para entender el mensaje de una obra de forma plena\cite{ellis_2018}, es necesario tener en cuenta tanto la intención comunicativa del autor, como el mensaje que al final los lectores acaban entendiendo. Y como cada lector es hijo de su padre y de su madre, acaban surgiendo muchas posibles interpretaciones distintas a partir de un único texto.
 
-Tradicionalmente, los académicos solamente han tenido en cuenta las opiniones de un grupo reducido de personas (compuesto principalmente por otros académicos) a la hora de analizar una obra desde la perspectiva de la muerte del autor, ya que el lector común no suele tener a su disposición las herramientas necesarias para difundir sus interpretaciones. Sin embargo, desde que Internet y los foros como \textit{LiveJournal} se han vuelto accesibles a grandes partes de la población, miles de comunidades fan empezaron a organizarse justamente con la intención de poner en común sus interpretaciones, de expresar sus críticas y opiniones. No todas estas discusiones tienen lugar en forma de fanfiction, pero es un género muy popular en las comunidades fans, y yo personalmente estoy muy familiarizada con sus estructuras y códigos.
+Tradicionalmente, los académicos solamente han tenido en cuenta las opiniones de un grupo reducido de personas (compuesto principalmente por otros académicos) a la hora de analizar una obra desde la perspectiva de la muerte del autor, ya que el lector común no suele tener a su disposición las herramientas necesarias para difundir sus interpretaciones. Sin embargo, desde que Internet y los foros como \textit{LiveJournal} se volvieron accesibles a grandes partes de la población, miles de comunidades fan empezaron a organizarse justamente con la intención de poner en común sus interpretaciones, de expresar sus críticas y opiniones. No todas estas discusiones tienen lugar en forma de fanfiction, pero es un género muy popular en las comunidades fans, y yo personalmente estoy muy familiarizada con sus estructuras y códigos.
 
 Estas comunidades de Internet están generando una cantidad inmensa de opiniones y perspectivas en torno a un tema común en foros públicamente accesibles, y me pareció interesante la idea de crear un sistema que sea capaz de recoger y procesar toda esta información para crear un "abanico" de las distintas interpretaciones que existen en una comunidad fan, especialmente aquellas sobre los personajes y las relaciones entre ellos. El resultado final se podría utilizar como herramienta dentro de la propia comunidad fan, para observar cómo tienden a interpretar a ciertos personajes a nivel de comunidad y cómo estas interpretaciones cambian a lo largo del tiempo, o en distintas subsecciones dentro de la comunidad en general. También se podría utilizar como herramienta general de análisis literario, aplicándola primero a la obra original y luego a un conjunto de fanfics representativos, y observando cuáles son las diferencias entre la perspectiva del autor original y la de los lectores (convertidos en autores fan).
 
-Al empezar el proyecto, no sabía mucho sobre análisis de texto, por lo que empecé a estudiar sobre análisis de texto natural y extracción de información usando el libro \textit{Natural Language Processing} (Jacob Eisenstein, MIT Press). Tras la fase de recogida y limpieza de datos (explicado en detalle en las secciones \ref{sec:recogidadatos} y \ref{sec:limpiezadatos}), el proceso de extracción de información que tenía que seguir consistía en:
+Al empezar el proyecto, no sabía mucho sobre análisis de texto, por lo que empecé a estudiar sobre análisis de texto natural y extracción de información usando el libro \textit{Natural Language Processing}, de Jacob Eisenstein\cite{jacob}. Tras la fase de recogida y limpieza de datos (explicado en detalle en las secciones \ref{sec:recogidadatos} y \ref{sec:limpiezadatos}), el proceso de extracción de información que tenía que seguir consistía en:
 
 
 \begin{enumerate}
@@ -131,7 +134,7 @@ En resumen, las comunidades fan tienen una interpretación propia de la obra ori
 
 Como se ve en el ejemplo de \textit{Harry Potter}, las relaciones entre personajes son una de las mayores fuentes de especulación entre los fans, especialmente las relaciones románticas. En general, los personajes a los cuales los fans les tienen manía acaban convertidos en villanos (o, como mínimo, enemigo de los protagonistas) en los fanfics, incluso aunque en la obra original sean aliados. Naturalmente, lo mismo sucede a la inversa: los fans tienden a convertir en amigos y aliados a los personajes que les gustan, incluso aunque en la obra original sean los villanos de la historia. Por tanto, simplemente contrastando las relaciones presentes en un fanfic con las relaciones de la obra original podemos tener una buena idea de cuál es la interpretación del autor del fanfic.
 
-Las relaciones románticas entre personajes son una parte enorme de la especulación fan. El romance es uno de los temas más populares, y aunque las relaciones canónicas atraen naturalmente la atención de muchos fans, 'inventar' parejas en el \textit{fanon} no sólo es común, sino una de las principales actividades de un fandom. Los fans ven parejas y conflictos amorosos tanto entre amigos como enemigos, \todo{continuar parejas y fandom} y son felices de ignorar todos y cualquiera de los obstáculos que existan en el canon con tal de tener el escenario necesario para que su pareja preferida pueda estar junta, llegando incluso al extremo de sacar a los personajes del universo al que pertenecen para meterlos en otro más amistoso. Un villano que es muy popular entre los fans tiene garantizados fanfics en los que cambia de bando, convirtiéndose en aliado y pareja del protagonista (no necesariamente en ese orden).
+Las relaciones románticas entre personajes son una parte enorme de la especulación fan. El romance es uno de los temas más populares, y aunque las relaciones canónicas atraen naturalmente la atención de muchos fans, 'inventar' parejas en el \textit{fanon} no sólo es común, sino una de las principales actividades de un fandom. Los fans ven parejas y conflictos amorosos tanto entre amigos como enemigos, y son felices de ignorar todos y cualquiera de los obstáculos que existan en el canon con tal de tener el escenario necesario para que su pareja preferida pueda estar junta, llegando incluso al extremo de sacar a los personajes del universo al que pertenecen para meterlos en otro más amistoso. Un villano que es muy popular entre los fans tiene garantizados fanfics en los que cambia de bando, convirtiéndose en aliado y pareja del protagonista (no necesariamente en ese orden).
 
 \begin{figure}
 	\includegraphics[scale=0.6]{rel_graph_hp2}
@@ -139,21 +142,20 @@ Las relaciones románticas entre personajes son una parte enorme de la especulac
 	\centering
 \end{figure}
 
-No todas las parejas son igual de populares en el fandom, sino que por lo general hay una o dos, como mucho tres parejas que monopolizan la atención y creatividad de los fans, y la popularidad de cada una suele ser independiente de si la pareja es canon o no en el material original.
 
-En términos legales y de derechos de autor, la mayoría de legislaciones considera el fanfiction como un tipo de obra derivada \cite{woosh_1998} y por tanto entra dentro del \textit{fair use}. A día de hoy, la mayoría de fanfics se publican en sitios web de toda índole, destacando entre ellos \href{archiveofourown.org}{Archive Of Our Own}, que es un archivo open-source y sin ánimo de lucro creado expresamente para alojar obras creadas por fans. Según sus datos de mayo de 2020, tiene más de dos millones de usuarios registrados y más de seis millones de trabajos alojados. 
+Como se ha dicho anteriormente, los fans se organizan en comunidades según la obra que es el objeto de su admiración, y tienen sitios como AO3, dedicados a alojar y compartir sus creaciones fan. Evidentemente, analizar las más de seis millones de obras existentes en AO3 es una tarea imposible con los recursos a mi alance, de modo que elegí utilizar únicamente los fanfics basados en \textit{Good Omens}, un libro de Terry Pratchett y Neil Gaiman, en parte por mi familiaridad con esa comunidad, pero también porque tenía una cantidad de fanfics extensa pero manejable.
+
+AO3 no es el único sitio web popular para alojar fanfiction, pero a lo largo de esta década ha desplazado a sitios como \href{http://fanfiction.net}{Fanfiction.net} y \href{https://www.wattpad.com/}{Wattpad}, y la característica que condicionó mi decisión es su extensivo sistema de etiquetas, que como se verá más adelante fue fundamental para filtrar y gestionar los datos del proyecto.
+
+En términos legales y de derechos de autor, la mayoría de legislaciones considera el fanfiction como un tipo de obra derivada \cite{woosh_1998} y por tanto entra dentro del \textit{fair use}.
 
 
-En particular elegí descargar los fanfics basados en \textit{Good Omens}, un libro de Terry Pratchett y Neil Gaiman, tanto por la cantidad de relatos existente como por mi familiaridad con esa comunidad.
+\section{EXTRACCIÓN DE INFORMACIÓN EN OTROS TRABAJOS}
 
-Además de la cantidad y variedad de relatos que aloja, los motivos por el que elegí extraer los datos de \todo[size=\small]{por qué escogí AO3 sobre FF.net y Wattpad} Archive Of Our Own son su herramienta de búsqueda y filtrado, su sistema de etiquetas y el hecho de que permite descargar el archivo en HTML. Archive Of Our Own permite filtrar fanfics según varios parámetros y genera un enlace a ese subconjunto de relatos particular, muy útil para descargar una gran cantidad de datos.
+La identificación de entidades y relaciones son problemas que se abordan en el análisis de lenguaje natural, y en las últimas décadas han surgido diversas técnicas de \textit{machine learning} que han dado muy buenos resultados, sobretodo teniendo en cuenta la amplitud del tema. Es una solución atractiva por su capacidad de resumir y sacar conclusiones a partir de grandes volúmenes de textos ya existentes sin tener que dedicar grandes cantidades de tiempo y esfuerzos a leerlos manualmente, especialmente en campos como la medicina, en el que cada año se publica tal cantidad de estudios que es difícil mantenerse al día con los avances de ciertos campos.
 
-\section{INTELIGENCIA ARTIFICIAL Y ANÁLISIS DE TEXTO}
-Proyecto que usa NLTK para extraer relaciones de tipo DateOfBirth y HasParents de Rojit Jose \cite{jose_2017} \todo[size=\tiny]{mirar intro del libro de eisenstein}
-\href{https://nlp.stanford.edu}{Stanford Natural Language Processing Group}
-Kernel para extracción de relaciones \cite{zelenko_2003} \todo[size=\tiny]{explicar bag of words + función que calcula peso en función de vector características}
-Resolución de correferencias mediante un modelo basado en entidades \cite{wick_2009}
-Canonicalización \cite{culotta_2007}
+La extracción de relaciones tradicionalmente se ha realizado tratando de identificar relaciones binarias, bien frase a frase o teniendo en cuenta dos o tres frases consecutivas\cite{zelenko_2003} \cite{craven_99}, pero recientemente se han creado algoritmos que identifican una relación n-aria a partir de todas las menciones en las que aparece, como el de Peng et al\cite{peng_17}, que utiliza grafos LSTM para modelar el contexto e información de cada frase y las conexiones entre ellas. Este proyecto se centrará en relaciones binarias específicamente entre entidades del tipo 'Persona', y usando correferencia para acceder a la información de otras frases relevantes.
+
 %El procesado de textos en lenguaje natural es una de las preocupaciones de la inteligencia artificial, y del aprendizaje automático en particular. 
 
 %Otras aplicaciones similares a la mía: resumir texto?
@@ -164,12 +166,12 @@ Canonicalización \cite{culotta_2007}
 
 \section{RECOGIDA Y LIMPIEZA DE DATOS}
 
-\subsection{CREANDO UN SCRAPER PARA ARCHIVE OF OUR OWN}
+\subsection{Creando un scraper para Archive of our Own}
 \label{sec:recogidadatos}
 
 En el momento en el que decidí utilizar los fanfics de \textit{Good Omens} para el proyecto, dicho libro tenía unos 22000 fanfics en \href{archiveofourown.org}{Archive Of Our Own} (AO3 para abreviar). Sin embargo, de todos esos relatos sólo me interesaban los que están en inglés y los que realmente contuvieran texto (puesto que, aunque AO3 se centra en relatos, permite alojar todo tipo de archivos multimedia).
 
-Por suerte, AO3 fue creado con la intención específica de funcionar como archivo, por lo que tiene una herramienta de búsqueda y filtrado muy completa y sencilla de usar. Esta herramienta permite filtrar por características como título, autor, idioma y cantidad de palabras, pero su mayor utilidad viene de su sistema de etiquetas. AO3 permite a los autores añadir tantas etiquetas como quieran para que los posibles lectores puedan saber más de su obra a simple vista: temática, personajes principales, parejas en las que se centra, qué medio utiliza, si hay ilustraciones, si trata sobre un evento de la historia original particular... Las etiquetas añaden una gran cantidad de información sobre las historias a las que acompañan, y aunque no es obligatorio poner ninguna, en general los autores se preocupan de etiquetar correctamente sus obras.
+Por suerte, AO3 fue creado con la intención específica de funcionar como archivo, por lo que tiene una herramienta de búsqueda y filtrado muy completa y sencilla de usar. Esta herramienta permite filtrar por características como título, autor, idioma y cantidad de palabras, pero su mayor utilidad viene de su sistema de etiquetado. AO3 permite a los autores añadir tantas etiquetas como quieran para que los posibles lectores puedan saber más de su obra a simple vista: temática, personajes principales, parejas en las que se centra, qué medio utiliza, si hay ilustraciones, si trata sobre un evento de la historia original particular... Las etiquetas añaden una gran cantidad de información sobre las historias a las que acompañan, y aunque no es obligatorio poner ninguna, en general los autores se preocupan de etiquetar correctamente sus obras.
 
 \begin{SCfigure}
 	\caption{Herramienta de filtrado de AO3. Permite excluir (o incluir) obras que contengan etiquetas específicas, así cómo aquellas no escritas en un idioma particular}
@@ -213,7 +215,7 @@ Utilizando la librería \textit{requests} de python, el primer paso es trivial, 
 
 \begin{figure}
 	\includegraphics[scale=0.5]{scraper_code2}
-	\caption{Código perteneciente al \textit{scraper} 'ao3\_link\_scraper'. Utiliza un bucle \textit{while} para iterar entre las páginas de la búsqueda, y en cada página, usa la librería \textit{BeautifulSoup} para extraer los objetos textit{'work blurb group'} en una lista llamada 'blurbs' (línea 42). De cada 'blurb' extrae el identificador del fanfic y comprueba si tiene texto (líneas 46-49), y si lo contiene forma el enlace a la página del fanfic y lo añade a una lista llamada 'work\_links' (línea 50). Si no contiene texto, se añade a otra lista llamada 'discarded\_links' (línea 52).}
+	\caption{Código perteneciente al \textit{scraper} 'ao3\_link\_scraper'. Utiliza un bucle \textit{while} para iterar entre las páginas de la búsqueda, y en cada página, usa la librería \textit{BeautifulSoup} para extraer los objetos 'work blurb group' en una lista llamada 'blurbs' (línea 42). De cada 'blurb' extrae el identificador del fanfic y comprueba si tiene texto (líneas 46-49), y si lo contiene forma el enlace a la página del fanfic y lo añade a una lista llamada 'work\_links' (línea 50). Si no contiene texto, se añade a otra lista llamada 'discarded\_links' (línea 52).}
 	\label{code:scraper2}
 \end{figure}
 
@@ -248,9 +250,9 @@ Ninguna de estas cosas me convenía, ya que descargar más de 20000 archivos ya 
 	\centering
 \end{figure}
 
-El link \textit{scraper} se ejecutaría una vez y exploraría todas las páginas de búsqueda, extrayendo los links a los fanfics de cada una, y los va almacenando en un archivo de texto. Por tanto, al terminar su ejecución este \textit{scraper} ha generado un archivo llamado '\textit{fic\_work\_links.txt}' que almacena los enlaces a cada fanfic. El \textit{file scraper} utiliza esta lista para saber dónde buscar las descargas, y el usuario le indica en la línea de comando los índices que acotan el tramo de la lista a descargar, tal y como se ilustra en el esquema de la figura \ref{fig:scrapers_structure}. De este modo, es posible indicarle al programa que descargue desde el link 0 al link 1000 de la lista, permitiendo descargar los 20000 archivos en porciones manejables. Además, el programa anuncia en pantalla qué link está descargando en cada momento, por lo que si sucede un error de red mientras descargaba el link número 866, es posible reanudar el programa fácilmente e indicarle que continúe desde el 866 al 1000 \refToScraperExecution.
+El link \textit{scraper} se ejecutaría una vez y exploraría todas las páginas de búsqueda, extrayendo los links a los fanfics de cada una, y los almacenaría en un archivo de texto. Por tanto, al terminar su ejecución este \textit{scraper} ha generado un archivo llamado '\textit{fic\_work\_links.txt}' que almacena los enlaces a cada fanfic. El \textit{file scraper} utiliza esta lista para saber dónde buscar las descargas, y el usuario le indica en la línea de comando los índices que acotan el tramo de la lista a descargar, tal y como se ilustra en el esquema de la figura \ref{fig:scrapers_structure}. De este modo, es posible indicarle al programa que descargue desde el link 0 al link 1000 de la lista, permitiendo descargar los 20000 archivos en porciones manejables. Además, el programa anuncia en pantalla qué link está siendo descargado en cada momento, por lo que si sucede un error de red mientras descargaba el link número 866, es posible reanudar el programa fácilmente e indicarle que continúe desde el 866 al 1000 \refToScraperExecution.
 
-Esta división del trabajo en dos programas además me daba la oportunidad de realizar un segundo filtrado de forma sencilla durante el proceso de exploración que realiza el link \textit{scraper}. Si el primer filtrado se encargaba de cribar los fanfics que habían sido etiquetados por sus autores como imágenes o audio, este segundo filtrado pretende detectar los fanfics que tampoco contienen texto, pero no han sido etiquetados como tal por sus autores. Para ello usé el criterio de la relación palabras/capítulo de cada fanfic: si una obra tiene menos de 40 palabras por capítulo, se considera como fanfic "sin texto", y se elimina. Escogí 40 palabras como umbral tras investigar un poco con la herramienta de búsqueda de AO3, que como se puede ver en la figura \ref{fig:ao3_search}, tiene una opción para filtrar por cantidad total de palabras. Tras probar varios umbrales, 40 parecía ser el que descartaba todas las obras sin texto sin sacrificar muchos microrrelatos en el proceso.
+Esta división del trabajo en dos programas además me daba la oportunidad de introducir con sencillez un segundo filtrado durante el proceso de exploración que realiza el link \textit{scraper}. Si el primer filtrado se encargaba de cribar los fanfics que habían sido etiquetados por sus autores como imágenes o audio, este segundo filtrado pretende detectar los fanfics que tampoco contienen texto, pero no han sido etiquetados como tal por sus autores. Para ello usé el criterio de la relación palabras/capítulo de cada fanfic: si una obra tiene menos de 40 palabras por capítulo, se considera como fanfic "sin texto", y se elimina. Escogí 40 palabras como umbral tras investigar un poco con la herramienta de búsqueda de AO3, que como se puede ver en la figura \ref{fig:ao3_search}, tiene una opción para filtrar por cantidad total de palabras. Tras probar varios umbrales, 40 parecía ser el que descartaba todas las obras sin texto sin sacrificar muchos microrrelatos en el proceso.
 
 Introducir este filtrado en el \textit{scraper} fue sencillo, puesto que el número de palabras y capítulos de la obra es información que se puede extraer de la clase \textit{work blurb group} de cada fic. Todo esto se realiza desde la función \textit{check\_for\_text}, y en la figura \ref{code:scraper2} se puede ver cómo el bucle llama a dicha función; el código completo se puede consultar en \refToLinkScraperCode. Por tanto, el link \textit{scraper} realiza estos pasos:
 \begin{enumerate}
@@ -277,25 +279,34 @@ El otro error que ambos \textit{scrapers} necesitaban manejar es, naturalmente, 
  
 %Decidí dividir este proceso en dos programas (el de navegación y filtrado, y el que únicamente descarga) en vez de hacerlo todo en uno porque descargar los más de 20000 archivos de una vez lógicamente tardaría varias horas, y pensé que sería más pragmático si ejecuto una vez el \textit{scraper} crea una lista de enlaces, y luego ya ejecuto todas las veces que sean necesarias el \textit{scraper} que descarga, descargando cada vez un tramo distinto de la lista. De esta forma, pude descargar todos los fanfics en grupos de 2000 (alrededor de una hora y media), pudiendo tener el ordenador libre el resto del tiempo.
 
-El resultado de la ejecución conjunta de estos \textit{scrapres} es una carpeta con 818,8 MB de archivos HTML.
+El resultado de la ejecución de estos \textit{scrapers} es una carpeta con 818,8 MB de archivos HTML.
 
-\subsection{LIMPIEZA DE DATOS}
+\subsection{Limpieza de datos y creación de datasets}
 \label{sec:limpiezadatos}
-Los fanfics descargados en HTML vienen con metadatos relacionados con la historia, el autor y cuándo fueron publicados, entre otros. Además, la mayoría de fanfics tienen notas del autor, comentarios y sinopsis que, aunque forman parte del cuerpo del texto, no son relevantes para el análisis que voy a realizar.
-Me interesa poder recuperar fácilmente los metadatos útiles de cada fanfic, además de convertirlo a texto plano eliminando todos los metadatos y los comentarios del autor, por lo que decidí reunir todas estas funciones en dos clases, FanficCleaner y FanficHTMLHandler, encapsuladas en un programa fanfic\_util.py
+
+Al terminar el proceso de descarga, acabé con un conjunto de archivos HTML y un archivo TXT con una lista de los \textit{path} de todos ellos.
+
+La principal tarea de limpieza de datos es, por tanto, convertir los archivos HTML a texto. Para ello utilicé la librería \textit{HTML2Text}, que como cuyo nombre dice sirve para eso mismo. Sin embargo, los fanfics en HTML no contienen sólo el texto del fic en sí, sino que también contienen todos los metadatos del mismo: etiquetas, \textit{rating}, resumen, comentarios del autor, entre otros, con lo que tras limpiar el archivo HTML con \textit{HTML2Text} el resultado no era el texto puro del fanfic. Tuve que crear varias funciones y ayudarme de \textit{Beautiful Soup} para limpiar todos estos metadatos y dejar únicamente el texto en sí, sin llevarme por delante parte del texto ni dejarme notas del autor entre capítulos.
+
+Al principio puse estas funciones dentro de cada programa que necesitaba manejar los textos, pero obviamente enseguida se volvió muy aparatoso, por lo que consolidé todas las funciones de limpieza en un único archivo, \textit{fanfic\_util.py}, y creé dos clases para encapsular el uso de estas funciones:
 
 \begin{itemize}
-	\item FanficCleaner tiene métodos para extraer el cuerpo del texto de un archivo HTML, sin metadatos, comentarios ni notas del autor. También tiene la función de guardar el texto en un archivo txt en un \textit{path} a elegir.
-	\item FanficHTMLHandler tiene métodos que permiten extraer metadatos del archivo HTML de un fanfic, como por ejemplo los personajes principales, el número de capítulos y su clasificación.
+	\item FanficGetter, que se encarga de proveer el texto limpio de un fanfic (o lista de fanfics) a demanda. Al principio devolvía los textos como una lista de \textit{string}, pero luego resultó más útil que devolviera una lista de objetos \textit{Fanfic} que pudiera devolver los capítulos por separado o juntos en un mismo \textit{string}, además del identificador del fanfic.
+	\item FanficHTMLHandler se encarga de extraer información de los metadatos del archivo HTML de un fanfic, como por ejemplo los personajes principales, las relaciones, las etiquetas, el número de capítulos y su clasificación.
+	
 \end{itemize}
 
-Debido a que los archivos HTML están organizados en carpetas, utilizo listas con sus \textit{path} para identificarlos y acceder a ellos. Los métodos de FanficCleaner y FanficHTML reciben tramos de estas listas para acceder y manejar los archivos deseados.
-Para ello, el programa utiliza las librerías BeautifulSoup y html2text.
+
+La creación de la clase \textit{Fanfic} surgió a mediados del proyecto, cuando el límite de 100000 caracteres de \textit{CoreNLP} hizo necesario poder acceder al texto de cada fanfic dividido en capítulos. \textit{Fanfic} por tanto tiene un atributo \textit{chapters}, que es la lista de \textit{string} con los capítulos, y un método \textit{get\_string\_chapters()} que devuelve todos los capítulos en un único \textit{string}.
+
+Sin embargo, el acceso a los datos sigue basándose en una lista de \textit{paths} guardada en un archivo TXT. Es un sistema muy rudimentario (ilustrado en la figura ), pero no vi necesidad de trasladarlo a una base de datos propiamente dicha, puesto que nada en la creación de una base de datos me ahorraba nada del trabajo de crear \textit{fanfic\_util}, y desde el punto de vista del resto de programas es igual acceder al texto de un fanfic a través de FanficGetter que de una función que recupere el texto de una base de datos. Únicamente intercambiaría el tiempo de limpiar los textos por el de conectar con la base de datos y extraer su información.
+
+Para la parte de identificación de relaciones del proyecto se necesita filtrar los fanfics originales en tres subconjuntos: fanfics centrado en el romance, en la amistad, y en la enemistad.
 
 \section {EXTRACCIÓN DE DATOS A PARTIR DE TEXTO}
 \todo[size=\tiny]{Explicar los programas que hice para familiarizarme con NLTK}
 
-\subsection{ALGORITMO DE IDENTIFICACIÓN DE ENTIDADES}
+\subsection{Algoritmo de identificación de entidades}
 
 En la identificación de entidades, se considera una entidad a los personajes, los lugares y las instituciones, entre otras cosas, que haya sido nombrada en el texto. Un algoritmo capaz de identificar entidades nombradas tiene que poder dividir un texto en tramos y asignarle una etiqueta de entidad ("Persona", "País", etc) a cada uno. Esta tarea además requiere que las palabras del texto hayan sido previamente etiquetadas con su rol morfológico.
 
@@ -377,7 +388,7 @@ Fue más o menos a estas alturas del proyecto cuando decidí separar el proceso 
 %NERTagger mantiene un historial de etiquetas IOB (una lista) y depende de feature\_function, una función que recoge ciertas características (featureset) de una palabra y las devuelve en forma de diccionario. Las características que recoge son éstas:
 
 
-\subsection{ALGORITMO DE IDENTIFICACIÓN DE RELACIONES}
+\subsection{Algoritmo de identificación de relaciones}
 
 Las relaciones que definen un fanfic son las amistades, los enemigos y, principalmente, los amantes. Extraer relaciones a partir de texto natural es una tarea compleja de por sí, y tratar de detectar este tipo concreto de relaciones en literatura de género puede presentar un reto mayor, puesto que las relaciones sentimentales tienden a representarse de forma implícita, de modo que el lector aprende quiénes son amigos y quiénes enemigos a través de las acciones de los personajes. Además, la ambigüedad, la heterogeneidad y la experimentación son partes naturales de cualquier proceso creativo, por lo que un conjunto de obras no representará una misma relación de forma uniforme, incluso si es entre los mismos personajes.
 
@@ -478,7 +489,7 @@ Tras preprocesar los textos de forma similar a como se hizo con clustering y ent
 \end{figure}
 
 Los resultados son un poco decepcionantes, pues ninguno de los 10 términos más relevantes por tema tiene siquiera un 0.1\% de probabilidad de pertenecer a su tema.
-Tampoco es sorprende que no sean muy relevantes, pues aparecen muchos pronombres, determinantes e incluso algún número. Aprovechando el etiquetado de rol morfológico de NLTK, elimino esas palabras y creo un nuevo modelo en la figura \ref{fig:topicresult2}.
+Tampoco es sorprende que no sean muy relevantes, pues aparecen muchos pronombres, determinantes e incluso algún número. Aprovechando el etiquetado de rol morfológico de NLTK, se retiran esas palabras y se crea un nuevo modelo, cuya ejecución está en la figura \ref{fig:topicresult2}.
 
 \begin{figure}
 	\hspace{-2cm}

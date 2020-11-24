@@ -1,4 +1,4 @@
-\begin{thebibliography}{Wic09}
+\begin{thebibliography}{Pen17}
 
 \bibitem[Bar68]{Barthes}
 Ronald Barthes.
@@ -10,11 +10,16 @@ Steven Bird.
 \newblock Natural language processing with python.
 \newblock \url{https://www.nltk.org/book_1ed/ch07.html}, October 2012.
 
-\bibitem[Cul07]{culotta_2007}
-Aron Culotta.
-\newblock Canonicalization of database records using adaptive similarity
-  measures.
-\newblock 2007.
+\bibitem[Cra99]{craven_99}
+Mark Craven.
+\newblock Constructing biological knowledge bases by extracting informationfrom
+  text sources.
+\newblock {\em SMB-99 Proceedings}, 1999.
+
+\bibitem[Eis18]{jacob}
+Jacob Eisenstein.
+\newblock {\em Natural Language Processing}.
+\newblock MIT Press, Nov 2018.
 
 \bibitem[Ell18]{ellis_2018}
 Lindsay Ellis.
@@ -30,6 +35,11 @@ Complete guide to build your own named entity recognizer with python.
 \bibitem[jos17]{jose_2017}
 Information extraction.
 \newblock \url{https://github.com/rohitjose/InformationExtraction}, 2017.
+
+\bibitem[Pen17]{peng_17}
+Nanyun Peng.
+\newblock Cross-sentence n-ary relation extraction with graph lstms.
+\newblock {\em Arxiv}, 2017.
 
 \bibitem[skl]{sklearn_feature}
 Feature extraction: Tf–idf term weighting.
@@ -50,11 +60,6 @@ Jonathan Swift.
 \newblock \url{http://www.whoosh.org/issue25/lee1a.html#41}, October 1998.
 \newblock Woosh Magazine, Birthplace of the International Association of Xena
   Studies.
-
-\bibitem[Wic09]{wick_2009}
-Michael Wick.
-\newblock An entity based model for coreference resolution.
-\newblock 2009.
 
 \bibitem[Zel03]{zelenko_2003}
 Dimitri Zelenko.
