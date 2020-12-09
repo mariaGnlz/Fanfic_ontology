@@ -350,5 +350,27 @@ class FanficHTMLHandler():
 
 		return chars
 
+	def get_fandoms(self, fic_path):
+		filehandle = open(fic_path, 'r').read()
+		soup = BeautifulSoup(filehandle, 'html.parser')
+		dt_inf = soup.find_all('dt')
+		dd_inf = soup.find_all('dd')
+		#print(len(dt_inf), len(dd_inf)) #debug
+		
+		index = 0
+		fandoms = ''
+		for dt in dt_inf:
+			#print(dt) #debug
+			if 'Fandom:' not in dt.text: index += 1
+			else :
+				fandoms = dd_inf[index].text
+				break
+
+		#print(chars) #debug
+		fandoms = fandoms.split(',')
+		if len(fandoms) == 1 and fandoms[0] == '': chars = []
+
+		return fandoms
+
 
 

@@ -3,209 +3,39 @@
 
 #Tagger for NER tags, using a previously trained NER chunker
 
-import nltk, re, pprint, sys, time, pickle, pandas, numpy
-from nltk.tokenize import word_tokenize
+import nltk, re, pprint, sys, time, pandas, numpy
+from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
-from collections import Counter
-from nltk.tree import Tree
-from nltk import conlltags2tree, tree2conlltags
+from fanfic_util import FanficGetter
+from NER_tagger_v3 import NERTagger
 
 ### VARIABLES ###
-POS_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/POS_tags.csv'
-POS_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/POS_typical_tags.csv'
-NER_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/NER_tags_v3.csv'
-NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
+RFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
+FFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_paths.txt'
+EFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths.txt'
+
+#NER_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/NER_tags_v2.csv'
+NER_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/NER_tags_RFE.csv'
 
 ### FUNCTIONS ###
 
-def get_tagged_fics_from_csv(start_fic, end_fic):
-	#csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH, encoding='ISO-8859-1')
-	csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH)
 
-	start_index = csv_file.loc[csv_file['Fic number'] == start_fic].index[0]
-	end_index = csv_file.loc[csv_file['Fic number'] == end_fic].index[0]+1
-	#end_index = csv_file.loc[csv_file['Fic number'] == end_fic-1].index[0]+1
-	#print(start_index, end_index) #debug
-
-	i = 0
-	sentences = []
-	tagged_fics = []
-	current_sent = []
-	for i in range(start_index, end_index):
-		if i == 0:
-			current_sent.append((csv_file['Word'][i], csv_file['POS'][i]))
-			
-		elif csv_file['Sentence number'][i] != csv_file['Sentence number'][i-1]:
-			#print(current_sent) #debug
-			sentences.append(current_sent)
-
-			if csv_file['Fic number'][i] != csv_file['Fic number'][i-1]:
-				tagged_fics.append((sentences, csv_file['Fic number'][i-1])) 
-
-			current_sent = []
-			current_sent.append((csv_file['Word'][i], csv_file['POS'][i]))
- 
-		else:
-			current_sent.append((csv_file['Word'][i], csv_file['POS'][i]))
-
-		
-
-	return tagged_fics #returns the fanfics in the form of a list of POS-tagged sentences that NLTK can understand
-
-def traverse(t, num_fic, num_sentence, iob_str):
-	rows = []
-	
-	for node in t:
-		if type(node) is nltk.Tree:
-			#print(node.label()) #debug
-
-			iob_str = node.label()
-			auxrows = traverse(node, num_fic, num_sentence, iob_str)
-			rows.extend(auxrows)
-	
-		else: 
-			#print('Word: ',node) #debug
-			rows.append((num_fic, num_sentence, node[0], node[1], iob_str))
-
-			iob_str = '-'
-
-	return rows
-
-def start_NER_tagging(tagged_fic, num_fic, typical):
-	start = time.time()
-	NER_tagged_sentences = [NER_chunker.parse(sent) for sent in tagged_fic] #NER-tagging
-	end = time.time()
-
-	print('Parsed ', len(tagged_fic),' in ',(end-start)/60,' minutes')
-
-	tree = Tree ('S',NER_tagged_sentences)
-	
-	character_names = []
-	for chunk in tree.pos():
-		if chunk[1] == 'per' and chunk[0][0] not in ["‘", "’", "-", "–", "_"]: character_names.append(chunk[0][0])
-
-	taga = NER_chunker.parse(pos_tag("My name is James Bond"))
-	for chunk in taga:
-		#print(chunk)
-		if chunk[1] == 'per' : print(chunk[1])
-	
-
-	#print(character_names) #debug
-	
-	character_names = [name.strip() for name in character_names]
-	character_names = [name.strip("‘") for name in character_names]
-	character_names = [name.strip("’") for name in character_names]
-	character_names = [name.strip("–") for name in character_names]
-	character_names = [name.strip("_") for name in character_names]
-	
-	
-	character_mentions = Counter(character_names) #counting the times a character is mentioned
-	
-	fic_number = [0] * len(character_mentions.keys())
-
+def save_characters(characters, fic_index):
 	###Store character data on CSV
 	# Create pandas dataframe to store data
-	df = pandas.DataFrame(columns=['Fic number', 'Character name', 'Times mentioned'])
-	df['Fic number'] = fic_number
-	df['Character name'] = character_mentions.keys()
-	df['Times mentioned'] = character_mentions.values()
+	name_col = []
+	mentions_col = []
+	for name, num in characters.items():
+		name_col.append(name)
+		mentions_col.append(num)
 
-	#df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False)
-	df.to_csv(NER_TAGGED_FICS_PATH, index=False)
+	df_format = {'Name': name_col, 'Mentions': mentions_col}
+	df = pandas.DataFrame.from_dict(df_format)
+	df.insert(loc=0, column='Fic index', value=fic_index)
 
+	df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False)
+	#df.to_csv(NER_TAGGED_FICS_PATH, index=False)
 
-	"""
-	for sentence in NER_tagged_sentences:
-		iob_sent = tree2conlltags(sentence)
-		#iob_sent = conlltags2tree(sentence)
-		#print(iob_sent)
-		iob_sentences.append(iob_sent)
-	
-	"""
-	"""
-	# Loop to explore the tagged chunks in tagged_fics
-	num_sentence = 0
-
-	rows = []
-	start = time.time() 
-	for sentence in NER_tagged_senteces:
-		#auxfic, auxsen, auxwords, auxpos, auxiob = traverse(sentence, count, num_fic, num_sentence)
-		auxrows = traverse(sentence, num_fic, num_sentence, '')
-		rows.extend(auxrows)
-		#print(auxrows) #debug
-		
-		num_sentence+=1
-	
-	end = time.time()
-
-	if num_sentence > 0:
-		print(num_sentence, 'sentences stored in ',(end-start)/60,'minutes')
-
-		character_data = []
-		i=0
-		state = False
-		name_str = ''
-		while i < len(rows):
-			if rows[i][4] == 'per':
-				if state:
-					#character_data.append((rows[0], name_str+rows[i][2], 1))
-					character_data.append((rows[0], name_str, 1))
-					#(fic number, character name, # of mentions of said name)
-					state = False
-					name_str = ''
-					#i += 1
-
-				else:
-					name_str = name_str+rows[i][2]+' '
-					state = True
-
-			elif rows[i][4] == '-' and state: name_str = name_str+rows[i][2]+' '
-			else: name_str = ''
-			i += 1
-
-		### Unzip the tuples into columns
-		columns = list(zip(*character_data))
-		character_names = [name.strip() for name in columns[1]]
-		character_names = [name.strip("‘") for name in character_names]
-		character_names = [name.strip("’") for name in character_names]
-		character_names = [name.strip('–') for name in character_names]
-		character_mentions = Counter(character_names)
-		fic_number = [0] * len(character_mentions.keys())
-		#print(character_mentions) #debug
-		
-		###Store character data on CSV
-		# Create pandas dataframe to store data
-		df = pandas.DataFrame(columns=['Fic number', 'Character name', 'Times mentioned'])
-		df['Fic number'] = fic_number
-		df['Character name'] = character_mentions.keys()
-		df['Times mentioned'] = character_mentions.values()
-
-		#df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False)
-		df.to_csv(NER_TAGGED_FICS_PATH, index=False)
-	"""
-
-	"""
-	if num_sentence > 0: 
-		print(num_sentence, 'sentences stored in ',(end-start)/60,'minutes')
-		### Unzip the tuples into columns and save results to csv file 
-		columns = list(zip(*rows))
-
-		df['Fic number'] = columns[0]
-		df['Sentence number'] = columns[1]
-		df['Word'] = columns[2]
-		df['POS'] = columns[3]
-		df['IOB'] = columns[4]
-
-		#df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False, encoding='ISO-8859-1')
-		if typical == 0: df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False)
-		else: df.to_csv(NER_TYPICAL_PATH, mode='a', index=False)
-	
-	else:
-		print('Ocurrió algún problema procesando el fic ',num_fic)
-		f = open('NER_tag_problems.txt','a')
-		f.write('Problem ocurred on fic '+str(num_fic)+'\n')
-		f.close()
-	"""
 
 def get_last_tagged_fics():
 	csv_file = pandas.read_csv(NER_TAGGED_FICS_PATH)
@@ -214,27 +44,57 @@ def get_last_tagged_fics():
 
 	return last_tagged, num_fics
 
+def tag_characters(tag_fics, fic_indexes):
+	ner_tag = NERTagger()
+
+	start = time.time()
+	print("Starting NER tagging. . .")
+	for num, fic in enumerate(tag_fics):
+		#print(fic[:10]) #debug
+		characters = ner_tag.parse(fic)
+		save_characters(characters, fic_indexes[num])
+
+
+	end = time.time()
+	print('Parsed and saved ', len(tag_fics),' fics in ',(end-start)/60,' minutes')
+
 
 ### M A I N ###
+
+fanfic_getter = FanficGetter()
 
 if len(sys.argv) == 3:
 	start_index = int(sys.argv[1])
 	end_index = int(sys.argv[2])
 	#print(type(start_index), end_index) #debug
 
+	print("Fetching fanfics, tokenizing and pos-tagging them. . .")
+	fics = fanfic_getter.get_fanfics_in_range(start_index, end_index)
 
-	###Load trained chunker and parse sentences
-	f = open('NER_training.pickle','rb')
-	NER_chunker = pickle.load(f)
-	f.close()
+	"""
+	fanfic_getter.set_fic_listing_path(RFIC_LISTING_PATH)
+	rfics = fanfic_getter.get_fanfics_in_range(start_index, end_index)
+	fanfic_getter.set_fic_listing_path(FFIC_LISTING_PATH)
+	ffics = fanfic_getter.get_fanfics_in_range(start_index, end_index)
+	fanfic_getter.set_fic_listing_path(EFIC_LISTING_PATH)
+	efics = fanfic_getter.get_fanfics_in_range(start_index, end_index)
 
-	###Get POS-tagged fics
-	tagged_fics = get_tagged_fics_from_csv(start_index, end_index)
-	#print(len(tagged_fics)) #debug
+	fics = rfics + ffics + efics
+	"""
+	tag_fics = []
+	for fic in fics:
+		sent_tokens = sent_tokenize(fic.get_string_chapters())
+		word_tokens = [word_tokenize(sent) for sent in sent_tokens]
+		tag_fics.append([pos_tag(word) for word in word_tokens])
 
-	###NER-tag fanfics
-	for fic, num_fic in tagged_fics:
-		start_NER_tagging(fic, num_fic, 1)
+	#print(len(tag_fics)) #debug
+	fic_indexes = [fic.index for fic in fics]
+
+	print("...done")
+	tag_characters(tag_fics, fic_indexes)
+
+
+
 
 
 elif len(sys.argv) == 2:
@@ -242,36 +102,29 @@ elif len(sys.argv) == 2:
 		last_tagged, num_fics = get_last_tagged_fics()
 		print('Number of tagged fics: ',num_fics,'\nID of last tagged fic: ',last_tagged)
 
-	elif sys.argv[1] == 't': #tag typical fics
-		###Load trained chunker and parse sentences
-		f = open('NER_training.pickle','rb')
-		NER_chunker = pickle.load(f)
-		f.close()
-
-		###Get POS-tagged fics
-		tagged_fics = get_tagged_fics_from_csv(1, 1)
-		#print(len(tagged_fics)) #debug
-
-		###NER-tag fanfics
-		for fic, num_fic in tagged_fics:
-			start_NER_tagging(fic, num_fic)
+	elif sys.argv[1] == 'p': #show path for FanficGetter
+		print('FanficGetter path: ', fanfic_getter.get_fic_listing_path())
 
 elif len(sys.argv) == 1:
-	###Load trained chunker and parse sentences
-	f = open('NER_training.pickle','rb')
-	NER_chunker = pickle.load(f)
-	f.close()
+	start = time.time()
+	###Get fanfics, tokenize and pos-tag them
+	fic = fanfic_getter.get_fanfics_in_range(8,9)
 
-	###Get POS-tagged fics
-	tagged_fics = get_tagged_fics_from_csv(0,10) #debug
-	
-	#print(len(tagged_fics)) #debug
-	#print(tagged_fics[1][0][len(tagged_fics[1][0])-1],) #debug
-	
+	sent_fic = sent_tokenize(fic[0].get_string_chapters())
+	word_fic = [word_tokenize(sent) for sent in sent_fic]
+	tag_fic = [pos_tag(word) for word in word_fic]
+
+	#print(len(tag_fic), tag_fic[:10]) #debug
+
 	###NER-tag fanfics
-	for fic, num_fic in tagged_fics:
-		start_NER_tagging(fic, num_fic, 0)
-	
+	ner_tag = NERTagger()
+	characters = ner_tag.parse(tag_fic)
+	#print(characters) #debug
+	save_characters(characters, fic[0].index)
+
+	end = time.time()
+	print('Parsed and saved ', len(fic),' fics in ',(end-start)/60,' minutes')
+
 
 
 

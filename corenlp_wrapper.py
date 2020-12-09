@@ -36,12 +36,22 @@ def compress_chapters(fic_chapters):
 class CoreClient():
 
 	def parse(self, fic_chapters):
-		#First we check that all chapters are strings, and none of them are longer than 100000 caracters
-		for i, chapter in enumerate(fic_chapters):
-			if not type(chapter) is str: raise TypeError("[corenlp_wrapper] The input for the client must be a string")
-			elif len(chapter) > 100000: 
+		if type(fic_chapters == list):
+			#First we check that all chapters are strings, and none of them are longer than 100000 caracters
+			for i, chapter in enumerate(fic_chapters):
+				if not type(chapter) is str: raise TypeError("[corenlp_wrapper] The input for the client must be a string")
+				elif len(chapter) > 100000: 
+					div_chapters = split_chapter(chapter)
+					fic_chapters[i:i] = div_chapters
+
+		elif(type(fic_chapters == str)):
+			if len(chapter) > 100000:
 				div_chapters = split_chapter(chapter)
-				fic_chapters[i:i] = div_chapters
+				fic_chapters = div_chapters
+
+			else: fic_chapters = [fic_chapters]
+
+		
 
 		
 

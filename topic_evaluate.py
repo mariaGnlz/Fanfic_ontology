@@ -10,7 +10,7 @@ from gensim import corpora
 import pandas as pd
 import numpy as np
 from fanfic_util import FanficGetter
-import string, pickle, gensim, sys, time, guidedlda
+import string, pickle, gensim, sys, time
 
 ### VARIABLES ###
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'

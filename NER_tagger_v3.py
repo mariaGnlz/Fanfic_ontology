@@ -43,8 +43,9 @@ class NERTagger():
 		names = set(per_entities)
 		character_mentions = {}
 		for name in names:
-			num = per_entities.count(name)
-			character_mentions[name] = num
+			if name != '':
+				num = per_entities.count(name)
+				character_mentions[name] = [num]
 	
 		#print(numbered_mentions) #debug
 		#print(len(numbered_mentions)) #debug
@@ -55,4 +56,8 @@ class NERTagger():
 
 	def set_model_path(self, path):
 		self.model_path = path
+
+### MAIN ###
+
+
 
