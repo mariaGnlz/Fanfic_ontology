@@ -5,6 +5,7 @@ from sklearn.cluster import KMeans
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from corenlp_wrapper import CoreClient
+from stanza.server import Document
 
 from NER_tagger_v3 import NERTagger
 from fanfic_util import FanficGetter, Fanfic
@@ -12,9 +13,13 @@ from fanfic_util import FanficGetter, Fanfic
 import matplotlib.pyplot as plt
 
 ### VARIABLES ###
+TO_CSV = '/home/maria/Documents/Fanfic_ontology/tagged_sents.csv'
+ROMANCE_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths2.txt'
+
+ANNOTATORS_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_annotators/'
+ANNOTATOR_NAME = 'annotator_0.pickle'
 
 VERB_TAGS = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
-COLORMAP  = {0: 'red', 1: 'blue'}
 
 ### FUNCTIONS ###
 
@@ -28,31 +33,31 @@ def get_longest_lists(coref_chains): #returns the two longest chains in the core
 
 	return longest
 
-def print_coref_mention(mention):
-	print(mention.mentionID, mention.corefClusterID, mention.mentionType, mention.gender, mention.animacy, mention.number)
+def print_coref_mention(mention, sentences):
+	sent = sentences[mention.sentenceIndex]
+	token = sent.token[mention.headIndex]
+	coref_cluster = token.corefClusterID
+	print(mention.mentionID, coref_cluster, mention.mentionType, token.originalText, mention.gender, mention.animacy, mention.number)
 
 def print_ner_mention(mention):	
 	print(mention.entityMentionIndex, mention.canonicalEntityMentionIndex, mention.ner, mention.gender, mention.entityMentionText)
 
 ### CLASSES ###
 
-class FicCharacteristics():
-	def __init__(self, ID, characterA, characterB,  sentiment, tf_id, rel_tag):
-		self.ID = ID
-		self.characterA = characterA
-		self.characterB = characterB
+class FicSentence():
+	def __init__(self, fic_index, sen_index, sentence, sentiment, character_mentions):
+		self.fic_index = fic_index
+		self.sen_index = sen_index
+		self.sentence = sentence
+		self.character_mentions = character_mentions
 		self.sentiment = sentiment
-		self.tf_id = tf_id
-		self.rel_tag = rel_tag
 
 	def getDictRepresentation(self):	
 		return {
 			'id': self.ID,
-			'characterA': self.characterA,
-			'characterB': self.characterB,
+			'sentence': self.sentence,
 			'sentiment': self.sentiment,
-			'tf_id': self.tf_id,
-			'rel_tag': self.rel_tag,
+			'character_mentions': self.character_mentions,
 			}
 
 
@@ -83,21 +88,22 @@ class CharacterMention():
 			}
 
 	def getID(self): return self.ID
-			
-
 	
 
 ### MAIN ###
 
+# Initializing getters and taggers...
 fGetter = FanficGetter()
 NERtagger = NERTagger()
 client = CoreClient()
 
+fGetter.set_fic_listing_path(ROMANCE_LISTING_PATH)
+
 print('Fetching fic texts...')
 start = time.time()
 
-fic_list = fGetter.get_fanfics_in_range(8,9)
-fic_texts = [fic.chapters for fic in fic_list]
+fic_list = fGetter.get_fanfics_in_range(0,1)
+#fic_texts = [fic.chapters for fic in fic_list]
 #print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
 
 end = time.time()
@@ -110,125 +116,132 @@ start= time.time()
 sentences = []
 nerMentions = []
 corefMentions = []
-coref_chains = []
 chains = []
-for fic in fic_texts:
-	anns = client.parse(fic)
+for fic in fic_list:
+	anns = client.parse(fic.chapters)
 
+
+	end = time.time()
+	print("Client closed. "+ str((end-start)/60) +" mins elapsed")
+	
+	fic_sentences = []
+	print("Processing annotation data...")
+	start = time.time()
+	
 	for ann in anns:
 		sentences= ann.sentence
 		nerMentions = ann.mentions #NERMention[]
 		corefMentions = ann.mentionsForCoref #Mention[]
 		chains = ann.corefChain #CorefChain[], made up of CorefMention[]
+		
 
+		coref_chains = []
 		for i in range(0, len(chains)): #debug
 			coref_chains.append(chains[i].mention)
 
 		#print(len(coref_chains)) #debug
 
-		end = time.time()
-		print("Client closed. "+ str((end-start)/60) +" mins elapsed")
-
-		start = time.time()
-		print("Processing annotation data...")
-
 
 		coref_chains = get_longest_lists(coref_chains) #debug
-
-		characterMentions = []
-		i = 0
+		print('Collecting information from annotators. . .')
+		start= time.time()
+		
+		character_dicts = []
 		for chain in coref_chains:
 			#print(" =========== CHAIN #"+ str(i) +" ===========") #for visualization purposes
 			for mention in chain:
 				senIndex = mention.sentenceIndex
-				tokBIndex = mention.beginIndex
-				tokEIndex = mention.endIndex
-				clusterID = corefMentions[mention.mentionID].corefClusterID
-				entityID = nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].canonicalEntityMentionIndex
-				entityName = str(nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].entityMentionText)
-				mentionText = sentences[mention.sentenceIndex].token[mention.beginIndex].originalText
-	
-				character = CharacterMention(i, mentionText, entityName, corefMentions[mention.mentionID].gender, corefMentions[mention.mentionID].animacy, corefMentions[mention.mentionID].number, clusterID, entityID, [], [])
-				characterMentions.append(character)
+				headTokenIndex = mention.headIndex
 
-			#if i < 10: print(character.getDictRepresentation()) #debug
+				try: sent = sentences[senIndex]
+				except IndexError:
+					print(len(sentences), senIndex)
+					break
 
-				i+=1
+				coref_cluster = sent.token[headTokenIndex].corefClusterID
+				ner_id = sent.token[headTokenIndex].entityMentionIndex
+				canon_ner = nerMentions[ner_id].canonicalEntityMentionIndex
 
+				character = {}
+				#find the character with the same NER ID
+				indexes = [i for i, item in enumerate(character_dicts) if item['nerID'] == canon_ner]
+				if len(indexes) == 0:
+					character['nerID'] = canon_ner
+					character['clusterID'] = [coref_cluster]
+					character['Name'] = nerMentions[canon_ner].entityMentionText
+					character['Gender'] = mention.gender
 
-			#print("Sentence "+ senIndex +"	|	tokens "+ tokBIndex +"-"+ tokEIndex +"	|	"+ mention.mentionType +"	|	cluster  "+ clusterID +"	|	entity "+ entityID +" "+ entityName +"	|	text: "+  mentionText) #for visualization purposes
+					character_dicts.append(character)
 
-		print("CanonicalEntityMentionIndex for nerMentions[0]: ",nerMentions[0].canonicalEntityMentionIndex) #debug
-		print("number or character mentions: ", len(characterMentions)) #debug
-		characterDicts = [char.getDictRepresentation() for char in characterMentions]
+				else:
+					#print(len(indexes)) #debug
 
-		end = time.time()
-		print("Annotations processed. "+ str((end-start)/60) +" mins elapsed")
+					if mention.mentionType == 'PRONOMINAL':
+						cluster_ids = character_dicts[indexes[0]]['clusterID']
+						if coref_cluster not in cluster_ids: 
+							cluster_ids.append(coref_cluster)
+							#print(cluster_ids) #debug
+							character_dicts[indexes[0]]['clusterID'] = cluster_ids
 
-		print("\n###### Starting clustering process ######\n")
-
-		start = time.time()
-		print("Get dictionary and Tfid vectorization...")
-		vec1 = DictVectorizer()
-		vec2 = TfidfTransformer() #this one is for normalization
-
-		vec_data = vec1.fit_transform(characterDicts) #toarray?
-		#print("before tfid", vec_data.shape) #debug
-		#vec_data = vec2.fit_transform(vec_data)
-		#print("after tfid", vec_data.shape) #debug
-		#print(vec1.get_feature_names()) #debug
-
-		data = pandas.DataFrame(vec_data.toarray(), columns = vec1.get_feature_names())
+					elif mention.mentionType == 'NOMINAL': print_coref_mention(mention,sentences)
 
 
-		end = time.time()
-		print("...done. "+ str((end-start)/60) +" mins elapsed.")
+				#character_dicts.append(character)
+				#if len(character) > 0: print(character)
 
 
+				#character = list(filter(lambda char: char['clusterID'] == index, characterDicts)) #find the character with the same coref cluster ID
 
-		#for i in range(0,1): print(data.iloc[i,:]) #debug
-		end = time.time()
-		print("...done. "+ str((end-start)/60) +" mins elapsed.")
+			#end FOR mention loop
+		#end FOR chain loop
 
-		print("Navigate sentences with more than one PERSON entity\n")
+		#mentions_dicts = [char.getDictRepresentation() for char in character_mentions]
+
+		sen = ''
 		for sentence in sentences:
-			sen = ''
-			ner_indexes = []
-			ners = 0
-			coref_indexes = []
+			character_mentions = []
 
-			for token in sentence.token:
-				sen += token.originalText+' '
-
-				if token.ner == 'PERSON': ners += 1
-
-			if ners > 1:
+			if sentence.hasCorefMentionsAnnotation:
 				for token in sentence.token:
-					if token.ner == 'PERSON':
-						print(token.originalText, token.ner, token.gender)
-						print(nerMentions[token.entityMentionIndex].canonicalEntityMentionIndex, nerMentions[token.entityMentionIndex].ner, nerMentions[token.entityMentionIndex].gender, nerMentions[token.entityMentionIndex].entityMentionText)
+					sen += token.originalText+' '
 
-						if len(token.corefMentionIndex) > 0:
-							for index in token.corefMentionIndex: print(corefMentions[index].corefClusterID)
+					if token.ner == 'PERSON':
+						characters = list(filter(lambda person: person['nerID'] == token.entityMentionIndex, character_dicts))
+
+						if len(characters) == 0: print(len(characters), token.entityMentionIndex, token.originalText)
+						else:
+							character_mentions.append(characters[0])
 
 					elif len(token.corefMentionIndex) > 0:
-						for index in token.corefMentionIndex:
-							if corefMentions[index].mentionType == 'PRONOMINAL':
-								character = list(filter(lambda char: char['clusterID'] == corefMentions[index].corefClusterID, characterDicts)) #find the character with the same cluster ID
+						indexes = token.corefMentionIndex
 
-								if len(character) < 1:
-									print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+						coref_ids = [corefMentions[i].corefClusterID for i in indexes]
+						for index in coref_ids:
+							characters = list(filter(lambda person: person['clusterID'] == index, character_dicts))
+							if len(characters) > 0: character_mentions.append(characters[0])
 
-								else:
-									character = character[0]
-									if character['name'] != '': print(character['name'], corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+						#end FOR index
+					#end IF-ELSE end
+				#end for TOKEN
+			#end IF-ELSE
 
-									else: print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+			sent = FicSentence(fic.index, sentence.sentenceIndex, sen, sentence.sentiment, character_mentions)
+			fic_sentences.append(sent)
+			
 
-							else: print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+		#end FOR sentence
 
-					else: print(token.originalText)
+		for character in character_mentions:
+			print(character['Name'], character['Gender'], character['clusterID'], character['nerID'])
 
-				print("\n\n")
+
+	#end FOR ann loop
+
+	#sen_dicts = [sen.getDictRepresentation() for sen in fic_sentences]
+
+	
+
+	end = time.time()
+	print("...done. "+ str((end-start)/60) +" mins elapsed.")
 
 

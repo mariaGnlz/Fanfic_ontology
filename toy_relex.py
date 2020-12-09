@@ -47,7 +47,7 @@ for sent in ner_fic:
 	#verbs = [word for word, tag in leaves if tag in VERB_TAGS]
 
 	for word, pos in leaves:
-		"""
+		"""¡¡¡
 		if pos == 'NN' and word == char_name1: 
 			print(sent)
 			break
