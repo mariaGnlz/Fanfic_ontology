@@ -45,7 +45,7 @@ class NERTagger():
 		for name in names:
 			if name != '':
 				num = per_entities.count(name)
-				character_mentions[name] = [num]
+				character_mentions[name] = int(num)
 	
 		#print(numbered_mentions) #debug
 		#print(len(numbered_mentions)) #debug

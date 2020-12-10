@@ -41,3 +41,109 @@ Fic ID,nerID,Name,Gender,Mentions,clusterID,canonID
 57,"[146, 151]",crowley,MALE,2,[452],8
 57,[149],his,,7,[],-1
 57,[22],him,,1,[],-1
+Fic ID,nerID,Name,Gender,Mentions,clusterID,canonID
+22,"[0, 272, 155, 341]",aziraphale,UNKNOWN,416,"[3, 77, 172, 247, 897, 567, 715, 680, 757, 768, 787, 794, 896, 909, 985, 1049, 1095, 1106, 1112, 1210, 1213, 1270, 1319, 1327, 1347, 1405, 1437]",4
+22,[9],He,MALE,34,[],-1
+22,[265],He,MALE,4,[],-1
+22,[277],angel,UNKNOWN,1,[1215],4
+22,[278],Her,,1,[],-1
+22,[157],he,MALE,1,[],-1
+22,[159],angel,NEUTRAL,1,[896],4
+22,"[162, 182]",crowley,NEUTRAL,2,[1437],8
+22,[163],warlock,UNKNOWN,2,[819],38
+22,[304],She,FEMALE,3,[],-1
+22,[50],He,MALE,12,[],-1
+22,[318],dyke,MALE,1,[1328],-1
+22,"[191, 197, 342, 252]",crowley,MALE,121,[1437],8
+22,[65],mayfair,NEUTRAL,1,[357],-1
+22,[68],He,MALE,4,[],-1
+22,[72],His,,2,[],-1
+22,[334],his,,2,[],-1
+22,[84],He,MALE,39,[],-1
+22,[345],bentley,NEUTRAL,1,[1441],-1
+22,[239],angel,MALE,1,[1112],4
+22,[114],bentley,NEUTRAL,1,[607],-1
+22,[117],She,FEMALE,1,[],-1
+Fic ID,nerID,Name,Gender,Mentions,clusterID,canonID
+22,"[0, 272, 155, 341]",aziraphale,UNKNOWN,416,"[3, 77, 172, 247, 897, 567, 715, 680, 757, 768, 787, 794, 896, 909, 985, 1049, 1095, 1106, 1112, 1210, 1213, 1270, 1319, 1327, 1347, 1405, 1437]",4
+22,[9],He,MALE,34,[],-1
+22,[265],He,MALE,4,[],-1
+22,[277],angel,UNKNOWN,1,[1215],4
+22,[278],Her,,1,[],-1
+22,[157],he,MALE,1,[],-1
+22,[159],angel,NEUTRAL,1,[896],4
+22,"[162, 182]",crowley,NEUTRAL,2,[1437],8
+22,[163],warlock,UNKNOWN,2,[819],38
+22,[304],She,FEMALE,3,[],-1
+22,[50],He,MALE,12,[],-1
+22,[318],dyke,MALE,1,[1328],-1
+22,"[191, 197, 342, 252]",crowley,MALE,121,[1437],8
+22,[65],mayfair,NEUTRAL,1,[357],-1
+22,[68],He,MALE,4,[],-1
+22,[72],His,,2,[],-1
+22,[334],his,,2,[],-1
+22,[84],He,MALE,39,[],-1
+22,[345],bentley,NEUTRAL,1,[1441],-1
+22,[239],angel,MALE,1,[1112],4
+22,[114],bentley,NEUTRAL,1,[607],-1
+22,[117],She,FEMALE,1,[],-1
+Fic ID,nerID,Name,Gender,Mentions,clusterID,canonID
+22,"[0, 272, 155, 341]",aziraphale,UNKNOWN,416,"[3, 77, 172, 247, 897, 567, 715, 680, 757, 768, 787, 794, 896, 909, 985, 1049, 1095, 1106, 1112, 1210, 1213, 1270, 1319, 1327, 1347, 1405, 1437]",4
+22,[9],He,MALE,34,[],-1
+22,[265],He,MALE,4,[],-1
+22,[277],angel,UNKNOWN,1,[1215],4
+22,[278],Her,,1,[],-1
+22,[157],he,MALE,1,[],-1
+22,[159],angel,NEUTRAL,1,[896],4
+22,"[162, 182]",crowley,NEUTRAL,2,[1437],8
+22,[163],warlock,UNKNOWN,2,[819],38
+22,[304],She,FEMALE,3,[],-1
+22,[50],He,MALE,12,[],-1
+22,[318],dyke,MALE,1,[1328],-1
+22,"[191, 197, 342, 252]",crowley,MALE,121,[1437],8
+22,[65],mayfair,NEUTRAL,1,[357],-1
+22,[68],He,MALE,4,[],-1
+22,[72],His,,2,[],-1
+22,[334],his,,2,[],-1
+22,[84],He,MALE,39,[],-1
+22,[345],bentley,NEUTRAL,1,[1441],-1
+22,[239],angel,MALE,1,[1112],4
+22,[114],bentley,NEUTRAL,1,[607],-1
+22,[117],She,FEMALE,1,[],-1
+Fic ID,nerID,Name,Gender,Mentions,clusterID,canonID
+22,"[0, 272, 155, 341]",aziraphale,MALE,416,"[3, 77, 172, 247, 897, 567, 715, 680, 757, 768, 787, 794, 896, 909, 985, 1049, 1095, 1106, 1112, 1210, 1213, 1270, 1319, 1327, 1347, 1405, 1437]",4
+22,[9],He,MALE,34,[],-1
+22,[265],He,MALE,4,[],-1
+22,[277],angel,MALE,1,[1215],4
+22,[278],Her,,1,[],-1
+22,[157],he,MALE,1,[],-1
+22,[159],angel,NEUTRAL,1,[896],4
+22,"[162, 182]",crowley,NEUTRAL,2,[1437],8
+22,[163],warlock,MALE,2,[819],38
+22,[304],She,FEMALE,3,[],-1
+22,[50],He,MALE,12,[],-1
+22,[318],dyke,MALE,1,[1328],-1
+22,"[191, 197, 342, 252]",crowley,MALE,121,[1437],8
+22,[65],mayfair,NEUTRAL,1,[357],-1
+22,[68],He,MALE,4,[],-1
+22,[72],His,,2,[],-1
+22,[334],his,,2,[],-1
+22,[84],He,MALE,39,[],-1
+22,[345],bentley,NEUTRAL,1,[1441],-1
+22,[239],angel,MALE,1,[1112],4
+22,[114],bentley,NEUTRAL,1,[607],-1
+22,[117],She,FEMALE,1,[],-1
+Fic ID,nerID,Name,Gender,Mentions,clusterID,canonID
+12,[10],crowley,MALE,1,[282],8
+12,[3],she,FEMALE,2,[],-1
+Fic ID,nerID,Name,Gender,Mentions,clusterID,canonID
+13,"[33, 48, 31]",aziraphale,MALE,26,[317],4
+13,[132],maud,FEMALE,5,[402],-1
+13,[135],Leslie,,1,[],20
+13,[40],maud,FEMALE,1,[137],-1
+13,"[11, 62]",crowley,MALE,40,[260],8
+13,[43],Aziraphale,,1,[],4
+13,[49],crowley,NEUTRAL,1,[260],8
+13,[22],leslie,MALE,48,[399],20
+13,[152],Leslie,,1,[],20
+13,[121],him,,1,[],-1

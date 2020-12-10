@@ -1,14 +1,15 @@
 #!/bin/bash/python3
 
-import sys, time, pickle, pandas, numpy
-from sklearn.cluster import KMeans
+import sys, time, pandas, numpy
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from corenlp_wrapper import CoreClient
 from stanza.server import Document
+from nltk.tag import pos_tag
+from nltk.tokenize import sent_tokenize, word_tokenize
 
 from NER_tagger_v3 import NERTagger
-from fanfic_util import FanficGetter, Fanfic
+from fanfic_util import FanficGetter, FanficHTMLHandler, Fanfic
 
 ### VARIABLES ###
 TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_characters.csv'
@@ -22,7 +23,15 @@ NEUTRAL_TAGS = ['They/Them Pronouns for ', 'Gender-Neutral Pronouns for', 'Gende
 
 ### FUNCTIONS ###
 
-def merge_character_mentions(character_entities, character_mentions):
+def print_coref_mention(mention, sent):
+	token = sent.token[mention.headIndex]
+	coref_cluster = token.corefClusterID
+	#print(mention.mentionID, coref_cluster, mention.mentionType, token.originalText, mention.gender, mention.animacy, mention.number)
+
+def print_ner_mention(mention):	
+	print(mention.entityMentionIndex, mention.canonicalEntityMentionIndex, mention.ner, mention.gender, mention.entityMentionText)
+
+def merge_character_mentions(character_entities, character_mentions, tagger_characters):
 	# create characters from their NER IDs
 	ner_ids = [char['nerID'] for char in character_entities]
 	ner_ids = set(ner_ids) #remove duplicates
@@ -77,12 +86,18 @@ def merge_character_mentions(character_entities, character_mentions):
 					aux.remove(c)
 					characters.remove(c)
 
-	#end FOR char
+	# merge in the NERTagger characters
+	for tagger_char, mentions in tagger_characters.items():
+		for char in characters:
+			if tagger_char.lower() == char['Name'].lower(): #add characters mentions if the character is already named
+				if mentions > char['Mentions']:
+					char['Mentions'] += mentions-char['Mentions']
+				break
+
 
 	return characters
 
-def link_characters_to_canon(characters):
-	canon_db = pandas.read_csv(CANON_DB)
+def link_characters_to_canon(characters, canon_db):
 
 	for character in characters:
 		for index, canon_character in canon_db.iterrows():
@@ -109,8 +124,43 @@ def link_characters_to_canon(characters):
 
 	return characters
 
-	
+def make_gender_tags(tags, character_name):
+	for tag in tags:
+		tag = tag+character_name+' (Good Omens)'
 
+	return tags
+
+def decide_gender(characters, canon_db):
+	handler = FanficHTMLHandler()
+
+	for character in characters:
+		if character['Gender'] == 'UNKNOWN':
+			fic_link = '/home/maria/Documents/Fanfic_ontology/TFG_fics/html/gomensfanfic_'+str(character['Fic ID'])+'.html'
+			fic_tags = handler.get_tags(fic_link)
+			character_name = character['Name'].capitalize()
+
+			f_gender = make_gender_tags(FEMALE_TAGS, character_name)
+			m_gender = make_gender_tags(MALE_TAGS, character_name)
+			n_gender = make_gender_tags(NEUTRAL_TAGS, character_name)
+
+			male = female = neutral = False
+
+			if any(tag in fic_tags for tag in f_gender): female = True
+			elif any(tag in fic_tags for tag in m_gender): male = True
+			elif any(tag in fic_tags for tag in n_gender): neutral = True
+
+			if female and male: character['Gender'] = 'NEUTRAL'
+			elif female: character['Gender'] = 'FEMALE'
+			elif male: character['Gender'] = 'MALE'
+			elif neutral: character['Gender'] = 'NEUTRAL'
+			else: #if there are no gender tags applicable to the character we assume the canon gender
+				if character['canonID'] > -1: #if the character is not canon the gender will remain unknown
+					canon_gender = canon_db.iloc[character['canonID']]['Gender']
+					character['Gender'] = canon_gender
+
+	return characters
+			
+ 
 def get_longest_lists(coref_chains): #returns the two longest chains in the coreference graph
 	longest = []
 	longest.append(max(list(coref_chains), key=len))
@@ -121,15 +171,7 @@ def get_longest_lists(coref_chains): #returns the two longest chains in the core
 
 	return longest
 
-def print_coref_mention(mention, sent):
-	token = sent.token[mention.headIndex]
-	coref_cluster = token.corefClusterID
-	#print(mention.mentionID, coref_cluster, mention.mentionType, token.originalText, mention.gender, mention.animacy, mention.number)
-
-def print_ner_mention(mention):	
-	print(mention.entityMentionIndex, mention.canonicalEntityMentionIndex, mention.ner, mention.gender, mention.entityMentionText)
-
-def extract_ners_from_fic(fic):
+def extract_ners_with_corenlp(fic):
 	# Declarations for later
 	#sentences = []
 	chains = []
@@ -226,6 +268,12 @@ def extract_ners_from_fic(fic):
 
 	return character_entities, character_mentions
 
+def preprocess_fic(fic):
+	tokenized_fic = [word_tokenize(sen) for sen in sent_tokenize(fic.chapters[0])]
+	tagged_fic = [pos_tag(word) for word in tokenized_fic]
+
+	return tagged_fic
+
 
 ### MAIN ###
 
@@ -236,6 +284,9 @@ client = CoreClient()
 
 fGetter.set_fic_listing_path(ROMANCE_LISTING_PATH)
 
+# Loading canon DB...
+canon_db = pandas.read_csv(CANON_DB)
+
 if len(sys.argv) == 3:
 	start_index = int(sys.argv[1])
 	end_index = int(sys.argv[2])
@@ -244,39 +295,46 @@ if len(sys.argv) == 3:
 	start = time.time()
 
 	fic_list = fGetter.get_fanfics_in_range(start_index, end_index)
-	#fic_texts = [fic.chapters for fic in fic_list]
+	#fic_texts = [fic.chapters for fic in fic_list] #debug
 	#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
 
 	end = time.time()
 	print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
 
+	print('\n###### Starting CoreNLP server and processing fanfics. . .######\n')
+	start= time.time()
+
 	all_characters = []
 	for fic in fic_list:
-		character_entities, character_mentions = extract_ners_from_fic(fic)
+		print('Processing fic #', fic.index)
+		# Preprocess and tag characters with NERTagger
+		processed_fic = preprocess_fic(fic)
+		tagger_characters = NERtagger.parse(processed_fic)
+		#print(tagger_characters) #debug
+
+		# Extract characters with CoreNLP
+		character_entities, character_mentions = extract_ners_with_corenlp(fic)
 	
 		# Merge all character mentions into unique characters
-		unique_characters = merge_character_mentions(character_entities, character_mentions)
+		unique_characters = merge_character_mentions(character_entities, character_mentions, tagger_characters)
 
 		# Link characters to their canon version, if it has one
-		canonized_characters = link_characters_to_canon(unique_characters)
-
-		#convert lists to str so pandas can digest them
-		"""
-		for char in canonized_characters:
-			char['clusterID'] = str(char['clusterID']).strip('[]')
-			char['nerID'] = str(char['nerID']).strip('[]')
-		"""
-
+		canonized_characters = link_characters_to_canon(unique_characters, canon_db)
 		#print(canonized_characters[:10])
-		#print('\n',len(unique_characters)) #debug
-		#for char in unique_characters: print(char['nerID'], char['clusterID'], char['Name'], char['Gender'], char['Mentions']) #debug
+		#print(canonized_characters) #debug
+
+		# Decide genders for all characters
+		canonized_characters = decide_gender(canonized_characters, canon_db)
 
 		all_characters.extend(canonized_characters)
+		
+	end = time.time()
+	print("Client closed. "+ str((end-start)/60) +" mins elapsed")
 
 	# Create dataframe from dicts and save to csv
 	df = pandas.DataFrame.from_dict(all_characters)
 
-	df.to_csv(TO_CSV, mode='a', index=False, header=True)
+	#df.to_csv(TO_CSV, mode='a', index=False, header=True)
 
 elif len(sys.argv) == 1:
 	print('Fetching fic texts...')
@@ -295,13 +353,19 @@ elif len(sys.argv) == 1:
 	all_characters = []
 	for fic in fic_list:
 		print('Processing fic #', fic.index)
-		character_entities, character_mentions = extract_ners_from_fic(fic)
+		# Preprocess and tag characters with NERTagger
+		tagged_fic = preprocess_fic(fic)
+		tagger_characters = NERtagger.parse(tagged_fic)
+		#print(tagger_characters) #debug
+
+		# Extract characters with CoreNLP
+		character_entities, character_mentions = extract_ners_with_corenlp(fic)
 	
 		# Merge all character mentions into unique characters
-		unique_characters = merge_character_mentions(character_entities, character_mentions)
+		unique_characters = merge_character_mentions(character_entities, character_mentions, tagger_characters)
 
 		# Link characters to their canon version, if it has one
-		canonized_characters = link_characters_to_canon(unique_characters)
+		canonized_characters = link_characters_to_canon(unique_characters, canon_db)
 		#print(canonized_characters[:10])
 
 		all_characters.extend(canonized_characters)
@@ -312,7 +376,7 @@ elif len(sys.argv) == 1:
 	# Create dataframe from dicts and save to csv
 	df = pandas.DataFrame.from_dict(all_characters)
 
-	df.to_csv(TO_CSV, mode='a', index=False, header=True)
+	#df.to_csv(TO_CSV, mode='a', index=False, header=True)
 
 
 
