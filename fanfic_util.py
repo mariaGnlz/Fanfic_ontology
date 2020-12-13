@@ -368,9 +368,19 @@ class FanficHTMLHandler():
 
 		#print(chars) #debug
 		fandoms = fandoms.split(',')
-		if len(fandoms) == 1 and fandoms[0] == '': chars = []
+		if len(fandoms) == 1 and fandoms[0] == '': fandoms = [] #does this ever happen?
+		else: fandoms = [fandom.strip() for fandom in fandoms]
 
 		return fandoms
+
+	def get_title(self, fic_path):
+		filehandle = open(fic_path, 'r').read()
+		soup = BeautifulSoup(filehandle, 'html.parser')
+		h1 = soup.find('h1')
+		#print(len(h1)) #debug
+
+		return h1.text
+		
 
 
 
