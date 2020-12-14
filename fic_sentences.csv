@@ -1,0 +1,809 @@
+ficID,senID,Sentiment,Verbs,nerIDs,Clusters
+12,10,Neutral, God really knew what she was doing when she made you .,[3],"[52, 54, 328]"
+12,64,Neutral," * * * Crowley , My dear , sweet , Crowley .",[10],"[174, 282]"
+12,0,Negative," ## stay over Aziraphale , Sorry for this , I ’m no good at writing letters .",[],"[0, 174]"
+12,1,Negative," I mean , it ’s not like you ’ll ever see this one anyway , but still .",[],"[5, 6, 328, 174]"
+12,3,Neutral," Anyway , I just want to tell you , I want you , angel .",[],"[174, 328]"
+12,4,Neutral, I want to be able to hug you and touch you and embrace you .,[],"[328, 174]"
+12,5,Negative, I know you ’re an angel and I ’m a demon but just _ once _ I want to be able to forget all that nonsense and just _ be _ with you .,[],"[19, 174, 328]"
+12,7,Positive," * * * Aziraphale , You are the light of my life .",[],"[328, 174]"
+12,8,Positive," I know that sounds melodramatic when I created the stars , but I wonder sometimes if I did n’t create them with your eyes in mind .",[],"[174, 44, 49, 328]"
+12,9,Positive, You ’re just so perfect .,[],[328]
+12,11,Positive, I ’d love to see your wings again .,[],"[174, 328]"
+12,12,Negative, I know I ca n’t touch them but I suppose I ’m a glutton for punishment .,[],"[59, 174]"
+12,13,Neutral," Rather fitting , seeing as I ’m a demon .",[],[174]
+12,14,Neutral, Your wings are just so soft - looking and feathery .,[],[328]
+12,15,Positive, I ’d love to run my fingers through them .,[],"[174, 73]"
+12,17,Neutral, You wo n’t see this one either .,[],"[75, 328]"
+12,18,Positive," * * * Aziraphale , I love you .",[],"[174, 328]"
+12,19,Negative, I know it ’s not supposed to be possible for my kind but I ’ve lived on this earth too long to not know what it feels like .,[],"[83, 174, 85]"
+12,20,Positive," Love is wanting to be around you , sit with you , have our conversations while knowing that there ’s something more there .",[],"[328, 93]"
+12,21,Negative, I know what you ’re going to say – that it ’s human influence or whatnot .,[],"[174, 328, 101]"
+12,22,Neutral," Even if it is , I do n’t think I care .",[],"[101, 174]"
+12,23,Neutral, We ’ve both lived here for thousands of years .,[],"[104, 105]"
+12,24,Positive," If the human influence was going to matter , it would have mattered right back at the beginning , do n’t you think ?",[],"[107, 328]"
+12,25,Positive," Anyway , the point of all this is that I love you .",[],"[328, 174]"
+12,26,Negative," I ’ll probably never say it in person , but I can pretend you read these ca n’t I ?",[],"[328, 174, 119]"
+12,27,Neutral," * * * Aziraphale , You ’re a wonderful , stupid , bastard of an angel , and I love you .",[],"[174, 328]"
+12,28,Negative," It almost hurts me now – you know , that weird ache you get in your heart when you want something you ca n’t have ?",[],"[131, 328, 134, 174]"
+12,29,Neutral, Maybe you do n’t .,[],[328]
+12,30,Positive, I hope you do n’t .,[],"[174, 328]"
+12,31,Very negative, It ’s awful .,[],[156]
+12,32,Neutral," Even so , I do n’t want it to go away .",[],"[174, 156]"
+12,33,Very positive," Because , when I look at you and your face lights up in that way it does when you really enjoy something , it ’s amazing .",[],"[174, 328, 156]"
+12,34,Neutral," If I could make you look like that , I would .",[],"[157, 174, 328]"
+12,35,Positive," It ’s selfish , but I wish that when you saw me , you would smile with your whole face , with that thing you do where your eyes crinkle and your mouth tilts up and you look absolutely kissable .",[],"[328, 174, 173]"
+12,36,Negative," Sorry , I ’m getting maudlin .",[],[174]
+12,37,Negative, I might be a little drunk .,[],[174]
+12,38,Positive," I do love you , though , and I ’m sure nothing can erase that .",[],"[174, 328, 181]"
+12,39,Neutral," I do n’t even remember what it felt like before you came into my life , standing on the wall and explaining how you gave away your sword .",[],"[328, 174, 186]"
+12,40,Positive, And then you shielded me from the rain with your wing .,[],"[328, 174]"
+12,41,Neutral, That was when I started falling for you .,[],"[196, 174, 328]"
+12,42,Neutral, The other six thousand years have just been finishing the process .,[],[199]
+12,43,Neutral, I do n’t even know if writing these letters is helping anymore .,[],[174]
+12,44,Positive, I wish I could just _ say _ how I felt but I wo n’t do that to you .,[],"[174, 207, 328]"
+12,45,Negative," I wo n’t go too fast , angel .",[],[174]
+12,46,Positive, I promise .,[],[174]
+12,47,Neutral," * * * Aziraphale , I ’m scared .",[],[174]
+12,48,Negative," I do n’t know why , but I ’m terrified .",[],[174]
+12,49,Positive, I ’ve loved you for so long but now every time I want to tell you how I feel I get scared .,[],"[221, 174, 328]"
+12,50,Negative," I ’m a demon , I ’ve faced down Satan Himself , but somehow taking this last step and confessing to you is scarier than all of that .",[],"[328, 231, 174, 235, 236]"
+12,51,Positive, I do love you .,[],"[174, 328]"
+12,52,Negative, I could n’t not .,[],[174]
+12,53,Positive, You ’re wonderful and pure and at the same time just enough of a bastard to be worth knowing .,[],[328]
+12,54,Negative, I ca n’t even do anything without thinking of you and it ’s terribly distracting .,[],"[328, 250, 174]"
+12,55,Negative," Not that I mind , but it still hurts .",[],"[250, 174]"
+12,56,Neutral, All I want to do is take you in my arms and hug you .,[],"[328, 174]"
+12,57,Negative, Keeping away from you is the worst part .,[],[328]
+12,58,Negative, I wonder if rejection would hurt as much as this limbo .,[],[174]
+12,59,Neutral," You wo n’t even see any of this , so what ’s the point ?",[],[328]
+12,60,Neutral, I should just tell you how I feel .,[],"[328, 174]"
+12,61,Neutral, At least then I ’d know .,[],[174]
+12,62,Positive, Knowledge is always better than guessing in my book .,[],[174]
+12,63,Neutral," Of course , that ’s why I Fell , so who really knows anyway ?",[],"[275, 174]"
+12,65,Neutral," I know you ’ll probably scoff at this , but I have a question I need an answer for immediately .",[],"[328, 174]"
+12,66,Negative," I have a confession to make , and perhaps it would be better to say it , but I ’m afraid I ’m a bit of a coward .",[],"[290, 174]"
+12,67,Negative, I could n’t quite bear to see you say no .,[],"[174, 328]"
+12,68,Positive," At any rate , I ’m in love with you .",[],"[174, 328]"
+12,69,Negative," It ’s taken some time and been rather a slow process , but I can finally say it without fear .",[],"[304, 174]"
+12,70,Positive," I love you , my dear , and I simply ca n’t wait to see you again .",[],"[174, 328]"
+12,71,Neutral," Please come over , even if you do n’t return my feelings .",[],"[328, 174]"
+12,72,Neutral, I ’d hate to see us lose six thousand years of companionship over a misplaced love letter .,[],"[174, 319, 320]"
+12,73,Positive," If you do , however , return my affections , please tell me .",[],"[328, 174]"
+12,76,Neutral, For as long as you l,[],[328]
+13,1,Positive," It was the biggest , most beautiful garden he had ever seen .",[22],"[399, 16]"
+13,3,Neutral," His mind vaguely wondered why , but he promptly forgot about it .",[22],"[18, 399]"
+13,4,Neutral," After all , he had a job to do .",[22],[399]
+13,5,Positive, He hefted the package up higher on his hip and walked down the path .,[22],[399]
+13,8,Positive," Huh , he thought .",[22],[399]
+13,11,Negative, Crowley spent hours upon hours in his garden .,[11],"[260, 42, 43]"
+13,12,Positive," Although he did miracle up plants that were n’t supposed to exist in Europe , like hibiscus and angel ’s trumpets .",[11],"[46, 260]"
+13,14,Negative," The man knocked on the door with his elbow , trying not to drop the large package and clipboard .",[22],[399]
+13,15,Positive," As he stood waiting for someone to answer , he looked at the cottage around him .",[22],[399]
+13,16,Positive, One of the things Leslie loved most about his job was seeing the world and all it had to offer .,[22],"[71, 399, 74]"
+13,17,Positive, This cottage was especially lovely ; he would even describe it as idyllic .,[22],"[399, 85]"
+13,19,Neutral, He took a deep breath and smiled .,[22],[399]
+13,20,Neutral, He would like to live here .,[22],[399]
+13,21,Positive, The delivery man realized that he had been waiting for the door to be opened for quite some time now .,[22],"[96, 399]"
+13,22,Neutral, Suddenly he heard a yell from inside .,[22],[399]
+13,26,Neutral, Aziraphale noticed the box .,[31],[317]
+13,27,Positive," “ Oh , our package finally came , Crowley ! ”",[11],"[260, 142]"
+13,28,Negative," He appeared in the doorway , leaning over Aziraphale ’s shoulder .","[33, 22]","[317, 399]"
+13,31,Neutral, Aziraphale chastised .,[31],[317]
+13,32,Neutral, “ He ’s come all the way out here just for us . ”,[22],"[399, 142]"
+13,33,Positive, The delivery man held out his clipboard and pen .,[22],[399]
+13,37,Neutral," He sighed softly , wistfully looking around again .",[22],[399]
+13,38,Positive, “ My wife Maud and I love this area .,[40],"[137, 191]"
+13,40,Negative," He glanced at the ground briefly , trying not to show his shame .",[22],[399]
+13,42,Neutral, Aziraphale and Crowley looked at each other and Crowley raised an eyebrow and shook his head the tiniest amount .,"[43, 11]",[260]
+13,43,Positive," He was trying to communicate that he did n’t want any neighbors , but Aziraphale took it as it was Aziraphale ’s turn to perform the miracle - Crowley was n’t going to do it .","[31, 48, 49, 11]","[317, 167, 260]"
+13,44,Negative, Crowley reached over to sign for the package while Aziraphale told the delivery man about a cottage that had miraculously just gone up for sale nearby .,"[11, 31]","[260, 317]"
+13,45,Negative," “ It ’s a very low price for such a place , as well , ” he added after Crowley glanced over at him , annoyed but trying not to show it in front of Leslie .","[11, 22]","[260, 399, 184]"
+13,50,Negative, Aziraphale smiled amiably while Crowley ’s face fell .,"[31, 62]","[317, 260]"
+13,51,Positive, All he wanted when they moved to their cottage was some peace and quiet .,[31],"[317, 199]"
+13,53,Negative," But no , Aziraphale had to go and invite neighbors to move in .",[31],[317]
+13,55,Neutral," Crowley side - eyed Aziraphale , who was blissfully unaware .",[11],[260]
+13,56,Neutral, Or maybe ignoring him .,[11],[260]
+13,57,Neutral, He could n’t tell .,[11],[260]
+13,58,Neutral," “ Aziraphale , ” Crowley began , treading lightly , “ does n’t that house have termites ?",[11],"[260, 317]"
+13,61,Negative," He felt a little bad , Leslie was a nice guy , but Crowley wanted privacy .","[22, 11]","[399, 260]"
+13,62,Positive," “ Well , dear , ” Aziraphale said through gritted teeth but still smiling , “ the previous owner fixed the problem before he put it up for sale .","[31, 11]","[317, 260, 235]"
+13,63,Negative, Why would he sell it if it had termites ? ”,[11],"[260, 235]"
+13,64,Negative," He smiled at the delivery man , who was starting to feel a little uncomfortable .",[11],[260]
+13,65,Negative, Crowley was still holding onto the clipboard and Leslie did n’t want to interrupt what was clearly about to be an argument .,"[11, 22]","[260, 399]"
+13,66,Neutral, But he tried anyways ; he wanted to nip their disagreement in the bud .,[11],"[260, 244]"
+13,67,Neutral," “ I ’ll just take that , then , sir , ” he said , reaching for the clipboard .",[11],"[260, 251, 252]"
+13,68,Negative, Crowley ignored him .,[11],[260]
+13,70,Negative, Why would he fix it just to sell it ?,[11],[260]
+13,72,Neutral, Crowley turned to look at Aziraphale head - on .,[11],"[260, 317]"
+13,78,Negative," Aziraphale smiled at Leslie , noticing he was a little uncomfortable .","[31, 22]","[317, 399]"
+13,79,Neutral," That ’s exactly what I want , Crowley thought angrily .",[11],"[260, 278, 384]"
+13,80,Neutral," He glared the tiniest bit at Aziraphale , just enough to be noticed from behind his dark glasses .",[31],[317]
+13,81,Neutral," “ Here , ” he said , almost shoving the clipboard back at the delivery man .",[31],[317]
+13,84,Neutral, He went back inside .,[31],[317]
+13,85,Neutral," “ Thank you , sir , ” Leslie said , tipping his blue International Express cap to Crowley .","[22, 11, 31]","[399, 297, 260, 319, 317]"
+13,88,Neutral, Aziraphale agreed .,[31],[317]
+13,91,Neutral, Aziraphale shut the door and turned to Crowley .,"[31, 11]","[317, 260]"
+13,92,Neutral, “ Why could n’t you have let him move in ?,[31],"[319, 317]"
+13,97,Negative," Crowley went over to Aziraphale and took his hand , making puppy dog eyes at him .","[11, 31]","[260, 317]"
+13,98,Neutral, Aziraphale rolled his eyes .,[31],[317]
+13,106,Positive, Crowley laughed .,[11],[260]
+13,113,Negative, Leslie looked around him as he walked back up the winding path to his van .,"[22, 121]","[399, 369]"
+13,114,Negative, He could n’t help but feel like he had seen the two men before ; it seemed like such an eccentric couple would be hard to forget but he could n’t quite place them .,[22],"[374, 399, 377, 381]"
+13,118,Negative," He did find a cottage , although it was a bit far away from Crowley and Aziraphale ’s .","[11, 22]","[260, 317, 397, 399]"
+13,121,Neutral, He wrote down the address and made a mental note to tell Maud .,"[132, 22]","[402, 399]"
+13,122,Neutral, She would love it out here .,[132],"[402, 403]"
+13,125,Positive, Leslie and Maud did enjoy their life out in the South Downs .,"[135, 132]","[402, 430, 413]"
+13,129,Positive," They won enough money for Leslie to retire and stay in the cottage with his wife , living their best life out in the countryside .",[22],"[399, 430]"
+13,130,Positive," After years of traveling the world , he gets his happy ending , all he ever wanted .",[22],"[399, 439]"
+13,131,Neutral, Leslie was peaceful .,[22],[399]
+13,132,Positive," On the rare occasion he ran into his neighbors ( he usually saw them on walks after dinner , holding hands and walking slowly , just like himself and Maud ) , he thanked them for the recommendation and wished them well .","[132, 22]","[402, 450, 399]"
+13,134,Positive," “ Ngk , ” Crowley would respond , but secretly he was glad that Leslie and Maud were happy .","[11, 152, 132, 22]","[458, 260, 402, 399]"
+13,0,Neutral, ## delivery man leslie visits their south downs cottage The first thing the delivery man noticed about the cottage was the garden .,[],"[0, 3]"
+13,2,Neutral," It had flowers that should n’t even be in season , and some from all over the world .",[],[16]
+13,10,Positive, But it was n’t a miracle .,[],[39]
+13,13,Positive, They added a nice pop of color next to the ferns and various herbs Aziraphale used for cooking .,[],"[317, 58]"
+13,18,Positive," It was right on the water and had a very peaceful feeling to it - the refreshing salty air , slow lapse of waves on the shore , breeze gently ruffling the long grasses around the property .",[],[85]
+13,25,Negative," “ I ’m sorry to have kept you waiting dear boy , I was a bit preoccupied . ”",[],"[191, 130]"
+13,29,Neutral, “ It ’s about time . ”,[],[117]
+13,35,Positive," And might I say , this is a lovely cottage you ’ve got here .",[],"[130, 191]"
+13,36,Positive, I would love to have a place of my own here someday . ”,[],[191]
+13,39,Neutral," We vacation here sometimes , when we are able to . ”",[],[142]
+13,41,Neutral," They did n’t have a lot of money , so their vacations were few and far between .",[],[156]
+13,48,Neutral, “ I ’ll have to look into it .,[],"[191, 189]"
+13,49,Positive, My wife loves the South Downs . ”,[],"[190, 191]"
+13,54,Very positive, Great .,[],[206]
+13,59,Negative, That ’s why it ’s so cheap .,[],"[216, 308]"
+13,60,Negative, Why else would it be up for sale at such a low price ? ”,[],[308]
+13,69,Negative," “ No , the owner did n’t fix it .",[],[260]
+13,71,Neutral, You ’re remembering incorrectly . ”,[],[319]
+13,75,Neutral, It burned down . ”,[],[308]
+13,76,Negative, “ Now you ’re just being ridiculous .,[],"[269, 319]"
+13,77,Neutral, It ’s almost like you do n’t want neighbors . ”,[],"[308, 319]"
+13,82,Positive, “ I hope you get the house .,[],"[384, 319]"
+13,83,Neutral, Send my regards to your wife . ”,[],"[384, 319]"
+13,86,Positive," “ And to you sir , have a nice day .",[],"[319, 304, 305]"
+13,87,Positive, It ’s beautiful outside . ”,[],[308]
+13,89,Neutral, “ It is .,[],[308]
+13,93,Negative," That was quite rude of you , ” Aziraphale tutted as we went into the kitchen .",[],"[318, 319, 317, 360]"
+13,95,Negative," “ I ’m sorry , angel , I just want some alone time for once .",[],"[324, 384]"
+13,99,Neutral," “ Dear , we can still have neighbors .",[],[360]
+13,100,Negative, It ’s not like we ’ll spend every waking minute with them .,[],"[342, 367, 347, 360]"
+13,101,Positive, And they seem quite nice .,[],[367]
+13,102,Positive, It ’ll be fine . ”,[],[347]
+13,104,Negative, “ I put the cottage far away .,[],[384]
+13,105,Neutral, It ’s not even that close . ”,[],[385]
+13,107,Neutral, “ Of course you did .,[],[355]
+13,108,Neutral, I knew it .,[],"[384, 357]"
+13,109,Neutral," Come on , let ’s go on a walk .",[],[359]
+13,110,Neutral, We did n’t move out here to stay inside . ”,[],[360]
+13,111,Negative," They walked out the French doors into the picturesque countryside , hand in hand .",[],[367]
+13,112,Neutral, They were out all night .,[],"[366, 367]"
+13,116,Neutral, I suppose I could go look for that cottage .,[],[384]
+13,119,Positive," It was equally beautiful and peaceful , and had plenty of space for a nice outdoor patio as well .",[],[397]
+13,120,Neutral, It looked brand new .,[],[397]
+13,123,Neutral, They could afford to repair some termite damage if need be .,[],[404]
+13,124,Neutral, It was worth the view .,[],[408]
+13,126,Neutral," On a whim , they had bought a lottery ticket , just because .",[],[430]
+13,127,Positive, It was another dream - and it came true .,[],[423]
+13,128,Positive, They had said it was a miracle ( it was ) .,[],"[430, 423]"
+13,133,Neutral," “ See , ” Aziraphale would say , “ neighbors are nice . ”",[],[317]
+13,135,Positive," They deserved to finally be spending time together , and what better place than one filled with l",[],"[463, 430]"
+22,0,Negative," ## Growing Pains The air in the Mayfair flat is chilled , the light a shivering darkness , barely illuminated by the murky skylight shining down .",[0],[3]
+22,6,Neutral, He 's coming .,[9],[163]
+22,9,Neutral, He ca n't come today .,[9],"[173, 163]"
+22,10,Positive, He 'll see .,[9],[163]
+22,12,Neutral," They never say his name , never think it , to speak it would be to invite that wrath upon themselves .",[9],"[163, 42, 44]"
+22,13,Neutral, But still he comes .,[9],[163]
+22,15,Positive," He moves across grey stone floors , his coils dragging in a high hisssssss .",[9],[163]
+22,16,Neutral, He 'd be silent in the grass ; would come upon his prey quickly .,[9],[163]
+22,19,Positive," _ He 's coming , come on perk up !",[9],[163]
+22,21,Positive," _ He grows like a tree in moments , from slithering on His belly to arms stretching to a heaven He could n't hope to touch .",[9],"[163, 77]"
+22,22,Neutral, He cracks a lanky back and runs His bony fingers through sin red hair .,[9],[163]
+22,23,Positive, His eyes are uncovered and His slit pupils glance around the room before He picks up the spray bottle balanced on the edge of a large planter .,[9],[163]
+22,27,Neutral, _ _ He 's going out !,[9],[163]
+22,28,Neutral, He 'll be gone for days !,[9],"[105, 163]"
+22,30,Neutral, They all know what it means when He goes out .,[9],"[111, 115, 163]"
+22,31,Negative," Especially if He dressed for it , the tightest slacks , chest revealed by the low neck of his vest .",[9],"[163, 115]"
+22,32,Positive," He 's got His good jewelry on too , the silver chain selection , two smaller and a larger , one with a silver ring and the longest with a black wing hanging to just brush his exposed chest hair .",[9],"[121, 122, 163]"
+22,34,Positive," Yes it 's undeniable , He 's dressed to impress , which means He 'll be thorough when He checks them over .",[9],"[163, 136, 137]"
+22,35,Negative, _ Maybe He wo n't !,[9],[163]
+22,36,Neutral, Maybe He 'll be in a rush .,[9],[163]
+22,38,Negative," _ He plucks at several of the other 's leaves , leans in close , let 's a forked tongue flick out .",[9],"[163, 149]"
+22,39,Neutral," "" Now , I wonder what 's got you lot so worked up , "" He says and arches an eyebrow before moving to the next planter .",[9],"[150, 161, 184, 163]"
+22,42,Neutral," "" He sniffs at the orchids , pinches the bromeliads . """,[9],[163]
+22,54,Neutral," He says shaking his head , eyes gone all yellow , pupils contracted .",[50],[284]
+22,63,Neutral, _ He shakes the pot before slamming it down on a pedestal in the middle of the room .,[50],"[284, 257]"
+22,65,Neutral," He leans in , to hiss into the striped leaves .",[50],[284]
+22,68,Neutral," "" He stands straight , brushes a hand down his vest , cracks his knuckles one handed and glares at the rest of the plants around the room . """,[50],"[264, 284]"
+22,69,Negative," Do n't I give you everything you need , "" He starts , walking a circle around the room . """,[50],"[284, 308]"
+22,72,Neutral," "" He 's laughing , but it is n't a nice laugh , bitter , betrayed . """,[50],"[284, 289]"
+22,86,Neutral," "" He snaps the plant up by it 's stems , and its roots spread to hold onto it 's pot .",[50],"[284, 479]"
+22,92,Negative, _ These pleas fall on deaf ears as all He does is hiss and begin a leisurely saunter back the way he came .,[50],[284]
+22,95,Negative," "" The kitchen is no warmer than any other room in the Mayfair flat , it 's color pallet even darker , with black subway tile as the backsplash against black marble countertops .",[65],"[357, 371]"
+22,99,Negative," He turns on the faucet let 's the water run for a moment , glares at the plant in his hand .",[68],"[390, 384]"
+22,100,Negative, A moment later and He turns on the garbage disposal .,[68],[390]
+22,102,Negative," He asks , but of course yes yes the poor thing can hear it .",[68],"[390, 393]"
+22,116,Neutral," "" His hands are so fast , lightning quick , clawed and strong .",[72],[443]
+22,120,Positive, Dangling as it is from His hand over certain death it definitely might cry .,[72],"[479, 443]"
+22,124,Negative," "" He does n't drop it .",[84],"[454, 569]"
+22,125,Negative, Instead He slaps the plant into a plastic container sitting on the counter before He sets it in a cardboard pastry box next to a plate of macarons .,[84],"[569, 479]"
+22,126,Negative," He shuts the water off and let 's it drain , the bearings and blades of the disposal protesting loudly as it continues to run .",[84],"[569, 467, 479]"
+22,128,Neutral, He hisses and closes the box It is dark .,[84],"[569, 479]"
+22,141,Negative, _ He does n't come back .,[84],[569]
+22,147,Negative, _ *** Crowley slams the salt grinder down on the counter just outside the pink and white pastry box and takes a breath .,[252],[1437]
+22,148,Negative," The rebellious little shit ca n’t see him from in there , but he does hope it does n't get any ideas about dirt on today 's dessert .",[84],"[754, 569, 519]"
+22,149,Neutral, He might actually have to shred it if it ruins his surprise for Aziraphale .,[84],"[569, 519, 897]"
+22,150,Negative," The black plastic pot is sitting off to the right and he grabs it , crushes it in one fist and meanders back to the other room .",[84],"[523, 569, 539]"
+22,151,Positive," He brandishes the salt grinder , a smart black utensil , filled with the pink Himalayan salt Aziraphale has been partial to lately .",[84],"[531, 569]"
+22,152,Negative, He points it at what he suspects are the plants most likely to become problems .,[84],"[569, 539]"
+22,153,Negative," New ones , old ones sick of the routine , a few that might even be wise to what he actually does with all the plants that go to the kitchen .",[84],[569]
+22,156,Neutral," "" He says , placing the remains of the pot on the center pedestal for all his plants to see .",[84],[569]
+22,157,Negative, They 're all shivering and Crowley ca n't keep the smirk off his face .,[252],"[1437, 559]"
+22,161,Positive," "" One last pointed look and he 's pulling his sunglasses from his vest pocket and sliding them on .",[84],"[575, 569, 582]"
+22,162,Negative, He stops by the kitchen one more time and retrieves the pastry box before walking out the door .,[84],"[583, 569]"
+22,163,Negative," That he did n't check over his plants will likely go unnoticed , them all being much to grateful for his absence .",[84],"[588, 569]"
+22,164,Neutral," If any noticed the anxious energy emanating from his box of deserts , well he 's a demon , big scary demon .",[84],[569]
+22,167,Neutral," Birds singing , sun shining and the Bentley parked on the street , gleaming like a jewel .",[114],[607]
+22,168,Neutral," She 's as welcoming as always , more so now after the apocalypse , but that might all be in Crowley 's head .","[252, 117]","[610, 1437, 612, 614]"
+22,169,Neutral, He puts the pastry box on the passenger seat and starts off toward the bookshop .,[84],[569]
+22,171,Neutral," Contrary to what his Angel thinks , Crowley can take his time .","[252, 84]","[1437, 569, 715]"
+22,172,Negative," There 's no rush today , and it 's still sinking in that this , the peace he 's found in after , could go on for a while .",[84],"[754, 629, 569]"
+22,173,Negative," He soaks up as much enjoyment as he can , little bits here and there , just in case it is the last time .",[84],"[569, 639]"
+22,175,Negative," It all might have stayed a cinder , and he wo n't waste the opportunity given to him to relish it , a great serpent on his favorite hot rock .",[84],"[647, 569, 652]"
+22,176,Neutral, He casts a sideways glance at the box on the seat and wrinkles his nose .,[84],[569]
+22,180,Negative, He does n't turn back .,[84],[569]
+22,181,Neutral, When he enters the shop it 's quiet .,[84],"[569, 673]"
+22,185,Neutral," It 's a black cup and Crowley smiles at it , knows it 's for him .",[252],"[1437, 687]"
+22,186,Neutral, A flick of the tongue tells him there 's more than tea in there and upon further inspection he notes a shot of whiskey in the cup .,[252],[1437]
+22,188,Neutral, He sips his tea and glances about the bookshop .,[252],[1437]
+22,190,Positive," Everything that is , except his Angel .",[252],"[1437, 715]"
+22,191,Positive," He reaches for Aziraphale 's grace , feels it answer back to him from the upper level and ca n't help a snort .",[252],"[1437, 897]"
+22,192,Negative, He still has n't figured out how Aziraphale always knows when Crowley is bringing a new resident .,[252],"[1437, 897]"
+22,194,Positive," He places his tea cup back in it 's saucer , turning the handle away from the edge and wanders towards the stairs .",[252],"[727, 1437]"
+22,195,Negative," They creak with his first step but it 's not ominous , more nostalgic .",[252],"[734, 735, 1437, 738]"
+22,196,Neutral, He can hear Aziraphale bustling about on the upper levels through the floor and a sort of contentment roses in him .,[252],"[1437, 897]"
+22,197,Neutral," His tongue slips out to sip the air , see if he can get any more information before he heads up .",[252],[1437]
+22,198,Negative," Sure enough , Aziraphale has already laid out lunch .",[155],[897]
+22,203,Positive," And would n't you know , he really has brought the perfect desert .",[157],"[769, 770]"
+22,205,Neutral," Crowley opens it and winces at the light that pours out , the glass ceiling panes of this private greenhouse letting the sun shine brightly in .",[252],"[1437, 781]"
+22,214,Positive," "" The Angel asks .",[159],[896]
+22,215,Neutral," Aziraphale had been a very good gardener , something Crowley had watched with rapt attention from Warlock 's bedroom window during his years as Nanny .","[155, 162, 163]","[897, 819, 1437, 820]"
+22,218,Negative," Crowley knows he 's no slouch when it comes to plant work , but he 's never managed it with the grace Aziraphale does .",[252],"[1437, 836]"
+22,219,Negative," No , he supposes his methods are a bit different .",[252],[1437]
+22,220,Neutral," He leans down , brushes a soft kiss at Aziraphale 's temple .",[252],"[897, 1437]"
+22,228,Neutral," "" Crowley nods at him , sets the pastry box down on the table and lifts the plate of macarons straight out .",[252],[1437]
+22,231,Negative, He says and can barely keep himself from plucking the first macaron off the top of the pyramid .,[252],"[869, 1437]"
+22,233,Positive," But the first one is special , something Crowley had seen in the window and known was necessary .",[182],"[880, 881, 1437]"
+22,237,Neutral," "" Aziraphale says and really a demon can only stand so much temptation . """,[155],[897]
+22,239,Positive," "" He says and picks the black macaron up between two fingers and offers it to the seated Angel .",[155],"[894, 952, 896, 897]"
+22,240,Neutral," Aziraphale grabs his wrist and takes a bite right from Crowley ’s hand , perfect white teeth just missing his fingers .","[155, 191]","[897, 1437]"
+22,244,Negative," "" Crowley stutters , trying to unstick his tongue from the roof of his mouth . """,[252],[1437]
+22,248,Negative," "" It is n't the type of taste test Crowley is used to .",[197],"[1437, 923]"
+22,250,Negative, Before they spent the night at his flat .,[252],"[947, 928, 1437]"
+22,252,Positive, BEFORE Aziraphale would have simply waited for Crowley to pop the rest of the treat in his mouth .,"[155, 252]","[897, 1437]"
+22,257,Neutral," Now Aziraphale takes the last half of the macaron , slips his free hand into Crowley 's , and offers him the rest of the desert .","[155, 252]","[948, 897, 1437]"
+22,258,Positive, Crowley does his best not to discorporate on the spot .,[252],[1437]
+22,261,Neutral," Aziraphale could write the book on flavor at this point , and if he placed the charcoal he absolutely placed the filling .",[155],[897]
+22,262,Positive," Crowley swallows , both the treat and the tightness in his throat .","[252, 155]","[1437, 897]"
+22,268,Negative," "" He 'd almost forgotten about the plant in the box . """,[155],[897]
+22,270,Negative," "" Crowley takes the misbehaving plant over to one of the many garden boxes , picks out a place for it , digs some dirt and drops it in .",[252],"[1437, 1007, 1013]"
+22,272,Neutral, Curiosity he figures .,[155],[897]
+22,276,Positive," Crowley knows it 's full of water now , it always is and picks it up , pours out just enough water , pats the soil .",[252],"[1437, 1028, 1032]"
+22,277,Neutral," Aziraphale had brought him water in this jug , during the years after they left the garden but before people really began to crop up .",[155],"[897, 1039, 1040]"
+22,282,Positive," Trailing , like a river seen from space , is a line of gold holding it together , Crowley thinks it looks suspiciously like one particular branch of the Amazon .",[252],"[1437, 1057, 1074, 1062]"
+22,283,Negative," He ca n't remember how many times it 's broken over the years , but he knows Aziraphale always fixes it .",[252],"[1066, 1074, 1437]"
+22,284,Neutral, It 's his way .,[252],"[1074, 1437]"
+22,285,Positive, To hold onto weathered and broken things he loves .,[252],[1437]
+22,286,Positive, Said Angel comes up behind him and wraps him in a hug .,"[239, 252]","[1112, 1437]"
+22,288,Neutral," Here let 's just … "" his hands over Crowley 's , Aziraphale takes a shears , puts them in the demon 's hands and together they clip the little leaf , "" Good as new !","[252, 155]","[1437, 897, 1086, 1093]"
+22,290,Negative," Too bad it 's not that easy … "" He says and he can feel Aziraphale freeze at his back . """,[252],"[1096, 1437, 1102]"
+22,291,Positive," Darling … "" The tone is concerned and it sets Crowley on edge .",[252],"[1437, 1104, 1106]"
+22,292,Negative, He forgets sometimes how many eyes Aziraphale can see with when he 's really looking .,[252],[1437]
+22,293,Neutral, He tries to brush the Angel off .,[252],"[1437, 1112]"
+22,297,Neutral," Pathetic little - "" "" Anthony J. Crowley that is enough .",[252],[1437]
+22,298,Negative," "" He shuts up , trembles a little in the presence of Aziraphale 's Voice , eyes luckily hidden behind his glasses .",[252],"[1437, 897, 1122]"
+22,302,Neutral," Aziraphale scoffs at him , folds his arms over his chest .","[155, 252]","[897, 1437]"
+22,304,Negative," Aziraphale says , and the little note of sadness makes Crowley ’s teeth ache .","[155, 252]","[897, 1437]"
+22,305,Positive, Or maybe it ’s just that his jaw is clenched .,[155],"[1152, 897]"
+22,315,Neutral, He says and Crowley hunches his shoulders .,"[252, 265]","[1437, 1176]"
+22,316,Neutral, Aziraphale looks at the plant between his demon ’s hands before he continues .,[265],"[897, 1176]"
+22,318,Negative," They forgive you , And you know what else … "" Aziraphale pauses , looks over Crowley 's stiff shoulders , debates the wisdom of what he 's about to say .",[252],"[1437, 1183, 1185, 897]"
+22,319,Positive," He 'd never have considered it before the end of the world , but all the ways Crowley talks about his fall , talks about being unforgivable , there 's something under it all , and Aziraphale sees the shape of it the most during these moments .","[252, 272]","[1437, 1192, 897, 1195, 1199, 1205]"
+22,320,Negative," He 'd have never said anything before Armageddon , But now , on their side , in the AFTER , maybe it 'll be ok .",[252],"[1207, 1437, 1210, 1211, 1213, 1214]"
+22,321,Neutral," "" What , Angel ? """,[277],[1215]
+22,322,Neutral," "" It ’s ... it 's ok , if you still love Her too . """,[278],"[1216, 1217, 1219]"
+22,323,Negative," Crowley covers his face , dirty hands smearing mud along the bridge of his nose while he pinches his eyes .",[252],[1437]
+22,324,Neutral, His mouth twists .,[252],[1437]
+22,325,Negative," He ca n't say it , ca n't confirm it .",[252],"[1437, 1235]"
+22,326,Neutral, Ca n't say he loves and misses and forgives his mother .,[252],[1437]
+22,328,Positive," An ache that throbs in time with his heart , with what ’s left of his halo .",[252],[1437]
+22,329,Negative, He rubs a thumb against a waxy leaf and looks at the poor plant .,[252],[1437]
+22,331,Neutral," He is n’t any different , not really .",[252],[1437]
+22,332,Positive," He remembers how the Angel had looked standing on the Eastern Wall , how good it had felt to feel what he did that day .",[252],"[1437, 1112, 1256, 1257, 1259]"
+22,334,Negative," He remembers every day since then , the bad and the good .",[252],"[1265, 1437]"
+22,336,Negative, He 's grateful to be here with Aziraphale too .,[252],[1437]
+22,337,Positive," And if She planned it this way , which he suspects she did , well , he ’d forgive her a hundred times for that too .","[304, 252]","[1274, 1275, 1277, 1279, 1437]"
+22,338,Neutral," Finished with installing the new leafy resident , Crowley takes a seat at the cafe setting , let 's Aziraphale pour him a glass of wine and slips a crumb of cheese into his mouth .",[252],"[1437, 1288, 897]"
+22,339,Neutral," Laid out on the table , he sees a newspaper with red circles on various addresses .",[252],[1437]
+22,341,Neutral," He asks , pushing his glasses up his nose .",[252],[1437]
+22,346,Neutral, There 's an article about Devil 's Dyke on the front and Crowley wrinkles his nose .,"[318, 252]","[1437, 1327, 1328]"
+22,364,Neutral," "" Aziraphale says , a bit over cheerful .",[155],[897]
+22,365,Negative, Crowley chokes on his wine and swallows his tongue with an interrupted snort .,[252],[1437]
+22,366,Negative, The look on Aziraphale 's bastard face says it 's exactly the reaction he was expecting .,"[155, 252]","[897, 1437, 1379]"
+22,367,Neutral," Crowley gulps his wine , swishes it between his teeth and swallows .",[252],"[1437, 1383]"
+22,370,Positive," "" Aziraphale fidgets , hands ringing together and playing with the pinky ring , but more playing with the gold band on his ring finger .",[334],[1399]
+22,371,Positive," It ’s shaped like a little gold snake eating its tail , and never ceases to amuse his demonic companion .",[334],"[1397, 1399]"
+22,375,Positive," "" Crowley interrupts softly , picking Aziraphale ’s hand up and running his thumb over the Angel 's knuckles , twisting the tiny snake as well . ""","[252, 155]","[1437, 897, 1112]"
+22,377,Positive," "" The smile that breaks out on Aziraphale ’s face at Crowley ’s agreement could rival every star the demon had had a hand in crafting . ""","[341, 342]","[1437, 897]"
+22,379,Neutral," "" He says , excited , and leans to give his demon a quick , though no less thorough for it 's brevity , kiss right on the mouth , "" Oh my dear I just know you 'll love it !",[252],"[1428, 1433, 1471, 1435, 1437]"
+22,381,Positive, Oh and a lovely garage for the Bentley !,[345],[1441]
+22,382,Positive," And - Crowley smiles , soft and amused , another blush stealing across his cheeks , as he listens to Aziraphale ramble on about what their cottage will have .",[252],"[1437, 897]"
+22,385,Negative," I do n't deserve this , he thinks , it 's too good for anyone .",[252],"[1437, 1457, 1459]"
+22,1,Negative," There 's a sort of trembling quality to it , or perhaps that 's all the others , terrified in their pots and stands , leaves stiff and aloft and shaking .",[],"[9, 10, 15]"
+22,3,Negative," They know what 's coming , can sense doom like old men sense storms in old bones , can taste it on the air like snakes .",[],"[15, 20]"
+22,4,Positive, Like one snake in particular .,[],[23]
+22,5,Negative, It 's been too quiet today .,[],"[173, 26]"
+22,11,Positive," _ Spores and pollen and a million other particles float on the air , an alarm that ca n't be helped .",[],[32]
+22,17,Neutral, But where 's the fun in that ?,[],[63]
+22,20,Neutral, We have to perk up !,[],[68]
+22,37,Negative," _ _ Poor thing , you 're done for .",[],[184]
+22,40,Positive," "" Could hear you carrying on down the hall .",[],[184]
+22,41,Negative, And all I could think was someone must be acting out .,[],[161]
+22,43,Negative," But no , not you guys , not knowing I have a special meeting with my Angel today .",[],"[173, 184, 181, 172]"
+22,44,Negative, I know you would n't daaaaare act out today .,[],"[173, 181, 184]"
+22,45,Neutral, Esssssspecialy after I told you about it yessssterday .,[],"[177, 181, 184]"
+22,46,Negative," You would n't want to -- oh ... Oh my what 's this … "" _ Oh no .",[],"[181, 184]"
+22,48,Positive," _ A hand reaches under the foliage and grips a pot with vice like strength , draws the plant out from under the shady cover of it 's leafy friend .",[],[479]
+22,49,Negative," It 's small still , only a handful of leaves , striped green and white and pink leaves .",[],[479]
+22,51,Neutral, All except one leaf to be precise .,[],[202]
+22,52,Negative," One leaf , ** one whole leaf ** , is brown and withered all the way down it 's stem .",[],"[205, 206, 212]"
+22,53,Negative," "" Oh dear we are in trouble , are n't we . """,[],[216]
+22,55,Negative, _ I 'm sorry !,[],[229]
+22,56,Neutral, I 'm sorry I 'll do better !,[],[229]
+22,57,Negative," _ "" You 're sssorry are you ?",[],[229]
+22,58,Neutral, Bit late for that isssss n't it .,[],[232]
+22,59,Negative," "" There are fangs now , and a face gone all twisted with anger . """,[],[233]
+22,60,Negative," No , you know what , I do n't think you 're sssorry , you 're just sssorry you got caught .",[],"[240, 238]"
+22,61,Negative," Lazy , miserable little shit , do you have any idea - "" _ It 'll do better !",[],"[247, 240]"
+22,64,Negative," It had n't been there a moment ago , but it is n't new .",[],[257]
+22,66,Neutral," "" Look what you 've started .",[],[308]
+22,67,Neutral, Look what you 're going to make me do !,[],"[308, 263]"
+22,70,Neutral, I water you .,[],"[308, 284]"
+22,71,Negative," You 're low light plants , this flat certainly has low light .",[],[308]
+22,73,Positive," Plant food , well I have given you the best !",[],"[307, 308]"
+22,75,Positive," All of it , everything is perfect !",[],[296]
+22,76,Positive, You lot should be absolutely thrilled to be here !,[],[308]
+22,78,Positive, Instead you give me this .,[],"[308, 307]"
+22,80,Positive, THIS IS HOW YOU THINK TO SHOW ME YOUR GRATITUDE !,[],"[308, 307]"
+22,81,Negative," "" _ No , I can do better !",[],[333]
+22,82,Negative, I 'm sorry !,[],[333]
+22,83,Neutral, I can !,[],[333]
+22,84,Negative," _ "" Oh no I do n't think so .",[],[319]
+22,85,Negative," No no , it 's the kitchen for you I 'm afraid !",[],"[316, 318, 319]"
+22,89,Neutral, No one comes back from the kitchen !,[],[330]
+22,90,Positive, I 'll do better !,[],[333]
+22,91,Positive, I promise !,[],[333]
+22,93,Positive," "" As for the rest of you , you best believe I will be checking each and every one of you when I 'm finished with your friend .",[],"[343, 353, 350]"
+22,94,Neutral, GET YOUR SHIT TOGETHER !,[],[353]
+22,96,Negative," Trails of silver wind their way to the most devastating part of the kitchen , the undermounted sink .",[],[364]
+22,97,Negative, To the left of it a three set of nearly hidden switches .,[],"[369, 371]"
+22,101,Neutral," "" You hear that ! """,[],"[388, 394]"
+22,103,Neutral," "" That 's the sound of slicers getting ready to cut you to pieces .",[],"[394, 401]"
+22,104,Neutral, Dice you up !,[],[401]
+22,105,Negative," It 's what you deserve , spitting in my face with that shriveled limp little leaf !",[],"[400, 401, 409, 404]"
+22,106,Negative," "" _ I 'm sorry !",[],[409]
+22,107,Positive, I 'll be good !,[],[409]
+22,108,Positive, I promise !,[],[409]
+22,109,Negative," _ "" Oh you 're sorry , so sorry .",[],[423]
+22,110,Negative, Well that fixes everything does n't it .,[],[413]
+22,111,Neutral, Makes up for how you 've blatantly disrespected me !,[],"[423, 415]"
+22,112,Neutral, In front of all your comrades out there !,[],[423]
+22,114,Negative, No do you think a little apology makes up for what you 've done ?!,[],[423]
+22,115,Neutral, DO YOU THINK IT EVER COULD !?!,[],"[423, 424]"
+22,117,Positive, One moment the plant is in it 's pot and the next it 's not .,[],"[428, 479]"
+22,118,Negative, Ripped so quickly more than a portion of its roots have been left behind .,[],[479]
+22,119,Neutral," If it had a mouth , it might scream .",[],[479]
+22,121,Negative," But it does n't have a mouth , or eyes for tears .",[],[479]
+22,122,Negative," "" I should bloody drop you !!",[],"[449, 452]"
+22,123,Negative, You deserve it !,[],"[452, 454]"
+22,127,Neutral," "" There , sit in the dark and think of what you 've done ! """,[],[474]
+22,132,Negative, It hurts .,[],[479]
+22,133,Neutral, I want my pot .,[],[500]
+22,134,Neutral, I 'm scared .,[],[500]
+22,135,Negative, I 'm sorry !,[],[500]
+22,136,Negative, I 'm so sorry !,[],[500]
+22,137,Neutral, Please forgive me !,[],[500]
+22,138,Neutral, I 'm scared !,[],[500]
+22,140,Positive, I want my pot !,[],[500]
+22,145,Negative, _ Please I 'm sorry !,[],[500]
+22,146,Neutral, I 'm scared !,[],[500]
+22,154,Neutral," "" Now , I 'm hoping we can put this behind us .",[],"[546, 569, 550]"
+22,158,Positive," "" I have a very important lunch with a certain Angel planned today .",[],"[754, 569, 567]"
+22,159,Neutral," If , IF I come back tonight it 'll be late .",[],"[568, 569, 570]"
+22,160,Negative, That is not however an excuse for you all to slack off .,[],"[571, 573]"
+22,170,Neutral, The drive to Soho is leisurely .,[],[620]
+22,177,Negative," "" Should count yourself lucky I did n't stick you in the disposal . """,[],"[669, 664]"
+22,179,Negative," "" Would be what you deserve ... could turn back . """,[],[669]
+22,183,Neutral, Sun streams through the blinds and lights the dust like tiny stars .,[],[680]
+22,189,Neutral, Everything is where it should be .,[],[712]
+22,199,Neutral, It 's to be charcuterie today .,[],"[754, 756]"
+22,200,Neutral," Prosciutto , capicola , drizzle of honey , select cheeses , olives and grapes and figs .",[],[757]
+22,202,Positive, Red and rich .,[],[768]
+22,207,Neutral, Petrichor .,[],[787]
+22,209,Negative," Aziraphale is sitting at a cafe setting along the back wall , adjacent to the rows of garden boxes .",[],[897]
+22,210,Negative," Strings of macrame hold pots full of spider plants and spear leaves , who 's vines fall like curtains .",[],[794]
+22,212,Neutral," "" Hello my dear .",[],[811]
+22,213,Negative," Another poor rebellious soul , come to join me ?",[],[811]
+22,216,Positive, The gentle way the Angel coaxed the Dowlings gardens into the kind of show piece that made their friends green with envy .,[],"[822, 826, 896]"
+22,224,Neutral," But first , I 've brought desserts .",[],"[851, 855]"
+22,226,Neutral, I was just laying out lunch .,[],[855]
+22,229,Negative," Thankfully , there is no dirt on them .",[],[865]
+22,230,Neutral," "" Finger foods should have finger desserts , do n't you think ? """,[],[868]
+22,234,Negative, The first one is black .,[],"[884, 885]"
+22,235,Positive," "" Oh yes I should say they do look perfect .",[],"[888, 887]"
+22,236,Neutral, May I ?,[],[888]
+22,238,Neutral," Here , this one first .",[],"[892, 893]"
+22,241,Neutral," "" Gah .",[],[909]
+22,246,Neutral, So how is it then ?,[],[923]
+22,247,Neutral," "" "" Oh simply marvelous , here you have to try it - "" "" No angel its - "" "" I insist .",[],"[917, 918, 923, 921]"
+22,249,Neutral," Generally , that is to say before , before the apocalypse .",[],[926]
+22,251,Neutral, And before they pulled one over on the home office .,[],"[930, 947]"
+22,254,Negative," No , now it 's after .",[],"[940, 941]"
+22,255,Negative," After the end of the world , after a burnt bookshop , after the night at the flat .",[],[945]
+22,256,Negative, After they ’ve admitted how they feel .,[],[947]
+22,259,Neutral," "" The charcoal is an excellent foil for the sweetness , however I ca n't seem to place the filling . """,[],[962]
+22,260,Positive, That 's a great big lie if Crowleys ever heard one .,[],"[966, 967, 968]"
+22,263,Positive," "" Just a bit of raspberry , Angel .",[],[985]
+22,264,Positive, Just sorta liked the way it looked .,[],[989]
+22,265,Positive," "" "" It was a good choice , my dear .",[],"[989, 993]"
+22,266,Negative, I ca n't wait to try the rest .,[],[993]
+22,267,Negative, But first why do n't you take care of your little friend there .,[],"[995, 998]"
+22,278,Negative, Made it from sand and sun and carried it everywhere .,[],[1050]
+22,279,Negative, Had been so careful not to bless it .,[],[1050]
+22,280,Negative, There 's nothing of heaven in it .,[],"[1049, 1050]"
+22,281,Negative," It 's plain and brown , grooves repeating and ringing it where fingers had shaped it .",[],[1074]
+22,287,Negative," "" Oh my , that poor leaf , it 's absolutely withered .",[],[1083]
+22,289,Neutral," "" "" Ngk .",[],[1095]
+22,295,Negative, You 're too gentle with them .,[],"[1116, 1115]"
+22,296,Negative, They do n't deserve it .,[],"[1116, 1117]"
+22,299,Negative," It 's not just any voice , no , it 's more than that .",[],"[1128, 1129]"
+22,301,Positive, Honestly it 's more effective than the sword could have ever hoped to be .,[],[1135]
+22,303,Positive," "" You know I wish you could feel love the way I do . """,[],"[1144, 897]"
+22,306,Neutral," "" Why 's that ? """,[],[1155]
+22,307,Positive," "" Because then you could feel how they love you .",[],"[1185, 1160]"
+22,308,Neutral, All of them .,[],[1160]
+22,313,Negative," That 's not - "" "" It is .",[],[1162]
+22,314,Positive," "" "" They could n't , would n't , I 'm not … "" "" They love you . ”",[],"[1183, 1185, 1166]"
+22,317,Neutral," “ They 're so grateful to be here , with me , that you brought them to be here with me .",[],"[1183, 897, 1185]"
+22,327,Negative, It hurts .,[],[1239]
+22,330,Negative, Fresh water from a plain earthen jug and it 's already looking better .,[],[1252]
+22,335,Neutral," Mesopotamia , Paris , the Globe , the Church , the Ritz .",[],"[1267, 1268, 1269, 1270, 1271]"
+22,343,Neutral, Well this is what I wanted to talk to you about .,[],"[1437, 1309]"
+22,344,Neutral," "" Aziraphale picks up the newspaper , unfolds it to show the front .",[],[1318]
+22,345,Negative," It 's not one of Heaven 's papers , the heading for the Infernal Times bold across the top .",[],"[1315, 1316, 1318, 1319]"
+22,347,Neutral," "" Where did you get that ? """,[],"[1339, 1330]"
+22,348,Neutral," "" You , my dear , left it stuffed in my sofa after one of your naps . """,[],"[1331, 1339, 1335, 1334]"
+22,349,Neutral," "" Did you CLEAN ?",[],[1339]
+22,350,Neutral, And find it ?,[],[1342]
+22,352,Neutral, It was sticking out .,[],[1342]
+22,353,Negative," But listen , what if we , oh I do n't know ... retired to the country ? ”",[],"[1343, 1344]"
+22,355,Neutral, “ Retirement .,[],[1347]
+22,359,Negative, “ I ’m not !,[],[1362]
+22,360,Neutral, You ’re the one suddenly talking about moving out of the city ! ”,[],"[1352, 1387]"
+22,361,Neutral, “ You and I both know that I could horde books just as well in the South Downs as I do here .,[],"[1387, 1362, 1361]"
+22,362,Neutral," "" "" So we what ?",[],[1408]
+22,368,Neutral," "" You want to go off to the South Downs .",[],"[1387, 1388]"
+22,372,Neutral," "" Well I certainly do n’t want to go without you .",[],"[1459, 1387]"
+22,373,Negative, I know it 's not exactly Alpha Centauri .,[],"[1459, 1404, 1405]"
+22,374,Positive," But I think - "" "" I 'll find us a place .",[],"[1459, 1408]"
+22,376,Neutral, I 'll start looking tomorrow .,[],"[1418, 1459]"
+22,380,Neutral, Well get you a garden !,[],[1471]
+22,383,Positive, How perfect this new chapter of their life will be .,[],[897]
+22,384,Neutral, How they 'll be together .,[],[897]
+22,387,Negative," We do n't deserve this , neither of us .",[],[1466]
+22,388,Negative, But maybe it 's not about getting what you deserve .,[],"[1475, 1471]"
+22,389,Neutral, Maybe it 's about trusting that everything 's going according to plan .,[],[1475]
+22,390,Neutral, Maybe it 's ineffa,[],[1475]
+56,0,Neutral, ## Furry Tale Aziraphale opened the window of his bedroom that over saw the street .,"[0, 19]",[303]
+56,1,Negative, He had spent most of the morning cleaning and recognizing the books in the bookshop .,[19],"[6, 303]"
+56,2,Positive," He could have just waved his hand and used a miracle , but he enjoyed the physical labour of it sometimes .",[19],"[303, 21]"
+56,3,Positive, It did use a minor miracle to remove the dust from his clothing .,[19],"[303, 21]"
+56,5,Negative, He rarely used the bed room for anything other then more storage for some books he did n't want anyone to touch .,[19],[303]
+56,7,Positive, A soreness in this shoulders made him frown for a moment .,[19],[303]
+56,8,Neutral, Gently rolling his shoulders he tried to remember of the last time he had let his wings out .,[19],[303]
+56,9,Negative," Other then the recent Apocalypse that did n't happen , he had not let his wings out for a while .",[19],"[52, 303]"
+56,10,Positive, He often forgot that even with them being in a different plane of existence they still needed to be moved and stretched often .,[19],"[303, 69]"
+56,11,Neutral, Focusing for a moment there was a displacement of air as his wings entered the physical realm and Aziraphale smiled stretching them out .,[19],"[303, 69]"
+56,12,Neutral, The room was just big enough for him to open his wings almost fully .,[19],[303]
+56,13,Neutral, Rolling his shoulders again he let his wings soak in the rays from the sun .,[19],[303]
+56,15,Neutral, Looking around the room for a moment his eyes landed on the bed .,[19],[303]
+56,16,Positive, He had set it up in just the right place to be able to sit in the sun for most of the day if he was so wished to do so .,[19],"[88, 303, 90]"
+56,17,Positive, After the hard morning of work he thought he might as well sit and enjoy a nice sunny read .,[19],"[95, 303]"
+56,18,Negative, He summoned the most recent book he had been reading and moved over to the bed .,[19],[303]
+56,19,Neutral, Taking care of where his wings rested he settled in and let his wings relax .,[19],[303]
+56,20,Neutral, His wings took up most of the bed when he finally found the right angle to sit .,[19],[303]
+56,21,Negative, Aziraphale had been so engrossed in the book he had not seen a shadow creep into the room from the window .,[19],[303]
+56,22,Negative, It was not until something touch his wing that he looked up twitching his wing away .,[19],"[303, 127]"
+56,23,Positive, With a paw hanging in mid air a pure white cat stared at him with sapphire eyes .,[19],[303]
+56,25,Negative, Aziraphale just stared at it for a long time still holding his wing close to himself .,[19],[303]
+56,26,Negative, He was not sure how the cat had gotten in .,[19],[303]
+56,28,Negative, But he had found out through history that animals and cats in general did not follow normal rules .,[19],[303]
+56,29,Positive, Relaxing his wing out again he laid his wing back onto the bed to see what the cat would do .,[19],[303]
+56,35,Positive, Aziraphale reached out and gently started petting the cat .,[19],[303]
+56,37,Neutral, It was one of the softest cat he had ever petted .,[19],"[179, 303]"
+56,41,Negative, He smiled and went back to reading his book leaving the cat to curl up into a ball .,[19],[303]
+56,42,Negative," Watching from the corner of his eye , if he had not felt the weight on his wing and knew the cat was there .",[19],[303]
+56,43,Negative, He would have easily over looked it .,[19],"[303, 209]"
+56,44,Positive, It blended into his wing so well .,[19],"[303, 209]"
+56,47,Negative, Crowley was not too worried because he knew Aziraphale sometimes got caught up in a book or working on something he forgot about the time .,"[69, 19]","[371, 303]"
+56,52,Negative, But the door opened none the less when Crowley turned the knob .,[69],[371]
+56,53,Neutral, The door closed behind him with a click as he looked around the shop .,[69],[371]
+56,55,Positive, Moving into the back room he finds that it is empty like the front .,[69],"[371, 251]"
+56,56,Negative," This was a little more out of the ordinary for Aziraphale , but still already because Crowley could scene Aziraphale was in the building .","[69, 82]","[371, 303]"
+56,57,Negative, Sighing a little he head towards the stairs and up into the flat above the bookshop .,[69],[371]
+56,58,Neutral, He had only been up there a few times .,[69],[371]
+56,62,Neutral, Stepping partly in and leaning on the door frame Crowley just takes a long look at Aziraphale .,[69],"[371, 303]"
+56,63,Negative, He has his wings out on full display and his head lowered reading a book .,[69],[371]
+56,64,Neutral, Crowley guesses he could cross the room casually before Aziraphale would even notice he was there if he was going to notice at all .,"[69, 19]","[371, 303]"
+56,65,Negative," The apocalypse that did n't happen was not to long ago , but he had not really gotten a look at Aziraphale 's wings during it .",[69],"[303, 371]"
+56,67,Neutral, So he took his time observing Aziraphale before starting across the room .,[69],"[303, 371]"
+56,69,Negative, He could see feathers sticking out all over the place .,[69],[371]
+56,70,Positive," With a grin on his face , Crowley pushes off of the door frame .",[69],[371]
+56,72,Neutral, Crowley steps up to the bed and watches as Aziraphale looks up startled .,"[69, 19]","[371, 303]"
+56,74,Positive, He makes a point of looking over Aziraphale .,[69],"[303, 371]"
+56,77,Positive, Aziraphale after catching the breath that he does n't need and settling his heart as he closes the book .,"[19, 69]","[303, 371]"
+56,78,Positive," “ Yes , well ... ” He trails off trying to think of something to say .",[69],[371]
+56,81,Neutral, He trailed off again .,[69],[371]
+56,84,Neutral, Crowley turns on his heels and starts towards the door .,[69],[371]
+56,87,Negative, Aziraphale looks after Crowley but does n't move .,"[19, 69]","[303, 371]"
+56,89,Neutral, He fidgets for a moment with the book in his hands .,[69],[371]
+56,90,Neutral, Crowley stops at the door way and looks back .,[69],[371]
+56,92,Negative, This one unlike Aziraphale and made Crowley worry .,[69],"[376, 303, 371]"
+56,93,Neutral, Aziraphale shakes his head .,[19],[303]
+56,95,Neutral, Crowley is across the room in a moment .,[69],[371]
+56,99,Negative, He is looking over Aziraphale 's wings looking for damage .,[69],"[303, 371]"
+56,100,Positive, Aziraphale laughs for a moment .,[19],[303]
+56,102,Neutral, He shifts his wing a little disturbing the sleeping cat who makes a noise before rising it 's head .,[69],"[371, 409]"
+56,104,Neutral, Aziraphale looks sheepish for a moment .,[19],[303]
+56,105,Negative, Crowley just blinks for a few moment looking at the cat who has tucked it 's head back down and curled it 's tail over it 's face .,[69],"[371, 431]"
+56,106,Negative, He had missed it before well looking over Aziraphale 's wings .,[69],"[303, 371, 431]"
+56,107,Negative," Now that he had seen it move , he could tell it was there , but could loss it just as easy if he looked away .",[69],"[425, 371, 431]"
+56,113,Positive, Aziraphale gives the cat a quick pet and is rewarded with a short purr .,[19],[303]
+56,115,Negative, Crowley gives Aziraphale 's wings a better once over to make sure there are no other things hiding on the his wings .,"[69, 19]","[371, 303, 460]"
+56,119,Negative, Crowley snorts and pokes at the fur ball half buried in Aziraphale 's feathers .,[69],"[371, 303]"
+56,122,Negative, Aziraphale looks a little worried .,[19],[303]
+56,126,Neutral, It lifts it 's head to look at Crowley before stretching and curling back up in it 's feather nest .,[69],"[371, 496]"
+56,130,Neutral, Aziraphale looks between the cat and Crowley .,"[19, 69]","[303, 371]"
+56,131,Neutral, Crowley crosses his arms and stares at the cat .,[69],[371]
+56,135,Positive, Aziraphale ruffs his wing a little to see if the cat moves .,[19],[303]
+56,136,Neutral, But the cat just calmly looks at him and purrs again .,[19],[303]
+56,137,Positive," Crowley growls for a moment and reaches for the cat , but finds that it is laying in such a way , he is not going to be able to pick it up without getting feathers .","[69, 19]","[371, 531, 303]"
+56,138,Negative, The cat flicks it 's tail and blinks before laying it 's head down to watch Crowley .,[69],"[371, 540]"
+56,141,Neutral, Aziraphale fiddles with his book for a moment .,[19],[303]
+56,148,Neutral, Crowley grumbles for a moment before his eyes light up with an idea .,[69],[371]
+56,149,Negative," If he was not going to be able to grab it , maybe he could scare it away .",[69],"[371, 575]"
+56,151,Neutral, Crowley takes on his snake form and makes his way onto the bed and over Aziraphale 's feathers .,[69],"[371, 303]"
+56,152,Negative, He did not become his full size just to make sure he did not damage any feathers .,[69],[371]
+56,153,Neutral, Pausing as he is half way across Aziraphale 's wing he wiggles to feel the feathers underneath him .,"[19, 69]","[303, 371]"
+56,154,Neutral, He had to admit it was a really cozy place .,[69],"[371, 598]"
+56,155,Negative, He almost could fall asleep .,[69],[371]
+56,156,Neutral, Everything smelled of Aziraphale and the slight angelic aura he was give off was very calming .,[69],"[303, 371]"
+56,157,Negative, Shaking his head he remembered his task and moves up to the cat who had not even lifted it 's head when Crowley had changed .,[69],"[371, 614]"
+56,158,Neutral, It was still watching him .,[69],"[614, 371]"
+56,159,Positive, Rearing up he hisses and bares his fangs .,[69],[371]
+56,160,Positive, The cat lifts it 's head and eyes Crowley for a moment before slowly standing up .,[69],"[371, 626]"
+56,161,Neutral, It takes a moment to look over the snake threatening it before rising a paw and swatting Crowley on the nose .,[193],"[626, 371]"
+56,162,Negative, Crowley not expecting this shifts away and stares almost shocked at what had happened .,[69],[371]
+56,163,Neutral, Aziraphale who was watching quietly covers his mouth to hide a laugh with a cough .,"[195, 19]",[303]
+56,164,Negative, The cat and Crowley have a long stare off .,[69],[371]
+56,165,Negative, Crowley not having to blink wins but is not sure what to do now .,[69],"[371, 642]"
+56,166,Negative, The cat is clearly not going to just move and Crowley is not going to harm the cat for just laying on Aziraphale 's wing .,"[69, 19]","[371, 303]"
+56,167,Positive, Huffing and hissing he makes his way towards Aziraphale and pushes behind his back and comes out the other side to coil around Aziraphale 's chest and rest his head on Aziraphale 's shoulder so he can glare at the cat .,"[19, 69]","[303, 371]"
+56,168,Negative, Aziraphale runs a hand along Crowley 's scales for a little while .,"[19, 69]","[303, 371]"
+56,169,Negative, He knows better then to point out Crowley 's attempt at spooking the cat did n't work out .,"[69, 19]","[371, 303]"
+56,170,Negative, He picks up this book again and starts reading out loud .,[19],[303]
+56,171,Negative, The cat settles down again facing Crowley and slowly blinking at him purring .,"[69, 19]","[371, 303]"
+56,174,Neutral, Crowley glares at the cat until he starts to fall asleep to Aziraphale 's gentle voice and warm aura .,"[69, 19]","[371, 303]"
+56,175,Negative," He had not given up on beating the cat , but needed some time to think of a better plan .",[69],[371]
+56,176,Positive," Aziraphale does n't mind having Crowley warped around him , it made him feel safe .","[19, 69]","[303, 371, 704]"
+56,177,Negative," He continued to read out loud even as Crowley 's and the cat 's breathing evened out , telling him both had fallen asleep .",[69],[371]
+56,178,Negative, Aziraphale did wonder where the cat had come from and why it was so bold not to move .,[19],"[303, 715]"
+56,6,Negative," Other then a few book cases , a side table with a lamp and a large bed sitting the the middle of the room it was empty .",[],[36]
+56,24,Negative, It had been trying to step onto the wing .,[],[134]
+56,27,Negative, The window was warded so no one could see in and nothing should have been able to enter .,[],[144]
+56,30,Neutral, Once the feathers where on the bed again the cat place a paw onto them .,[],"[158, 163]"
+56,31,Negative, Aziraphale twitched a little but waited to see what the cat was going to so next .,[],[303]
+56,32,Neutral, It seemed harmless enough .,[],[303]
+56,33,Neutral, The cat carefully stepped forward until it was standing in the feathers and started purring loudly .,[],[303]
+56,34,Negative, It turned a few times before settling down and looking up at Aziraphale still purring .,[],[303]
+56,36,Neutral, It 's sapphire eyes closed and the purring increased .,[],[303]
+56,38,Positive, It was well groomed and taken care of .,[],[303]
+56,39,Negative," “ Alright , you can stay for a little while .",[],[186]
+56,40,Neutral, But I have a lunch date later on . ”,[],[187]
+56,45,Negative, ~ It was unlike Aziraphale to miss a lunch date .,[],"[303, 209]"
+56,46,Negative, After the apocalypse that never happened the two of them had been going to lunch almost every day .,[],"[210, 211, 212, 214]"
+56,48,Negative, The last few weeks they had started to open up a little more to each other .,[],"[223, 231]"
+56,49,Positive, Sat on the same couch with knees touching and sometimes a hand on the other persons knee .,[],[225]
+56,50,Neutral, It was still moving slowly but they had started to become comfortable with showing some affection .,[],"[230, 231]"
+56,54,Negative, Things had been moved around a little and a layer of dust has been removed meaning Aziraphale has indeed been working .,[],[303]
+56,66,Neutral, There had been some more pressing matters at the time .,[],[296]
+56,68,Neutral, They looked like they could use a good grooming .,[],[303]
+56,71,Positive, “ Hey Angel . ”,[],[313]
+56,73,Neutral, “ Thought we were going out for lunch today . ”,[],"[317, 319]"
+56,75,Negative, “ But here I find you lazily reading .,[],"[385, 391]"
+56,76,Neutral, With your wings out as well . ”,[],[391]
+56,79,Negative," “ Really I meant to sit down for only an hour , then I was reading , and .",[],"[337, 385]"
+56,82,Negative, “ Well it looks like you are done reading now .,[],"[341, 391, 344]"
+56,83,Neutral, I think I could go for some sushi . ”,[],[385]
+56,85,Neutral, “ Then after that I think you need your wings groomed .,[],"[352, 385, 391]"
+56,86,Negative, I do n't think I have seen a messier pair . ”,[],[385]
+56,88,Negative," “ I would love to go for lunch , but I have a bit of a problem . ”",[],[385]
+56,91,Neutral, “ You turning down something to eat ? ”,[],[391]
+56,94,Neutral," “ As I said I would love to go , but I can move my wing at the moment . ”",[],[385]
+56,97,Neutral, Are you alright ?,[],[391]
+56,101,Negative, “ You are going to think this silly . ”,[],[391]
+56,103,Neutral, “ It is a cardinal sin to move a cat . ”,[],[409]
+56,108,Neutral, “ Why is there a cat on your wing ? ”,[],[434]
+56,109,Neutral, “ It came in through the window well I was reading .,[],"[558, 450]"
+56,110,Negative," I meant to shoo it away sooner , but I was reading and then it appears I lost track of time .",[],"[558, 450]"
+56,111,Neutral, I honestly thought it was going to leave a long time ago .,[],"[558, 450]"
+56,112,Negative, But it has fallen asleep on my wing . ”,[],"[450, 558]"
+56,114,Neutral, “ So just move it . ”,[],[457]
+56,116,Neutral, “ I ca n't !,[],[558]
+56,117,Neutral, It is a sin to move a cat . ”,[],[466]
+56,118,Neutral, Aziraphale fidgets again with the book and looks towards the window .,[],[303]
+56,120,Neutral, “ I am pretty sure that is just a thing cat owners say .,[],[558]
+56,121,Neutral," Trust me , I am a demon and know about sins . ”",[],[558]
+56,123,Neutral, “ Are you sure ?,[],[558]
+56,124,Negative, I mean it is not doing any harm . ”,[],"[558, 486]"
+56,127,Neutral, “ We could just wait until it wants to move .,[],"[511, 496]"
+56,129,Negative, Just skip lunch for now . ”,[],[499]
+56,132,Neutral, “ No we move it now .,[],"[509, 511, 512]"
+56,133,Positive, Ca n't have something stopping you from things you enjoy . ”,[],[558]
+56,134,Negative, The cat just slow blinks back at Crowley .,[],[371]
+56,140,Negative," Just let it be , we do n't even need to eat anyways . ”",[],"[539, 540]"
+56,142,Negative, “ That is not the point .,[],[545]
+56,143,Negative, The point is it ca n't just stop you from moving before you do n't want to move it .,[],"[558, 557]"
+56,144,Neutral, Just pull you wing up and dislodge it . ”,[],"[558, 557]"
+56,145,Negative, “ I do n't want to disturb it .,[],"[557, 558]"
+56,146,Negative, It has been keeping me company for a little while and really is doing no harm . ”,[],"[557, 558]"
+56,147,Positive, Aziraphale offers the cat a smile and a pet .,[],[303]
+56,172,Negative, It tucks it 's tail around it 's self and appears to be listening to Aziraphale .,[],"[303, 690]"
+56,173,Neutral, Or maybe it was just interested in the voice of an angel .,[],[690]
+56,179,Neutral, But that was a question for another t,[],[716]
+57,2,Positive, Crowley flashed a grin over his shoulder .,[0],[452]
+57,5,Positive, He grabbed the long pole that served as a door handle and pulled it open .,[0],"[452, 18]"
+57,10,Negative, He cautiously side - stepped around an especially small one .,[0],"[33, 452]"
+57,11,Neutral," “ They ’re not going to bite you , ” Crowley laughed , reaching over and pulling one of his hands free and hauling him onwards .",[0],"[452, 36, 37, 113]"
+57,14,Negative," Usually Crowley ’s more unorthodox hunches and suggestions did turn out all right in the end , even though he had no idea what could possibly interest him in a place like this .",[0],[452]
+57,16,Neutral, Crowley grinned at him .,[0],[452]
+57,18,Negative, Aziraphale tugged his hand free and reached out for the dainty little angel costume .,[15],[279]
+57,21,Positive," Crowley ’s happiness was glittering off him , all twinkling and bright .","[0, 15]","[452, 279]"
+57,23,Negative," Aziraphale tried _ very _ hard not to smile , but he could n’t help himself .",[15],[279]
+57,26,Neutral, Crowley ’s grin was blinding as they crossed the floor to the selection of little animals .,[0],"[452, 94]"
+57,28,Neutral, Aziraphale swatted him fondly .,[22],"[279, 100]"
+57,30,Negative," Crowley stopped dead in his tracks , the pivoted like he was on a revolving chair .",[0],[452]
+57,41,Positive, He stepped aside and made a grand sweeping gesture .,[0],[452]
+57,46,Neutral, Crowley bent to peer at a colourful unicorn .,[0],[452]
+57,48,Negative," Aziraphale hugged the little outfit under his arm and started working his way along the rack , peering at each option , the sample models sitting arrayed on shelves in a variety of garish costumes .",[15],[279]
+57,49,Neutral," Some were peculiar looking creatures , but finally , he spotted a teddy bear that looked much more like the ones he remembered .",[15],[279]
+57,51,Positive," He swept it up , all soft brown fluff and little paws .",[15],"[279, 157]"
+57,53,Neutral, Crowley held up his colourful unicorn .,[0],[452]
+57,55,Neutral, Aziraphale shook his head happily .,[15],[279]
+57,57,Neutral," A small queue had formed at what Crowley referred to as the “ stuffer ” , their communal delight frothing around Aziraphale and making him smile even more .","[0, 15]","[452, 279, 176]"
+57,60,Neutral, Crowley said .,[0],[452]
+57,62,Positive," Aziraphale opened his mouth to demur , when a thought crept on him .",[15],[279]
+57,63,Negative," “ Actually , I would like that , ” he said .",[15],"[317, 195, 279]"
+57,64,Negative," “ After all , one never knows when he might need to go undercover . ”",[15],"[197, 279]"
+57,65,Neutral," Crowley snorted , holding out his hands .",[0],[452]
+57,68,Negative," He hurried up to the back of the shop , examining the selection of clothing and occasionally darting glances back .",[0],[452]
+57,69,Positive," As soon as Crowley was well and truly distracted , talking to the woman at the stuffer , he moved quickly to the animal shelf , scanning along until he spotted what he was looking for and smiled , satisfied .",[0],[452]
+57,70,Neutral," By the time he got back to Crowley , the demon had the fluffy little bear all dressed and packaged up in its box .",[0],[452]
+57,72,Neutral, he inquired .,[0],[452]
+57,73,Neutral," “ Nothing that I liked , no , ” Aziraphale replied , holding out his hand for the box .",[15],"[279, 317]"
+57,77,Positive, Crowley swanned off towards the till .,[0],[452]
+57,79,Positive," Aziraphale laughed , hurrying after him .",[15],[279]
+57,81,Neutral, Crowley threw a grin back at him .,[0],[452]
+57,84,Neutral, Only when they were out of the shop did Crowley hand over the box .,[0],"[452, 257]"
+57,85,Positive," Aziraphale peered in happily , then beamed at Crowley .",[15],"[279, 452]"
+57,89,Positive, He pointed a finger over Aziraphale ’s shoulder and the angel spun to spot a lovely little bistro he had seen reviewed in the paper the week before .,[15],"[271, 279]"
+57,91,Neutral, Crowley was suddenly at his back .,[0],[452]
+57,92,Negative," “ I ’m not done spoiling you yet , ” he murmured close to his ear .",[0],"[317, 279, 452]"
+57,93,Positive," A warm hand spread low on Aziraphale ’s back , sending a rather nice tingle through him .","[80, 0]","[279, 452]"
+57,95,Positive, _______________________________________ Dinner had indeed been lovely and Crowley had come in for wine afterwards .,[0],[452]
+57,96,Negative," Only once the demon slouched off , mumbling about needing his beauty sleep , had Aziraphale opened the box and withdrawn his prize .","[15, 0]","[299, 279, 452]"
+57,97,Neutral," The teddy bear looked lovely , the golden brown fluff soft and fuzzy under his hands .",[0],[452]
+57,99,Neutral," He lifted it up , peering .",[0],"[452, 327]"
+57,102,Neutral, So he did .,[0],[452]
+57,104,Neutral, The teddy bear spoke with Crowley ’s voice .,[0],[452]
+57,105,Positive, Aziraphale burst out laughing .,[15],[279]
+57,107,Neutral, Crowley ! ”,[0],[452]
+57,108,Neutral, He pressed it again .,[0],"[452, 327]"
+57,112,Negative," As impressions went , it really was n’t bad at all and Aziraphale ’s shoulders shook with laughter , as he pressed and pressed the paw over and over again .","[95, 0]","[452, 339, 279]"
+57,113,Neutral," Five different phrases all told , all ones he used far too often .",[0],"[342, 452]"
+57,114,Neutral," Well , if he insisted on mucking about with Aziraphale ’s newest possession , it was war .","[15, 0]","[279, 452, 350]"
+57,116,Positive," Between the new inventory to add to the shelves and a rather nice batch of oolong , Aziraphale had n’t paid Crowley much attention when he came in .","[15, 0]","[279, 452]"
+57,118,Negative," he inquired without turning or looking over , well aware that the demon had the curiosity of a cat and there was a mysterious parcel with a ribbon on it on the coffee table .",[15],"[279, 384]"
+57,121,Negative," he asked , setting down several books and reaching for his cup of tea .",[15],[279]
+57,122,Neutral," “ What box , he says , ” Crowley huffed .","[0, 15]","[452, 279]"
+57,125,Positive, Aziraphale peered over his shoulder good - naturedly .,[15],[279]
+57,128,Neutral, He waved a hand .,[15],[279]
+57,130,Positive, It took all of three seconds for Crowley to give an excited yelp and tear into the wrapping paper .,[0],"[394, 452, 399]"
+57,131,Neutral," Aziraphale turned to watch , as Crowley reached the Build - a-Bear Workshop box .","[15, 0]","[279, 452, 403]"
+57,132,Neutral," Crowley glanced up at him , a grin widening across his face .",[0],[452]
+57,135,Negative," Aziraphale tried to stop the smile , but was very difficult when Crowley hauled his rainbow unicorn out of the box with a triumphant hoot and held it aloft .","[15, 0]","[279, 452, 428]"
+57,137,Positive," Crowley nodded happily , then frowned .",[0],[452]
+57,139,Neutral," With a wary look at Aziraphale , Crowley pressed .",[0],"[279, 452]"
+57,142,Neutral, Crowley protested .,[0],[452]
+57,143,Neutral, Aziraphale sipped his tea mildly .,[15],[279]
+57,146,Neutral," Crowley flapped a hand at him , then pressed the sticker again .","[0, 15]","[452, 279]"
+57,150,Neutral," “ I only quote verbatim , darling , ” Aziraphale murmured , ducking over his tea .",[15],"[452, 279]"
+57,152,Neutral," Crowley wriggled impatiently and hugged the unicorn on his lap , pressing it again .",[0],"[452, 428]"
+57,155,Negative," “ Well , you _ did _ say it quite a few times , ” Aziraphale sniffed , approaching to sit down at his desk .",[15],"[510, 476, 279]"
+57,156,Neutral, Crowley made a face and pressed the unicorn again .,[0],[452]
+57,159,Neutral," “ I know , ” Aziraphale murmured , his heart in his throat .",[15],"[452, 279]"
+57,161,Neutral, He set down his cup .,[15],[279]
+57,162,Negative," “ Maybe you should put it back in the box for – ” “ _ You can stay at my place , if you like … _ ” Only these words did n’t sound like Crowley , not even a little bit .",[146],"[510, 504, 522, 452]"
+57,163,Positive," Crowley stared down at the toy , then at Aziraphale .",[0],"[452, 279]"
+57,165,Positive, “ I … I only thought his teddy bear friend might … be lonely without him . ”,[149],"[541, 522]"
+57,166,Positive, He met Crowley ’s eyes and offered him a tentative smile .,"[151, 149]","[452, 541]"
+57,167,Neutral, “ Do you think he might like to stay ? ”,[149],"[541, 510]"
+57,168,Positive," Wide - eyed , Crowley nodded , delight frothing off him like bubbles .","[0, 149]","[452, 541]"
+57,170,Negative, Crowley looked him dead in the eye and squeezed the unicorn .,"[0, 149]","[452, 541]"
+57,0,Neutral," ## The Bear Necessities Aziraphale came up short , staring at the shop .",[],[279]
+57,3,Neutral," “ My choice of date , angel .",[],[452]
+57,4,Neutral, This is where I chose . ”,[],[452]
+57,6,Neutral, “ In we go ! ”,[],[17]
+57,7,Negative," “ But … but it ’s a _ toy _ shop , ” Aziraphale protested half - heartedly , eyeing the masses of colourful little outfits and fluffy animal - ish - shaped stuffed toys on display .",[],"[18, 279]"
+57,12,Neutral, “ I saw something I thought you might like . ”,[],"[452, 113]"
+57,15,Neutral," After all , it was all fripperies and bright colours and – “ Oh my word ! ”",[],"[452, 59]"
+57,19,Neutral, “ They make _ angel _ toys ? ”,[],[74]
+57,20,Neutral, “ If you want them to . ”,[],"[113, 74]"
+57,22,Neutral," “ So , d’you want to build a bear with me ? ”",[],[452]
+57,25,Neutral," “ Oh , if you insist . ”",[],[113]
+57,27,Neutral, “ Knew you could n’t resist more angel tat . ”,[],[113]
+57,29,Positive, “ I know very well you must ’ve been goggling it to know they were available here . ”,[],"[113, 103, 104]"
+57,32,Neutral, “ You know ?,[],[113]
+57,35,Negative, “ Cobweb ?,[],[116]
+57,36,Negative, Are you messing me around ? ”,[],"[113, 452]"
+57,37,Neutral, Aziraphale blinked innocently .,[],[279]
+57,40,Neutral, I ’ll believe that when I see it . ”,[],"[121, 113]"
+57,42,Neutral," “ So , angel , which one do you fancy ? ”",[],"[126, 113]"
+57,44,Neutral, “ Er … are they meant to be so flat ? ”,[],[136]
+57,47,Neutral, “ They stuff them for you . ”,[],"[136, 113]"
+57,52,Neutral, “ This one ! ”,[],[160]
+57,54,Neutral, “ Sure you do n’t want something a bit more psychedelic . ”,[],[113]
+57,56,Positive, “ This one will be _ lovely _ . ”,[],[171]
+57,59,Neutral, “ D’you want me to wait ? ”,[],[317]
+57,61,Neutral, “ You can go and pick out other outfits if you want . ”,[],[113]
+57,66,Negative, “ I do n’t think they make all - black outfits . ”,[],"[203, 317]"
+57,75,Neutral, I ’m paying .,[],[317]
+57,76,Neutral," My date , after all . ”",[],[317]
+57,80,Neutral," “ You really are spoiling me , are n’t you ? ”",[],"[279, 317]"
+57,82,Neutral, “ Won you over for the price of a teddy bear ?,[],"[251, 279]"
+57,83,Negative," You ’re a cheap date , angel . ”",[],[279]
+57,86,Neutral, “ Shall we pop in somewhere for a snack ? ”,[],[263]
+57,88,Neutral, “ D’you think I ’d plan a date without taking your appetite into account . ”,[],"[279, 317]"
+57,98,Negative," There was , however , an odd pad on its paw .",[],[327]
+57,101,Positive," “ Press me , ” Aziraphale read aloud , puzzled .",[],"[317, 279]"
+57,103,Neutral, “ That ’s ticketty boo ! ”,[],[320]
+57,110,Neutral," “ Oh , you cheeky devil … ” Another press .",[],[279]
+57,111,Neutral," “ Ah , my dear . ”",[],[333]
+57,124,Positive, The great big bright red box with a ribbon on it ! ”,[],[384]
+57,129,Negative, “ You should check the label . ”,[],[510]
+57,133,Positive, “ I knew you liked it . ”,[],"[452, 510, 413]"
+57,134,Positive, “ It was quite charming . ”,[],[413]
+57,136,Positive, “ I could n’t help noticing you liked that one . ”,[],"[422, 452, 510]"
+57,138,Negative, “ Wait … ” It had a sticker on it .,[],[428]
+57,140,Neutral, “ _ NGK _ ! ”,[],[432]
+57,141,Positive, “ Angel ! ”,[],[435]
+57,147,Neutral, “ _ You wot ?,[],[510]
+57,148,Neutral," _ ” “ Oh , for Satan ’s sake , angel ! ”",[],[448]
+57,151,Positive," Five phrases , recorded in sequence .",[],[457]
+57,153,Neutral, “ _ I ’ve got a favour … _ ” “ Really ?,[],[452]
+57,154,Neutral," Everything I ’ve ever said to you , and you use that ? ”",[],"[469, 510, 472]"
+57,158,Positive," _ ” “ You ’re such a soft lump , angel , ” the demon grumbled happily .",[],[510]
+57,164,Positive, “ Angel … ” Aziraphale shifted self - consciously .,[],[517]
+57,169,Neutral," “ Oh , you ca n’t be lost for words now , can you ? ”",[],"[536, 510]"
+57,171,Neutral, “ _ NG,[],[545]

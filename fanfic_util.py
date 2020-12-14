@@ -1,6 +1,7 @@
 #!/usr/bin/bash/python3
 
 from bs4 import BeautifulSoup
+from stanza.server import Document
 
 import string, html2text, sys
 
@@ -156,17 +157,22 @@ def get_fanfics(start, end, slicing): #gets the paths to the fics, opens them
 	for path in fic_paths:
 		num_fic=int((path.split('_')[3]).split('.')[0])
 		chapterised_fic = get_chapterised_fic(path, num_fic)
-		fic_list.append(Fanfic(num_fic, chapterised_fic, None))
+		fic_list.append(Fanfic(num_fic, chapterised_fic, None, None, None))
 
 	return fic_list
 
 ### CLASSES ###
 
 class Fanfic():
-	def __init__(self, index, chapters, annotations):
+	def __init__(self, index, chapters, annotations, characters, sentences):
 		self.index = index
 		self.chapters = chapters
 		self.annotations = annotations
+		self.characters = characters
+		self.sentences = sentences
+
+	def set_chapters(self, new_chapters):
+		self.chapters = new_chapters
 
 	def get_chapter(self, index):
 		return self.chapters[index]
@@ -174,6 +180,7 @@ class Fanfic():
 	def get_string_chapters(self):
 		chaps = ''
 		for chapter in self.chapters: chaps += chapter+'\n'
+
 
 		return chaps
 
