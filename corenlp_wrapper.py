@@ -86,6 +86,7 @@ class CoreClient2(): #This client works with lists of Fanfic objects. Returns th
 
 					for chapter in fic_chapters:
 						if len(chapter) > 100000:
+							print('BIG CHAPTER')
 							div_chapters = split_chapter(chapter)
 							fic_chapters[i:i] = div_chapters
 
@@ -103,9 +104,6 @@ class CoreClient2(): #This client works with lists of Fanfic objects. Returns th
 
 		else: raise TypeError("[corenlp_wrapper2] The input for the client must be list of Fanfic, or a single Fanfic")
 
-		
-
-		
 
 		annotations = []
 		

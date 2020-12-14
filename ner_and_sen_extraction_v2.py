@@ -16,7 +16,9 @@ CHARACTERS_TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_characters.csv'
 SENTENCES_TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_sentences.csv'
 CANON_DB = '/home/maria/Documents/Fanfic_ontology/canon_characters.csv'
 
-ROMANCE_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths2.txt'
+ROMANCE_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_shortened.txt'
+FRIENDSHIP_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_shortened.txt'
+ENEMY_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths3.txt'
 
 FEMALE_TAGS = ['She/Her Pronouns for ', 'Female ', 'Female!', 'Female-Presenting ']
 MALE_TAGS = ['He/Him Pronouns for ', 'Male ', 'Male!', 'Male-Presenting ']
@@ -172,7 +174,7 @@ def get_longest_lists(coref_chains): #returns the two longest chains in the core
 
 	return longest
 
-def merge_sentences(fic_index, character_sentences):
+def merge_sentences(fic_index, fic_dataset, character_sentences):
 	sen_ids = []
 	merged_sentences = []
 
@@ -190,6 +192,7 @@ def merge_sentences(fic_index, character_sentences):
 			sen_ids.append(sentence['senID'])
 
 			sent['ficID'] = fic_index
+			sent['ficDataset'] = fic_dataset
 			sent['senID'] = sentence['senID']
 			sent['Sentiment'] = sentence['Sentiment']
 			sent['Verbs'] = sentence['Verbs']
@@ -296,10 +299,10 @@ def extract_data_from_annotations(annotation):
 	return character_entities, character_mentions, character_sentences
 
 def character_and_sentence_extraction(fics):
-	# Declarations for later
-	#sentences = []
-	chains = []
-	#mention_sentences = []
+	# Declarations
+	client = CoreClient2()
+	NERtagger = NERTagger()
+	#chains = []
 
 	print('\n###### Starting CoreNLP server and processing fanfics. . .######\n')
 	start= time.time()
@@ -349,7 +352,7 @@ def character_and_sentence_extraction(fics):
 		canonized_characters = decide_gender(canonized_characters, canon_db)
 
 		# Merge all sentences into unique sentences with the characters they mention
-		merged_sentences = merge_sentences(fic.index,character_sentences)
+		merged_sentences = merge_sentences(fic.index,fic.dataset,character_sentences)
 
 		fic.characters = canonized_characters
 		fic.sentences = merged_sentences
@@ -372,16 +375,26 @@ def preprocess_fic(fic):
 
 	return tagged_fic
 
+def get_fanfics(start, end):
+	fGetter = FanficGetter()
+
+	fGetter.set_fic_listing_path(ROMANCE_LISTING_PATH)
+	r_fics = fGetter.get_fanfics_in_range(start, end) #get ROMANCE fanfics
+
+	fGetter.set_fic_listing_path(FRIENDSHIP_LISTING_PATH)
+	f_fics = fGetter.get_fanfics_in_range(start, end) #get FRIENDSHIP fanfics
+
+	fGetter.set_fic_listing_path(ENEMY_LISTING_PATH)
+	e_fics = fGetter.get_fanfics_in_range(start, end) #get ENEMY fanfics
+
+	return r_fics + f_fics + e_fics
+
+def count_fics_already_processed():
+	processed_sentences = pandas.DataFrame.read_csv(SENTENCES_TO_CSV)
+
+	return set(processed_sentences['ficID'])
 
 ### MAIN ###
-
-# Initializing getters and taggers...
-fGetter = FanficGetter()
-NERtagger = NERTagger()
-client = CoreClient2()
-
-fGetter.set_fic_listing_path(ROMANCE_LISTING_PATH)
-
 # Loading canon DB...
 canon_db = pandas.read_csv(CANON_DB)
 
@@ -392,7 +405,7 @@ if len(sys.argv) == 3:
 	print('Fetching fic texts...')
 	start = time.time()
 
-	fic_list = fGetter.get_fanfics_in_range(start_index, end_index)
+	fic_list = get_fanfics(start_index, end_index)
 	#fic_texts = [fic.chapters for fic in fic_list] #debug
 	#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
 
@@ -401,21 +414,29 @@ if len(sys.argv) == 3:
 
 	processed_fics = character_and_sentence_extraction(fic_list)
 	
-	all_characters = [fic.characters for fic in processed_fics]
-	all_sentences = [fic.sentences for fic in processed_fics]
+	all_characters = []
+	all_sentences = []
+	for fic in processed_fics: 
+		all_characters.extend(fic.characters)
+		all_sentences.extend(fic.sentences)
 
-	print(all_characters[:5]) #debug
-	print(all_sentences[:5]) #debug
+	print('Saving data to csv file...')
+	start = time.time()
 
 	# Create dataframe from dicts and save to csv
 	c_df = pandas.DataFrame.from_dict(all_characters)
 	s_df = pandas.DataFrame.from_dicst(all_sentences)
 
-	#c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=True)
-	#s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=True)
+	c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=True)
+	s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=True)
 
+	end = time.time()
+	print("...saved. Elapsed time: ",(end-start)/60," mins")
 
 elif len(sys.argv) == 1:
+	fGetter = FanficGetter()
+	fGetter.set_fic_listing_path(ROMANCE_LISTING_PATH)
+
 	print('Fetching fic texts...')
 	start = time.time()
 
@@ -444,8 +465,8 @@ elif len(sys.argv) == 1:
 	c_df = pandas.DataFrame.from_dict(all_characters)
 	s_df = pandas.DataFrame.from_dict(all_sentences)
 
-	c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=True)
-	s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=True)
+	#c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=True)
+	#s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=True)
 
 
 

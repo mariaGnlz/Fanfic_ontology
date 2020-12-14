@@ -145,7 +145,7 @@ def get_chapterised_fic(path, num_fic): #Transforms the HTML file in a list of c
 
 	return chapterised_fic
 
-def get_fanfics(start, end, slicing): #gets the paths to the fics, opens them
+def get_fanfics(dataset, start, end, slicing): #gets the paths to the fics, opens them
                    #and stores them in chapterised form in a list of Fanfic objects
 	paths_file = open(FIC_LISTING_PATH, 'r')
 	fic_paths = [line[:-1] for line in paths_file.readlines()]
@@ -157,15 +157,16 @@ def get_fanfics(start, end, slicing): #gets the paths to the fics, opens them
 	for path in fic_paths:
 		num_fic=int((path.split('_')[3]).split('.')[0])
 		chapterised_fic = get_chapterised_fic(path, num_fic)
-		fic_list.append(Fanfic(num_fic, chapterised_fic, None, None, None))
+		fic_list.append(Fanfic(num_fic, dataset, chapterised_fic, None, None, None))
 
 	return fic_list
 
 ### CLASSES ###
 
 class Fanfic():
-	def __init__(self, index, chapters, annotations, characters, sentences):
+	def __init__(self, index, dataset, chapters, annotations, characters, sentences):
 		self.index = index
+		self.dataset = dataset
 		self.chapters = chapters
 		self.annotations = annotations
 		self.characters = characters
@@ -189,14 +190,17 @@ class Fanfic():
 
 
 class FanficGetter():
+	def __init__(self):
+		self.dataset = 'GENERAL'
+
 	def get_fanfics_in_range(self, start_index, end_index):
-		fic_list = get_fanfics(start_index, end_index, True)
+		fic_list = get_fanfics(self.dataset, start_index, end_index, True)
 
 
 		return fic_list
 
 	def get_fanfics_in_list(self):
-		fic_list = get_fanfics(0, 0, False)
+		fic_list = get_fanfics(self.dataset, 0, 0, False)
 
 		return fic_list
 
@@ -235,6 +239,13 @@ class FanficGetter():
 	def set_fic_listing_path(self, new_fic_listing):
 		global FIC_LISTING_PATH
 		FIC_LISTING_PATH = new_fic_listing
+
+		if 'romance' in new_fic_listing: self.dataset = 'ROMANCE'
+		elif 'friendship' in new_fic_listing: self.dataset = 'FRIENDSHIP'
+		elif 'enemy' in new_fic_listing: self.dataset = 'ENEMY'
+		elif 'explicit' in new_fic_listing: self.dataset = 'EXPLICIT'
+		elif 'htlm' in new_fic_listing: self.dataset = 'GENERAL'
+		else: new_fic_listing: self.dataset = 'UNKNOWN'
 
 	def set_save_txt_path(self, new_fic_save_path):
 		global SAVE_TXT_PATH
