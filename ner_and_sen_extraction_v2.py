@@ -214,10 +214,10 @@ def extract_data_from_annotations(annotation):
 	chains = annotation.corefChain #CorefChain[], made up of CorefMention[]
 	
 
-	coref_chains = []
-	for i in range(0, len(chains)): #debug
-		coref_chains.append(chains[i].mention)
-	coref_chains = get_longest_lists(coref_chains)
+	#coref_chains = []
+	#for i in range(0, len(chains)): #debug
+	#	coref_chains.append(chains[i].mention)
+	#coref_chains = get_longest_lists(coref_chains)
 
 	# lists to store the return values in
 	character_entities = []
@@ -347,9 +347,9 @@ def character_and_sentence_extraction(fics):
 		for annotation in fic.annotations:
 			entities, mentions, sentences = extract_data_from_annotations(annotation)
 
-			character_entities.extend(entities)
-			character_mentions.extend(mentions)
-			character_sentences.extend(sentences)
+			character_entities = character_entities + entities
+			character_mentions = character_mentions + mentions
+			character_sentences = character_sentences + sentences
 
 		# Merge all character mentions into unique characters
 		unique_characters = merge_character_mentions(fic.index, character_entities, character_mentions, tagger_characters)
@@ -406,8 +406,10 @@ def get_fanfics(start, end, dataset):
 	for fic in fics:
 		if len(fic.chapters) != 1:
 			f = open(ERRORLOG, 'a')
-			f.write('Error on fanfic #'+str(fic.index)+' from dataset '+dataset+': num chapters = '+str(len(fic.chapters)))
+			f.write('Error on fanfic #'+str(fic.index)+' from dataset '+dataset+': num chapters = '+str(len(fic.chapters))+'\n')
 			f.close()
+
+			raise Exception('ERROR: a multi-chapter fanfic was found (fic index #'+str(fic.index)+')')
 
 	return fics
 
@@ -437,6 +439,8 @@ if len(sys.argv) == 3:
 	start = time.time()
 
 	fic_list = get_fanfics(start_index, end_index, 'r')
+
+
 	#fic_texts = [fic.chapters for fic in fic_list] #debug
 	#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
 
@@ -448,8 +452,8 @@ if len(sys.argv) == 3:
 	all_characters = []
 	all_sentences = []
 	for fic in processed_fics: 
-		all_characters.extend(fic.characters)
-		all_sentences.extend(fic.sentences)
+		all_characters = all_characters + fic.characters
+		all_sentences = all_sentences + fic.sentences
 
 	print('Saving data to csv file...')
 	start = time.time()

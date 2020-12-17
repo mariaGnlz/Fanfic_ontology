@@ -10,7 +10,9 @@ import string, html2text, sys
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 #TXT_LISTING_PATH = '/'
 #SsAVE_TXT_PATH = '/home/maria/Documents/pruebasNLTK/trial_e_fics/'
-TXT_LISTING_PATH = '/home/maria/Documents/pruebasNLTK/trial_e_txt_paths.txt'
+#TXT_LISTING_PATH = '/home/maria/Documents/pruebasNLTK/trial_e_txt_paths.txt'
+
+ERRORLOG = '/home/maria/Documents/Fanfic_ontology/TFG_logs/fanfic_util_errorlog.txt'
 
 ### FUNCTIONS ###
 #def clean_text(text, chapter_titles):
@@ -48,13 +50,13 @@ def clean_text(text, num_chapters, num_fic):
 	
 	if len(clean_chapters) != num_chapters: #something went wrong
 		print("Chapters of fic number ", num_fic, " were improperly processed") #debug
-		f = open('clean_text_problems.txt', 'a')
+		f = open(ERRORLOG, 'a')
 		ficid = "Num fic: "+str(num_fic)+"\n"
 		ficchapters = str(num_chapters)+"\n" 
 		f.write(ficid)
 		f.write(ficchapters)
 		f.write(text[:10000])
-		f.write("=====================================================")
+		f.write("=====================================================\n")
 		f.close()
 
 	"""
