@@ -1,12 +1,11 @@
 #!/bin/bash/python3
 
 import sys, time, pandas, numpy
-#from sklearn.feature_extraction import DictVectorizer
-#from sklearn.feature_extraction.text import TfidfTransformer
 from corenlp_wrapper import CoreClient2
 from stanza.server import Document
 from nltk.tag import pos_tag
 from nltk.tokenize import sent_tokenize, word_tokenize
+#from urllib.error import HTTPError
 
 from NER_tagger_v3 import NERTagger
 from fanfic_util import FanficGetter, FanficHTMLHandler, Fanfic
@@ -15,9 +14,10 @@ from fanfic_util import FanficGetter, FanficHTMLHandler, Fanfic
 CHARACTERS_TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_characters.csv'
 SENTENCES_TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_sentences.csv'
 CANON_DB = '/home/maria/Documents/Fanfic_ontology/canon_characters.csv'
+ERRORLOG = '/home/maria/Documents/Fanfic_ontology/TFG_logs/ner_and_sen_extraction_v2_errorlog.txt'
 
-ROMANCE_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_shortened.txt'
-FRIENDSHIP_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_shortened.txt'
+ROMANCE_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths_shortened.txt'
+FRIENDSHIP_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_paths_shortened.txt'
 ENEMY_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths3.txt'
 
 FEMALE_TAGS = ['She/Her Pronouns for ', 'Female ', 'Female!', 'Female-Presenting ']
@@ -307,7 +307,18 @@ def character_and_sentence_extraction(fics):
 	print('\n###### Starting CoreNLP server and processing fanfics. . .######\n')
 	start= time.time()
 
-	annotated_fics = client.parse(fics)
+
+	annotated_fics, error = client.parse(fics)
+	if error:
+		print('Error: not all fanfics could be processed by the server')
+		recovered_fics = []
+		for fic in annotated_fics:
+			if fic.annotations is not None: recovered_fics.append(fic)
+
+		print('Program is continuing with ',len(recovered_fics),' of the original ',len(fics), 'fics')
+		annotated_fics = recovered_fics
+
+	
 
 	end = time.time()
 	print("Client closed. "+ str((end-start)/60) +" mins elapsed")
@@ -346,23 +357,23 @@ def character_and_sentence_extraction(fics):
 		# Link characters to their canon version, if it has one
 		canonized_characters = link_characters_to_canon(unique_characters, canon_db)
 		#print(canonized_characters[:10])
-		#print(canonized_characters) #debug
 
 		# Decide genders for all characters
 		canonized_characters = decide_gender(canonized_characters, canon_db)
 
 		# Merge all sentences into unique sentences with the characters they mention
 		merged_sentences = merge_sentences(fic.index,fic.dataset,character_sentences)
+		#print(merged_sentences[:10]) #debug
 
-		fic.characters = canonized_characters
-		fic.sentences = merged_sentences
+		fic.set_characters(canonized_characters)
+		fic.set_sentences(merged_sentences)
 
 
 	end = time.time()
 	print(". . .annotation data processed. "+ str((end-start)/60) +" mins elapsed")
 
 
-	return fics
+	return annotated_fics
 
 def preprocess_fic(fic):
 	tagged_fic = []
@@ -375,24 +386,44 @@ def preprocess_fic(fic):
 
 	return tagged_fic
 
-def get_fanfics(start, end):
+def get_fanfics(start, end, dataset):
 	fGetter = FanficGetter()
+	fics = []
+	if dataset == 'r':
+		fGetter.set_fic_listing_path(ROMANCE_LISTING_PATH)
+		fics = fGetter.get_fanfics_in_range(start, end) #get ROMANCE fanfics
 
-	fGetter.set_fic_listing_path(ROMANCE_LISTING_PATH)
-	r_fics = fGetter.get_fanfics_in_range(start, end) #get ROMANCE fanfics
+	elif dataset == 'f':
+		fGetter.set_fic_listing_path(FRIENDSHIP_LISTING_PATH)
+		fics = fGetter.get_fanfics_in_range(start, end) #get FRIENDSHIP fanfics
 
-	fGetter.set_fic_listing_path(FRIENDSHIP_LISTING_PATH)
-	f_fics = fGetter.get_fanfics_in_range(start, end) #get FRIENDSHIP fanfics
+	elif dataset == 'e':
+		fGetter.set_fic_listing_path(ENEMY_LISTING_PATH)
+		fics = fGetter.get_fanfics_in_range(start, end) #get ENEMY fanfics
 
-	fGetter.set_fic_listing_path(ENEMY_LISTING_PATH)
-	e_fics = fGetter.get_fanfics_in_range(start, end) #get ENEMY fanfics
+	else: print('Dataset '+dataset+' does not exist')
 
-	return r_fics + f_fics + e_fics
+	for fic in fics:
+		if len(fic.chapters) != 1:
+			f = open(ERRORLOG, 'a')
+			f.write('Error on fanfic #'+str(fic.index)+' from dataset '+dataset+': num chapters = '+str(len(fic.chapters)))
+			f.close()
+
+	return fics
 
 def count_fics_already_processed():
-	processed_sentences = pandas.DataFrame.read_csv(SENTENCES_TO_CSV)
+	processed_sentences = pandas.read_csv(SENTENCES_TO_CSV)
+	
+	r_sentences = processed_sentences[processed_sentences['ficDataset'] == 'ROMANCE']
+	f_sentences = processed_sentences[processed_sentences['ficDataset'] == 'FRIENDSHIP']
+	e_sentences = processed_sentences[processed_sentences['ficDataset'] == 'ENEMY']
 
-	return set(processed_sentences['ficID'])
+	num_r = len(set(r_sentences['ficID']))
+	num_f = len(set(f_sentences['ficID']))
+	num_e = len(set(e_sentences['ficID']))
+
+	print('Romance fics processed: ',num_r,'\nFriendship fics processed: ',num_f,'\nEnemy fics processed: ',num_e)
+
 
 ### MAIN ###
 # Loading canon DB...
@@ -405,7 +436,7 @@ if len(sys.argv) == 3:
 	print('Fetching fic texts...')
 	start = time.time()
 
-	fic_list = get_fanfics(start_index, end_index)
+	fic_list = get_fanfics(start_index, end_index, 'r')
 	#fic_texts = [fic.chapters for fic in fic_list] #debug
 	#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
 
@@ -425,13 +456,17 @@ if len(sys.argv) == 3:
 
 	# Create dataframe from dicts and save to csv
 	c_df = pandas.DataFrame.from_dict(all_characters)
-	s_df = pandas.DataFrame.from_dicst(all_sentences)
+	s_df = pandas.DataFrame.from_dict(all_sentences)
 
-	c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=True)
-	s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=True)
+	c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=False)
+	s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=False)
 
 	end = time.time()
 	print("...saved. Elapsed time: ",(end-start)/60," mins")
+
+elif len(sys.argv) == 2:
+	if sys.argv[1] == 'c': count_fics_already_processed()
+	else: print('Incorrect use of command line')
 
 elif len(sys.argv) == 1:
 	fGetter = FanficGetter()
@@ -467,6 +502,9 @@ elif len(sys.argv) == 1:
 
 	#c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=True)
 	#s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=True)
+
+else:
+	print('Incorrect use of command line')
 
 
 

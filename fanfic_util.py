@@ -188,6 +188,12 @@ class Fanfic():
 	def set_annotations(self, ann):
 		self.annotations = ann
 
+	def set_characters(self, new_characters):
+		self.characters = new_characters
+
+	def set_sentences(self, new_sentences):
+		self.sentences = new_sentences
+
 
 class FanficGetter():
 	def __init__(self):
