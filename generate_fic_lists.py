@@ -10,7 +10,7 @@ FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 ROMANCE_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
 FRIENDSHIP_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_paths.txt'
 ENEMY_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths.txt'
-OUT = '/home/maria/Documents/Fanfic_ontology/generate_list_discarded.txt'
+OUT = '/home/maria/Documents/Fanfic_ontology/TFG_logs/generate_fic_lists_discardlog.txt'
 
 ENEMY_TAGS = ['Graphic Depictions Of Violence', 'Rape/Non-con', 'Torture', 'Mind Rape', 'Dead Dove: Do Not Eat']
 
@@ -31,7 +31,15 @@ enemy_fics = []
 
 romance = False
 friendship = False
+
+gomens_fanfics = []
 for path in html_fics:
+	fandoms = handler.get_fandoms(path)
+
+	if all(fandom in FANDOM_TAGS for fandom in fandoms): gomens_fanfics.append(path)
+
+
+for path in gomens_fanfics:
 	chapters = handler.get_chapters(path)
 	ships = handler.get_relationships(path)
 

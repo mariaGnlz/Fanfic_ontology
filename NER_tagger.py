@@ -140,7 +140,7 @@ def start_NER_tagging(tagged_fic, num_fic, typical):
 	
 	else:
 		print('Ocurrió algún problema procesando el fic ',num_fic)
-		f = open('NER_tag_problems.txt','a')
+		f = open('./TFG_logs/NER_tagger_errorlog.txt','a')
 		f.write('Problem ocurred on fic '+str(num_fic)+'\n')
 		f.close()
 	"""
