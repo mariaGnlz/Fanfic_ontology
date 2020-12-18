@@ -8,7 +8,7 @@ from urllib.error import HTTPError
 import time
 
 ### VARIABLES ###
-MAX_CHAPTER_LENGTH = 30000
+MAX_CHAPTER_LENGTH = 20000
 
 
 ### FUNCTIONS ###
