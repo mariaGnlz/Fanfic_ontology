@@ -403,13 +403,14 @@ def get_fanfics(start, end, dataset):
 
 	else: print('Dataset '+dataset+' does not exist')
 
-	for fic in fics:
-		if len(fic.chapters) != 1:
-			f = open(ERRORLOG, 'a')
-			f.write('Error on fanfic #'+str(fic.index)+' from dataset '+dataset+': num chapters = '+str(len(fic.chapters))+'\n')
-			f.close()
+	if dataset != 'e': #ENEMY dataset can contain more than one chapter per fanfic
+		for fic in fics:
+			if len(fic.chapters) != 1:
+				f = open(ERRORLOG, 'a')
+				f.write('Error on fanfic #'+str(fic.index)+' from dataset '+dataset+': num chapters = '+str(len(fic.chapters))+'\n')
+				f.close()
 
-			raise Exception('ERROR: a multi-chapter fanfic was found (fic index #'+str(fic.index)+')')
+				raise Exception('ERROR: a multi-chapter fanfic was found (fic index #'+str(fic.index)+')')
 
 	return fics
 
@@ -424,52 +425,102 @@ def count_fics_already_processed():
 	num_f = len(set(f_sentences['ficID']))
 	num_e = len(set(e_sentences['ficID']))
 
-	print('Romance fics processed: ',num_r,'\nFriendship fics processed: ',num_f,'\nEnemy fics processed: ',num_e)
+	return {'r': num_r, 'f': num_f, 'e':num_e}
 
 
 ### MAIN ###
 # Loading canon DB...
 canon_db = pandas.read_csv(CANON_DB)
 
-if len(sys.argv) == 3:
+if len(sys.argv) == 4:
+	start_index = int(sys.argv[1])
+	end_index = int(sys.argv[2])
+	dataset = sys.argv[3]
+
+	count_processed = count_fics_already_processed()
+
+	if start_index < count_processed[dataset]: print('Careful: you seem to be re-processing some fanfics')
+	else:
+
+		print('Fetching fic texts from database '+dataset+'...')
+		start = time.time()
+
+		fic_list = get_fanfics(start_index, end_index, dataset)
+
+
+		#fic_texts = [fic.chapters for fic in fic_list] #debug
+		#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
+
+		end = time.time()
+		print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
+
+		processed_fics = character_and_sentence_extraction(fic_list)
+		
+		all_characters = []
+		all_sentences = []
+		for fic in processed_fics: 
+			all_characters = all_characters + fic.characters
+			all_sentences = all_sentences + fic.sentences
+
+		print('Saving data to csv file...')
+		start = time.time()
+
+		# Create dataframe from dicts and save to csv
+		c_df = pandas.DataFrame.from_dict(all_characters)
+		s_df = pandas.DataFrame.from_dict(all_sentences)
+
+		c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=False)
+		s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=False)
+
+		end = time.time()
+		print("...saved. Elapsed time: ",(end-start)/60," mins")
+
+elif len(sys.argv) == 3:
 	start_index = int(sys.argv[1])
 	end_index = int(sys.argv[2])
 
-	print('Fetching fic texts...')
-	start = time.time()
+	count_processed = count_fics_already_processed()
 
-	fic_list = get_fanfics(start_index, end_index, 'r')
+	if start_index < count_processed['r']: print('Careful: you seem to be re-processing some fanfics')
+	else:
+
+		print('Fetching fic texts...')
+		start = time.time()
+
+		fic_list = get_fanfics(start_index, end_index, 'r')
 
 
-	#fic_texts = [fic.chapters for fic in fic_list] #debug
-	#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
+		#fic_texts = [fic.chapters for fic in fic_list] #debug
+		#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
 
-	end = time.time()
-	print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
+		end = time.time()
+		print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
 
-	processed_fics = character_and_sentence_extraction(fic_list)
-	
-	all_characters = []
-	all_sentences = []
-	for fic in processed_fics: 
-		all_characters = all_characters + fic.characters
-		all_sentences = all_sentences + fic.sentences
+		processed_fics = character_and_sentence_extraction(fic_list)
+		
+		all_characters = []
+		all_sentences = []
+		for fic in processed_fics: 
+			all_characters = all_characters + fic.characters
+			all_sentences = all_sentences + fic.sentences
 
-	print('Saving data to csv file...')
-	start = time.time()
+		print('Saving data to csv file...')
+		start = time.time()
 
-	# Create dataframe from dicts and save to csv
-	c_df = pandas.DataFrame.from_dict(all_characters)
-	s_df = pandas.DataFrame.from_dict(all_sentences)
+		# Create dataframe from dicts and save to csv
+		c_df = pandas.DataFrame.from_dict(all_characters)
+		s_df = pandas.DataFrame.from_dict(all_sentences)
 
-	c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=False)
-	s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=False)
+		c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=False)
+		s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=False)
 
-	end = time.time()
-	print("...saved. Elapsed time: ",(end-start)/60," mins")
+		end = time.time()
+		print("...saved. Elapsed time: ",(end-start)/60," mins")
 
 elif len(sys.argv) == 2:
-	if sys.argv[1] == 'c': count_fics_already_processed()
+	if sys.argv[1] == 'c': 
+		count = count_fics_already_processed()
+		print('Romance fics processed: ',count['r'],'\nFriendship fics processed: ',count['f'],'\nEnemy fics processed: ',count['e'])
 	else: print('Incorrect use of command line')
 
 elif len(sys.argv) == 1:
