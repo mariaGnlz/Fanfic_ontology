@@ -1,0 +1,311 @@
+,Fic,Sen index,Sentence,Sentiment,Character A,Character B
+0,8,78,"“ Sure you did , ” retorted Anathema , still grinning teasingly , “ You ’re _ so _ well known for your altruistic spirit . ” ",Positive,one,one
+1,8,21,“ You want to keep your upper arm still – no moving your elbow – and keep the dumbbell parallel to the floor . ” ,Negative,one,one
+2,8,82,You do n’t wan na injure yourself . ” ,Negative,one,one
+3,8,85,"Crowley regarded him thoughtfully for a few moments , then said , “ Tell you what . ",Neutral,one,him
+4,8,52,“ She your girlfriend ? ” ,Neutral,one,
+5,8,40,Saw you come in with Ana ; thought she might appreciate not having to nurse you through a sprain for the next week . ” ,Negative,one,Ana
+6,8,71,"“ What are you doing with Aziraphale , you old scoundrel ? ” ",Neutral,one,Aziraphale
+7,8,41,"“ Oh , you know her ? ” ",Neutral,one,
+8,8,64,So I suppose you could argue being in the gym is at least part of my job . ” ,Negative,one,
+9,8,15,"“ Not like that , you ’ll hurt yourself . ” ",Negative,one,one
+10,8,68,“ Ana ! ” ,Neutral,one,
+11,8,19,"“ Here , let me show you . ” ",Neutral,one,
+12,8,45,"She was a couple of years behind me , but ... well , you ’ve met her . ",Positive,one,
+13,8,87,"Why do n’t you join me when you can , and I ’ll show you the basics . ” ",Neutral,one,one
+14,8,57,"“ Oh , so you ’re an artist ? ” ",Neutral,one,
+15,8,31,"You ’re a quick study , ” said the redheaded stranger encouragingly . ",Negative,one,
+16,8,61,What do you do ? ” ,Neutral,one,
+17,8,50,“ How do you guys know each other ? ” ,Neutral,one,
+18,8,35,"“ Pleased to meet you , Crowley , ” said Aziraphale with a friendly smile . ",Neutral,one,Aziraphale
+19,8,73,“ Seducing him to your wicked ways ? ,Neutral,one,
+20,8,92,“ Ana should still have my number . ” ,Neutral,Ana,
+21,8,39,"No , I ’m a client , same as you . ",Neutral,one,
+22,8,81,“ You could use a few sessions with a personal trainer . ,Neutral,one,
+23,8,36,“ Do you work here ? ” ,Neutral,one,
+24,8,77,“ I selflessly interrupted my very important training regime to stop your friend here breaking his own arm off ! ” ,Positive,one,
+25,8,74,"You wan na watch out for this one , Aziraphale , ” she added with a teasing wink . ",Negative,one,Aziraphale
+26,8,70,“ What did I tell you about calling me by that name ? ” ,Neutral,one,
+27,8,93,"He glanced at her to confirm , and she nodded . ",Neutral,He,
+28,8,32,"Aziraphale realised he still had no idea who he was talking to , so he put down the dumbbell and extended a hand . ",Negative,he,he
+29,8,29,"“ Thanks , ” grinned Aziraphale , and swapped the weight to his other hand , mirroring the position he ’d just been shown . ",Neutral,one,he
+30,8,33,“ I ’m Aziraphale . ” ,Neutral,one,one
+31,8,37,he asked . ,Neutral,he,
+32,8,34,"“ Crowley , ” said the stranger , shaking his hand . ",Neutral,one,
+33,8,79,"“ Oh , shut it , ” said Crowley , but he was smiling . ",Neutral,Crowley,
+34,8,42,Aziraphale enquired . ,Neutral,one,
+35,8,27,"Aziraphale did a few more reps , concentrating on getting the movement right . ",Neutral,Aziraphale,
+36,8,38,"“ God , no , ” laughed Crowley , “ Although , maybe I should demand payment for doing their floor assistants ’ job ! ",Negative,Crowley,
+37,8,76,protested Crowley . ,Neutral,Crowley,
+38,8,83,"“ Yes , well ; broke student , ” shrugged Aziraphale . ",Positive,Aziraphale,
+39,8,53,"“ Oh , dear me , no , ” laughed Aziraphale . ",Neutral,one,
+40,8,16,"Aziraphale spun around to see who was addressing him , already blushing in embarrassment . ",Negative,Aziraphale,
+41,8,91,"“ Sure , ” said Crowley with a grin . ",Neutral,Crowley,
+42,8,65,"“ Bummer , ” said Aziraphale sympathetically . ",Neutral,Aziraphale,
+43,8,69,"beamed Crowley , enveloping her in a hug . ",Neutral,Crowley,
+44,8,18,"Unlike the peacocking body - builder types in their skin - tight training shorts and barely - there vests , the man was wearing loose - fitting sweatpants and a black t - shirt featuring some band Aziraphale had never heard of . ",Negative,one,
+45,8,58,enquired Crowley . ,Neutral,Crowley,
+46,8,80,"“ Seriously , though , ” he said , turning to Aziraphale . ",Neutral,Aziraphale,
+47,8,47,Aziraphale had to agree . ,Neutral,Aziraphale,
+48,8,51,asked Crowley . ,Neutral,one,
+49,8,6,She silenced Aziraphale ’s protests with a raised hand . ,Neutral,Aziraphale,
+50,8,25,Aziraphale did as he was told . ,Neutral,Aziraphale,he
+51,8,89,"said Aziraphale , surprised at this virtual stranger ’s generosity . ",Positive,Aziraphale,
+,Fic,Sen index,Sentence,Sentiment,Character A,Character B
+0,8,119,"\ --- Walking back from the gym that evening , Aziraphale caught sight of his reflection in a darkened shop window . ",Negative,Aziraphale,his
+1,8,29,The human body had always fascinated him – it was by far his favourite subject to draw – and Crowley ’s was perhaps the most perfect specimen he ’d ever seen . ,Positive,him,Crowley
+2,8,59,"Aziraphale laughed at this , causing Crowley to give him a puzzled frown . ",Positive,him,Crowley
+3,8,134,"“ Well , it makes me _ feel _ like an artist , ” said Aziraphale , turning around and walking out of the room before his expression betray ",Positive,Aziraphale,his
+4,8,37,asked Aziraphale . ,Neutral,Aziraphale,
+5,8,127,"“ I was n’t , ” explained Aziraphale . ",Neutral,Aziraphale,
+6,8,67,"“ Yeah , I can totally see that : Aziraphale the angel . ",Positive,"two -
+
+Three days later",
+7,8,30,He decided that he simply _ had _ to ask Crowley to model for him . ,Negative,He,Crowley
+8,8,14,"It ’s easy for you skinny types to talk , you do n’t know what it ’s like , ” sighed Aziraphale . ",Neutral,"two -
+
+Three days later",
+9,8,0,"## \ - two - Three days later , Aziraphale found himself back in the gym with Crowley . ",Neutral,Aziraphale,Crowley
+10,8,23,"As if on cue , Aziraphale ’s stomach rumbled loudly , and they both burst out laughing . ",Positive,Aziraphale,
+11,8,61,he demanded . ,Neutral,he,
+12,8,129,She contemplated the small silver stud . ,Negative,She,
+13,8,54,said Aziraphale with mock indignation . ,Negative,Aziraphale,
+14,8,1,"Anathema had begged off coming , claiming a headache , so Aziraphale had come alone . ",Negative,Aziraphale,
+15,8,69,"“ Oh , shut it , ” said Aziraphale , but without rancour . ",Neutral,Aziraphale,
+16,8,31,Maybe just wait until they ’d known each other a bit longer ; would n’t want to creep him out . ,Negative,him,
+17,8,2,"He ’d been worried that exercising with a virtual stranger would be awkward , but to his surprise they got along as if they ’d been friends for years . ",Negative,He,his
+18,8,100,Said Aziraphale awkwardly . ,Negative,"two -
+
+Three days later",
+19,8,70,Aziraphale was saved from further angel - based teasing by the arrival of their food . ,Negative,Aziraphale,
+20,8,130,"“ Well , I like it ” she finally decided . ",Neutral,she,
+21,8,9,"Crowley looked him up and down critically for perhaps a moment longer than was comfortable , and Aziraphale blushed , looked down at the ground . ",Negative,Aziraphale,him
+22,8,77,"“ Oh , I ’ve been drawing pretty much since I could hold a pencil , ” explained Aziraphale . ",Negative,Aziraphale,
+23,8,131,"Aziraphale agreed , and so did his mother when he saw her that weekend . ",Neutral,Aziraphale,her
+24,8,71,"He took a bite of his sizzling beef and noodles , and made a happy little sound of pure pleasure . ",Positive,He,his
+25,8,41,"Aziraphale had to agree – their mutual friend tended to dress in weird Victorian - Gothic outfits , all black lace and long skirts . ",Negative,Aziraphale,"two -
+
+Three days later"
+26,8,26,"Aziraphale nodded and made a vaguely affirmative noise , trying not to stare . ",Neutral,Aziraphale,
+27,8,116,"“ Sounds fantastic , ” said Aziraphale . ",Positive,Aziraphale,
+28,8,94,asked Aziraphale . ,Neutral,Aziraphale,
+29,8,132,"His father , on the other hand , was not as impressed . ",Negative,His,
+30,8,110,responded Aziraphale . ,Neutral,"two -
+
+Three days later",
+31,8,72,"“ Food like this is why I have to go to gym , ” he complained , before taking another generous bite . ",Positive,he,
+32,8,20,"“ You ’re the expert , ” said Aziraphale , not really sure what he was agreeing to , but happy to change the topic away from his body . ",Positive,Aziraphale,
+33,8,133,"“ Makes you look like a poofter , ” he said gruffly , earning him a slap on the arm from his wife . ",Negative,he,his
+34,8,28,"Given time and perhaps an anatomy textbook , Aziraphale was sure he could pick out every single muscle . ",Neutral,Aziraphale,he
+35,8,6,Aziraphale gave him a disbelieving look . ,Neutral,Aziraphale,him
+36,8,44,"Aziraphale , on the other hand , tended to tan chinos or blue jeans paired with plain light - hued button - up shirts and sweater vests or chunky jumpers . ",Neutral,Aziraphale,
+37,8,115,Crowley smiled widely as he shoveled another bite of food into his mouth . ,Positive,his,he
+38,8,24,"“ I ’ll take that as a yes , then , ” said Crowley , stripping off his shirt and stuffing it into his bag , grabbing a towel and a toiletry bag . ",Negative,his,his
+39,8,25,"“ See you in five , ” he added as he sauntered off to the showers . ",Positive,he,he
+40,8,89,"“ Closer to sixteen , I think , ” said Crowley . ",Neutral,Crowley,
+41,8,97,A dark look clouded Crowley ’s features for a moment . ,Neutral,Crowley,
+42,8,33,"“ So , ” said Crowley after they ’d ordered . ",Neutral,Crowley,
+43,8,22,asked Crowley later when they were heading for the changerooms . ,Neutral,Crowley,
+44,8,56,"said Crowley hurriedly , seeming worried hat he ’d really offended Aziraphale . ",Negative,Crowley,he
+45,8,11,Proclaimed Crowley at last . ,Neutral,"two -
+
+Three days later",
+46,8,120,"Hmm , okay , maybe Crowley had a point about not looking like an artist . ",Negative,Crowley,
+47,8,75,"Worth any amount of gym time , ” he grinned . ",Positive,he,
+48,8,123,"Later , he would blame this train of thought for what happened when the bright lights of the tattoo parlour across the street caught his eye . ",Negative,his,he
+49,8,15,"“ Maybe , ” said Crowley , sounding unconvinced . ",Neutral,Crowley,
+50,8,4,asked Crowley as they were getting ready to start . ,Neutral,Crowley,
+51,8,102,Crowley ’s face lit up at the question . ,Neutral,Crowley,
+52,8,8,"Seeing Crowley ’s genuinely confused expression , he sighed and explained , “ You do n’t need a medical degree to tell I need to lose weight . ” ",Negative,Crowley,he
+53,8,121,He frowned ; an artist was all he ’d ever thought of himself as . ,Neutral,He,"two -
+
+Three days later"
+54,8,106,Crowley ’s eyes were bright with excitement . ,Positive,Crowley,
+55,8,27,Crowley ’s torso looked like something Michelangelo might have sculpted . ,Neutral,Crowley,
+56,8,73,Crowley stole a sliver of beef from his plate . ,Neutral,Crowley,his
+57,8,122,Was he maybe ... not enough of one ? ,Negative,he,
+58,8,118,"“ Oh definitely , ” agreed Crowley ; “ I ’ll get you tickets . ” ",Positive,Crowley,
+59,8,66,Crowley chuckled at this explanation . ,Neutral,Crowley,
+60,8,5,"“ It will determine what types of exercises you need to do , ” he explained . ",Positive,he,
+,Fic,Sen index,Sentence,Sentiment,Character A,Character B
+0,8,14,“ I ’ll take that as a compliment . ” ,Positive,three,
+1,8,6,"Aziraphale knew he was staring , but he could n’t bring himself to care . ",Positive,three,he
+2,8,22,"“ Suits you , ” grinned Crowley . ",Neutral,three,three
+3,8,44,"Aziraphale was quite happy to spend the time staring at the dancers , wishing he had a video camera and trying to memorise every detail . ",Positive,he,Aziraphale
+4,8,67,“ Would you maybe be willing to sit for a drawing for me ? ” ,Neutral,three,
+5,8,30,"This is Aziraphale , ” began Crowley . ",Neutral,three,three
+6,8,15,"“ Oh you should , ” replied Aziraphale . ",Neutral,three,Aziraphale
+7,8,60,"Only fair , since you saw me at work today . ” ",Neutral,three,
+8,8,75,"“ Oh , shush , ” said Aziraphale , a bit flustered “ I ’m not inflating your ego any further , so stop fishing for compliments . ",Negative,Aziraphale,
+9,8,68,Aziraphale asked nervously . ,Neutral,Aziraphale,
+10,8,8,"Aziraphale had read Romeo and Juliet , of course , had even studied it in high school , but suddenly he felt like he ’d never truly understood it until now . ",Negative,Aziraphale,he
+11,8,38,“ but I ’m still not gon na kill myself for you . ” ,Negative,three,three
+12,8,97,"“ Drug overdose , I think ” said Crowley , picking up a syringe from the alley floor and holding it up for Aziraphale to see . ",Neutral,Aziraphale,Crowley
+13,8,91,"Aziraphale did n’t even break stride – it was not such an unusual sight in this part of London – but Crowley stopped , drawing in a sharp breath . ",Negative,Aziraphale,Crowley
+14,8,46,Aziraphale could n’t resist running an admiring hand over the roof . ,Neutral,Aziraphale,
+15,8,16,“ You absolutely should . ” ,Positive,three,
+16,8,31,"“ Oh , so _ you ’re _ Aziraphale , ” the girl interrupted with a knowing look . ",Negative,three,three
+17,8,61,"“ Uh , sure , ” said Aziraphale . ",Neutral,Aziraphale,
+18,8,84,"Wait , I do n’t have to pose naked , do I ? ” ",Neutral,three,three
+19,8,24,"Aziraphale rolled his eyes , knowing exactly what Crowley was referring to . ",Neutral,Aziraphale,Crowley
+20,8,1,Marge cracked open the studio door and gestured for Aziraphale to go in . ,Positive,three,Marge
+21,8,107,"Aziraphale hurried over to help him , and together they wrangled the unconscious man into the back seat . ",Negative,Aziraphale,
+22,8,54,"“ People , mostly ” responded Aziraphale . ",Neutral,three,
+23,8,69,"Crowley ’s eyebrows shot up , but he did n’t say anything . ",Neutral,he,Crowley
+24,8,92,"Next thing Aziraphale knew , Crowley was kneeling next to the man , shaking him by the shoulders . ",Neutral,three,him
+25,8,32,"Aziraphale wondered what exactly that was supposed to mean , but he simply extended a hand , saying “ The one and only . ",Negative,Aziraphale,he
+26,8,47,“ You like her ? ” ,Neutral,three,her
+27,8,100,"asked Aziraphale , reaching for his phone . ",Neutral,Aziraphale,his
+28,8,70,"“ You see , ” Aziraphale explained , “ We have to do figure drawings from life for class , and , well ... ” How to say this without sounding weird ? ",Positive,three,
+29,8,63,Aziraphale took a breath – now was his chance . ,Neutral,Aziraphale,his
+30,8,55,“ The human form is just so endlessly variable ; I do n’t think I could ever get bored with it . ” ,Negative,three,three
+31,8,78,"“ Yep , definitely calling me pretty , ” said Crowley , full - on smirking now , and Aziraphale felt his cheeks heat . ",Negative,three,his
+32,8,124,asked Aziraphale with a frown . ,Neutral,Aziraphale,
+33,8,11,“ What do you think ? ” ,Neutral,three,
+34,8,26,She slipped an arm into his possessively and handed him a water bottle . ,Neutral,his,him
+35,8,86,"“ Not unless you really want to , ” chuckled Aziraphale , and Crowley joined him . ",Negative,three,him
+36,8,49,"“ She ’s a beauty , ” said Aziraphale . ",Positive,She,Aziraphale
+37,8,108,"Crowley took off like a racehorse from the starting gates , weaving through traffic and screeching around corners in a way that made Aziraphale clench his eyes shut and pray they ’d get there alive . ",Positive,Aziraphale,Crowley
+38,8,79,"“ Okay , sure , I ’ll let you draw me , ” relented Crowley , “ But on one condition : you do me that drawing of the Bentley . ” ",Negative,three,three
+39,8,64,"“ Speaking of that , I ’d like to ask you a favour . ” ",Positive,three,
+40,8,27,"“ Wan na introduce me to your friend , Crowley ? ” ",Neutral,three,Crowley
+41,8,12,"“ It was ... I ’m speechless , to be quite honest . ” ",Positive,three,
+42,8,42,Crowley handed his water bottle to Aziraphale and gestured to a few chairs against one wall . ,Neutral,Aziraphale,his
+43,8,110,“ We found him on the street . ,Neutral,him,
+44,8,50,"“ I do n’t usually draw machines , but I think I would make an exception for her . ” ",Positive,three,her
+45,8,35,“ My partner . ” ,Neutral,three,
+46,8,20,"Yes , I got it last week , ” answered Aziraphale , somewhat flustered . ",Neutral,three,Aziraphale
+47,8,103,"Aziraphale stared , wide - eyed and uncertain . ",Negative,Aziraphale,
+48,8,88,"I ’ll go as far as my underpants , but that ’s it . ” ",Neutral,three,three
+49,8,111,He had this with him . ” ,Neutral,He,him
+50,8,28,"she asked , eyeing Aziraphale suspiciously . ",Negative,Aziraphale,
+51,8,96,asked Aziraphale from the mouth of the alleyway . ,Neutral,Aziraphale,
+52,8,51,"“ I ’d hang that on my wall , ” Crowley smiled , getting in to the car . ",Neutral,three,Crowley
+53,8,21,“ I though it would be ... a nice change . ” ,Positive,three,
+54,8,119,asked Aziraphale when he had n’t moved for a full minute . ,Neutral,Aziraphale,he
+55,8,74,he teased . ,Neutral,he,
+56,8,81,"oh , you mean the car , ” said Aziraphale . ",Negative,Aziraphale,
+57,8,59,“ I ’d like to see some of these famous drawings of yours . ,Positive,three,
+58,8,112,Crowley handed them the syringe they ’d found with the man . ,Negative,Crowley,
+59,8,37,"“ Yeah , yeah , ” chuckled Crowley . ",Neutral,three,
+60,8,120,"“ Not really ” said Crowley , straightening up with a sigh and rubbing a hand over his eyes . ",Neutral,Crowley,his
+61,8,134,"Two weeks of solid hell , that was , but every time I wanted to use I thought back to that night ... ” Crowley looked out of the window for a moment , then shook his head as if trying to dislodge the memories . ",Negative,Crowley,his
+62,8,128,"He got me hooked on drugs too – it made me feel better about all the shit with my dad , you know ? ",Neutral,He,
+63,8,98,"“ This guy needs to get to hospital , like , right now . ” ",Neutral,three,
+64,8,45,"\ --- After the rehearsal wrapped up , Crowley led the way to his car – a sleek black vintage number . ",Positive,Crowley,his
+65,8,53,"asked Crowley , pulling out of the parking . ",Neutral,three,
+66,8,106,urged Crowley . ,Neutral,Crowley,
+67,8,114,"“ Thanks , ” said the third medic , nodding at Crowley . ",Positive,Crowley,
+68,8,2,"He slipped in quietly , shutting the door behind him without looking , captivated by what he was seeing . ",Positive,He,he
+69,8,85,"asked Crowley , looking vaguely panicked . ",Neutral,Crowley,
+70,8,130,"But then one night he took too much ... and I was too late to save him ... ” Crowley ’s voice cracked , and he took a few deep breaths , trying to calm himself . ",Negative,he,three
+71,8,10,"When the dance ended , Crowley came over to Aziraphale , grinning widely . ",Positive,Crowley,
+72,8,48,"said Crowley , grinning like a proud parent . ",Positive,Crowley,
+73,8,3,"Crowley was dancing a _ pas - de-deux _ with a shortish , dark - haired ballerina to some classical music that sounded vaguely familiar . ",Positive,Crowley,
+74,8,18,"asked Crowley , gesturing to his ear . ",Neutral,Crowley,his
+75,8,25,"Just then , the dark - haired ballerina appeared at Crowley ’s side . ",Neutral,Crowley,
+76,8,93,"When this did n’t get a reaction , he pressed two fingers to the man ’s throat , feeling for a pulse and swearing under his breath . ",Neutral,he,his
+77,8,101,"“ No time , ” responded Crowley , already pulling the man ’s arm across his shoulder . ",Negative,Crowley,
+78,8,94,“ Crowley ? ,Negative,Crowley,
+79,8,109,"At the hospital , Crowley pulled into an ambulance bay and hurried off , returning with three medics pushing a stretcher . ",Negative,Crowley,
+80,8,117,Crowley got back into the driver ’s seat and let his head sink onto the steering wheel . ,Negative,Crowley,his
+81,8,72,Crowley ’s mouth quirked into a half - grin . ,Neutral,Crowley,
+82,8,34,"“ This is Bella , ” continued Crowley . ",Neutral,Crowley,
+83,8,125,Crowley made a sound which may have been a stifled sob . ,Negative,Crowley,
+84,8,58,Crowley shot him a sideways glance . ,Neutral,Crowley,him
+85,8,13,Crowley laughed at the praise . ,Positive,Crowley,
+86,8,66,"said Crowley distractedly , swerving around a stationary bus . ",Neutral,Crowley,
+,Fic,Sen index,Sentence,Sentiment,Character A,Character B
+0,8,119,"When he returned , bearing two mugs of tea , Crowley was staring at one particular drawing , reverently running his finger along the edge of the paper . ",Positive,Crowley,he
+1,8,104,"“ This one is anatomy studies , and this one is still life drawings , ” he explained , indicating two of the books . ",Neutral,he,
+2,8,90,"“ I like this one , Aziraphale ; you should keep him ! ” ",Neutral,four,Aziraphale
+3,8,30,enquired Crowley . ,Neutral,Crowley,
+4,8,151,"The pinking of Crowley ’s cheeks made him realise that his praise was perhaps getting a bit effusive , so he decided to change tack . ",Neutral,Crowley,he
+5,8,91,"she said , causing Crowley to blush and Aziraphale to giggle . ",Neutral,Crowley,Aziraphale
+6,8,135,"He was n’t convinced that the drawing was anything particularly spectacular , but he found he could n’t say no in the face of Crowley ’s enthusiasm . ",Neutral,Crowley,he
+7,8,107,"asked Crowley , indicating a sketchbook that Aziraphale had left on the desk . ",Negative,four,Aziraphale
+8,8,16,"“ Just turn your head this way , ” he said , gently guiding Crowley ’s chin until he was looking directly to the left . ",Negative,Crowley,he
+9,8,2,"Crowley was stripping down to his pants , looking nervous . ",Negative,Crowley,his
+10,8,153,Crowley was delighted at the chance to talk about his new project . ,Neutral,Crowley,his
+11,8,47,"When they returned , Aziraphale spent a bit of time arranging Crowley just so , constantly referencing the photos he ’d taken , before returning to his drawing . ",Neutral,Crowley,his
+12,8,123,They seemed to dance as Crowley shifted the page in his hands . ,Neutral,Crowley,his
+13,8,78,This is the only day Crowley here was available . ” ,Neutral,Crowley,
+14,8,168,"“ Pity , ” said Aziraphale , reluctantly handing the phone back to Crowley . ",Neutral,Crowley,Aziraphale
+15,8,79,"said Aziraphale , gesturing to Crowley , who was now pulling on his trousers . ",Neutral,Crowley,Aziraphale
+16,8,109,"“ Oh , that one is just stuff I draw for myself . ” ",Neutral,four,four
+17,8,19,He pushed a heavy stool over until it nudged Crowley ’s raised leg . ,Neutral,Crowley,He
+18,8,48,"He had finished the outlines earlier , and now he started on the shading , his pencil dancing across the paper as he added dimension and texture to Crowley ’s shape . ",Neutral,Crowley,he
+19,8,140,"Crowley resumed his paging through the sketchbook , and Aziraphale sat looking over his shoulder , occasionally commenting on something but mostly just watching the expressions on Crowley ’s face . ",Neutral,Crowley,Aziraphale
+20,8,49,He could n’t help but grin to himself as he worked ; Crowley was by far the most beautiful model he ’d ever had the opportunity to draw . ,Positive,Crowley,he
+21,8,125,"Asked Crowley , glancing up at Aziraphale . ",Neutral,four,Aziraphale
+22,8,35,"Crowley dropped his leg gratefully , rolling his shoulders to work out the tension that had built up in the muscle . ",Neutral,Crowley,his
+23,8,155,"Here , let me show you , ” he said , reaching for his phone again . ",Neutral,he,his
+24,8,141,"When he got to the end of the sketchbook , he closed it and handed it back to Aziraphale . ",Positive,he,Aziraphale
+25,8,96,“ I ’ve been working on it . ” ,Neutral,four,
+26,8,50,"He was busy working on the legs now , pencil tracing the long lean lines of Crowley ’s thigh . ",Negative,Crowley,He
+27,8,126,"“ Yes , ” he said , remembering why he did n’t let people see this sketchbook – it gave away far too much . ",Negative,he,he
+28,8,36,He winced a bit as he got up . ,Neutral,He,he
+29,8,171,"“ Or you can just come watch me practice , ” countered Crowley – and there was no way Aziraphale would ever refus ",Negative,Crowley,Aziraphale
+30,8,156,"“ I like to film myself sometimes , so that I can see what needs improvement , ” he said by way of explanation , handing the phone to Aziraphale . ",Negative,he,Aziraphale
+31,8,21,Aziraphale lost himself in the drawing until he was interrupted by Crowley ’s voice . ,Negative,Crowley,he
+32,8,67,Crowley wandered over to the drawing table as he was pulling on his shirt . ,Neutral,Crowley,his
+33,8,97,"“ It ’s paying off , ” said Tracey , nodding . ",Neutral,Tracey,
+34,8,142,"“ I ’m no art expert , but these are fucking amazing , ” he said , causing Aziraphale to blush and duck his head , mumbling something self - deprecating . ",Positive,he,four
+35,8,38,"he said , twisting his torso . ",Neutral,he,his
+36,8,83,"He gestured to Crowley , who had sauntered over to them . ",Negative,Crowley,
+37,8,8,Crowley started with a few gentle warm - up stretches before sitting down on the floor . ,Neutral,Crowley,
+38,8,128,"The imagery was so vivid , that , well ... ” he gestured at the drawing . ",Positive,he,
+39,8,159,Crowley seemed to fly like the mythical bird he was portraying . ,Neutral,Crowley,he
+40,8,129,Crowley was still looking at it . ,Neutral,Crowley,
+41,8,84,"“ Crowley , this is Professor Tracey . ",Neutral,four,
+42,8,9,"He tried a few different arrangements of his limbs , ending up with his right leg pointed almost straight up , braced by his left hand , arm passing behind his head . ",Neutral,He,his
+43,8,114,"But to his surprise , he found that he wanted to show it to Crowley . ",Neutral,Crowley,he
+44,8,130,"“ This is magnificent , ” he said . ",Positive,he,
+45,8,55,"he asked Crowley , gesturing with his pencil . ",Neutral,Crowley,his
+46,8,101,"Crowley had asked to see some of his work , and he could hardly refuse . ",Negative,Crowley,he
+47,8,86,"Crowley is a friend who ’s modelling for me , ” he explained . ",Positive,Crowley,he
+48,8,147,Crowley laughed . ,Positive,Crowley,
+49,8,162,grinned Crowley . ,Neutral,four,
+50,8,87,"“ Charmed , I ’m sure , ” said Professor Tracey , holding out a beringed hand for Crowley to shake . ",Negative,four,Crowley
+51,8,102,"However , he did insist that they finish eating and wash their hands before touching his sketchbooks . ",Positive,he,his
+52,8,72,"“ Perish the thought , ” replied Crowley , chuckling . ",Neutral,Crowley,
+53,8,42,"“ Great news , ” responded Crowley . ",Positive,Crowley,
+54,8,12,"“ Sure , Angel ” said Crowley cockily . ",Positive,Crowley,
+55,8,88,"Crowley took the hand , but instead of shaking it , he kissed it with a dramatic bow . ",Positive,Crowley,he
+56,8,103,"“ Okay , ” he said , handing over a pile of books . ",Negative,he,
+57,8,118,"Aziraphale kept his back turned to Crowley as he made the tea , listening apprehensively to the appreciative noises Crowley made every now and then . ",Neutral,Crowley,he
+58,8,58,"Needle tracks , from , you know , back when I used , ” Crowley explained awkwardly . ",Neutral,Crowley,
+59,8,112,"This was where he poured out his heart in lines of graphite and ink , a wordless journal of everything he was thinking about . ",Neutral,he,he
+60,8,120,"Aziraphale leaned over , curious to know what he was looking at . ",Negative,Aziraphale,he
+61,8,150,"“ Nonsense , ” argued Aziraphale , “ You ’re magnificent , anyone with eyes can see that ! ” ",Neutral,Aziraphale,
+62,8,15,"“ Fantastic , ” said Aziraphale . ",Positive,Aziraphale,
+63,8,113,It had always been just for him . ,Neutral,him,
+64,8,45,"“ Hmm , a cup of tea does sound good , ” said Aziraphale . ",Positive,Aziraphale,
+65,8,121,"It was one of the few drawings he ’d done in coloured pencil : a bird - like creature in vibrant shades of orange and red , spreading its wings in flight . ",Positive,he,
+66,8,136,"“ I guess that would be okay , ” he said shyly . ",Neutral,he,
+67,8,158,"The music was a bit tinny – being a recording of a recording – and the lighting was far from ideal , but Aziraphale was nevertheless entranced . ",Positive,Aziraphale,
+68,8,39,Aziraphale smiled . ,Neutral,Aziraphale,
+69,8,24,"“ Just a sec , ” answered Aziraphale distractedly , finishing a few lines . ",Neutral,four,
+70,8,160,"Aziraphale gasped when a particularly spectacular series of leaps ended in a spin , a couple of wavering turns and a sudden collapse , before the video ended . ",Positive,Aziraphale,
+71,8,62,"“ Oh , ” said Aziraphale awkwardly , not really knowing what else to say , so he bowed his head to his work again . ",Negative,four,
+72,8,115,"His friend had trusted him enough to model for him – heck , he ’d even let him take half - naked photos of him . ",Positive,His,him
+73,8,92,The professor wandered over to the drawing table where Aziraphale had been working . ,Positive,Aziraphale,
+74,8,145,"“ Oh , stop , ” said Aziraphale . ",Neutral,Aziraphale,
+75,8,25,Then he looked at his watch : forty minutes had passed . ,Neutral,he,his
+76,8,3,Aziraphale was setting up a fresh sheet of paper on a drawing table . ,Neutral,Aziraphale,
+77,8,93,"“ This is looking good , Aziraphale . ",Positive,Aziraphale,
+78,8,10,"“ Oh wow , that ’s beautiful , ” said Aziraphale . ",Positive,Aziraphale,
+79,8,116,He wanted to return that trust . ,Neutral,He,
+80,8,32,"“ They ’re just so that I can be sure to position you exactly the same way when we go on , ” explained Aziraphale , snapping a few photos on his phone . ",Neutral,Aziraphale,
+81,8,71,"asked Aziraphale , feigning offense . ",Neutral,Aziraphale,
+82,8,100,"( Here 's the drawing , more or less ) \ --- They decided to get some takeaways and head to Aziraphale ’s dorm room for lunch . ",Negative,Aziraphale,
+83,8,139,"And the choreographer , ” he babbled excitedly , pulling out his phone and snapping a photo . ",Negative,he,his
+84,8,117,"So he handed over the sketchbook , and walked over to the kettle to go make tea . ",Negative,he,
+85,8,27,He put down his pencil and fished out his phone . ,Negative,He,his
+86,8,110,Aziraphale wished he ’d thought to pack it away . ,Neutral,Aziraphale,he
+87,8,95,"“ Thanks , ” said Aziraphale , smiling at the praise . ",Positive,Aziraphale,
+88,8,111,He did n’t usually show his personal sketchbook to anyone ; it was just a bit too vulnerable . ,Negative,He,his
+89,8,20,"“ Rest your leg against this if you need to , ” he said , before moving over to the drawing table , grabbing a pencil , and setting to work . ",Neutral,he,
+90,8,66,"Aziraphale was pleased with his morning ’s work : he ’d finished almost all of the body , and only the face and hands remained . ",Neutral,Aziraphale,he
+91,8,51,He frowned and looked closer – what were those marks ? ,Neutral,He,
+92,8,134,Aziraphale blushed at the praise . ,Neutral,Aziraphale,
