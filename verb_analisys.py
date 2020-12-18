@@ -12,7 +12,7 @@ from NER_tagger_v3 import NERTagger
 from fanfic_util import FanficGetter, FanficHTMLHandler, Fanfic
 
 ### VARIABLES ###
-#CHARACTERS_TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_characters.csv'
+CHARACTERS_TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_characters.csv'
 SENTENCES_TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_sentences.csv'
 CANON_DB = '/home/maria/Documents/Fanfic_ontology/canon_characters.csv'
 #ERRORLOG = '/home/maria/Documents/Fanfic_ontology/TFG_logs/ner_and_sen_extraction_v2_errorlog.txt'
@@ -108,15 +108,54 @@ def get_RFE_sentences(sentence_data):
 
 	return all_r_verbs, all_f_verbs
 
+def find_characters(fic_sentences, fic_id, char1_id, char2_id):
+	characters_data = pandas.read_csv(CHARACTERS_TO_CSV)
+
+	fic_characters = characters_data[characters_data['ficID'] == fic_id]]
+
+	char1_clusters = fic_characters[fic_characters['canonID'] == char1_id]['clusterID']
+	char2_clusters = fic_characters[fic_characters['canonID'] == char2_id]['clusterID']
+
+	if len(char1_clusters) > 0:
+		indexes = []
+		for cluster in char1_clusters:
+			
+			
+
+	char2_sentences = fic_sentences[char2_id in fic_sentences['clusterID']]
+
+	
+
+		
+
+def subtraction_of_sets(set1, set2):
+	common_words = []
+	for word, freq in set1.items():
+		for w, f in set2.items():
+			if word == w: common_words.append(word)
+
+	for word in common_words:
+		set1.pop(word)
+		set2.pop(word)
+
+	return set1, set2
+
+
 ### MAIN ###
 sentence_data = pandas.read_csv(SENTENCES_TO_CSV)
 
 r_verbs, f_verbs = get_RFE_sentences(sentence_data)
 
-#verb_freq = nltk.FreqDist(r_verbs)
-#verb_freq.plot(50)
-verb_freq = nltk.FreqDist(f_verbs)
-verb_freq.plot(50)
+r_freq = nltk.FreqDist(r_verbs)
+f_freq = nltk.FreqDist(f_verbs)
+#e_freq = nltk.FreqDist(e_verbs)
+
+
+
+
+r_freq.plot(50)
+f_freq.plot(50)
+#e_freq.plot(50)
 
 
 
