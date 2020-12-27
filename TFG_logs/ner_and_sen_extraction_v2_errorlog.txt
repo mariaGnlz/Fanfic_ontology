@@ -2,3 +2,5 @@ Error on fanfic #2245 from dataset r: num chapters = 3
 Error on fanfic #2245 from dataset r: num chapters = 3
 Error on fanfic #2245 from dataset r: num chapters = 3
 Error on fanfic #2513 from dataset r: num chapters = 2
+Error on fanfic #4833 from dataset r: num chapters = 12
+Error on fanfic #5294 from dataset r: num chapters = 21
