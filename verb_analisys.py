@@ -38,7 +38,8 @@ def get_lemma(word):
 
 STOPWORDS = [get_lemma(word) for word in stopwords.words('english')]
 BIGRAM_STOPWORDS = STOPWORDS + ['wa','be','n','t','ha','ve','n’t',"n't",'’ve',"'ve","'re",'’s',"'s","’m", "'m", ',', '’','"','“','”','*','.',':','...','…',"'",'-','~','_','!','/','\\','[',']']
-STOPWORDS.extend(['wa','be','n','t','ha','ve','n’t',"n't",'’ve',"'ve", ',', '’','"','“','”','*','.',':','...','…',"'",'-','~','_','!','/','\\','[',']'])
+STOPWORDS.extend(['wa','be','n','t','ha','ve','n’t',"n't",'’ve',"'ve", ',', '’','"','“','”','*','.',':','...','…',"'",'-','~','_','!','/','\\','[',']', 'say','go','look','say','make','get','know','see','take','want'])
+#STOPWORDS.extend(['wa','be','n','t','ha','ve','n’t',"n't",'’ve',"'ve", ',', '’','"','“','”','*','.',':','...','…',"'",'-','~','_','!','/','\\','[',']'])
 
 
 
@@ -164,18 +165,6 @@ def find_characters(fic_sentences, fic_id, char_id):
 	#print(character_sentences) #debug
 	return character_sentences
 
-def substract_sets(set1, set2):
-	common_words = []
-	for word, freq in set1.items():
-		for w, f in set2.items():
-			if word == w: common_words.append(word)
-
-	for word in common_words:
-		set1.pop(word)
-		set2.pop(word)
-
-	return set1, set2
-
 def check_verb_frequencies(sentences):
 	verbs = [get_lemmatized_verbs(sentence) for sentence in sentences]
 
@@ -217,13 +206,13 @@ def check_ngram_frequencies(sentences, dataset):
 	finder3.apply_freq_filter(2)
 
 	bigram_measures = nltk.collocations.BigramAssocMeasures()
-	#collocations2 = finder2.nbest(bigram_measures.pmi, 20)
-	collocations2 = finder2.nbest(bigram_measures.likelihood_ratio, 20)
+	collocations2 = finder2.nbest(bigram_measures.pmi, 20)
+	#collocations2 = finder2.nbest(bigram_measures.likelihood_ratio, 20)
 	colloc_strings2 = [w1+' '+w2 for w1, w2 in collocations2]
 
 	trigram_measures = nltk.collocations.TrigramAssocMeasures()
-	#collocations3 = finder3.nbest(trigram_measures.pmi, 20)
-	collocations3 = finder3.nbest(trigram_measures.likelihood_ratio, 20)
+	collocations3 = finder3.nbest(trigram_measures.pmi, 20)
+	#collocations3 = finder3.nbest(trigram_measures.likelihood_ratio, 20)
 	colloc_strings3 = [w1+' '+w2+' '+w3 for w1, w2, w3 in collocations3]
 
 	print('\n\n===== Brigram collocations of '+dataset+' dataset =====\n\n')
@@ -260,6 +249,40 @@ def get_data_on_pairing_sentences(sentence_data, fic_ids, canon_characters_ids, 
 	check_verb_frequencies(duplicates)
 	check_adjective_frequencies(duplicates)
 	check_ngram_frequencies(duplicates, dataset)
+
+def substract_sets(set1, set2):
+	common_words = []
+	for word, freq in set1.items():
+		for w, f in set2.items():
+			if word == w: common_words.append(word)
+
+	for word in common_words:
+		set1.pop(word)
+		set2.pop(word)
+
+	return set1, set2
+
+
+def substract_three_sets(set1, set2, set3):
+	common_words = []
+	for word, freq in set1.items():
+		for w, f in set2.items():
+			if word == w: common_words.append(word)
+
+	for word, freq in set1.items():
+		for w, f in set3.items():
+			if word == w and w not in common_words: common_words.append(word) 
+
+	for word, freq in set3.items():
+		for w, f in set2.items():
+			if word == w and w not in common_words: common_words.append(word) 
+
+	for word in common_words:
+		set1.pop(word)
+		set2.pop(word)
+		set3.pop(word)
+
+	return set1, set2, set3
 
 def plot_stuff(sentences, words):
 	#words = [word for word, f in freqs]
@@ -298,24 +321,31 @@ r_sens, f_sens, e_sens = get_RFE_sentences(sentence_data)
 #f_sens = f_sens[:40]
 #e_sens = e_sens[:40]
 
-#r_verbs_freq = check_verb_frequencies(r_sens['Verbs'])
-#r2_collocations, r3_collocations = check_ngram_frequencies(r_sens['Verbs'], 'Romance')
-#r_adjs_freq = check_adjective_frequencies(r_sens['Verbs'])
-#r_sentiment = get_sentiment(r_sens['Sentiment'])
+r_verbs_freq = check_verb_frequencies(r_sens['Verbs'])
+r2_collocations, r3_collocations = check_ngram_frequencies(r_sens['Verbs'], 'Romance')
+r_adjs_freq = check_adjective_frequencies(r_sens['Verbs'])
+r_sentiment = get_sentiment(r_sens['Sentiment'])
 
-#f_verbs_freq = check_verb_frequencies(r_sens['Verbs'])
-#f_adjs_freq = check_adjective_frequencies(f_sens['Verbs'])
-#f2_collocations, f3_collocations = check_ngram_frequencies(f_sens['Verbs'], 'Friendship')
-#f_sentiment = get_sentiment(f_sens['Sentiment'])
+f_verbs_freq = check_verb_frequencies(r_sens['Verbs'])
+f_adjs_freq = check_adjective_frequencies(f_sens['Verbs'])
+f2_collocations, f3_collocations = check_ngram_frequencies(f_sens['Verbs'], 'Friendship')
+f_sentiment = get_sentiment(f_sens['Sentiment'])
 
-#e_verbs_freq = check_verb_frequencies(r_sens['Verbs'])
-#e_adjs_freq = check_adjective_frequencies(e_sens['Verbs'])
-#e2_collocations, e3_collocations = check_ngram_frequencies(e_sens['Verbs'], 'Enemy')
-#e_sentiment = get_sentiment(e_sens['Sentiment'])
+e_verbs_freq = check_verb_frequencies(r_sens['Verbs'])
+e_adjs_freq = check_adjective_frequencies(e_sens['Verbs'])
+e2_collocations, e3_collocations = check_ngram_frequencies(e_sens['Verbs'], 'Enemy')
+e_sentiment = get_sentiment(e_sens['Sentiment'])
+
+#r_verbs, f_verbs, e_verbs = substract_three_sets(r_verbs_freq, f_verbs_freq, e_verbs_freq)
+
+#r_verbs_freq.plot(50)
+#f_verbs_freq.plot(50)
+#e_verbs_freq.plot(50)
 
 #find_characters(sentence_data, 70, 4) #debug
 #find_characters(sentence_data, 70, 8) #debug
 
+"""
 #canon_characters_ids = range(40)
 canon_characters_ids = [4,8] #debug, trying to find Aziraphale and Crowley's sentences
 #print(canon_characters_ids) #debug
@@ -327,6 +357,7 @@ get_data_on_pairing_sentences(sentence_data, friendship_fic_ids, canon_character
 
 enemy_fic_ids = list(set(e_sens['ficID']))
 get_data_on_pairing_sentences(sentence_data, enemy_fic_ids, [4,14], 'enemy aziraphale+gabriel sentences')
+"""
 
 """
 print('Sentiment of romance fics: ', r_sentiment,'\nSentiment of frienship fics: ',f_sentiment,'\nSentiment of enemy fics: ',e_sentiment)
