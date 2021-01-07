@@ -26,7 +26,7 @@ def normalize_sentiment(sentences):
 	
 	for sentence in sentences:
 		sentiment = sentence.sentiment
-		print(sentiment) #debug
+		#print(sentiment) #debug
 		sentiment_count[sentiment] += 1
 
 		'''
@@ -69,7 +69,7 @@ def decide_gender(characters, canon_db):
 		else: #if there are no gender tags applicable to the character, we'll defer to CoreNLP's opinion on this character's gender
 
 			if character['Gender'] == 'UNKNOWN' or character['Gender']== '':
-				print(character['Name'], character['Gender']) #debug
+				#print(character['Name'], character['Gender']) #debug
 
 				#if CoreNLP doesn't know this character's gender, and it is canon, we assume the canon gender. If it isn't canon it'll be left unknown
 				if character['canonID'] > -1:
@@ -159,7 +159,7 @@ def merge_character_mentions(fic_index, character_entities, character_mentions, 
 		for c in aux:
 			cluster = c['clusterID']
 			if len(cluster) == 1 and cluster[0] in char['clusterID']:
-				if char['Name'] == c['Name'] and char['Gender'] == c['Gender']:
+				if char['Name'].lower() == c['Name'].lower() and char['Gender'] == c['Gender']:
 					char['Mentions'] = char['Mentions']+c['Mentions']
 					char['nerID'].append(c['nerID'][0])
 
@@ -196,13 +196,55 @@ def link_characters_to_canon(characters, canon_db):
 				character['canonID'] = index
 				break
 
-			elif character['Name'].lower() in other_names:
-				character['canonID'] = index
-				break
+			else:
+				if character['Name'].lower() in other_names:
+					character['canonID'] = index
+					break
+				else:
+					for name in other_names:
+						if ' ' in name:
+							name = name.split(' ')
+							if character['Name'].lower() in name:
+								character['canonID'] = index
+								break
 
 	#if a character is not canon its canonID will not be changed from -1
 
 	return characters
+
+def canonize_characters(characters, canon_db):
+	characters = link_characters_to_canon(characters, canon_db)
+	characters = decide_gender(characters, canon_db)
+
+	canon_ids = len(canon_db['Name'])
+	#print(canon_ids) #debug
+
+	canonized_characters = []
+	for i in range(canon_ids):
+		canon_name = canon_db.iloc[i]['Name']
+		#print(canon_name) #debug
+		characters_in_canon = list(filter(lambda char: char['canonID'] == i, characters))
+
+		if len(characters_in_canon) > 0:
+			canonized_character = {'Name':canon_name, 'Other names':[], 'Gender':[], 'Mentions':0, 'Canon ID':i}
+			for char in characters_in_canon:
+				if char['Name'].lower() == 'Fell': print(char)
+				if char['Name'].lower() != canon_name.lower():
+					canonized_character['Other names'].append(char['Name'])
+
+				if char['Gender'] not in canonized_character['Gender']:
+					canonized_character['Gender'].append(char['Gender'])
+
+				canonized_character['Mentions'] += char['Mentions']
+
+			canonized_characters.append(canonized_character)
+
+	characters_not_in_canon = list(filter(lambda char: char['canonID'] == -1, characters))
+	noncanon_characters = []
+	for char in characters_not_in_canon:
+		noncanon_characters.append({'Name':char['Name'], 'Other names':[], 'Gender':char['Gender'], 'Mentions':char['Mentions'], 'Canon ID':-1})
+
+	return canonized_characters+noncanon_characters
 
 def extract_data_from_annotations(annotation):
 	sentences= annotation.sentence
@@ -383,11 +425,11 @@ class CoreNLPDataProcessor():
 		unique_characters = merge_character_mentions(self.fic.index, character_entities, character_mentions, nerTagger_characters)
 
 		# Link characters to their canon version, if it has one
-		canonized_characters = link_characters_to_canon(unique_characters, canon_db)
+		canonized_characters = canonize_characters(unique_characters, canon_db)
 		#print(canonized_characters[:10]) #debug
 
 		# Decide genders for all characters
-		canonized_characters = decide_gender(canonized_characters, canon_db)
+		#canonized_characters = decide_gender(canonized_characters, canon_db)
 
 		self.fic.set_characters(canonized_characters)
 

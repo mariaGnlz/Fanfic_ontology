@@ -53,6 +53,16 @@ def call_corenlp(fic):
 	print("Client closed. "+ str((end-start)/60) +" mins elapsed")
 
 	return annotated_fics
+
+def calculate_sentiment_percentages(fic_sentiment):
+	total = fic_sentiment['Num sentences']
+	fic_sentiment.pop('Num sentences')
+
+	sentiment_percents = []
+	for _, count in fic_sentiment.items():
+		sentiment_percents.append(count*100/total)
+
+	return sentiment_percents
 		
 
 ### MAIN ###
@@ -131,10 +141,10 @@ elif len(sys.argv) == 2:
 	coreProcessor = CoreNLPDataProcessor(annotated_fic)
 	coreProcessor.extract_fic_characters(ner_characters)
 	characters = coreProcessor.fic.characters
-	print(characters) #debug
+	#print(characters) #debug
 
 	fic_sentiment = coreProcessor.extract_fic_sentiment()
-	print(fic_sentiment) #debug
+	#print(fic_sentiment) #debug
 
 	print('...data processed.')
 	fic_title = handler.get_title(fic_path)
@@ -142,7 +152,8 @@ elif len(sys.argv) == 2:
 	print('-- DATA FOR FANFIC #'+str(fic_id))
 	print('·Title: '+fic_title)
 	print('·Characters: ')
-	for character in annotated_fic.characters: print('	'+character['Name']+' ('+character['Gender']+')')
+	for character in annotated_fic.characters: print('	'+character['Name']+' ('+str(character['Gender'])+', canon ID: '+str(character['Canon ID'])+') mentioned '+str(character['Mentions'])+' times.',character['Other names'])
 
-	print('·Sentiment:',fic_sentiment)
+	percentages = calculate_sentiment_percentages(fic_sentiment)
+	print("·Sentiment: %.2f Very positive, %.2f Positive, %.2f Neutral, %.2f Negative, %.2f Very negative."%percentages)
 	
