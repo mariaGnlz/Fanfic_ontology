@@ -1,6 +1,6 @@
 #!/usr/bin/bash/python3
 
-import time, pandas
+import time, pandas, nltk
 #from corenlp_wrapper import CoreClient2
 from stanza.server import Document
 from stanza.server import CoreNLPClient
@@ -17,7 +17,9 @@ FEMALE_TAGS = ['She/Her Pronouns for ', 'Female ', 'Female!', 'Female-Presenting
 MALE_TAGS = ['He/Him Pronouns for ', 'Male ', 'Male!', 'Male-Presenting ']
 NEUTRAL_TAGS = ['They/Them Pronouns for ', 'Gender-Neutral Pronouns for', 'Gender-Neutral ', 'Agender ', 'Genderfluid ', 'Androgynous ', 'Gender Non-Conforming ']
 
+
 MAX_CHAPTER_LENGTH = 30000
+MAX_EDIT_DISTANCE = 2
 
 ### FUNCTIONS ###
 def normalize_sentiment(sentences):
@@ -41,6 +43,7 @@ def normalize_sentiment(sentences):
 def make_gender_tags(tags, character_name):
 	for tag in tags:
 		tag = tag+character_name
+		print(tag) #debug
 
 	return tags
 
@@ -68,13 +71,14 @@ def decide_gender(characters, canon_db):
 		elif neutral: character['Gender'] = 'NEUTRAL'
 		else: #if there are no gender tags applicable to the character, we'll defer to CoreNLP's opinion on this character's gender
 
-			if character['Gender'] == 'UNKNOWN' or character['Gender']== '':
+			if character['Gender'] == 'UNKNOWN' or character['Gender']== '':#if CoreNLP doesn't know this character's gender, and it is canon, we assume the canon gender. If it isn't canon it'll be left unknown
 				#print(character['Name'], character['Gender']) #debug
 
-				#if CoreNLP doesn't know this character's gender, and it is canon, we assume the canon gender. If it isn't canon it'll be left unknown
 				if character['canonID'] > -1:
 					canon_gender = canon_db.iloc[character['canonID']]['Gender']
 					character['Gender'] = canon_gender
+
+				elif character['Gender'] == '': character['Gender'] = 'UNKNOWN' 
 
 	return characters
 
@@ -111,7 +115,17 @@ def merge_sentences(fic_index, fic_dataset, character_sentences):
 
 	return merged_sentences
 
-def merge_character_mentions(fic_index, character_entities, character_mentions, tagger_characters):
+def get_clusters(coref_mentions):
+	clusters = []
+	cluster_ids = [mention['clusterID'] for mention in coref_mentions]
+
+	for cluster_id in cluster_ids:
+		cluster = list(filter(lambda mention: mention['clusterID' ] == cluster_id, coref_mentions))
+		if len(cluster) > 0: clusters.append(cluster)
+
+	return clusters	
+
+def merge_character_mentions(fic_index, character_entities, coref_mentions, tagger_characters):
 	# create characters from their NER IDs
 	ner_ids = [char['nerID'] for char in character_entities]
 	ner_ids = set(ner_ids) #remove duplicates
@@ -122,19 +136,22 @@ def merge_character_mentions(fic_index, character_entities, character_mentions, 
 		character['ficID'] = fic_index
 		character['nerID'] = [ner]
 		character['Name'] = 'Jane Doe' #filler
+		character['Other names'] = []
 		character['Gender'] = 'X' #filler
+		character['Pronouns'] = []
 		character['Mentions'] = 0
 		character['clusterID'] = [-1] #filler
 		character['canonID'] = -1 #to be used later
 		characters.append(character)
 
-	# fill in character information using its clusters and mentions
+	## Rule 1 of character merging: All mentions with the same nerID refer to the same character
 	for char in characters:
-		for mention in character_mentions:
+		for mention in coref_mentions:
 			if mention['nerID'] == char['nerID'][0]:
-				no_cluster = False
+				#no_cluster = False
 				char['Mentions'] = char['Mentions']+1
 
+				## Rule 2 of character merging: Mentions which overlap with a NERMention refer to its same character
 				if mention['MentionT'] == 'PROPER':
 					char['Name'] = mention['Name']
 					char['Gender'] = mention['Gender']
@@ -142,7 +159,12 @@ def merge_character_mentions(fic_index, character_entities, character_mentions, 
 					cluster = char['clusterID']
 					if  mention['clusterID'] not in cluster: char['clusterID'].append(mention['clusterID'])
 
-	for char in characters:
+					if  mention['clusterID'] not in cluster: char['clusterID'].append(mention['clusterID'])
+
+				elif mention['MentionT'] == 'PRONOMINAL':
+					char['Mentions'] += 1
+
+	for char in characters: #characters that belong to no coreference cluster are assigned their name here
 		if len(char['clusterID']) == 1:
 			ner_char = list(filter(lambda entity: entity['nerID'] == char['nerID'][0], character_entities))
 
@@ -152,16 +174,20 @@ def merge_character_mentions(fic_index, character_entities, character_mentions, 
 
 	for char in characters: char['clusterID'].remove(-1) #remove filler
 	
-	# merge repeated character entries into single entry
+	## Rule 3 of character merging: All the mentions of a coreference cluster refer to the same character, but only if the gender is consistent and the names have an edit distance lesser than MAX_EDIT_DISTANCE
 	aux = characters.copy()
 	for char in characters:
 		aux.remove(char)
+
 		for c in aux:
 			cluster = c['clusterID']
 			if len(cluster) == 1 and cluster[0] in char['clusterID']:
-				if char['Name'].lower() == c['Name'].lower() and char['Gender'] == c['Gender']:
+				distance = nltk.edit_distance(char['Name'].lower(), c['Name'].lower())
+
+				if distance < MAX_EDIT_DISTANCE and char['Gender'] == c['Gender']:
 					char['Mentions'] = char['Mentions']+c['Mentions']
 					char['nerID'].append(c['nerID'][0])
+					if distance <0 : char['Other names'].append(c['Name'])
 
 					aux.remove(c)
 					characters.remove(c)
@@ -169,12 +195,14 @@ def merge_character_mentions(fic_index, character_entities, character_mentions, 
 	# merge in the NERTagger characters
 	for tagger_char, mentions in tagger_characters.items():
 		for char in characters:
-			if tagger_char.lower() == char['Name'].lower(): #add characters mentions if the character is already named
+			distance = nltk.edit_distance(char['Name'].lower(), tagger_char.lower())
+
+			if  distance < MAX_EDIT_DISTANCE: #add characters mentions if the character is already named
 				if mentions > char['Mentions']:
 					char['Mentions'] += mentions-char['Mentions']
 				break
 
-
+	#print(characters)
 	return characters
 
 def link_characters_to_canon(characters, canon_db):
@@ -182,32 +210,29 @@ def link_characters_to_canon(characters, canon_db):
 	for character in characters:
 		for index, canon_character in canon_db.iterrows():
 			if type(canon_character['Other names']) == str:
-				other_names = [name.lower() for name in canon_character['Other names'].split(',')]
-				#print(other_names) #debug
+				other_canon_names = [name.strip().lower() for name in canon_character['Other names'].split(',')]
+				#print(other_canon_names) #debug
 
-			else: other_names = ['']
 
-			if canon_character['Name'].lower() == character['Name'].lower():
+			else: other_canon_names = ['']
+
+			distance = nltk.edit_distance(canon_character['Name'].lower(), character['Name'].lower())
+			if  distance < MAX_EDIT_DISTANCE:
 				#print(canon_character['Name'].lower(), character['Name'].lower()) #debug
 				character['canonID'] = index
 				break
 
-			elif character['Name'].lower() in [name.lower() for name in canon_character['Name'].split(' ')]:
-				character['canonID'] = index
-				break
-
-			else:
-				if character['Name'].lower() in other_names:
+			elif character['Name'].lower() in other_canon_names:
 					character['canonID'] = index
 					break
-				else:
-					for name in other_names:
-						if ' ' in name:
-							name = name.split(' ')
-							if character['Name'].lower() in name:
-								character['canonID'] = index
-								break
-
+			else:
+				for name in character['Other names']:
+					distances = [nltk.edit_distance(name.lower(), canon_name) for canon_name in other_canon_names]
+					if any(distances) < MAX_EDIT_DISTANCE:
+						character['canonID'] = index
+						break
+					
+					
 	#if a character is not canon its canonID will not be changed from -1
 
 	return characters
@@ -228,9 +253,11 @@ def canonize_characters(characters, canon_db):
 		if len(characters_in_canon) > 0:
 			canonized_character = {'Name':canon_name, 'Other names':[], 'Gender':[], 'Mentions':0, 'Canon ID':i}
 			for char in characters_in_canon:
-				if char['Name'].lower() == 'Fell': print(char)
-				if char['Name'].lower() != canon_name.lower():
+				if char['Name'].lower() != canon_name.lower() and char['Name'].lower() not in canonized_character['Other names']:
 					canonized_character['Other names'].append(char['Name'])
+
+				for name in char['Other names']:
+					if name not in canonized_character['Other names']: canonized_character['Other names'].append(name)
 
 				if char['Gender'] not in canonized_character['Gender']:
 					canonized_character['Gender'].append(char['Gender'])
@@ -254,7 +281,7 @@ def extract_data_from_annotations(annotation):
 	
 	# lists to store the return values in
 	character_entities = []
-	character_mentions = []
+	coref_mentions = []
 	character_sentences = []
 
 	## Extract characters from NER and coreference mentions ##
@@ -321,13 +348,13 @@ def extract_data_from_annotations(annotation):
 				character['Name'] = mention.headString
 				character['Gender'] = mention.gender
 				character['MentionT'] = mention.mentionType
-				character_mentions.append(character)
+				coref_mentions.append(character)
 
 
 		#end FOR mention
 	#end IF len		
 
-	return character_entities, character_mentions, character_sentences
+	return character_entities, coref_mentions, character_sentences
 
 def split_chapter(chapter):
 	len_chapter = len(chapter)
@@ -409,7 +436,7 @@ class CoreNLPDataProcessor():
 
 		# Declarations
 		character_entities = []
-		character_mentions = []
+		coref_mentions = []
 		character_sentences = []
 		canonized_characters = [] #final result is stored here
 
@@ -418,11 +445,11 @@ class CoreNLPDataProcessor():
 			entities, mentions, sentences = extract_data_from_annotations(annotation)
 
 			character_entities = character_entities + entities
-			character_mentions = character_mentions + mentions
+			coref_mentions = coref_mentions + mentions
 			character_sentences = character_sentences + sentences
 
 		# Merge all character mentions into unique characters
-		unique_characters = merge_character_mentions(self.fic.index, character_entities, character_mentions, nerTagger_characters)
+		unique_characters = merge_character_mentions(self.fic.index, character_entities, coref_mentions, nerTagger_characters)
 
 		# Link characters to their canon version, if it has one
 		canonized_characters = canonize_characters(unique_characters, canon_db)

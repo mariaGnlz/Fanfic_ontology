@@ -1,27 +1,27 @@
 ,Name,Other names,Gender,Type
-0,Adam Young,"Antichrist, The Adversary, Destroyer of Kings, Angel of the Bottomless Pit, Prince of this World and Lord of Darkness",MALE,Protagonist
+0,Adam Young,"Antichrist, Adversary, Destroyer of Kings, Angel of the Bottomless Pit, Prince of this World and Lord of Darkness",MALE,Protagonist
 1,Agnes Nutter,,FEMALE,Secondary
 2,Anathema Device,Ana,FEMALE,Protagonist
-3,Arthur Young,Mr. Young,MALE,Tertiary
-4,Aziraphale,"angel, A.Z. Fell, Brother Francis, Mr. Cortese",MALE,Protagonist
+3,Arthur Young,"Mr. Young, Young",MALE,Tertiary
+4,Aziraphale,"angel, Mr. Fell, Fell, Brother Francis, Francis, Cortese",MALE,Protagonist
 5,Beelzebub,"Beez, Lord of the Flies",NEUTRAL,Secondary
 6,Big Ted,,MALE,Tertiary
 7,Brian,,MALE,Secondary
-8,Crowley,"Crawley, Anthony J. Crowley, A.J. Crowley, Nanny Ashtoreth, Mr. Harrison, Serpent of Eden",MALE,Protagonist
+8,Crowley,"Crawley, Anthony J. Crowley, A.J. Crowley, Anthony, Nanny Ashtoreth, Ashtoreth, Mr. Harrison, Harrison, Serpent of Eden",MALE,Protagonist
 9,Dagon,Lord of the Files,MALE,Tertiary
 10,DEATH,,MALE,Secondary
-11,Deirdre Young,Mrs. Young,FEMALE,Tertiary
+11,Deirdre Young,"Mrs. Young, Young",FEMALE,Tertiary
 12,Dog,,MALE,Tertiary
-13,Famine,"Dr Raven Sable, Black",MALE,Secondary
+13,Famine,"Dr. Raven Sable, Raven, Sable, Black",MALE,Secondary
 14,Gabriel,Archangel Gabriel,MALE,Secondary
 15,God,Lord,FEMALE,Tertiary
 16,Greaser,,MALE,Tertiary
 17,Greasy Johnson,,MALE,Tertiary
-18,Harriet Dowling,Mrs. Dowling,FEMALE,Tertiary
+18,Harriet Dowling,"Mrs. Dowling, Dowling",FEMALE,Tertiary
 19,Hastur,Duke of Hell,MALE,Secondary
 20,International Express Man,Leslie,MALE,Secondary
 21,Ligur,Duke of Hell,MALE,Secondary
-22,Madame Tracy,Marjorie Potts,FEMALE,Protagonist
+22,Madame Tracy,"Marjorie Potts, Marjorie",FEMALE,Protagonist
 23,Metatron,Voice of God,MALE,Tertiary
 24,Michael,Archangel Michael,FEMALE,Secondary
 25,Newton Pulsifer,Newt,MALE,Protagonist
@@ -29,13 +29,13 @@
 27,Pigbog,,MALE,Tertiary
 28,Pollution,"White, Chalky, Weiss, Blanc, Albus, Snowy",NEUTRAL,Secondary
 29,Sandalphon,,MALE,Tertiary
-30,Satan,"Lucifer, Luzbel, The Adversary, Devil",MALE,Tertiary
+30,Satan,"Lucifer, Luzbel, Adversary, Devil",MALE,Tertiary
 31,Shadwell,"Witchfinder Sergeant Shadwell, Mr. Shadwell",MALE,Protagonist
 32,Sister Mary Loquacious,Mary Hodges,FEMALE,Tertiary
 33,Skuzz,,MALE,Tertiary
-34,Thaddeus Dowling,"Ted, Mr. Dowling",MALE,Tertiary
-35,Thou-Shalt-Not-Commit-Adultery Pulsifer,Adultery Pulsifer,MALE,Tertiary
+34,Thaddeus Dowling,"Ted, Mr. Dowling, Dowling",MALE,Tertiary
+35,Thou-Shalt-Not-Commit-Adultery Pulsifer,"Adultery Pulsifer, Pulsifer",MALE,Tertiary
 36,Uriel,Archangel Uriel,NEUTRAL,Tertiary
-37,War,Carmine Zuigiber,FEMALE,Secondary
+37,War,"Carmine Zuigiber, Ms. Zuigiber, Zuigiber",FEMALE,Secondary
 38,Warlock Dowling,,MALE,Tertiary
 39,Wensleydale,Jeremy Wensleydale,MALE,Tertiary

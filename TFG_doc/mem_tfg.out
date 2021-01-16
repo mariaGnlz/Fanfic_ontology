@@ -6,8 +6,10 @@
 \BOOKMARK [2][-]{subsection.4.2}{Limpieza de datos y creaci\363n de datasets}{section.4}% 6
 \BOOKMARK [1][-]{section.5}{EXTRACCI\323N DE DATOS A PARTIR DE TEXTO}{}% 7
 \BOOKMARK [2][-]{subsection.5.1}{Algoritmo de identificaci\363n de entidades}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.2}{Algoritmo de identificaci\363n de relaciones}{section.5}% 9
-\BOOKMARK [3][-]{subsubsection.5.2.1}{Primeras estrategias: Clustering y LDA}{subsection.5.2}% 10
-\BOOKMARK [3][-]{subsubsection.5.2.2}{Correferencia con CoreNLP}{subsection.5.2}% 11
-\BOOKMARK [1][-]{section.6}{EVALUACI\323N DEL SISTEMA}{}% 12
-\BOOKMARK [1][-]{section.7}{REFERENCIAS}{}% 13
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Extracci\363n de entidades con NLTK}{subsection.5.1}% 9
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Extracci\363n de entidades con CoreNLP}{subsection.5.1}% 10
+\BOOKMARK [2][-]{subsection.5.2}{Algoritmo de identificaci\363n de relaciones}{section.5}% 11
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Primeras estrategias: Clustering y LDA}{subsection.5.2}% 12
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Correferencia con CoreNLP}{subsection.5.2}% 13
+\BOOKMARK [1][-]{section.6}{EVALUACI\323N DEL SISTEMA}{}% 14
+\BOOKMARK [1][-]{section.7}{REFERENCIAS}{}% 15

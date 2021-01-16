@@ -152,8 +152,12 @@ elif len(sys.argv) == 2:
 	print('-- DATA FOR FANFIC #'+str(fic_id))
 	print('·Title: '+fic_title)
 	print('·Characters: ')
-	for character in annotated_fic.characters: print('	'+character['Name']+' ('+str(character['Gender'])+', canon ID: '+str(character['Canon ID'])+') mentioned '+str(character['Mentions'])+' times.',character['Other names'])
+	for character in annotated_fic.characters:
+		if character['Canon ID'] > 0 : canon=str(character['Canon ID'])
+		else: canon='NO'
+
+		print('	'+character['Name']+' ('+str(character['Gender'])+', canon ID: '+canon+') mentioned '+str(character['Mentions'])+' times.',character['Other names'])
 
 	percentages = calculate_sentiment_percentages(fic_sentiment)
-	print("·Sentiment: %.2f Very positive, %.2f Positive, %.2f Neutral, %.2f Negative, %.2f Very negative."%percentages)
+	print("·Sentiment: %.2f Very positive, %.2f Positive, %.2f Neutral, %.2f Negative, %.2f Very negative."%percentages[0],percentages[1],percentages[2],percentages[3],percentages[4])
 	
