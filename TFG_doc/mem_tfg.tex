@@ -386,13 +386,14 @@ Fue más o menos a estas alturas del proyecto cuando decidí separar el proceso 
 
 Por lo tanto, el programa \textit{NER\_trainer.py} se encarga únicamente de entrenar el \textit{chunker} y guardarlo en un objeto binario con la ayuda de \textit{pickle}, mientras que el programa \textit{NER\_tagger.py} carga el objeto binario y lo encapsula en una clase NERTagger, de modo que cualquier otro programa pueda utilizarlo cuando lo necesite.
 
-\begin{figure}
+\begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.6]{ejecucion_nertrainer}
 	\caption{Ejecución final de \textit{NER\_trainer.py}, mostrando su evaluación.}
 	\label{fig:ner_evaluation}
 \end{figure}
 
+\missingfigure{fig:esquema canonicalización personajes}
 %%% DETALLES TÉCNICOS %%%
 % POS\_tagger.py: para poder etiquetar las entidades nombradas es necesario etiquetar cada palabra con su rol morfológico, de modo que este programa se encarga de abrir los archivos html, pasarlos a texto y ponerle sus etiquetas morfológicas. Para ello utiliza los métodos de NLTK word\_tokenize y sent\_tokenize para dividir cada texto en frases y palabras, y pos\_tag para usar el clasificador por defecto de python para asignar etiquetar morfológicas en inglés. Almacena el resultado en un csv, de modo que en vez de tener preparar el archivo html y etiquetarlo cada vez que quiera identificar entidades, sólo tengo que etiquetar cada archivo una vez.
 % NER\_trainer.py: entrena el algoritmo identificador de entidades usando el dataset de entrenamiento (descargado de aquí) y guarda el objeto en un archivo binario usando la librería pickle. Una vez entrenado, evalúa la precisión del algoritmo y la imprime por pantalla. Como el dataset no es parte del corpus nativo de NLTK, mucho de éste programa consiste en abrir el csv del dataset y empaquetar sus datos en listas y tuplas que sean compatibles con NLTK, y dividir el resultado en un dataset de entrenamiento y dos para hacer test (80\%, 10\% y 10\% del dataset original, respectivamente). Este programa utliza un objeto de la clase NERChunkerv1, que se encuentra en el archivo NER\_chunker.py, que se explica más abajo.
@@ -493,9 +494,14 @@ Este proceso resuelve los problemas relacionados con tener los mismos personajes
 
 Todos este proceso de extracción de personajes se lleva a cabo mediante una clase CoreNLPDataProcessor, que se encuentra encapsulada junto a CoreWrapper en un programa llamado \textit{corenlp\_util.py}. CoreNLPDataProcessor, además de extraer personajes, también tiene función de análisis de sentimiento, como se explicará en la sección \todo{ref a programa principal}.
 
-En la figura \ref{fig:extraccionPersonajes} hay un esquema que explica de forma visual todo este proceso de extracción de personajes.
+En la figura \ref{fig:ner_extraction_corenlp} hay un esquema que explica de forma visual todo este proceso de extracción de personajes.
 
-\missingfigure{fig:esquema extracción personajes}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.6]{core_ner_extraction}
+	\caption{Esquema sobre el proceso de extracción de personajes con CoreNLP.}
+	\label{fig:ner_extraction_corenlp}
+\end{figure}
 
 
 \todo{explicar posibles problemas y carencias de este proceso (apodo que es un sustantivo común como "ángel", posibles confunsiones entre un Mr Smith con Ms Smith)}
@@ -696,6 +702,8 @@ Para poder llevar a cabo todo esto, fue necesario estudiar con atención las pro
 	\label{fig:core_visualization_1}
 \end{figure}
 
+Una vez me sentí más cómoda con CoreNLP, hice varios programas 
+
 Mientras aprendía a manejar los objetos de \textit{Stanza} fui desarrollando distintos programas 
 
 El objetivo es crear un programa que sea capaz de resumir la información proporcionada por CoreNLP de forma que sea útil para identificar relaciones entre personajes y probarlo con el RFE dataset.
@@ -883,8 +891,9 @@ Tras haber realizado este análisis con los relatos de romance, amistad y enemis
 \end{figure}
 
 
-
-
+\section{PROGRAMA PRINCIPAL}
+\todo{programa principal}
+\missingfigure{NERTagger + CoreProcessor = personajes}
 
 
 \section{EVALUACIÓN DEL SISTEMA}
