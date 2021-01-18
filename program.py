@@ -6,7 +6,7 @@ from fanfic_util import *
 from NER_tagger_v3 import NERTagger
 from corenlp_util import CoreNLPDataProcessor, CoreWrapper
 
-import sys, time, random
+import sys, time, random, pandas
 
 ### VARIABLES ###
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
@@ -53,6 +53,12 @@ def call_corenlp(fic):
 	print("Client closed. "+ str((end-start)/60) +" mins elapsed")
 
 	return annotated_fics
+
+def merge_core_and_nertagger(nert_characters, core_characters):
+	nert_characters = []
+	core_characters = []
+
+
 
 def calculate_sentiment_percentages(fic_sentiment):
 	total = fic_sentiment['Num sentences']
@@ -129,7 +135,7 @@ elif len(sys.argv) == 2:
 	print('Tagging characters with NERTagger...')
 	start = time.time()
 	ner_characters = tag_with_NERTagger(fic)
-	print(ner_characters) #debug
+	for char in ner_characters: print(char) #debug
 	end = time.time()  
 	print('...done in '+str((end-start)/60)+' minutes.')
 
@@ -139,9 +145,9 @@ elif len(sys.argv) == 2:
 
 	print('Processing CoreNPL data...')
 	coreProcessor = CoreNLPDataProcessor(annotated_fic)
-	coreProcessor.extract_fic_characters(ner_characters)
-	characters = coreProcessor.fic.characters
-	#print(characters) #debug
+	coreProcessor.extract_fic_characters()
+	fic_characters = coreProcessor.fic.characters
+	#print(type(fic_characters)) #debug
 
 	fic_sentiment = coreProcessor.extract_fic_sentiment()
 	#print(fic_sentiment) #debug
@@ -151,13 +157,14 @@ elif len(sys.argv) == 2:
 
 	print('-- DATA FOR FANFIC #'+str(fic_id))
 	print('·Title: '+fic_title)
-	print('·Characters: ')
-	for character in annotated_fic.characters:
-		if character['Canon ID'] > 0 : canon=str(character['Canon ID'])
-		else: canon='NO'
+	print('·Characters:	{:<8} {:<20} {:<10} {:<10} {:<10} {:<10} {:<20}'.format('Canon ID','Name','MALE','FEMALE','NEUTRAL','UNKNOWN','Other names'))
+	for character in fic_characters:
+		try: print('		{:<8} {:<20} {:<10} {:<10} {:<10} {:<10} {:<20}'.format(character['Canon ID'], character['Name'],character['Male mentions'],character['Female mentions'],character['Neutral mentions'],character['Unknown mentions'],character['Other names']))
+		except TypeError: print(character)
 
-		print('	'+character['Name']+' ('+str(character['Gender'])+', canon ID: '+canon+') mentioned '+str(character['Mentions'])+' times.',character['Other names'])
+	print('\n')
 
-	percentages = calculate_sentiment_percentages(fic_sentiment)
-	print("·Sentiment: %.2f Very positive, %.2f Positive, %.2f Neutral, %.2f Negative, %.2f Very negative."%percentages[0],percentages[1],percentages[2],percentages[3],percentages[4])
+	#percentages = calculate_sentiment_percentages(fic_sentiment)	
+	print('·Sentiment:	{:<15} {:<10} {:<10} {:<10} {:<10} {:<10}'.format('Sentences','Very positive','Positive','Neutral','Negative','Very negative'))
+	print('		{:<10} {:<15} {:<10} {:<10} {:<10} {:<15}'.format(fic_sentiment['Num sentences'],fic_sentiment['Very positive'],fic_sentiment['Positive'],fic_sentiment['Neutral'],fic_sentiment['Negative'],fic_sentiment['Very negative']))
 	
