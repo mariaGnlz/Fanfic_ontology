@@ -328,7 +328,7 @@ Por estos motivos, la librería NLTK parecía la más idónea para la tarea. Es 
 \subsection{Algoritmo de identificación de entidades}
 
 \subsubsection{Extracción de entidades con NLTK}
-
+\label{sec:nerextract_tagger}
 Además del identificador de rol morfológico, NLTK también tiene una clase llamada \textit{ChunkParser} cuyo trabajo es dividir un texto en tramos. Todas las funciones de la librería que se encargan de dividir y/o etiquetar texto (como el identificador de rol morfológico) heredan de alguna versión de la clase \textit{ChunkParser}, de modo que la idea para el algoritmo era modificar la clase \textit{ChunkParserI} para convertirla en un identificador de secuencias basado en características. El código utilizado en este proyecto está basado en el tutorial de Ivanov en \textit{Natural Language Processing for Hackers} \cite{ivanov_2016}
 
 Un identificador de secuencias basado en características trata de asignar un peso a un tramo concreto, y según el peso, le asigna una etiqueta u otra. Este peso se calcula como una función de las características del propio tramo, así como de los tramos que le preceden.
@@ -384,16 +384,33 @@ En horizontal queda así:
 
 Fue más o menos a estas alturas del proyecto cuando decidí separar el proceso de entrenar el identificador de entidades y el de utilizarlo para etiquetar texto nuevo en dos programas distintos (NERTrainer y NERTagger, respectivamente). Acceder a los textos de GMB y transformar sus etiquetas a un formato que NLTK pueda entender y acceder a los textos de la base de datos de fanfics y preprocesarlos para su posterior etiquetado mediante el programa ya entrenado han resultado ser dos procesos muy distintos, y dividirlo parecía la mejor manera de tener un código limpio y claro.
 
-Por lo tanto, el programa \textit{NER\_trainer.py} se encarga únicamente de entrenar el \textit{chunker} y guardarlo en un objeto binario con la ayuda de \textit{pickle}, mientras que el programa \textit{NER\_tagger.py} carga el objeto binario y lo encapsula en una clase NERTagger, de modo que cualquier otro programa pueda utilizarlo cuando lo necesite.
+Por lo tanto, el programa \textit{NER\_trainer.py} se encarga únicamente de entrenar el \textit{chunker} y guardarlo en un objeto binario con la ayuda de \textit{pickle}, mientras que el programa \textit{NER\_tagger.py} carga el objeto binario y lo encapsula en una clase NERTagger. Cuando otro programa quiere usar NERTagger, sólo tiene que importarlo y usar su función \textit{parse(text)}, que requiere el texto completo a analizar, previamente etiquetado con el rol morfológico de cada palabra. En este aspecto, funciona de forma parecida al resto de \textit{taggers} de NLTK.
 
-\begin{figure}[!h]
+\begin{figure}
 	\centering
 	\includegraphics[scale=0.6]{ejecucion_nertrainer}
 	\caption{Ejecución final de \textit{NER\_trainer.py}, mostrando su evaluación.}
 	\label{fig:ner_evaluation}
 \end{figure}
 
+Sin embargo, al contrario que los modelos de NLTK, NERTagger no devuelve el texto entero con los personajes etiquetados en objetos tipo árbol, sino que devuelve directamente la lista con los nombres de los personajes y el número de veces que es mencionado cada uno. Además, tras la extracción de personajes el programa realiza una canonicalización de personajes.
+
+Vamos a aprovechar el hecho de que los relatos que estamos manejando pertenecen al género fanfic, es decir, son obras basadas en obras ya existentes. Eso quiere decir que hay una alta probabilidad de que la mayoría o incluso todos los personajes del fanfic no sean creación del autor, sino que ya aparecían en la obra original. A estos personajes se les llama 'personajes canon'.
+
+En este proyecto, la canonicalización de personajes consiste en descubrir qué personajes del fanfic son canon o no. Para ello necesito la lista de personajes que sí que son canon, de modo que, con la ayuda de \href{https://goodomens.fandom.com/wiki/Category:Characters}{la página de personajes de la wiki de \textit{Good Omens}}, creo un archivo llamado \textit{canon\_characters.csv} que sirve como base de datos de los personajes de la obra original, asignándole a cada uno un identificador numérico. La base de datos además también contiene el género canónico de cada personaje, y una lista con sus apodos.
+
+Usando la base de datos es sencillo comprobar si un personaje pertenece al canon simplemente observando si su nombre o parte de su nombre coincide con el nombre o algún apodo de un personaje canon. Para no pasar por alto posibles erratas cometidas por los autores al escribir, se considera que dos nombres coinciden cuando la distancia de edición entre ellos es menor que una distancia máxima, que variará según lo largo que los nombres sean. Por ejemplo, un candidato a personaje llamado 'Azriaphale' será enlazado con el personaje canon 'Aziraphale', mientras que para que un candidato sea enlazado con 'War' o 'God' la distancia de edición tendrá que ser 0, puesto que son nombres muy cortos e incluso una distancia de edición de 1 añadiría ruido como 'dog', 'Got', 'warm' o 'ware'. Nombres que tengan varias palabras, como 'Mr. Anderson' y nombres completos como 'Jane Austen', se comparan palabra a palabra con los nombres de los personajes canon, y se escoge la menor distancia de edición.
+
 \missingfigure{fig:esquema canonicalización personajes}
+
+El resultado final es un diccionario que incluye el nombre del personaje, el identificador numérico de su personaje canon (si lo tiene) y su número de menciones. Un ejemplo se puede observar en la figura \ref{fig:nerextract_tagger}.
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{nerextract_tagger}
+	\caption{}
+	\label{fig:nerextract_tagger}
+\end{figure}
 %%% DETALLES TÉCNICOS %%%
 % POS\_tagger.py: para poder etiquetar las entidades nombradas es necesario etiquetar cada palabra con su rol morfológico, de modo que este programa se encarga de abrir los archivos html, pasarlos a texto y ponerle sus etiquetas morfológicas. Para ello utiliza los métodos de NLTK word\_tokenize y sent\_tokenize para dividir cada texto en frases y palabras, y pos\_tag para usar el clasificador por defecto de python para asignar etiquetar morfológicas en inglés. Almacena el resultado en un csv, de modo que en vez de tener preparar el archivo html y etiquetarlo cada vez que quiera identificar entidades, sólo tengo que etiquetar cada archivo una vez.
 % NER\_trainer.py: entrena el algoritmo identificador de entidades usando el dataset de entrenamiento (descargado de aquí) y guarda el objeto en un archivo binario usando la librería pickle. Una vez entrenado, evalúa la precisión del algoritmo y la imprime por pantalla. Como el dataset no es parte del corpus nativo de NLTK, mucho de éste programa consiste en abrir el csv del dataset y empaquetar sus datos en listas y tuplas que sean compatibles con NLTK, y dividir el resultado en un dataset de entrenamiento y dos para hacer test (80\%, 10\% y 10\% del dataset original, respectivamente). Este programa utliza un objeto de la clase NERChunkerv1, que se encuentra en el archivo NER\_chunker.py, que se explica más abajo.
@@ -411,6 +428,7 @@ Por lo tanto, el programa \textit{NER\_trainer.py} se encarga únicamente de ent
 %NERTagger mantiene un historial de etiquetas IOB (una lista) y depende de feature\_function, una función que recoge ciertas características (featureset) de una palabra y las devuelve en forma de diccionario. Las características que recoge son éstas:
 
 \subsubsection{Extracción de entidades con CoreNLP}
+\label{sec:nerextract_corenlp}
 La decisión de incluir CoreNLP en el proyecto está motivada por la posibilidad de no sólo aprovechar sus capacidades para identificar menciones a una entidad en un texto, y, sobretodo, su función de resolución de correferencia para identificar relaciones entre personajes en un texto. En la sección \ref{sec:correferencia} está explicado en mayor detalle por qué esto podría ser relevante para el proyecto y cómo utilizarlo en python, pero aquí baste con mencionar que la resolución de correferencia es un método por el cual se enlaza un pronombre con el nombre propio al que se refiere. Por ejemplo, en una frase como \textit{'I love you, Juliet'} se podría aplicar correferencia para enlazar el \textit{you} con \textit{Juliet}. En este ejemplo, \textit{you} es una mención pronominal, mientras que \textit{Juliet} es una mención propia.
 
 Esto hace que CoreNLP sea una un complemento atractivo al NERtagger desarrollado en la sección anterior, ya que además del nombre del personaje también recoge información de sus pronombres, posibilitando identificar su género y llevar una cuenta más precisa de cuántas veces se menciona un personaje concreto en el texto (incluso aunque la mención sea sólo un pronombre como \textit{he}). En esta sección se explica cómo utilizar todas estas funciones, además de los metadatos a nuestra disposición, para identificar y extraer el nombre y el género de los personajes presentes en un texto. Además, puesto que la intención del programa es que el fanfic se pueda comparar con el texto original en el que se basa, por cada personaje se identificará si aparece en la obra original o es un añadido del autor fan.
@@ -431,12 +449,10 @@ Sin embargo, antes incluso de empezar a entender cómo se relacionan las Mention
 El límite de caracteres tiene fácil solución, puesto que basta con enviar cada fanfic como una lista de capítulos \label{nota:limiteCarac} (dividiendo aquellos que aún sigan excediendo el límite), y cada capítulo se envía en un petición separada. Obviamente eso significa que por cada texto se pueden recibir dos o más objetos \textit{Document}, lo que significa que un mismo personaje puede tener distintos identificadores según el \textit{Document} en el que se generó su mención, lo que complica ligeramente el proceso de consolidación de personajes, como se explica más adelante. Sin embargo, esta división del texto en distintas peticiones evita con éxito que expiren por ser demasiado grandes, pero la respuesta sigue siendo muy lenta para listas de más de 9 ó 10 textos, dependiendo de lo largos que sea cada uno.
 Finalmente la solución fue rediseñar el programa de manera que en vez de abrir y cerrar el servidor por cada texto, se abre una vez y todas las peticiones se envían juntas. Aunque el tiempo que se tarda en abrir el servidor casi siempre es menor que el necesario para procesar el texto en sí, era obviamente la manera más simple de ahorrar tiempo de ejecución.
 
-Para facilitar todo este proceso se crea la clase CoreWrapper \todo{cambiar a CoreClient si necesario}, que se encarga de todo lo relacionado con la comprobación del límite de caracteres y manejar el servidor. CoreWrapper simplemente recibe una lista de objetos Fanfic y devuelve esencialmente la misma lista, pero ahora cada Fanfic tiene un atributo \textit{annotations} que es una lista de los \textit{Document} asociados a él.
+Para facilitar todo este proceso se crea la clase CoreWrapper, que se encarga de todo lo relacionado con la comprobación del límite de caracteres y manejar el servidor. CoreWrapper simplemente recibe una lista de objetos Fanfic y devuelve esencialmente la misma lista, pero ahora cada Fanfic tiene un atributo \textit{annotations} que es una lista de los \textit{Document} asociados a él.
 CoreWrapper también maneja los errores de servidor y de red que puedan ocurrir durante la ejecución de CoreNLP, avisando si uno se produce, y asegurando que los datos obtenidos hasta el momento sean almacenados. Ésta función resultó muy importante en el procesado del RFE dataset en la sección \ref{sec:correferencia}, puesto que CoreNLP es bastante propenso a errores de red y rara vez podía digerir más de 25 fanfics de golpe. 
 
 Una vez solucionado el problema de la latencia, el siguiente reto es entender cómo CoreNLP indexa cada palabra u oración de un texto con sus correspondientes menciones, y cómo éstas se refieren unas a otras. Repasé la documentación de CoreNLP, además de dibujar esquemas y crear varios programas para encontrar el mejor método de agrupar Mention en clusters y NERMention en listas que contuvieran toda la información necesaria para identificar cada personaje. Tras toda esta experimentación, todas las menciones y su información quedaron resumidas en listas de diccionarios de python, de forma que cada diccionario representa una mención e incluye el texto de la mención (que generalmente es el nombre del personaje), el género del personaje, y otra información como el tipo de mención y sus identificadores (de entidad, de cluster, etc).
-
-\missingfigure{fig: esquema de indexación de corenlp}
 
 Puesto que las menciones de correferencia pertenecen a clusters de menciones, mientras que las menciones de entidad tienen un identificador, en un principio pensé en clasificar todas las menciones de correferencia según cluster, determinar qué personaje representa qué cluster y luego asociar cada uno de estos clusters con un los identificadores de entidad, teniendo en cuenta factores como el género y el  nombre de cada uno.
 Sin embargo, los clusters de correferencia no se corresponden fácilmente con personajes, especialmente si dos personajes del mismo género aparecen mencionados juntos (cosa a la que éste conjunto de relatos es muy susceptible). Por tanto, para consolidar las menciones de correferencia en personajes tuve aprovechar otros patrones en la información proporcionada por CoreNLP:
@@ -456,31 +472,22 @@ Sin embargo, los clusters de correferencia no se corresponden fácilmente con pe
 	\label{fig:solapamiento_esquema}
 \end{figure}
 
-En base a estas observaciones se pueden determinar algunas reglas para decidir qué menciones se refieren a qué personaje:
+En base a estas observaciones se pueden determinar algunas reglas para decidir qué menciones se refieren a qué personaje. Como en el proceso de canonicalización explicado en la sección \ref{sec:nerextract_corenlp}, se considera que dos nombres coinciden cuando su distancia de edición es menor que una distancia máxima, que se fija según lo largo que sea el nombre. Así, tenemos:
 
 \begin{enumerate}
 	\item Todas las NERMention que tengan el mismo \textit{canonicalEntityMentionIndex} se consideran como el mismo personaje, y el atributo \textit{entityMentionText} se considera el nombre del mismo.
-	\item Identificar las Mention que también son menciones de entidad. Dichas Mention se consideran como el mismo personaje que el de la NERMention.
-	\item De las Mention que hayan podido ser identificadas como pertenecientes a un personaje, obtener su cluster de correferencia y considerar a todas las Mention de dicho cluster como pertenecientes a dicho personaje, pero sólo si 1) El atributo \textit{gender} de ambas menciones son el mismo, y 2) El atributo \textit{headString} de ambas Mention tienen una distancia de edición menor que 3 (para evitar descartar posibles errores tipográficos).
+	\item Identificar las Mention que también son menciones de entidad. Dichas Mention se consideran como el mismo personaje que el de la NERMention si sus nombres coninciden.
+	\item De las Mention que hayan podido ser identificadas como pertenecientes a un personaje, obtener su cluster de correferencia y considerar a todas las Mention de dicho cluster como pertenecientes a dicho personaje, pero sólo si 1) El atributo \textit{gender} de ambas menciones son el mismo, y 2) El atributo \textit{headString} de ambas Mention coinciden.
 \end{enumerate}
 
-El resultado de este proceso es una lista de diccionarios de python que representan personajes, conteniendo su nombre, su género, el número de veces que es mencionado, a qué clusters pertenece, etc.
+El resultado de este proceso es una lista de diccionarios de python que representa a cada personaje, conteniendo su nombre, su género, el número de veces que es mencionado, a qué clusters pertenece, etc.
 
-Esta lista aún es bastante imperfecta. De entrada, los identificadores de entidad y de cluster asignados a cada mención dependen del \textit{Document}, y dada la estructura del programa, la mayoría de relatos van a tener asociados dos o más \textit{Document}, lo que significa que hay personajes con exactamente el mismo nombre y género que aparecen como dos personajes distintos, porque no comparten el mismo \textit{canonicalEntityMentionIndex} ni ningún cluster de correferencia. Además, esta forma de identificar personajes significa que si alguno tiene un apodo, o si a un personaje se le llama de forma consistente por su apellido en una zona del texto y por su nombre en otro, aparecerá como dos personajes distintos. Para mitigar estos errores, implementé un paso de canonicalización de personajes.
-
-Vamos a aprovechar el hecho de que los relatos que estamos manejando pertenecen al género fanfic, es decir, son obras basadas en obras ya existentes. Eso quiere decir que hay una alta probabilidad de que la mayoría o incluso todos los personajes del fanfic no sean creación del autor, sino que ya aparecían en la obra original. A estos personajes se les llama 'personajes canon'.
-
-En este proyecto, la canonicalización de personajes consiste en descubrir qué personajes del fanfic son canon o no. Para ello necesito la lista de personajes que sí que son canon, de modo que, con la ayuda de \href{https://goodomens.fandom.com/wiki/Category:Characters}{la página de personajes de la wiki de \textit{Good Omens}}, creo un archivo llamado \textit{canon\_characters.csv} que sirve como base de datos de los personajes de la obra original, asignándole a cada uno un identificador numérico. La base de datos además también contiene el género canónico de cada personaje, y una lista con sus apodos.
-
-Durante la canonicalización también vamos a determinar el género de un personaje de forma definitiva, y para ello vamos a aprovechar nuevamente que estamos manejando fanfics y que, por lo general, los autores etiquetan sus fanfics. No todos ellos etiquetan el género de sus personajes, pero algunos sí, ya que hay personas a las que le gusta explorar la personalidad o sexualidad de los personajes mediante técnicas como cambiarles el género o darles una expresión ambigua. Algunos ejemplos de las etiquetas que se suelen usar para indicar el género de un personaje son 'He/Him Pronouns for Crowley', 'Androgynous Crowley' o 'Female!Crowley'.
+Esta lista aún es bastante imperfecta. De entrada, los identificadores de entidad y de cluster asignados a cada mención dependen del \textit{Document}, y dada la estructura del programa, la mayoría de relatos van a tener asociados dos o más \textit{Document}, lo que significa que hay personajes con exactamente el mismo nombre y género que aparecen como dos personajes distintos, porque no comparten el mismo \textit{canonicalEntityMentionIndex} ni ningún cluster de correferencia. Además, esta forma de identificar personajes significa que si alguno tiene un apodo, o si a un personaje se le llama de forma consistente por su apellido en una zona del texto y por su nombre en otro, aparecerá como dos personajes distintos. Para mitigar estos errores, utilicé el proceso de canonicalización de personajes de la sección \ref{sec:nerextract_tagger}.
+También vamos a aprovechar el proceso de canonicalización para determinar el género de un personaje de forma definitiva, y para ello vamos a aprovechar nuevamente que estamos manejando fanfics y que, por lo general, los autores etiquetan sus fanfics. No todos ellos etiquetan el género de sus personajes, pero algunos sí, ya que hay personas a las que le gusta explorar la personalidad o sexualidad de los personajes mediante técnicas como cambiarles el género o darles una expresión ambigua. Algunos ejemplos de las etiquetas que se suelen usar para indicar el género de un personaje son 'He/Him Pronouns for Crowley', 'Androgynous Crowley' o 'Female!Crowley'.
 
 Teniendo en cuenta todos estos factores, la canonicalización de un personaje consiste en estos pasos:
 \begin{enumerate}
-	\item Identificar si es canon o no:
-	\begin{enumerate}
-		\item Comprobar si el nombre del candidato a personaje tiene una distancia de edición menor que 2 con el nombre canon de algún personaje. Si lo hay, el candidato se considera ese personaje del canon.
-		\item Si no coincide con el nombre del personaje canon, se pasa a hacer la misma comprobación con los apodos conocidos del mismo. Si coincide con alguno, el candidato se considera ese personaje del canon.
-	\end{enumerate}
+	\item Identificar si es canon o no, utilizando los nombres de cada candidato y comparándolos con los nombres y apodos de los personajes canon, igual que en la sección \ref{sec:nerextract_tagger}.
 	
 	\item Identificar el género del personaje:
 	\begin{enumerate}
@@ -490,7 +497,7 @@ Teniendo en cuenta todos estos factores, la canonicalización de un personaje co
 	\end{enumerate}
 \end{enumerate}
 
-Este proceso resuelve los problemas relacionados con tener los mismos personajes procesados en distintos \textit{Document}, y asegura que una mención será identificada con el personaje canon tanto si menciona el nombre, el apellido o sólo un apodo. Además, este proceso sigue siendo capaz de identificar correctamente a un personaje con su correspondiente en el canon aunque el género no concuerde, e incluso si el personaje cambia de género durante la historia.
+Este proceso resuelve los problemas relacionados con tener los mismos personajes procesados en distintos \textit{Document}, y asegura que una mención será identificada con el personaje canon tanto si menciona el nombre, el apellido o sólo un apodo. Discrimina por género de tal manera que si se le asignan géneros distintos al mismo personaje, se cuentan las menciones de cada uno de modo que al final cada personaje tiene una cuenta de menciones masculinas, femeninas, neutras o desconocidas. De esta manera es más probable identificar correctamente a un personaje con su correspondiente en el canon aunque el género no concuerde.
 
 Todos este proceso de extracción de personajes se lleva a cabo mediante una clase CoreNLPDataProcessor, que se encuentra encapsulada junto a CoreWrapper en un programa llamado \textit{corenlp\_util.py}. CoreNLPDataProcessor, además de extraer personajes, también tiene función de análisis de sentimiento, como se explicará en la sección \todo{ref a programa principal}.
 
@@ -702,16 +709,47 @@ Para poder llevar a cabo todo esto, fue necesario estudiar con atención las pro
 	\label{fig:core_visualization_1}
 \end{figure}
 
-Una vez me sentí más cómoda con CoreNLP, hice varios programas 
+Tras analizar toda esta información, entender la indexación de los objetos de \textit{Stanza} y ganar experiencia manejándolos, se hizo evidente que el siguiente paso sería crear un programa cuya función fuese resumir la información proporcionada por CoreNLP de forma que sea útil para identificar relaciones entre personajes. En particular, mi intención era usarlo con el RFE dataset y tratar de identificar relaciones en él.
+El problema era que el RFE dataset es bastante grande, y enseguida se hizo evidente que era necesario guardar la información proporcionada por CoreNLP en un archivo para no malgastar horas de trabajo. Ya que los objetos de \textit{Stanza} no tienen una forma sencilla de ser almacenados directamente, acabé creando un programa que, tras recoger las respuestas del servidor, resumía la información más relevante y la guardaba en dos archivos csv: fic\_characters.csv, para los personajes junto con los identificadores dados por CoreNLP, y fic\_sentences para almacenar cada fanfic frase a frase, cada una con el ID de su fanfic, su sentimiento, y los identificadores de los personajes mencionadas en ellas.
 
-Mientras aprendía a manejar los objetos de \textit{Stanza} fui desarrollando distintos programas 
+\missingfigure{fig:esquema indexacion Corenlp}
 
-El objetivo es crear un programa que sea capaz de resumir la información proporcionada por CoreNLP de forma que sea útil para identificar relaciones entre personajes y probarlo con el RFE dataset.
+El desarrollo de este programa no fue trivial, debido a la complejidad de la indexación de \textit{Stanza} y otros problemas derivados de la naturaleza del proyecto, como por ejemplo, si un personaje aparece marcado como masculino en 20 menciones y femenino en 3, ¿Deberían considerarse personajes distintos? ¿Asumo que todas las menciones de un cluster se refieren a un único personaje, incluso si algunos nombres son radicalmente distintos del resto?
+Para resolver todas estas preguntas y alcanzar un programa funcional fui pasando por varias etapas y distintos programas, que con el tiempo refinaría y acabaría encapsulando en \textit{corenlp\_util.py} para su uso posterior en el programa final. En esta parte del proyecto sin embargo utilicé los programas de \textit{corenlp\_wrapper.py} y \textit{ner\_and\_sen\_extraction\_v2.py}, que se pueden considerar versiones anteriores a las utilizadas en \text{corenlp\_util.py}, y por tanto muchos de los problemas mencionados en la sección \ref{sec:nerextract_corenlp} relacionados con la latencia y errores de servidor fueron resueltos durante su desarrollo.
 
-El problema es que el RFE dataset es bastante grande, y CoreNLP tarda varias horas en analizarlo entero. Obviamente esto significa que es necesario guardar la información proporcionada por CoreNLP en un archivo. Puesto que dicha información viene encapsulada en un objeto \textit{Document} que no tiene una forma sencilla de ser almacenado como tal, creé un programa que, tras recoger las respuestas del servidor, resumía la información más relevante y la guardaba en dos archivos csv: fic\_characters.csv para los personajes junto con los identificadores dados por CoreNLP, y fic\_sentences para almacenar cada fanfic frase a frase, cada una con el ID de su fanfic, su sentimiento, y los identificadores de los personajes mencionadas en ellas.
+Otra de las grandes dificultades fue dar el formato correcto a cada \textit{string} y lista, pues resulta que los csv no se llevan bien con los puntos y coma.
+
+Una vez completado el proceso del RFE dataset, utilicé la información almacenada en los archivos \textit{fic\_characters.csv} y \textit{fic\_sentences.csv} (tabla \ref{table:fic_sentences})para realizar varias técnicas de análisis de texto natural, con la esperanza de hallar algún patrón, bigrama o palabra significativa que me ayudara a identificar relaciones entre personajes.
+ 
+\begin{table}[]
+	\resizebox{\textwidth}{!}{%
+	\begin{tabular}{lllllll}
+		ficID & Dataset & senID & Sentiment & Verbs                                                                                                                            & nerIDs & Clusters         \\
+		57    & ROMANCE & 2     & Positive  & Crowley flashed a grin over his shoulder .                                                                                       & 0      & 452              \\
+		57    & ROMANCE & 5     & Positive  & He grabbed the long pole that served as a door handle and pulled it open .                                                       & 0      & 452, 18          \\
+		57    & ROMANCE & 10    & Negative  & He cautiously side - stepped around an especially small one .                                                                    & 0      & 33, 452          \\
+		57    & ROMANCE & 11    & Neutral   & “ They ’re not going to bite you , ” Crowley laughed . & 0      & 452, 36, 37, 113
+	\end{tabular}%
+}
+	\caption{Estructura de \textit{fic\_sentences.csv}}
+	\label{table:fic_sentences}
+\end{table}
+ 
+\begin{table}[]
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{lllllll}
+			ficID & nerID & Name & Gender & Mentions                                                                                                                            & clusterID & canonID         \\
+			57    & 0 & ng     & UNKNOWN  & 193                                                                                       & 279, 452, 116, 251, 435, 448, 517, 545      & -1              \\
+			57    & 15, 80, 95 & aziraphale     & MALE  & 54                                                       & 279      & 4         \\
+			57    & 146, 151 & crowley    & MALE  & 23                                                                    & 452      & 8          \\
+			70    & 0 & crowley    & NEUTRAL   & 9 & 1      & 8
+		\end{tabular}%
+	}
+	\caption{Estructura de \textit{fic\_characters.csv}}
+	\label{table:fic_characters}
+\end{table}
 
 
-Otras movidas que he hecho han sido observar la frecuencia de ciertos elementos lingüísticos en las frases en las que se mencionan específicamente a dos personajes, intentando buscar algún patrón entre ellos. Así que cogí el RFE dataset, utilicé CoreNLP combinado con NERTagger para obtener los personajes y las menciones pronominales a los mismos, y guardé los datos en 
 Estos dos archivos me servirán como base de datos con la que hacer pruebas e intentar buscar algún patrón que me permita identificar relaciones entre personajes. Traté de buscar patrones en los verbos, adjetivos, bigramas y trigramas más frecuentes en las frases que mencionan dos personajes, y más en general, en el conjunto de relatos clasificados como romance, amistad o enemistad.
 
 \todo{explicar búsqueda de patrones en datos Corenlp}
@@ -898,6 +936,7 @@ Tras haber realizado este análisis con los relatos de romance, amistad y enemis
 
 \section{EVALUACIÓN DEL SISTEMA}
 
+\todo{1- fanfic corto 'normal', mostrar personajes acertados y errados 2-fanfic con personaje con genero distinto del canon 3- fanfic con personaje genderfluid}
 
 \section{REFERENCIAS}
 
