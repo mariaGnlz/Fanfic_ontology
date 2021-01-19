@@ -11,7 +11,7 @@ import nltk
 from sklearn.cluster import KMeans
 from gensim.models import Word2Vec
 
-from NER_tagger_v3 import NERTagger
+from NER_tagger import NERTagger
 from fanfic_util import FanficGetter, FanficHTMLHandler, Fanfic
 
 ### VARIABLES ###

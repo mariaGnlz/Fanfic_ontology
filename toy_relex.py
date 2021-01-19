@@ -3,7 +3,7 @@
 import nltk, re, pprint
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
-from NER_tagger_v3 import NERTagger
+from NER_tagger import NERTagger
 from fanfic_util import FanficGetter, Fanfic
 #from nltk.tree import Tree
 

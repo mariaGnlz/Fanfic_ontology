@@ -6,7 +6,7 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from stanza.server import CoreNLPClient
 
-from NER_tagger_v3 import NERTagger
+from NER_tagger import NERTagger
 from fanfic_util import FanficGetter, Fanfic
 
 import matplotlib.pyplot as plt

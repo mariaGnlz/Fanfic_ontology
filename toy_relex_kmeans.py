@@ -10,7 +10,7 @@ from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import PCA
 from fanfic_util import FanficGetter, Fanfic
-from NER_tagger_v3 import NERTagger
+from NER_tagger import NERTagger
 
 from matplotlib import pyplot as plt
 from pprint import pprint

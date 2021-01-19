@@ -3,221 +3,147 @@
 
 #Tagger for NER tags, using a previously trained NER chunker
 
-import nltk, re, pprint, sys, time, pickle, pandas
-from nltk.tokenize import word_tokenize
-from nltk.tag import pos_tag
-from collections import Counter
-#from nltk.tree import Tree
+import pickle, time, pandas, re, nltk
 
 ### VARIABLES ###
-POS_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/POS_tags.csv'
-POS_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/POS_typical_tags.csv'
-NER_TAGGED_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/NER_tags.csv'
-NER_TYPICAL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_typical_tags.csv'
+MODEL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_training.pickle'
+CANON_DB = '/home/maria/Documents/Fanfic_ontology/canon_characters.csv'
+MAX_EDIT_DISTANCE = 3
 
 ### FUNCTIONS ###
 
-def get_tagged_fics_from_csv(start_fic, end_fic):
-	#csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH, encoding='ISO-8859-1')
-	csv_file = pandas.read_csv(POS_TAGGED_FICS_PATH)
+def get_max_edit_distance(name):
+	if ' ' in name:
+		subnames = [n.strip() for n in name.split(' ')]
 
-	start_index = csv_file.loc[csv_file['Fic number'] == start_fic].index[0]
-	end_index = csv_file.loc[csv_file['Fic number'] == end_fic].index[0]+1
-	#end_index = csv_file.loc[csv_file['Fic number'] == end_fic-1].index[0]+1
-	print(start_index, end_index) #debug
+		lengths = [len(name) for name in subnames]
 
-	i = 0
-	sentences = []
-	tagged_fics = []
-	current_sent = []
-	for i in range(start_index, end_index):
-		if i == 0:
-			current_sent.append((csv_file['Word'][i], csv_file['POS'][i]))
-			
-		elif csv_file['Sentence number'][i] != csv_file['Sentence number'][i-1]:
-			#print(current_sent) #debug
-			sentences.append(current_sent)
+		min_length = min(lengths)
 
-			if csv_file['Fic number'][i] != csv_file['Fic number'][i-1]:
-				tagged_fics.append((sentences, csv_file['Fic number'][i-1])) 
+	else: min_length = len(name.strip())
 
-			current_sent = []
-			current_sent.append((csv_file['Word'][i], csv_file['POS'][i]))
- 
+	if min_length > 4: return 3
+	elif min_length == 4: return 2
+	else: return 0
+
+def get_edit_distance(name1, name2):
+	if ' ' in name1:
+		name_and_surname1 = [n.strip().lower() for n in name1.split(' ')]
+
+		distance = []
+		if ' ' in name2:
+			name_and_surname2 = [n.strip().lower() for n in name2.split(' ')]
+
+			for n1 in name_and_surname1:
+				for n2 in name_and_surname2: distance.append(nltk.edit_distance(n1, n2))
+
 		else:
-			current_sent.append((csv_file['Word'][i], csv_file['POS'][i]))
+			for n in name_and_surname1: distance.append(nltk.edit_distance(n, name2.lower()))
 
-		
+		return min(distance)
 
-	return tagged_fics #returns the fanfics in the form of a list of POS-tagged sentences that NLTK can understand
+	elif ' ' in name2:
+		name_and_surname2 = [n.strip().lower() for n in name2.split(' ')]
 
-def traverse(t, num_fic, num_sentence, iob_str):
-	rows = []
+		distance = []
+		for n in name_and_surname2: distance.append(nltk.edit_distance(name1.lower(), n))
+
+		return min(distance)
+
+	else: return nltk.edit_distance(name1.lower(), name2.lower())
+
+def link_to_canon(ner_entities):
+	#Get canon_db
+	canon_db = pandas.read_csv(CANON_DB)
+
+	for character in ner_entities:
+		better_fit = (-1, 300) #first member of the tuple is ID, the other is edit distance, instantiated to an absolutely ridiculous high one so it can be replaced for the smallest one
+
+		for index, canon_character in canon_db.iterrows():
+			if type(canon_character['Other names']) == str:
+				other_canon_names = [name.strip().lower() for name in canon_character['Other names'].split(',')]
+				#print(other_canon_names) #debug
+
+
+			else: other_canon_names = ['']
+
+			distance = get_edit_distance(canon_character['Name'], character['Name'])
+			max_edit_distance = min(get_max_edit_distance(canon_character['Name']), get_max_edit_distance(character['Name']))
+
+			if  distance == 0:
+				character['Canon ID'] = index
+				break
+
+			elif distance < max_edit_distance:
+				if distance < better_fit[1]: better_fit = (index, distance)
+
+			else:
+				for other_name in other_canon_names:
+					distance = get_edit_distance(other_name, character['Name'])
+					max_edit_distance = min(get_max_edit_distance(other_name), get_max_edit_distance(character['Name']))
+
+					if distance == 0:
+						character['Canon ID'] = index
+						break
+
+					elif distance < max_edit_distance:
+						if distance < better_fit[1]: better_fit = (index, distance)
+
+		if character['Canon ID'] == 'NO' and better_fit[0] >= 0:
+			character['Canon ID'] = better_fit[0]
+			
+	return ner_entities
+
+### CLASSES ###
+
+class NERTagger():
 	
-	for node in t:
-		if type(node) is nltk.Tree:
-			#print(node.label()) #debug
-
-			iob_str = node.label()
-			auxrows = traverse(node, num_fic, num_sentence, iob_str)
-			rows.extend(auxrows)
+	def __init__(self):
+		self.model_path = MODEL_PATH 
 	
-		else: 
-			#print('Word: ',node) #debug
-			rows.append((num_fic, num_sentence, node[0], node[1], iob_str))
-
-			iob_str = '-'
-
-	return rows
-
-def start_NER_tagging(tagged_fic, num_fic, typical):
-	start = time.time()
-	NER_tagged_senteces = [NER_chunker.parse(sent) for sent in tagged_fic] #NER-tagging
-	end = time.time()
-
-	print('Parsed ', len(tagged_fic),' in ',(end-start)/60,' minutes')
-
-	# Loop to explore the tagged chunks in tagged_fics
-	num_sentence = 0
-
-	rows = []
-	start = time.time() 
-	for sentence in NER_tagged_senteces:
-		#auxfic, auxsen, auxwords, auxpos, auxiob = traverse(sentence, count, num_fic, num_sentence)
-		auxrows = traverse(sentence, num_fic, num_sentence, '')
-		rows.extend(auxrows)
-		#print(auxrows) #debug
-		
-		num_sentence+=1
-	
-	end = time.time()
-
-	if num_sentence > 0:
-		print(num_sentence, 'sentences stored in ',(end-start)/60,'minutes')
-
-		character_data = []
-		i=0
-		while i < len(rows):
-			if rows[i][4] == 'per':
-				character_data.append((rows[0], rows[i][2], 1))
-				#(fic number, character name, # of mentions of said name)
-				i += 1
-
-			i += 1
-
-		### Unzip the tuples into columns
-		columns = list(zip(*character_data))
-		character_mentions = Counter(columns[1])
-		
-		print(character_mentions) #debug
-		
-		
-		###Store character data on CSV
-		# Create pandas dataframe to store data
-		df = pandas.DataFrame(columns=['Fic number', 'Character name', 'Times mentioned'])
-		df['Fic number'] = columns[0]
-		df['Character name'] = character_mentions.keys
-		df['Times mentioned'] = character_mentions.values
-
-		df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False, encoding='ISO-8859-1')
-
-
-	"""
-	if num_sentence > 0: 
-		print(num_sentence, 'sentences stored in ',(end-start)/60,'minutes')
-		### Unzip the tuples into columns and save results to csv file 
-		columns = list(zip(*rows))
-
-		df['Fic number'] = columns[0]
-		df['Sentence number'] = columns[1]
-		df['Word'] = columns[2]
-		df['POS'] = columns[3]
-		df['IOB'] = columns[4]
-
-		#df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False, encoding='ISO-8859-1')
-		if typical == 0: df.to_csv(NER_TAGGED_FICS_PATH, mode='a', index=False)
-		else: df.to_csv(NER_TYPICAL_PATH, mode='a', index=False)
-	
-	else:
-		print('Ocurrió algún problema procesando el fic ',num_fic)
-		f = open('./TFG_logs/NER_tagger_errorlog.txt','a')
-		f.write('Problem ocurred on fic '+str(num_fic)+'\n')
-		f.close()
-	"""
-
-def get_last_tagged_fics():
-	csv_file = pandas.read_csv(NER_TAGGED_FICS_PATH)
-	last_tagged = csv_file['Fic number'][len(csv_file['Fic number'])-1]
-	num_fics = len(set(csv_file['Fic number']))
-
-	return last_tagged, num_fics
-
-
-### M A I N ###
-
-if len(sys.argv) == 3:
-	start_index = int(sys.argv[1])
-	end_index = int(sys.argv[2])
-	#print(type(start_index), end_index) #debug
-
-
-	###Load trained chunker and parse sentences
-	f = open('NER_training.pickle','rb')
-	NER_chunker = pickle.load(f)
-	f.close()
-
-	###Get POS-tagged fics
-	tagged_fics = get_tagged_fics_from_csv(start_index, end_index)
-	#print(len(tagged_fics)) #debug
-
-	###NER-tag fanfics
-	for fic, num_fic in tagged_fics:
-		start_NER_tagging(fic, num_fic, 1)
-
-
-elif len(sys.argv) == 2:
-	if sys.argv[1] == 'd': 
-		last_tagged, num_fics = get_last_tagged_fics()
-		print('Number of tagged fics: ',num_fics,'\nID of last tagged fic: ',last_tagged)
-
-	elif sys.argv[1] == 't': #tag typical fics
+	def parse(self, tagged_fic): #fanfic must be pos-tagged previously
 		###Load trained chunker and parse sentences
-		f = open('NER_training.pickle','rb')
+		f = open(self.model_path,'rb')
 		NER_chunker = pickle.load(f)
 		f.close()
 
-		###Get POS-tagged fics
-		tagged_fics = get_tagged_fics_from_csv(1, 1)
-		#print(len(tagged_fics)) #debug
+		NER_tagged_sentences = [NER_chunker.parse(sent) for sent in tagged_fic] #NER-tagging
 
-		###NER-tag fanfics
-		for fic, num_fic in tagged_fics:
-			start_NER_tagging(fic, num_fic)
+		#Explore the tags and create a list of named entities
+		per_entities= []
+		#start = time.time() 
+		for sentence in NER_tagged_sentences:
+			for t in sentence.subtrees():
+				if t.label() == 'per': 
+					leaves = t.leaves()
+					entity = [word for word, _ in leaves]
+					#print(entity) #debug
 
-elif len(sys.argv) == 1:
-	###Load trained chunker and parse sentences
-	f = open('NER_training.pickle','rb')
-	NER_chunker = pickle.load(f)
-	f.close()
+					entity = ' '.join(entity)
+					entity = re.sub(r'[^A-Za-z0-9 ]+', '', entity).strip() #Clean name
+					
+					per_entities.append(entity)
+				
+		#print(len(per_entities)) #debug
+		
+		names = set(per_entities)
+		ner_entities = []
+		for name in names:
+			num = per_entities.count(name)
+			ner_entities.append({'Name':name, 'Mentions':num, 'Canon ID':'NO'})
 
-	###Get POS-tagged fics
-	tagged_fics = get_tagged_fics_from_csv(0,10) #debug
-	
-	#print(len(tagged_fics)) #debug
-	#print(tagged_fics[1][0][len(tagged_fics[1][0])-1],) #debug
-	
-	###NER-tag fanfics
-	for fic, num_fic in tagged_fics:
-		start_NER_tagging(fic, num_fic, 0)
-	
+		#print(ner_entities) #debug
 
+		canonized_ner_entities = link_to_canon(ner_entities)
 
+		return canonized_ner_entities
 
-else:
-	print('Error. Correct usage: \nNER_tagger.py \nNER_tagger.py [start_index] [end_index] \nNER_tagger d')
+	def get_model_path(self): return self.model_path
 
+	def set_model_path(self, path):
+		self.model_path = path
 
-	
+### MAIN ###
 
 
 

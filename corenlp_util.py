@@ -17,7 +17,7 @@ FEMALE_TAGS = ['She/Her Pronouns for ', 'Female ', 'Female!', 'Female-Presenting
 MALE_TAGS = ['He/Him Pronouns for ', 'Male ', 'Male!', 'Male-Presenting ']
 NEUTRAL_TAGS = ['They/Them Pronouns for ', 'Gender-Neutral Pronouns for', 'Gender-Neutral ', 'Agender ', 'Genderfluid ', 'Androgynous ', 'Gender Non-Conforming ']
 
-PRONOUNS = ['he','him','his','she','her','hers','I','me','mine','you','your','yours']
+PRONOUNS = ['he','him','his','she','her','hers','I','me','mine','you','your','yours','we','our','ours','they','them','theirs','it','its']
 
 
 MAX_CHAPTER_LENGTH = 30000
@@ -170,21 +170,6 @@ def get_max_edit_distance(name):
 	if min_length > 4: return 3
 	elif min_length == 4: return 2
 	else: return 1
-
-def handle_cluster0(ner_chars, ner_ids):
-	for char in ner_chars: print(char)
-
-	names = [char['Name'].replace('\n',' ').strip() for char in ner_chars]
-	names = [re.sub(r'[^A-Za-z0-9 	]+', '', name).strip() for name in names if name.lower() not in PRONOUNS] #strip non-alphanumeric characters, except for spaces
-	names = list(set(names)) #remove duplicates
-	print(names) #debug
-
-	new_ner_id = 0
-	while new_ner_id in ner_ids: new_ner_id = random.randint(1,1000)
-
-	print(ner_ner_id)
-
-
  
 def merge_character_mentions(fic_index, character_entities, coref_mentions):
 	# create characters from their NER IDs
@@ -193,58 +178,102 @@ def merge_character_mentions(fic_index, character_entities, coref_mentions):
 
 	characters = []
 	## Rule 1 of character merging: Mentions with the same nerID refer to the same character
-
-	#charactes with ner=0 must be handled differently
-	#ner0_chars = ner_chars = list(filter(lambda entity: entity['nerID'] == 0, character_entities))
-	#handle_cluster0(ner0_chars, ner_ids)
-
 	for ner in ner_ids:
 		ner_chars = list(filter(lambda entity: entity['nerID'] == ner, character_entities)) #characters with this ner ID
+		#Select gender according to CoreNLP NER extractor
+		gender = []
+		for char in ner_chars: gender.append(char['Gender'])
+		gender = list(set(gender)) #remove duplicates
+		if '' in gender: gender.remove('')
+
+		if len(gender) == 0: gender = 'X'
+		elif len(gender) == 1: gender = gender[0]
+		else:
+			print(gender)
+			gender = 'X'
+
+		#Clean and select character's name
 		names = [char['Name'].replace('\n',' ').strip() for char in ner_chars]
 		names = [re.sub(r'[^A-Za-z0-9 	]+', '', name).strip() for name in names if name.lower() not in PRONOUNS] #strip non-alphanumeric characters, except for spaces
 		names = list(set(names)) #remove duplicates
 		#print(names) #debug
 
 		for name in names:
-			new_character = {'ficID':fic_index,'nerID':[ner],'Name':name,'Other names':[],'Gender':'X','clusterID':[-1],'canonID':-1,'Mentions':1}
+			new_character = {'ficID':fic_index,'nerID':[ner],'Name':name,'Other names':[],'Gender':gender,'clusterID':[-1],'canonID':-1,'Mentions':0}
+			#print(new_character) #debug
 			characters.append(new_character)
 
+	
 	for char in characters:
 		for mention in coref_mentions:
 			if mention['nerID'] == char['nerID'][0]:
 
 				if mention['MentionT'] == 'PROPER':
-					if char['nerID'][0] == 0: print(mention) #debug
+					#if mention['nerID'] == 0: print(mention) #debug
 					## Rule 2 of character merging: Mentions which overlap with a NERMention refer to its same character
 					distance = get_edit_distance(char['Name'], mention['Name'])
 					max_edit_distance = min(get_max_edit_distance(char['Name']),get_max_edit_distance(mention['Name']))
 
 					if distance < max_edit_distance:
+						if char['Gender'] == 'X': #gender is added
+							char['Gender'] = mention['Gender']
+
+						elif char['Gender'] != mention['Gender']: 
+							#print('diff gender: ',mention) #debug
+							diff_gender_chars = list(filter(lambda entity: nltk.edit_distance(char['Name'],entity['Name']) < max_edit_distance and entity['Gender'] == mention['Gender'], characters))
+							if len(diff_gender_chars) > 0:
+								#print('len diff gender:',len(diff_gender_chars))#debug
+								char = diff_gender_chars[0]
+
+							else:	#Add new entry for the character with different gender
+								diff_gender_char = char.copy()
+								diff_gender_char['Gender'] = mention['Gender']
+								diff_gender_char['Mentions'] = 0
+								characters.append(diff_gender_char)
+
+								char = diff_gender_char
+
+						char['Mentions'] +=1
+
 						if distance > 0: #different names are added
 							other_names = [name.lower() for name in char['Other names']]
 							if mention['Name'].lower() not in other_names:
 								char['Other names'].append(mention['Name'])
 
-						if char['Gender'] == 'X': #gender is added
-							char['Mentions'] +=1
-							char['Gender'] = mention['Gender'] #
-
-						elif char['Gender'] == mention['Gender']: 
-							char['Mentions'] +=1
-
-						#else: print('diff gender: ',mention) #debug
 
 						cluster = char['clusterID'] #cluster is added
 						if  mention['clusterID'] not in cluster: char['clusterID'].append(mention['clusterID'])
-
-
-						#else: characters.append({'ficID':fic_index,'nerID':char['nerID'],'Name':char['Name'],'Other names':char['Other names'],'Gender':mention['Gender'],'clusterID':[mention['clusterID']],'canonID':-1,'Mentions':1})
-
-				elif mention['MentionT'] == 'PRONOMINAL':
-					char['Mentions'] += 1
 	
+	
+	for char in characters:
+		if -1 in char['clusterID']: char['clusterID'].remove(-1) #remove filler
 
-	for char in characters: char['clusterID'].remove(-1) #remove filler
+	"""
+	aux = characters.copy()
+	for char in characters:
+		aux.remove(char)
+
+		for c in aux:
+			name = c['Name']
+			gender = c['Gender']
+
+			distance = get_edit_distance(char['Name'],name)
+			max_edit_distance = min(get_max_edit_distance(char['Name']),get_max_edit_distance(name))
+
+			if gender == char['Gender']:
+				if distance == 0:
+					char['Mentions'] += c['Mentions']
+					aux.remove(c)
+					characters.remove(c)
+
+				elif distance < max_edit_distance:
+					char['Mentions'] += c['Mentions']
+					other_names = [n.lower() for n in char['Other names']]
+
+					if name.lower() not in other_names: char['Other names'].append(name)
+					aux.remove(c)
+					characters.remove(c)
+
 	
 	"""
 	## Rule 3 of character merging: All the mentions of a coreference cluster refer to the same character, but only if the gender is consistent and the names have an edit distance lesser than MAX_EDIT_DISTANCE
@@ -255,27 +284,35 @@ def merge_character_mentions(fic_index, character_entities, coref_mentions):
 		for c in aux:
 			cluster = c['clusterID']
 			
-			#if len(cluster) == 1 and cluster[0] in char['clusterID']:
 			if any(cluster) in char['clusterID']:
-				distance = get_edit_distance(char['Name'],c['Name'])
-				max_edit_distance = min(get_max_edit_distance(char['Name']),get_max_edit_distance(c['Name']))
+				if char['Gender'] == c['Gender']:
+					distance = get_edit_distance(char['Name'],c['Name'])
+					max_edit_distance = min(get_max_edit_distance(char['Name']),get_max_edit_distance(c['Name']))
 
-				if distance < max_edit_distance and char['Gender'] == c['Gender']:
-					char['Mentions'] = char['Mentions']+c['Mentions']
-					char['nerID'].append(c['nerID'][0])
-					if distance <0 : char['Other names'].append(c['Name'])
+					if distance == 0:
+						char['Mentions'] = char['Mentions']+c['Mentions']
 
-					aux.remove(c)
-					characters.remove(c)
+						aux.remove(c)
+						characters.remove(c)
 
+					elif distance < max_edit_distance:
+						char['Mentions'] = char['Mentions']+c['Mentions']
+						char['nerID'].append(c['nerID'][0])
 
-	"""
+						other_names = [n.lower() for n in char['Other names']]
+						if c['Name'] not in other_names: char['Other names'].append(c['Name'])
+
+						aux.remove(c)
+						characters.remove(c)
+		
+
+	
 	#print(characters) #debug
 	return characters
 
 def link_characters_to_canon(characters, canon_db):
 	for character in characters:
-		better_fit = {}
+		better_fit = (-1, 300) #first member of the tuple is ID, the other is edit distance, instantiated to an absolutely ridiculous high one so it can be replaced for the smallest one
 
 		for index, canon_character in canon_db.iterrows():
 			if type(canon_character['Other names']) == str:
@@ -288,16 +325,13 @@ def link_characters_to_canon(characters, canon_db):
 			distance = get_edit_distance(canon_character['Name'], character['Name'])
 			max_edit_distance = min(get_max_edit_distance(canon_character['Name']),get_max_edit_distance(character['Name']))
 
-			if  distance ==0:
+			if  distance == 0:
 				character['canonID'] = index
 				break
 
 			elif distance < max_edit_distance:
 				#print(canon_character['Name'].lower(), character['Name'].lower()) #debug
-				#character['canonID'] = index
-				#break
-
-				better_fit[index] = distance
+				if distance < better_fit[1]: better_fit = (index, distance)
 
 			elif character['Name'].lower() in other_canon_names:
 					character['canonID'] = index
@@ -305,19 +339,19 @@ def link_characters_to_canon(characters, canon_db):
 			else:
 				for name in character['Other names']:
 					distances = [get_edit_distance(name, canon_name) for canon_name in other_canon_names]
+					max_distances = [get_max_edit_distance(canon_name) for canon_name in other_canon_names]
+					max_edit_distance = min(max_distances)
 					if any(distances) == 0:
 						character['canonID'] = index
 						break
 
 					elif any(distances) < max_edit_distance:
-						#character['canonID'] = index
-						#break
-						better_fit[index] = distance
+						if distance < better_fit[1]: better_fit = (index, distance)
+
 
 		# end for canon_characters			
-		if character['canonID'] < 0 and better_fit:
-			better_fit_name = min(better_fit.items(), key=lambda x: x[1])
-			character['canonID'] = better_fit_name[0]
+		if character['canonID'] < 0 and better_fit[0] >= 0:
+			character['canonID'] = better_fit[0]
 
 	#if a character is not canon its canonID will not be changed from -1
 
@@ -330,7 +364,6 @@ def canonize_characters(characters, canon_db):
 	canon_ids = len(canon_db['Name'])
 	#print(canon_ids) #debug
 
-	#canonized_characters = {'Name':[], 'Other names':[], 'Gender':[], 'Mentions':[], 'Canon ID':[]}
 	canonized_characters = []
 	for i in range(canon_ids):
 		canon_name = canon_db.iloc[i]['Name']
@@ -359,14 +392,14 @@ def canonize_characters(characters, canon_db):
 					canonized_character['Unknown mentions'] += char['Mentions']
 
 			other_names = list(set(other_names))
-			canonized_character['Other names'] = ','.join(other_names)
+			canonized_character['Other names'] = ', '.join(other_names)
 
 			canonized_characters.append(canonized_character)
 
 	characters_not_in_canon = list(filter(lambda char: char['canonID'] == -1, characters))
 	noncanon_characters = []
 	for char in characters_not_in_canon:
-		noncanon_char = {'Name':char['Name'], 'Other names':'', 'Male mentions':0, 'Female mentions':0, 'Neutral mentions':0, 'Unknown mentions':0,'Canon ID':char['nerID'][0]}
+		noncanon_char = {'Name':char['Name'], 'Other names':'', 'Male mentions':0, 'Female mentions':0, 'Neutral mentions':0, 'Unknown mentions':0,'Canon ID':'NO'}
 
 		if char['Gender'] == 'MALE':
 			noncanon_char['Male mentions'] += char['Mentions']

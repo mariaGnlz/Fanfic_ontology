@@ -9,7 +9,7 @@ from nltk.tag import pos_tag
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords, wordnet
 
-from NER_tagger_v3 import NERTagger
+from NER_tagger import NERTagger
 from fanfic_util import FanficGetter, FanficHTMLHandler, Fanfic
 
 ### VARIABLES ###
