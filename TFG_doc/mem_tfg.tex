@@ -8,10 +8,11 @@
 \usepackage{hyperref}
 \usepackage{todonotes}
 \usepackage{amsmath}
+\usepackage{verbatim}
 
 \showhelp  % comenta o borra para eliminar ayudas
 
-\title{(TITLE)}
+\title{Identificación automática de personajes en textos de ficción pertenecientes al género fanfiction}
 \author{María González Gutiérrez}
 \docdate{(MONTH)}{2020}
 
@@ -74,8 +75,13 @@
 \newcommand{\refToScraperExecution}{[placeholder ref]}
 
 \newcommand{\refToFilterCode}{[placeholder ref]}
+\newcommand{\refToNerAndSenPastVersions}{[placeholder ref]}
 
 \newcommand{\refToTrialCode}{[placeholder ref]}
+
+\newcommand{\refToAnexoDatosRFE}{[placeholder ref]}
+
+\newcommand{\finalProgramName}{fic\_character\_extractor }
 
 
 
@@ -399,7 +405,7 @@ Vamos a aprovechar el hecho de que los relatos que estamos manejando pertenecen 
 
 En este proyecto, la canonicalización de personajes consiste en descubrir qué personajes del fanfic son canon o no. Para ello necesito la lista de personajes que sí que son canon, de modo que, con la ayuda de \href{https://goodomens.fandom.com/wiki/Category:Characters}{la página de personajes de la wiki de \textit{Good Omens}}, creo un archivo llamado \textit{canon\_characters.csv} que sirve como base de datos de los personajes de la obra original, asignándole a cada uno un identificador numérico. La base de datos además también contiene el género canónico de cada personaje, y una lista con sus apodos.
 
-Usando la base de datos es sencillo comprobar si un personaje pertenece al canon simplemente observando si su nombre o parte de su nombre coincide con el nombre o algún apodo de un personaje canon. Para no pasar por alto posibles erratas cometidas por los autores al escribir, se considera que dos nombres coinciden cuando la distancia de edición entre ellos es menor que una distancia máxima, que variará según lo largo que los nombres sean. Por ejemplo, un candidato a personaje llamado 'Azriaphale' será enlazado con el personaje canon 'Aziraphale', mientras que para que un candidato sea enlazado con 'War' o 'God' la distancia de edición tendrá que ser 0, puesto que son nombres muy cortos e incluso una distancia de edición de 1 añadiría ruido como 'dog', 'Got', 'warm' o 'ware'. Nombres que tengan varias palabras, como 'Mr. Anderson' y nombres completos como 'Jane Austen', se comparan palabra a palabra con los nombres de los personajes canon, y se escoge la menor distancia de edición.
+Usando la base de datos es sencillo comprobar si un personaje pertenece al canon simplemente observando si su nombre o parte de su nombre coincide con el nombre o algún apodo de un personaje canon. Para no pasar por alto posibles erratas cometidas por los autores al escribir, se considera que dos nombres coinciden cuando la distancia de edición\cite{levenshtein_1966} entre ellos es menor que una distancia máxima, cuyo valor se depende de lo largos que sean los nombres. Por ejemplo, un candidato a personaje llamado 'Azriaphale' será enlazado con el personaje canon 'Aziraphale', mientras que para que un candidato sea enlazado con 'War' o 'God' la distancia de edición tendrá que ser 0, puesto que son nombres muy cortos e incluso una distancia de edición de 1 añadiría ruido como 'dog', 'Got', 'warm' o 'ware'. Nombres que tengan varias palabras, como 'Mr. Anderson' y 'Jane Austen', se comparan palabra a palabra con los nombres de los personajes canon, y se escoge la menor distancia de edición.
 
 \missingfigure{fig:esquema canonicalización personajes}
 
@@ -472,7 +478,7 @@ Sin embargo, los clusters de correferencia no se corresponden fácilmente con pe
 	\label{fig:solapamiento_esquema}
 \end{figure}
 
-En base a estas observaciones se pueden determinar algunas reglas para decidir qué menciones se refieren a qué personaje. Como en el proceso de canonicalización explicado en la sección \ref{sec:nerextract_corenlp}, se considera que dos nombres coinciden cuando su distancia de edición es menor que una distancia máxima, que se fija según lo largo que sea el nombre. Así, tenemos:
+En base a estas observaciones se pueden determinar algunas reglas para decidir qué menciones se refieren a qué personaje. Como en el proceso de canonicalización explicado en la sección \ref{sec:nerextract_corenlp}, se considera que dos nombres coinciden cuando su distancia de edición\cite{levenshtein_1966} es menor que una distancia máxima, que se fija según lo largo que sea el nombre. Así, tenemos:
 
 \begin{enumerate}
 	\item Todas las NERMention que tengan el mismo \textit{canonicalEntityMentionIndex} se consideran como el mismo personaje, y el atributo \textit{entityMentionText} se considera el nombre del mismo.
@@ -499,7 +505,7 @@ Teniendo en cuenta todos estos factores, la canonicalización de un personaje co
 
 Este proceso resuelve los problemas relacionados con tener los mismos personajes procesados en distintos \textit{Document}, y asegura que una mención será identificada con el personaje canon tanto si menciona el nombre, el apellido o sólo un apodo. Discrimina por género de tal manera que si se le asignan géneros distintos al mismo personaje, se cuentan las menciones de cada uno de modo que al final cada personaje tiene una cuenta de menciones masculinas, femeninas, neutras o desconocidas. De esta manera es más probable identificar correctamente a un personaje con su correspondiente en el canon aunque el género no concuerde.
 
-Todos este proceso de extracción de personajes se lleva a cabo mediante una clase CoreNLPDataProcessor, que se encuentra encapsulada junto a CoreWrapper en un programa llamado \textit{corenlp\_util.py}. CoreNLPDataProcessor, además de extraer personajes, también tiene función de análisis de sentimiento, como se explicará en la sección \todo{ref a programa principal}.
+Todos este proceso de extracción de personajes se lleva a cabo mediante una clase CoreNLPDataProcessor, que se encuentra encapsulada junto a CoreWrapper en un programa llamado \textit{corenlp\_util.py}. CoreNLPDataProcessor, además de extraer personajes, también tiene función de análisis de sentimiento, como se explicará en la sección \ref{sec:main}.
 
 En la figura \ref{fig:ner_extraction_corenlp} hay un esquema que explica de forma visual todo este proceso de extracción de personajes.
 
@@ -710,21 +716,22 @@ Para poder llevar a cabo todo esto, fue necesario estudiar con atención las pro
 \end{figure}
 
 Tras analizar toda esta información, entender la indexación de los objetos de \textit{Stanza} y ganar experiencia manejándolos, se hizo evidente que el siguiente paso sería crear un programa cuya función fuese resumir la información proporcionada por CoreNLP de forma que sea útil para identificar relaciones entre personajes. En particular, mi intención era usarlo con el RFE dataset y tratar de identificar relaciones en él.
-El problema era que el RFE dataset es bastante grande, y enseguida se hizo evidente que era necesario guardar la información proporcionada por CoreNLP en un archivo para no malgastar horas de trabajo. Ya que los objetos de \textit{Stanza} no tienen una forma sencilla de ser almacenados directamente, acabé creando un programa que, tras recoger las respuestas del servidor, resumía la información más relevante y la guardaba en dos archivos csv: fic\_characters.csv, para los personajes junto con los identificadores dados por CoreNLP, y fic\_sentences para almacenar cada fanfic frase a frase, cada una con el ID de su fanfic, su sentimiento, y los identificadores de los personajes mencionadas en ellas.
+El problema era que el RFE dataset es bastante grande, y enseguida se hizo evidente que era necesario guardar la información proporcionada por CoreNLP en un archivo para no malgastar horas de trabajo. Ya que los objetos de \textit{Stanza} no tienen una forma sencilla de ser almacenados directamente, acabé creando un programa que, tras recoger las respuestas del servidor, resumía la información más relevante y la guardaba en dos archivos csv: 
 
-\missingfigure{fig:esquema indexacion Corenlp}
+\begin{itemize}
+	\item fic\_characters.csv (tabla \ref{table:fic_characters}) almacena los personajes de cada fanfic, junto con su correspondiente en el canon y toda la información necesaria para identificar en qué frases de qué fanfic aparece (clusters, identificador, etc).
+	\item fic\_sentences (tabla \ref{table:fic_sentences}) almacena los fanfics frase a frase, junto con los identificadores y clusters de los personajes mencionados en ellas. Decidí almacenar sólo las frases que mencionan personajes en vez de todas las del fanfic porque estaba orientando este archivo a la identificación de relaciones entre personajes, por lo que parecía razonable asumir que las frases con más información serían aquellas en las que se mencionan personajes.
+\end{itemize}
+
+%\missingfigure{fig:esquema indexacion Corenlp}
 
 El desarrollo de este programa no fue trivial, debido a la complejidad de la indexación de \textit{Stanza} y otros problemas derivados de la naturaleza del proyecto, como por ejemplo, si un personaje aparece marcado como masculino en 20 menciones y femenino en 3, ¿Deberían considerarse personajes distintos? ¿Asumo que todas las menciones de un cluster se refieren a un único personaje, incluso si algunos nombres son radicalmente distintos del resto?
-Para resolver todas estas preguntas y alcanzar un programa funcional fui pasando por varias etapas y distintos programas, que con el tiempo refinaría y acabaría encapsulando en \textit{corenlp\_util.py} para su uso posterior en el programa final. En esta parte del proyecto sin embargo utilicé los programas de \textit{corenlp\_wrapper.py} y \textit{ner\_and\_sen\_extraction\_v2.py}, que se pueden considerar versiones anteriores a las utilizadas en \text{corenlp\_util.py}, y por tanto muchos de los problemas mencionados en la sección \ref{sec:nerextract_corenlp} relacionados con la latencia y errores de servidor fueron resueltos durante su desarrollo.
-
-Otra de las grandes dificultades fue dar el formato correcto a cada \textit{string} y lista, pues resulta que los csv no se llevan bien con los puntos y coma.
-
-Una vez completado el proceso del RFE dataset, utilicé la información almacenada en los archivos \textit{fic\_characters.csv} y \textit{fic\_sentences.csv} (tabla \ref{table:fic_sentences})para realizar varias técnicas de análisis de texto natural, con la esperanza de hallar algún patrón, bigrama o palabra significativa que me ayudara a identificar relaciones entre personajes.
+Para resolver todas estas preguntas y alcanzar un programa funcional fui pasando por varias etapas y distintos programas, que con el tiempo refinaría y acabaría encapsulando en \textit{corenlp\_util.py} para su uso posterior en el programa final. En esta parte del proyecto sin embargo utilicé los programas de \textit{corenlp\_wrapper.py} y \textit{ner\_and\_sen\_extraction\_v2.py}, que se pueden considerar versiones anteriores a las utilizadas en \text{corenlp\_util.py}, y por tanto muchos de los problemas mencionados en la sección \ref{sec:nerextract_corenlp} relacionados con la latencia y errores de servidor fueron resueltos durante su desarrollo. Además de estos problemas, hubo que limpiar y revisar el formato de cada \textit{string} y lista, ya que el archivo CSV estaba configurado para procesar cada punto y coma como un separador entre columnas, lo cual añadía columnas extra cada vez que encontraba un punto y coma en cualquier parte del texto.
  
 \begin{table}[]
 	\resizebox{\textwidth}{!}{%
 	\begin{tabular}{lllllll}
-		ficID & Dataset & senID & Sentiment & Verbs                                                                                                                            & nerIDs & Clusters         \\
+		ficID & Dataset & senID & Sentiment & Verbs & nerIDs & Clusters         \\
 		57    & ROMANCE & 2     & Positive  & Crowley flashed a grin over his shoulder .                                                                                       & 0      & 452              \\
 		57    & ROMANCE & 5     & Positive  & He grabbed the long pole that served as a door handle and pulled it open .                                                       & 0      & 452, 18          \\
 		57    & ROMANCE & 10    & Negative  & He cautiously side - stepped around an especially small one .                                                                    & 0      & 33, 452          \\
@@ -738,45 +745,44 @@ Una vez completado el proceso del RFE dataset, utilicé la información almacena
 \begin{table}[]
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{lllllll}
-			ficID & nerID & Name & Gender & Mentions                                                                                                                            & clusterID & canonID         \\
-			57    & 0 & ng     & UNKNOWN  & 193                                                                                       & 279, 452, 116, 251, 435, 448, 517, 545      & -1              \\
-			57    & 15, 80, 95 & aziraphale     & MALE  & 54                                                       & 279      & 4         \\
-			57    & 146, 151 & crowley    & MALE  & 23                                                                    & 452      & 8          \\
-			70    & 0 & crowley    & NEUTRAL   & 9 & 1      & 8
+			ficID & nerID & Name & Gender & Mentions & clusterID & canonID         \\
+			57    & 0     & ng    & UNKNOWN & 193 & 279, 452, 116, 251, 435, 448, 517, 545      & -1       \\
+			57    & 15, 80, 95 & aziraphale & MALE & 54  & 279                                  & 4         \\
+			57    & 146, 151 & crowley  & MALE & 23  & 452                                      & 8          \\
+			70    & 0     & crowley  & NEUTRAL & 9   & 1                                        & 8
 		\end{tabular}%
 	}
 	\caption{Estructura de \textit{fic\_characters.csv}}
 	\label{table:fic_characters}
 \end{table}
 
+Una vez procesado todo el RFE dataset y completados los CSV, utilicé la información almacenada ellos para realizar varias técnicas de análisis de texto natural, con la esperanza de hallar algún patrón, bigrama o palabra significativa que me ayudara a identificar relaciones entre personajes.
 
-Estos dos archivos me servirán como base de datos con la que hacer pruebas e intentar buscar algún patrón que me permita identificar relaciones entre personajes. Traté de buscar patrones en los verbos, adjetivos, bigramas y trigramas más frecuentes en las frases que mencionan dos personajes, y más en general, en el conjunto de relatos clasificados como romance, amistad o enemistad.
+En primer lugar quise buscar si había algún verbo que fuera característico de cada dataset, por lo que extraje y lematicé los verbos de cada frase usando las herramientas de NLTK. En la primera pasada los verbos más repetidos en todos los dataset fueron verbos muy comunes en inglés, como 'say', 'go', 'get', 'make', 'look', etc. de modo que para eliminar ruido hice otro análisis eliminándolos. Para hacer más fácil la comparación y a modo de ejemplo, se muestra la distribución de frecuencias de los verbos en el dataset de romance en la figura \ref{fig:r_verbs}-\ref{fig:r_verbs_removed}, el resto de distribuciones se puede consultar en el anexo \refToAnexoDatosRFE.
 
-\todo{explicar búsqueda de patrones en datos Corenlp}
-Ejemplos de la distribución de frecuencia de lo verbos en el RFE dataset:
 
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\begin{subfigure}{\textwidth}
 		%\hspace{-1cm}
 		\includegraphics[scale=0.7]{r_verbs_0}
 		\caption{Verbos más frecuentes en el dataset de romance.}
-		\label{fig:r_verb_freq_in_dataset}
+		\label{fig:r_verbs}
 		
 	\end{subfigure}
 	\begin{subfigure}{\textwidth}
 		%\hspace{-1cm}
 		\includegraphics[scale=0.7]{r_verbs_1}
 		\caption{Verbos más frecuentes en el dataset de romance, tras retirar los más comunes.}
-		\label{fig:r_verb_freq_removed}
+		\label{fig:r_verbs_removed}
 	\end{subfigure}
 	
 	%\caption{...}
 	
 \end{figure}
 
-
-\begin{figure}
+\begin{comment}
+\begin{figure}[h!]
 	\centering
 	\begin{subfigure}{\textwidth}
 		%\hspace{-1cm}
@@ -797,7 +803,7 @@ Ejemplos de la distribución de frecuencia de lo verbos en el RFE dataset:
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[!h]
 	\centering
 	\begin{subfigure}{\textwidth}
 		%\hspace{-1cm}
@@ -817,17 +823,18 @@ Ejemplos de la distribución de frecuencia de lo verbos en el RFE dataset:
 	
 \end{figure}
 
-En los tres casos los verbos más repetidos fueron verbos muy comunes en inglés, como "say", "go", "get", "make", "look", etc. de modo que para eliminar ruido hice otro análisis eliminándolos:
+\end{comment}
 
-También comparé bigramas y trigramas, probando con el likelihood y pmi como criterios:
+Desafortunadamente, ni siquiera eliminar los verbos más frecuentes parecía dar un resultado claramente distintivo para cada dataset, por lo que decidí utilizar NLTK para buscar bigramas y trigramas característicos (figuras \ref{fig:r_btrigram_lik}-\ref{fig:e_btrigram_lik}). Pero tampoco parece haber un alguna combinación distintiva aquí, los n-gramas siguen siendo bastante parecidos de un dataset a otro y utilizan casi las mismas palabras.
 
+\begin{comment}
 \begin{figure}
 	\centering
 	\begin{subfigure}{\textwidth}
 		%\hspace{-1cm}
 		\includegraphics[scale=0.5]{r_btrigrams_lik}
 		\caption{Bigramas y trigramas con mayor likelihood en el dataset de romance}
-		\label{fig:r_btrigram_lik}
+	%	\label{fig:r_btrigram_lik}
 		
 	\end{subfigure}
 	\begin{subfigure}{\textwidth}
@@ -847,7 +854,7 @@ También comparé bigramas y trigramas, probando con el likelihood y pmi como cr
 		%\hspace{-1cm}
 		\includegraphics[scale=0.5]{f_btrigrams_lik}
 		\caption{Bigramas y trigramas con mayor likelihood en el dataset de amistad}
-		\label{fig:f_btrigram_lik}
+	%	\label{fig:f_btrigram_lik}
 		
 	\end{subfigure}
 	\begin{subfigure}{\textwidth}
@@ -867,7 +874,7 @@ También comparé bigramas y trigramas, probando con el likelihood y pmi como cr
 		%\hspace{-1cm}
 		\includegraphics[scale=0.5]{e_btrigrams_lik}
 		\caption{Bigramas y trigramas con mayor likelihood en el dataset de enemistad}
-		\label{fig:e_btrigram_lik}
+		%\label{fig:e_btrigram_lik}
 		
 	\end{subfigure}
 	\begin{subfigure}{\textwidth}
@@ -876,34 +883,39 @@ También comparé bigramas y trigramas, probando con el likelihood y pmi como cr
 		\caption{Bigramas y trigramas con mayor pmi en el dataset de enemistad}
 		\label{fig:e_btrigram_pmi}
 	\end{subfigure}
-	
-	%\caption{Resultados de \textit{topic\_evaluate.py}, visualizados y ordenados con la ayuda de \textit{pandas}. Se pueden observar qué número de temas y qué hiperparámetros dan mejores puntuaciones de coherencia para el modelo LDA creado a partir del RFE dataset.}
-	
+
 \end{figure}
 
+\end{comment}
 
-%\begin{figure}
-%	\centering
-%	\includegraphics[scale=0.7]{r_btrigrams_lik}
-%	\caption{Bigramas y trigramas con mayor likelihood en el dataset de romance.}
-%	\label{fig:r_btrigram_lik}
-%\end{figure}
 
-%\begin{figure}
-%	\centering
-%	\includegraphics[scale=0.7]{f_btrigrams_lik}
-%	\caption{Bigramas y trigramas con mayor likelihood en el dataset de amistad.}
-%	\label{fig:f_btrigram_lik}
-%\end{figure}
+\begin{figure}[t!]
+	\centering
+	
+	\begin{subfigure}{\textwidth}
+		\includegraphics[scale=0.65]{r_btrigrams_lik}
+		\caption{Bigramas y trigramas con mayor likelihood en el dataset de romance.}
+		\label{fig:r_btrigram_lik}
+	\end{subfigure}
 
-%\begin{figure}
-%	\centering
-%	\includegraphics[scale=0.65]{e_btrigrams_lik}
-%	\caption{Bigramas y trigramas con mayor likelihood en el dataset de enemistad.}
-%	\label{fig:e_btrigram_lik}
-%\end{figure}
+	\begin{subfigure}{\textwidth}
+		\includegraphics[scale=0.65]{f_btrigrams_lik}
+		\caption{Bigramas y trigramas con mayor likelihood en el dataset de amistad.}
+		\label{fig:f_btrigram_lik}
+	\end{subfigure}
 
-Tras haber realizado este análisis con los relatos de romance, amistad y enemistad en general, decidí probar lo mismo pero utilizando únicamente las frases en las que se mencione a dos personajes en concreto, en vez de todas las frases del relato:
+	\begin{subfigure}{\textwidth}
+		\includegraphics[scale=0.65]{e_btrigrams_lik}
+		\caption{Bigramas y trigramas con mayor likelihood en el dataset de enemistad.}
+		\label{fig:e_btrigram_lik}
+	\end{subfigure}
+\end{figure}
+
+En un último intento de buscar algún patrón, decidí volver extraer la distrución de frecuencia de verbos, bigramas y trigramas, pero esta vez utilizando únicamente las frases en las que se mencione a dos personajes en concreto, en vez de todas las frases del relato. Estos personajes son elegidos de antemano, utilizando los identificadores propocionados por CoreNLP (tal y como se ve en la tabla \ref{table:fic_sentences}).
+
+ La distribución de frecuencias se puede ver en la figura \ref{fig:r_verb_freq_in_character_mentions}, el resto de resultados se pueden consultar en el anexo \refToAnexoDatosRFE.
+ 
+ Sobra decir que los resultados tampoco fueron muy prometedores. Por tanto dejo para un trabajo la parte de extracción de relaciones, y el resto del proyecto se centra en la extracción de personajes nombrados y determinación de su género.
 
 \begin{figure}
 	\centering
@@ -912,6 +924,8 @@ Tras haber realizado este análisis con los relatos de romance, amistad y enemis
 	\label{fig:r_verb_freq_in_character_mentions}
 \end{figure}
 
+
+\begin{comment}
 
 \begin{figure}
 	\centering
@@ -928,15 +942,368 @@ Tras haber realizado este análisis con los relatos de romance, amistad y enemis
 	\label{fig:e_verb_freq_in_character_mentions}
 \end{figure}
 
+\end{comment}
 
-\section{PROGRAMA PRINCIPAL}
-\todo{programa principal}
-\missingfigure{NERTagger + CoreProcessor = personajes}
+%\newpage
+
+\section{PROGRAMA PRINCIPAL: fic\_character\_extractor }
+\label{sec:main}
+
+El programa principal se lanza desde la terminal y tiene dos posibles comandos:
+\begin{itemize}
+	\item \textit{\finalProgramName <fic\_index>}, que analizará el fanfic cuyo identificador sea \textit{fic\_index}. Por tanto, se comprueba que el usuario no introduzca un identificador menor que 0 ni mayor que 20190.
+	\item \textit{\finalProgramName}, que analizará un fanfic elegido al azar del total de fanfics disponibles. Debido a la latencia de CoreNLP, evita elegir un fanfic que tenga más de 50000 caracteres.
+\end{itemize}
+
+En ambos casos el programa utiliza la clase FanficGetter del módulo \textit{fanfic\_util} para extraer el fanfic elegido, obteniendo así el objeto Fanfic que encapsula toda la información necesaria del mismo. A continuación, se siguen los siguientes pasos:
+
+\begin{enumerate}
+	\item Identificación de entidades con NERTagger: El texto del fanfic es \textit{tokenizado} en frases y palabras antes de etiquetar cada palabra con su rol morfológico, usando para ello las herramientas de procesado de texto de NLTK. A continuación, se utiliza la función \textit{parse()} de la clase NERTagger del módulo \textit{NER\_tagger}(\ref{sec:nerextract_tagger}) para extraer los personajes del texto.
+	\item Identificación de entidades con CoreNLP: se utiliza la clase CoreWrapper para enviar el texto al servidor de CoreNLP, y la clase CoreNLPDataProcessor extrae los personajes a partir de la respuesta. Ambas clases pertenecen al módulo \textit{corenlp\_util}(\ref{sec:nerextract_corenlp}).
+	\item Análisis de sentimiento con CoreNLP: se utiliza la clase CoreNLPDataProcessor de \textit{corenlp\_util} para extraer el sentimiento del fanfic y mostrar si es principalmente positivo o negativo.
+	\item Mostrar en pantalla los resultados, junto con el título y etiquetas de personaje del fanfic.
+\end{enumerate}
+
+Las etiquetas de personaje de un fanfic son simplemente la forma del autor de indicar qué personajes aparecen en él. Por motivos técnicos evidentes, los autores se limitan a etiquetar a los personajes más importantes del texto, por lo que es esperable que NERTagger y CoreNLP encuentren más personajes en el texto. Sin embargo, como mínimo no deberían dejar sin identificar ninguno de los personajes etiquetados.
+Las etiquetas de personaje, como el título, son metadatos del fanfic que se extraen directamente del mismo usando la clase FanficHTMLHandler del módulo \textit{fanfic\_util}.
+
+Los personajes detectados por NERTagger y CoreNLP serán algo distintos, pero por lo general las coincidencias son bastante consistentes. Las menciones de los personajes de NERTagger siempre serán más bajas que los de CoreNLP, ya que éste último no sólo cuenta cuando al personaje se le menciona por el nombre, sino que también puede detectar menciones puramente pronominales.
+
+Las menciones de CoreNLP aparecerán fraccionadas según género, de modo que un personaje puede tener 100 menciones masculinas, 3 femeninas, 0 neutras y 12 desconocidas (cuando no ha sido posible asignar ningún género a dicha mención). La intención de mostrar estos datos así es poder cuantificar cómo de seguro está el programa sobre el género de un personaje.
+
 
 
 \section{EVALUACIÓN DEL SISTEMA}
+\label{sec:evaluacion}
 
-\todo{1- fanfic corto 'normal', mostrar personajes acertados y errados 2-fanfic con personaje con genero distinto del canon 3- fanfic con personaje genderfluid}
+Vamos a evaluar el programa según la cantidad de personajes correctamente identificados y si su género concuerda con el género que el personaje realmente tiene en el texto. Los motivos que me llevaron a elegir cada fanfic para cada prueba serán explicados en la misma, aunque todos tienen en común que no son demasiado largos, lo cual ayuda tanto a que yo como CoreNLP no tardemos mucho en obtener la información que necesitamos de ellos.
+
+La mayoría de información aparece transcrita en tablas vez de ser pantallazos del programa, para ahorrar espacio, pero la información aparece en pantalla con el mismo formato.
+
+\subsection{Prueba 1: Funciones básicas del programa con un texto largo (Fanfic 9)}
+Escogí este fanfic para la primera prueba porque tiene muchos personajes, algunos de los cuales sólo se les menciona una o dos veces, y con 8821 palabras es un texto medianamente largo, útil para recabar información sobre los personajes. Además, este fic particular tiene varias erratas, lo que también pondrá a prueba la capacidad del programa para identificar un personaje con el nombre ligeramente incorrecto.
+
+Ejecutar el comando \textit{\finalProgramName 9}. En la figura \ref{fig:eval1_metadata} se muestran los metadatos del fanfic, y en las tablas \ref{table:eval1_nertagger} y \ref{table:eval1_nercorenlp} se han transcrito los personajes identificados por NERTagger y CoreNLPDataProcessor.
+
+\begin{figure}[h]
+	\centering
+	\label{fig:eval1_metadata}
+	\includegraphics[scale=0.7]{eval1_metadata}
+	\caption{Título y etiquetas de personaje del fanfic 9.}
+\end{figure}
+
+\begin{table}
+	\resizebox{\width}{0.8\height}{%
+	\begin{tabular}{lll}
+		Canon ID & Name            & Mentions         \\
+		NO       & Lord Beezlebub  & 2       \\
+		NO       & Lilith          & 1         \\
+		14       & Did Gabriel     & 1          \\
+		NO       & Ashmedai        & 11    \\
+		4       & Aziraphale        & 42    \\
+		NO       & Laradiri        & 16   \\
+		NO       & Every Woman        & 1    \\
+		NO       & Marut        & 1    \\
+		NO       & Joe        & 1    \\
+		NO       & Amides        & 1    \\
+		NO       & Dr Dudders        & 1    \\
+		NO       & History       & 1   \\
+		14       & Gabriel        & 1    \\
+		NO       & Butter        & 1    \\
+		NO       & Alisha        & 1    \\
+		4       & Aziraphale never        & 1    \\
+		NO       & Mrs Beeton        & 1    \\
+		NO       & Richard        & 1          \\
+		NO       & Heavenly       & 1       \\
+		4       & Azriaphale       & 1         \\
+		4       & Mr Fell        & 2         \\
+		NO       & Seamus Blackley        & 1        \\
+		24       & Michael       & 1         \\
+		NO       & Do NOT        & 1     \\
+		10       & Death        & 1     \\
+		14       & Sir Yes Sir Gabriel Sir       & 1        \\
+		13       & Heaven        & 1     \\
+		NO       & Ashemedai        & 1     \\
+		9       & Dagon       & 1     \\
+		NO       & Pride        & 1     \\
+		8       & Crowley        & 45     \\
+		NO       & So Below        & 1     \\
+		NO       & Any       & 1     \\
+		NO       & Inside        & 1     \\
+		15       & God        & 1     \\
+		NO       & Got        & 1     \\
+		5       & Beezlebub       & 1     \\
+		NO       & Word        & 1     \\
+		8       & Mr Crowley        & 1     \\
+		4       & Aziraphale        & 42     \\
+		8       & Crowley One        & 1     \\
+		15       & God Herself        & 1     \\
+		NO       & Mr Solomons        & 3     \\
+		NO       & Cookery Reformed        & 1     \\
+		
+	\end{tabular}%
+}
+\caption{Resultados de la ejecución de \finalProgramName para analizar fanfic 9}
+\label{table:eval1_nertagger}
+\end{table}
+
+\begin{table}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{lllllll}
+			Canon ID & Name            & MALE & FEMALE & NEUTRAL & UNKNOWN & Other names       \\
+			1       & Agnes Nutter  & 0    &  1     &    0     &  0        & Agares \\
+			4       & Aziraphale          & 147    & 0     & 4        & 0    &  aziraphale, Azriaphale, Fell, azirphale, azriaphale, consume Aziraphale, Azirphale     \\
+			5      & Beelzebub     & 4     &  0    &  3       &0     & Beezlebub     \\
+			8       & Crowley        & 104     &  0    &7         &0     & crawley, crowley, Shop  Crowley, Crawley      \\
+			14       & Gabriel        & 6     &  0    &  0       &0     &   \\
+			21       & Ligur        & 1    &    0  &   0      &    0 &       \\
+			24       & Michael        & 2    & 0     &   0      & 0    &       \\
+			25       & Newton Pulsifer        & 0    & 1     &         &     & Beeton      \\
+			36       & Uriel        & 1    &    0  & 0        &0     &       \\
+			NO       & Bentley        & 1    &  0    &  0       &   1  &       \\
+			NO       & Somolons        & 3    &    0  & 0        &  0   &       \\
+			NO       & Laradiri       & 0    &  0    & 0        &  1   &       \\
+			NO       & Eden        & 0     & 0     &  0       & 1    &       \\
+			NO       & Petronius        & 1     &  0    &0         &  0   &       \\
+			NO       & Ashmedai        & 0     &   0   & 0        &1     &       \\
+			NO       & Angelo        & 1    &     0 &0         & 0    &       \\
+			NO       & Ashemedai        & 0     &0      &  0       & 4    &       \\
+			NO       & Laradiri        &0   &   0   & 0        &1     &       \\
+			NO       & Angelo        & 1     &  0    &    0     &    0 &       \\
+			NO       & Richard       & 1     &   0   &   0      &  0   &       \\
+			NO       & Ashmedai       & 0     &   0   &   0      &  3   &       \\
+			NO       & Jane Austen       & 0     &   0   &   0      &  1   &       \\
+			NO       & Richards       & 1     &   0   &   0      &  0   &       \\
+			NO       & Marut       & 1     &   0   &   0      &  0   &       \\
+			NO       & Joe       & 5     &   0   &   0      &  0   &       \\
+			NO       & Laradiri       & 1     &   0   &   0      &  0   &       \\
+			NO       & Alisha       & 0     &   2   &   0      &  0   &       \\
+			NO       & Solomons       & 1     &   0   &   0      &  0   &       \\
+			NO       & Perkins       & 1     &   0   &   0      &  0   &       \\
+			NO       & Hannah Glasse       & 0     &   1   &   0      &  0   &       \\
+			NO       & Jane Austen       & 0     &   1   &   0      &  0  &       \\
+			NO       & Seamus Blackley       & 1    &   0   &   0      &  0   &       \\
+			NO       & Jane Austen       & 0     &   2   &   0      &  0   &       \\
+			NO       & Laradiri       & 0     &   0   &   0      &  42   &       \\
+			NO       & Ashmedai       & 0     &   0   &   0      &  13   &       \\
+			NO       & Ashmedai       & 0     &   0   &   0      &  2  &       \\
+		\end{tabular}%
+	}
+	\caption{Resultados de la ejecución de \finalProgramName para analizar fanfic 9}
+	\label{table:eval1_nercorenlp}
+\end{table}
+
+De entrada, tenemos los personajes de las etiquetas: Aziraphale, Crowley y Michael. Son los personajes que el autor decidió etiquetar, probablemente por considerarlos los más importantes, y los tres son identificados correctamente tanto por NERTagger como por CoreNLPDataProcessor.
+
+NERTagger ha identificado 35 personajes distintos, de los cuales 8 identifica como canon. Sus resultados, mostrados en la tabla \ref{table:eval1_nertagger}, permite observar que lista en entradas distintas a personajes que son claramente el mismo pero con una errata (Ashemedai y Ashmedai, Azriaphale y Aziraphale), pero los identifica correctamente con el mismo personaje (Azriaphale y Aziraphale tienen ambos el identificador 4). Destacan las entradas 'Lord Beezlebub' y 'Beezlebub': ambas tienen la misma errata, pero el primero no aparece identificado como personaje canon, mientras que el segundo sí. Esto problamente sea por la distancia de edición y el tamaño de los nombres: 'Lord Beezlebub' son dos palabras y la más corta es Lord, con sólo 4 letras. Esto significa que el algoritmo explicado en la sección \ref{sec:nerextract_tagger} sobre cuándo coinciden dos nombres habrá considerado que la distancia máxima de edición sólo puede ser 1. Cuando hay dos palabras en un nombre, como en este caso, se escoge la que tenga la distancia de edición más pequeña, que en este caso sería la distancia entre 'Beezlebub' y 'Beelzebub',  que es 2, excediendo el límite de distancia. Sin embargo, cuando la única palabra en el nombre es 'Beezlebub' y se compara directamete con 'Beelzebub', al ser un nombre más largo la distancia máxima de edición es 3, y NERTagger por tanto lo identifica correctamente como canon.
+
+También hay algunos personajes con nombres 'raros' como 'Did Gabriel' o 'Aziraphale never', en los que claramente NERTagger ha incluído en el nombre del personaje una palabra que no correspondía. Sin embargo, puesto que al menos parte del 'nombre' concide con un personaje canon, son identificados correctamente.
+
+Los 8 personajes que identifica como canon están correctamente identificados excepto 'Heaven', que confunde un personaje canon llamado 'Raven'. En el texto aparecen otros tres personajes canon que el programa no ha detectado, y sólo dos personajes no canon (mencionados cada uno sólo una vez).
+
+CoreNLPDataProcessor por su parte identifica 9 personajes canon, incluyendo a Ligur, que se le escapó a NERTagger. En la tabla \ref{table:eval1_nercorenlp} también podemos ver a los personajes Agnes Nutter y Newton Pulsifer, que en realidad no aparecenen el texto pero aparecen incorrectamente identificados como la versión canon de Agares y Beeton (de nuevo, debido a la distancia de edición). Todo el resto de personajes listados en la tabla son personajes reales que aparecen en el texto, y sus géneros están correctamente asignados en todos los casos excepto Beelzebub, que en esta historia tiene pronombres femeninos. También hay que destacar el personaje Laradiri, inventado por el autor y cuyo género no es definido en ningún momento, siendo referido únicamente con el pronombre neutro inglés \textit{they}. Como consecuencia, sus menciones aparecen maracadas como neutras o 'desconocidas'.
+
+Sólo hay un personaje canon y un personaje no canon que ninguno de los dos programas han detectado.
+
+Otro problema claro es que CoreNLPDataProcessor no parece capaz de consolidar correctamente los personajes que no son canon, apareciendo repetidos en vez de en una única entrada que recoja todas las menciones.
+
+
+\subsection{Prueba 2: Género distinto del canon (Fanfic 2856)}
+En este fanfic, el autor decidió cambiar el género de los protagonistas, por lo que en su historia los personajes Crowley y Aziraphale son dos mujeres. Es un relato con más de 3000 palabras, por lo que no debería de ser poca información.
+
+Cambiar el género de personajes es bastante común en el género fanfic, y es éste uno de los motivos por los cuales analizar fanfiction puede ser tan interesante: los autores juegan con los personajes y exploran su psique desde muchos ángulos, incluído el de género. Nuestro programa debería identificar que, en este texto, la mayoría de menciones a Crowley y Aziraphale son femeninas.
+
+\begin{figure}[h]
+	\centering
+	\label{fig:eval2_metadata}
+	\includegraphics[scale=0.7]{eval2_metadata}
+	\caption{Título y etiquetas de personaje del fanfic 2856.}
+\end{figure}
+
+\begin{table}[h]
+	%\resizebox{\textwidth}{!}{%
+	\begin{tabular}{lll}
+		Canon ID & Name            & Mentions         \\
+		NO       & Mesopotamia  & 1       \\
+		NO       & How    & 1        \\
+		NO       & Green     & 3          \\
+		NO       & out       & 1    \\
+		NO       & Eisheth      & 3    \\
+		4       & Aziraphale      & 48   \\
+		NO       & Unhand     & 1    \\
+		38       & Azi  Eisheth       & 1   \\
+		NO       & Always      & 1    \\
+		8       & Crowley    & 62    \\
+		NO       & See     & 1    \\
+		NO       & No      & 1    \\
+		4       & Rather     & 3    \\
+		NO       & gorgeous   & 1    \\
+		NO       & Just   & 1    \\
+		NO       & Villain   & 1    \\
+		NO       & Oh   & 4    \\
+		NO       & Shouldn   & 1    \\
+	\end{tabular}%
+	%}
+	\caption{Resultados de la ejecución de \finalProgramName para analizar fanfic 2856}
+	\label{table:eval2_nertagger}
+\end{table}
+
+\begin{table}[h]
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{lllllll}
+			Canon ID & Name            & MALE & FEMALE & NEUTRAL & UNKNOWN & Other names       \\
+			0      & Adam Young & 1   &   0    &  0       &    0      &  Adam \\
+			4       & Aziraphale          & 217    &   0   & 1
+			&0     &    \\
+			8       & Crowley  & 445    &   0    &4
+			& 0         & Crowley  Zadkiel \\
+			NO       & Eisheth     & 0     & 0     & 0        & 2    &     \\
+			NO       & Serpent of Eden     & 0     & 0   & 0        & 1    &     \\
+			
+		\end{tabular}%
+	}
+	\caption{Resultados de la ejecución de \finalProgramName para analizar fanfic 2856}
+	\label{table:eval2_nercorenlp}
+\end{table}
+
+En la tabla \ref{table:eval2_nercorenlp} podemos ver que la detección de género ha fallado totalmente. A pesar de que no son referidos jamás en masculino en todo el texto, CoreNLPDataProcessor sigue asignándoles menciones masculinas de forma casi exclusiva.
+
+Por lo demás, las identificaciones no son incorrectas. Como se puden comprobar con los metadatos de la figura \ref{fig:eval2_metadata}, Crowley y Aziraphale son correctamente identificados en el texto por ambos programas. En la tabla \ref{table:eval2_nertagger} se muestra que además de los dos protagonistas ha identificado otros 16 nombres, pero sólo 'Eisheth' es realmente otro personaje en el texto ('Mesopotamia' aparece, pero es obviamente un lugar). También confunde 'Rather' con un personaje canon, Aziraphale (Canon ID = 4), probablemente porque uno de sus apodos es \textit{'Brother} Francis', e inexplicablemente, confunde 'Azi Eisheth' con el personaje canon con ID = 38, cuyo nombre es 'Jeremey Wendsleydale' y que no se le menciona por ninguna parte en el texto.
+
+CoreNLPDataProcessor, a pesar del fracaso con el género, identifica correctamente a Aziraphale, Crowley y Adam como personajes canon, e incluso que Crowley en este relato adopta el nombre 'Zadkiel' brevemente. También identifica a Eisheth y a 'Serpent of Eden', que en principio tendría que haber sido vinculado con Crowley, al ser 'Serpent' uno de sus apodos. No añade ningún personaje que no aparezca en el texto.
+
+\begin{comment}
+
+\subsection{Prueba 3: Etiquetas de género (Fanfic 9064)}
+Puesto que parece difícil detectar el género utilizando puramente las capacidades de CoreNLPDataProcessor, vamos a buscar un fanfic que tenga una etiqueta indicando el género del personaje para ver si la parte que aprovecha los metadatos del fanfic a la hora de dilucidar el género de un personaje funciona correctamente. Para ello he elegido los fanfics 
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[scale=1]{imagefile}
+%	\label{fig:eval3_metadata}
+%	\caption{Título y etiquetas de personaje del fanfic 9064.}
+%\end{figure}
+
+\begin{table}
+	%\resizebox{\textwidth}{!}{%
+		\begin{tabular}{lll}
+			Canon ID & Name            & Mentions         \\
+			NO       & Lord Beezlebub  & 2       \\
+			NO       & Lilith          & 1         \\
+			14       & Did Gabriel     & 1          \\
+			NO       & Ashmedai        & 11    \\
+			4       & Aziraphale        & 42    \\
+			NO       & Laradiri        & 16   \\
+			NO       & Every Woman        & 1    \\
+			NO       & Marut        & 1    \\
+			NO       & Joe        & 1    \\
+			NO       & Amides        & 1    \\
+			NO       & Mr Dudders        & 1    \\
+			NO       & History       & 1   \\
+			14       & Gabriel        & 1    \\
+			NO       & Butter        & 1    \\
+			NO       & Alisha        & 1    \\
+			4       & Aziraphale never        & 1    \\
+			NO       & Mrs Beeton        & 1    \\
+		\end{tabular}%
+	%}
+	\caption{Resultados de la ejecución de \finalProgramName para analizar fanfic 9}
+	\label{table:eval3_nertagger}
+\end{table}
+
+\begin{table}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{lllllll}
+			Canon ID & Name            & MALE & FEMALE & NEUTRAL & UNKNOWN & Other names       \\
+			NO       & Lord Beezlebub  & 2    &       &         &          &  \\
+			NO       & Lilith          & 1    &      &         &     &      \\
+			14       & Did Gabriel     & 1     &      &         &     &      \\
+			NO       & Ashmedai        & 11     &      &         &     &       \\
+			4       & Aziraphale        & 42     &      &         &     &   \\
+			NO       & Laradiri        & 16    &      &         &     &       \\
+			NO       & Every Woman        & 1    &      &         &     &       \\
+			NO       & Marut        & 1    &      &         &     &       \\
+			NO       & Joe        & 1    &      &         &     &       \\
+			NO       & Amides        & 1    &      &         &     &       \\
+			NO       & Mr Dudders        & 1    &      &         &     &       \\
+			NO       & History       & 1    &      &         &     &       \\
+			14       & Gabriel        & 1     &      &         &     &       \\
+			NO       & Butter        & 1     &      &         &     &       \\
+			NO       & Alisha        & 1     &      &         &     &       \\
+			4       & Aziraphale never        & 1    &      &         &     &       \\
+			NO       & Mrs Beeton        & 1     &      &         &     &       \\
+		\end{tabular}%
+	}
+	\caption{Resultados de la ejecución de \finalProgramName para analizar fanfic 9}
+	\label{table:eval3_nercorenlp}
+\end{table}
+
+\end{comment}
+
+\subsection{Prueba 3: Personajes que no son nombrados (Fanfic 2163)}
+Decidí probar este fanfic porque los protagonistas Crowley y Azirphale aparecen, pero son vistos desde la perspectiva de dos extrañas que no les conocen, y por tanto, no saben sus nombres. Además, este fanfic tiene tan sólo 876 palabras, con lo que a la falta de nombres se le añade una información limitada.
+
+Ejecutamos el comando \textit{\finalProgramName  2163}:
+
+\begin{figure}[h]
+	\centering
+	\label{fig:eval4_metadata}
+	\includegraphics[scale=0.7]{eval4_metadata}
+	\caption{Título y etiquetas de personaje del fanfic 2163.}
+\end{figure}
+
+\begin{table}[h]
+	%\resizebox{\textwidth}{!}{%
+	\begin{tabular}{lll}
+		Canon ID & Name            & Mentions         \\
+		NO       & Really inaccurate  & 1       \\
+		NO       & Love       & 1        \\
+		4       & Angel     & 8          \\
+		NO       & Yeah        & 1    \\
+		4       & Well       & 1    \\
+		NO       & sort      & 1   \\
+		NO       & Did      & 1    \\
+		NO       & Oh       & 3    \\
+		NO       & Really      & 1    \\
+		NO       & Pardon     & 1    \\
+		NO       & Olivia      & 7    \\
+		NO       & Hey      & 1    \\
+		NO       & Lauren      & 3    \\
+		NO       & Um     & 1    \\
+	\end{tabular}%
+	%}
+	\caption{Resultados de la ejecución de \finalProgramName para analizar fanfic 2163}
+	\label{table:eval4_nertagger}
+\end{table}
+
+\begin{table}[h]
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{lllllll}
+			Canon ID & Name            & MALE & FEMALE & NEUTRAL & UNKNOWN & Other names       \\
+			4       & Aziraphale          & 7    &   0   & 0
+			&0     &    Angel  \\
+			NO       & Angel Olivia  & 3    &   0    &0
+			& 0         & \\
+			NO       & Olivia     & 0     & 7     & 0        & 0    &     \\
+			NO       & Lauren     & 0     & 4    & 0        & 0    &     \\
+			NO       & Olivia    & 0     & 1     & 0        & 0    &     \\
+			NO       & Olivia     & 0     & 1     & 0        & 0    &     \\
+			NO       & Angel Olivia     & 0     & 0    & 0        & 24    &     \\
+			NO       & Angel Olivia     & 0     & 6     & 0        & 0    &     \\
+			
+		\end{tabular}%
+	}
+	\caption{Resultados de la ejecución de \finalProgramName para analizar fanfic 2163}
+	\label{table:eval4_nercorenlp}
+\end{table}
+
+Ambos programas han identificado correctamente a Lauren y Olivia, los personajes originales del autor desde cuya perspectiva se cuenta este relato. Ambas son también correctamente identificadas como personajes que no son canon (Canon ID es 'NO'), y en \ref{table:eval4_nercorenlp} podemos ver que todas sus menciones son femeninas excepto las de una de las entradas repetidas de 'Angel Olivia', que tiene 24 menciones 'desconocidas'.
+Como en la prueba 2, tanto Crowley como Aziraphale son mujeres en esta historia, pero todas las menciones de Aziraphale son identificadas como masculinas. La buena noticia es que tanto NERTagger como CoreNLPDataProcessor han sido capaces de identificar correctamente a Aziraphale por su apodo 'angel', y, curiosamente, en la tabla \ref{table:eval4_nertagger} se puede ver que NERTagger también ha identificado que 'Love' en este relato es un apodo cariñoso para un personaje. Sin embargo, también identifica incorrectamente la palabra 'Well' como refiriéndose a Aziraphale (probablemente por parecido con uno de sus apodos, 'Fell').
+Esto significa que NERTagger ha identificado 11 personajes, de los cuáles sólo 4 son correctos (aunque un humano puede detectar fácilmente qué nombres son los falsos positivos), mientras que CoreNLPDataProcessor ha identificado 4 personajes distintos, de los cuales dos son correctos y uno está correctamente identificado con su correspondiente canon, pero el género es incorrecto. 
+
+Como se puede ver en los metadatos de la figura \ref{fig:eval4_metadata}, ambos programas han identificado correctamente a Aziraphale pero ninguno a Crowley; no es de extrañar, ya que ni su nombre ni ninguno de sus apodos es mencionado en todo el texto, y al propio Azirpahale sólo se le ha identificado por su apodo 'angel'. Sin embargo, NERTagger encuentra el nombre 'Love' y sabe que es un nombre; simplemente no tenía forma de saber que se refería a Crowley. CoreNLPDataProcessor no ha sido capaz de identificar 'Love' como un nombre.
+
+
 
 \section{REFERENCIAS}
 

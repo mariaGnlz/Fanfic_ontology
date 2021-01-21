@@ -36,6 +36,12 @@ Complete guide to build your own named entity recognizer with python.
 Information extraction.
 \newblock \url{https://github.com/rohitjose/InformationExtraction}, 2017.
 
+\bibitem[Lev66]{levenshtein_1966}
+Vladimir Levenshtein.
+\newblock Binary codes capable of correcting deletions, insertions and
+  reversals.
+\newblock {\em Soviet Physics Doklady}, 10, 1966.
+
 \bibitem[Pen17]{peng_17}
 Nanyun Peng.
 \newblock Cross-sentence n-ary relation extraction with graph lstms.
