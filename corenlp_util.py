@@ -15,7 +15,7 @@ ERRORLOG = '/home/maria/Documents/Fanfic_ontology/TFG_logs/corenlp_util_errorlog
 
 FEMALE_TAGS = ['She/Her Pronouns for ', 'Female ', 'Female!', 'Female-Presenting ']
 MALE_TAGS = ['He/Him Pronouns for ', 'Male ', 'Male!', 'Male-Presenting ']
-NEUTRAL_TAGS = ['They/Them Pronouns for ', 'Gender-Neutral Pronouns for', 'Gender-Neutral ', 'Agender ', 'Genderfluid ', 'Androgynous ', 'Gender Non-Conforming ']
+NEUTRAL_TAGS = ['They/Them Pronouns for ', 'Gender-Neutral Pronouns for ', 'Gender-Neutral ', 'Agender ', 'Genderfluid ', 'Androgynous ', 'Gender Non-Conforming ']
 
 PRONOUNS = ['he','him','his','she','her','hers','I','me','mine','you','your','yours','we','our','ours','they','them','theirs','it','its']
 
@@ -46,7 +46,7 @@ def normalize_sentiment(sentences):
 
 def make_gender_tags(tags, character_name):
 	for tag in tags:
-		tag = tag+character_name+' (Good Omens)'
+		tag = tag+character_name
 		#print(tag) #debug
 
 	return tags
@@ -66,8 +66,8 @@ def decide_gender(characters, canon_db):
 		male = female = neutral = False
 
 		if any(tag in fic_tags for tag in f_gender): female = True
-		elif any(tag in fic_tags for tag in m_gender): male = True
-		elif any(tag in fic_tags for tag in n_gender): neutral = True
+		if any(tag in fic_tags for tag in m_gender): male = True
+		if any(tag in fic_tags for tag in n_gender): neutral = True
 
 		if female and male: character['Gender'] = 'NEUTRAL'
 		elif female: character['Gender'] = 'FEMALE'
@@ -189,7 +189,7 @@ def merge_character_mentions(fic_index, character_entities, coref_mentions):
 		if len(gender) == 0: gender = 'X'
 		elif len(gender) == 1: gender = gender[0]
 		else:
-			print(gender)
+			#print(gender) #debug
 			gender = 'X'
 
 		#Clean and select character's name

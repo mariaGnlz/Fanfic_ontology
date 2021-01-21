@@ -211,6 +211,12 @@ class FanficGetter():
 		fic_list = get_fanfics(self.dataset, 0, 0, False)
 
 		return fic_list
+	def get_fanfic_in_path(self, path):
+		num_fic=int((path.split('_')[3]).split('.')[0])
+		chapterised_fic = get_chapterised_fic(path, num_fic)
+		fic = Fanfic(num_fic, self.dataset, chapterised_fic, None, None, None)
+
+		return fic
 
 	def get_fic_paths_in_range(self, start_index, end_index):
 		paths_file = open(FIC_LISTING_PATH, 'r')

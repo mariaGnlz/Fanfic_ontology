@@ -12,6 +12,8 @@ import sys, time, random, pandas
 FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
 FIC_NAME_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_fics/html/'
 
+MAX_FIC_CHARACTERS = 50000
+
 ### FUNCTIONS ###
 
 def tag_with_NERTagger(fic):
@@ -54,13 +56,7 @@ def call_corenlp(fic):
 
 	return annotated_fics
 
-def merge_core_and_nertagger(nert_characters, core_characters):
-	nert_characters = []
-	core_characters = []
-
-
-
-def calculate_sentiment_percentages(fic_sentiment):
+def calculate_sentiment_percent(fic_sentiment):
 	total = fic_sentiment['Num sentences']
 	fic_sentiment.pop('Num sentences')
 
@@ -76,13 +72,20 @@ getter = FanficGetter()
 handler = FanficHTMLHandler()
 
 if len(sys.argv) == 1:
-	fic_id = random.randint(0,20190)
-	fic_path = FIC_NAME_PATH+'gomensfanfic_'+str(fic_id)+'.html'
-	print(fic_id, fic_path) #debug
+	print('Fetching fanfic...')
 
-	print('Fetching fanfic.')
-	fic = getter.get_fanfics_in_range(fic_id, fic_id+1)
-	fic = fic[0]
+	fic_not_found = True
+	while fic_not_found:
+		fic_id = random.randint(0,20190)
+		fic_path = FIC_NAME_PATH+'gomensfanfic_'+str(fic_id)+'.html'
+		#print(fic_id, fic_path) #debug
+
+		fic = getter.get_fanfics_in_range(fic_id, fic_id+1)
+		fic = fic[0]
+
+		if len(fic.get_string_chapters()) < MAX_FIC_CHARACTERS: fic_not_found = False
+
+	print('Fic #'+str(fic.index)+' fetched.')
 
 	print('Tagging characters with NERTagger...')
 	start = time.time()
@@ -107,7 +110,7 @@ if len(sys.argv) == 1:
 	print('...data processed.')
 	fic_title = handler.get_title(fic_path)
 
-	print('-- DATA FOR FANFIC #'+str(fic_id))
+	print('-- DATA FOR FANFIC #'+str(fic.index)+' --\n')
 	print('·Title: '+fic_title)
 	print('·NERTagger characters:	{:<8} {:<30} {:<10}'.format('Canon ID','Name','Mentions'))
 	for character in nertagger_characters:
@@ -124,8 +127,8 @@ if len(sys.argv) == 1:
 	print('\n')
 
 	#percentages = calculate_sentiment_percentages(fic_sentiment)	
-	print('·Sentiment:	{:<10} {:<15} {:<15} {:<15} {:<15} {:<15}'.format('Sentences','Very positive','Positive','Neutral','Negative','Very negative'))
-	print('		{:<10} {:<15} {:<15} {:<15} {:<15} {:<15}'.format(fic_sentiment['Num sentences'],fic_sentiment['Very positive'],fic_sentiment['Positive'],fic_sentiment['Neutral'],fic_sentiment['Negative'],fic_sentiment['Very negative']))
+	print('·Sentiment:	{:<10} {:<15} {:<15} {:<15} {:<15} {:<15} {:<15}'.format('Sentences','Very positive','Positive','Neutral','Negative','Very negative','Weighted avg'))
+	print('		{:<10} {:<15} {:<15} {:<15} {:<15} {:<15} {:<15}'.format(fic_sentiment['Num sentences'],fic_sentiment['Very positive'],fic_sentiment['Positive'],fic_sentiment['Neutral'],fic_sentiment['Negative'],fic_sentiment['Very negative'], fic_sentiment['Weighted average']))
 	print('\n\n')
 	
 
@@ -138,12 +141,12 @@ elif len(sys.argv) == 2:
 		if fic_id < 0 or fic_id > 20190: raise ValueError
 
 	except ValueError:
-		print('Parameter must be a natural number between 0 and 20190')
+		print('Fic index must be a natural number between 0 and 20190')
+		sys.exit()
 
-
-	print('Fetching fanfic.')
-	fic = getter.get_fanfics_in_range(fic_id, fic_id+1)
-	fic = fic[0]
+	print('Fetching fanfic #'+str(fic_id)+'...')
+	fic = getter.get_fanfic_in_path(fic_path)
+	
 
 	print('Tagging characters with NERTagger...')
 	start = time.time()
@@ -167,9 +170,13 @@ elif len(sys.argv) == 2:
 
 	print('...data processed.')
 	fic_title = handler.get_title(fic_path)
+	fic_character_tags = handler.get_characters(fic_path)
+	character_tags = ''
+	for tag in fic_character_tags: character_tags += tag+' '
 
-	print('-- DATA FOR FANFIC #'+str(fic_id))
+	print('-- DATA FOR FANFIC #'+str(fic_id)+' --\n')
 	print('·Title: '+fic_title)
+	print('·Character tags: '+character_tags)
 	print('·NERTagger characters:	{:<8} {:<30} {:<10}'.format('Canon ID','Name','Mentions'))
 	for character in nertagger_characters:
 		try: print('			{:<8} {:<30} {:<10}'.format(character['Canon ID'], character['Name'],character['Mentions']))
@@ -185,6 +192,8 @@ elif len(sys.argv) == 2:
 	print('\n')
 
 	#percentages = calculate_sentiment_percentages(fic_sentiment)	
-	print('·Sentiment:	{:<10} {:<15} {:<15} {:<15} {:<15} {:<15}'.format('Sentences','Very positive','Positive','Neutral','Negative','Very negative'))
-	print('		{:<10} {:<15} {:<15} {:<15} {:<15} {:<15}'.format(fic_sentiment['Num sentences'],fic_sentiment['Very positive'],fic_sentiment['Positive'],fic_sentiment['Neutral'],fic_sentiment['Negative'],fic_sentiment['Very negative']))
+	print('·Sentiment:	{:<10} {:<15} {:<15} {:<15} {:<15} {:<15} {:<15}'.format('Sentences','Very positive','Positive','Neutral','Negative','Very negative', 'Weighted avg'))
+	print('		{:<10} {:<15} {:<15} {:<15} {:<15} {:<15} {:<15}'.format(fic_sentiment['Num sentences'],fic_sentiment['Very positive'],fic_sentiment['Positive'],fic_sentiment['Neutral'],fic_sentiment['Negative'],fic_sentiment['Very negative'], fic_sentiment['Weighted average']))
 	print('\n\n')
+
+else: print('Incorrect usage of program.py. Correct use: program.py, program.py <fic_index>')
