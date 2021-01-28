@@ -1,4 +1,4 @@
-\begin{thebibliography}{Pen17}
+\begin{thebibliography}{Man19}
 
 \bibitem[Bar68]{Barthes}
 Ronald Barthes.
@@ -27,6 +27,13 @@ Lindsay Ellis.
 \newblock \url{https://www.youtube.com/watch?v=MGn9x4-Y_7A}, December 2018.
 \newblock Youtube.
 
+\bibitem[Fin05]{corenlp_ner}
+Jenny~Rose Finkel.
+\newblock Incorporating non-local information into information extraction
+  systems by gibbs sampling.
+\newblock {\em Proceedings of the 43nd Annual Meeting of the Association for
+  Computational Linguistics (ACL 2005)}, 2005.
+
 \bibitem[iva]{ivanov_2016}
 Complete guide to build your own named entity recognizer with python.
 \newblock \url{https://nlpforhackers.io/named-entity-extraction/}.
@@ -36,11 +43,33 @@ Complete guide to build your own named entity recognizer with python.
 Information extraction.
 \newblock \url{https://github.com/rohitjose/InformationExtraction}, 2017.
 
+\bibitem[Laf01]{lafferty_2011}
+John Lafferty.
+\newblock Conditional random fields: Probabilistic models for segmenting and
+  labeling sequence data.
+\newblock June 2001.
+
 \bibitem[Lev66]{levenshtein_1966}
 Vladimir Levenshtein.
 \newblock Binary codes capable of correcting deletions, insertions and
   reversals.
 \newblock {\em Soviet Physics Doklady}, 10, 1966.
+
+\bibitem[Lin09]{lin_2009}
+Dekang Lin.
+\newblock Phrase clustering for discriminative learning.
+\newblock {\em Proceedings of the 47th Annual Meeting of the ACL and the 4th
+  IJCNLP of the AFNLP}, pages 151 -- 213, August 2009.
+
+\bibitem[Man19]{manica_2019}
+Matteo Manica.
+\newblock An information extraction and knowledge graph platform for
+  accelerating biochemical discoveries.
+\newblock {\em Workshop on Applied Data Science for Healthcare at KDD}, 2019.
+
+\bibitem[not13]{nothman_2013}
+Learning multilingual named entity recognition from wikipedia.
+\newblock {\em Artificial Intelligence}, 194:151 -- 175, 2013.
 
 \bibitem[Pen17]{peng_17}
 Nanyun Peng.
@@ -66,6 +95,11 @@ Jonathan Swift.
 \newblock \url{http://www.whoosh.org/issue25/lee1a.html#41}, October 1998.
 \newblock Woosh Magazine, Birthplace of the International Association of Xena
   Studies.
+
+\bibitem[Wic09]{wick_2009}
+Michael Wick.
+\newblock An entity based model for coreference resolution.
+\newblock 2009.
 
 \bibitem[Zel03]{zelenko_2003}
 Dimitri Zelenko.

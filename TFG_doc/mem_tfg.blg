@@ -6,53 +6,57 @@ Database file #1: bib_tfg.bib
 Warning--entry type for "jose_2017" isn't style-file defined
 --line 53 of file bib_tfg.bib
 Warning--entry type for "ivanov_2016" isn't style-file defined
---line 136 of file bib_tfg.bib
+--line 209 of file bib_tfg.bib
 Warning--entry type for "sklearn_feature" isn't style-file defined
---line 154 of file bib_tfg.bib
+--line 227 of file bib_tfg.bib
+Warning--to sort, need author or key in nothman_2013
 Warning--to sort, need author or key in ivanov_2016
 Warning--to sort, need author or key in jose_2017
 Warning--to sort, need author or key in sklearn_feature
 Warning--there's a number but no volume in Barthes
+Warning--empty journal in lafferty_2011
+Warning--empty author in nothman_2013
+Warning--empty journal in wick_2009
 Warning--there's a number but no volume in zelenko_2003
-You've used 13 entries,
+You've used 19 entries,
             2543 wiz_defined-function locations,
-            631 strings with 6340 characters,
-and the built_in function-call counts, 3472 in all, are:
-= -- 342
-> -- 83
-< -- 10
-+ -- 20
-- -- 20
-* -- 189
-:= -- 551
-add.period$ -- 40
-call.type$ -- 13
-change.case$ -- 61
-chr.to.int$ -- 13
-cite$ -- 21
-duplicate$ -- 164
-empty$ -- 315
-format.name$ -- 40
-if$ -- 726
+            663 strings with 7385 characters,
+and the built_in function-call counts, 5315 in all, are:
+= -- 529
+> -- 124
+< -- 16
++ -- 32
+- -- 30
+* -- 298
+:= -- 835
+add.period$ -- 57
+call.type$ -- 19
+change.case$ -- 90
+chr.to.int$ -- 19
+cite$ -- 32
+duplicate$ -- 260
+empty$ -- 466
+format.name$ -- 60
+if$ -- 1112
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 8
-newline$ -- 69
-num.names$ -- 30
-pop$ -- 94
+missing$ -- 14
+newline$ -- 98
+num.names$ -- 45
+pop$ -- 125
 preamble$ -- 1
-purify$ -- 75
+purify$ -- 110
 quote$ -- 0
-skip$ -- 129
+skip$ -- 210
 stack$ -- 0
-substring$ -- 121
-swap$ -- 13
-text.length$ -- 10
-text.prefix$ -- 10
+substring$ -- 229
+swap$ -- 28
+text.length$ -- 16
+text.prefix$ -- 15
 top$ -- 0
-type$ -- 100
-warning$ -- 5
-while$ -- 21
-width$ -- 16
-write$ -- 161
-(There were 8 warnings)
+type$ -- 148
+warning$ -- 9
+while$ -- 34
+width$ -- 22
+write$ -- 231
+(There were 12 warnings)

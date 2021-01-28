@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.24)  21 JAN 2021 08:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.8.24)  28 JAN 2021 04:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1214,12 +1214,12 @@ LaTeX Font Info:    Try loading font information for T1+phv on input line 90.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
-<figures/uclm.pdf, id=83, 118.39479pt x 98.00206pt>
+<figures/uclm.pdf, id=87, 118.39479pt x 98.00206pt>
 File: figures/uclm.pdf Graphic file (type pdf)
 <use figures/uclm.pdf>
 Package pdftex.def Info: figures/uclm.pdf  used on input line 90.
 (pdftex.def)             Requested size: 96.2461pt x 79.6678pt.
-<figures/esi.pdf, id=84, 989.60603pt x 308.23795pt>
+<figures/esi.pdf, id=88, 989.60603pt x 308.23795pt>
 File: figures/esi.pdf Graphic file (type pdf)
 <use figures/esi.pdf>
 Package pdftex.def Info: figures/esi.pdf  used on input line 90.
@@ -1291,7 +1291,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.20 ...\numberline {8}REFERENCIAS}{54}{section.8}
+l.20 ...mbrados (Fanfic 2163)}{53}{subsection.8.3}
                                                    [1])
 \tf@toc=\write5
 \openout5 = `mem_tfg.toc'.
@@ -1322,1746 +1322,1831 @@ Package babel Info: Redefining spanish shorthand "?
 (babel)             in language  on input line 93.
  [2]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 96.
+(babel)             in language  on input line 98.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 96.
+(babel)             in language  on input line 98.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 96.
+(babel)             in language  on input line 98.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 96.
+(babel)             in language  on input line 98.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 96.
+(babel)             in language  on input line 98.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 96.
+(babel)             in language  on input line 98.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 101.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 101.
+ [3
+
+
+
+]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 102.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 102.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 102.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 102.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 102.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 102.
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 98.
+ine 104.
 
-Overfull \hbox (5.76181pt too wide) in paragraph at lines 98--98
+Overfull \hbox (5.76181pt too wide) in paragraph at lines 104--104
 [][][][]\T1/ptm/m/n/6 RELLENAR 
  []
 
 
-Overfull \hbox (5.76181pt too wide) in paragraph at lines 98--98
+Overfull \hbox (5.76181pt too wide) in paragraph at lines 104--104
 [][][][]\T1/ptm/m/n/6 RELLENAR 
  []
 
 
-Overfull \hbox (5.76181pt too wide) in paragraph at lines 98--98
+Overfull \hbox (5.76181pt too wide) in paragraph at lines 104--104
 [][][][]\T1/ptm/m/n/6 RELLENAR 
  []
 
 
-Overfull \hbox (5.76181pt too wide) in paragraph at lines 98--98
+Overfull \hbox (5.76181pt too wide) in paragraph at lines 104--104
 [][][][]\T1/ptm/m/n/6 RELLENAR 
  []
 
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 107.
+(babel)             in language  on input line 113.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 107.
-[3]
+(babel)             in language  on input line 113.
+[4
+
+]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 122.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 122.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 122.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 122.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 122.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 122.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 125.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 125.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 125.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 125.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 125.
+(babel)             in language  on input line 128.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 125.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 125.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 125.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 125.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 125.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 125.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 125.
- [4]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 135.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 135.
+(babel)             in language  on input line 128.
  [5]
-<figures/rel_graph_hp2.png, id=153, 756.8275pt x 275.0275pt>
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 129.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 129.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 129.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 129.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 129.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 129.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 140.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 140.
+ [6
+
+]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 151.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 151.
+ [7]
+<figures/rel_graph_hp2.png, id=171, 756.8275pt x 275.0275pt>
 File: figures/rel_graph_hp2.png Graphic file (type png)
 <use figures/rel_graph_hp2.png>
-Package pdftex.def Info: figures/rel_graph_hp2.png  used on input line 146.
+Package pdftex.def Info: figures/rel_graph_hp2.png  used on input line 153.
 (pdftex.def)             Requested size: 454.1pt x 165.01776pt.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 153.
+(babel)             in language  on input line 166.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 153.
- [6]
+(babel)             in language  on input line 166.
+ [8 <./figures/rel_graph_hp2.png>]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 167.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 167.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 167.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 167.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 167.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 159.
+(babel)             in language  on input line 167.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 164.
+(babel)             in language  on input line 175.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 164.
- [7 <./figures/rel_graph_hp2.png>]
+(babel)             in language  on input line 175.
+ [9
+
+]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 174.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 174.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 174.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 174.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 174.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 174.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 176.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 176.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 176.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 176.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 176.
+(babel)             in language  on input line 182.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 176.
-<figures/ao3_searchbox.png, id=175, 346.29375pt x 689.57625pt>
+(babel)             in language  on input line 182.
+ [10]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 183.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 183.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 183.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 183.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 183.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 183.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 185.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 185.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 185.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 185.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 185.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 185.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 197.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 197.
+ [11
+
+]
+<figures/ao3_searchbox.png, id=218, 346.29375pt x 689.57625pt>
 File: figures/ao3_searchbox.png Graphic file (type png)
 <use figures/ao3_searchbox.png>
-Package pdftex.def Info: figures/ao3_searchbox.png  used on input line 186.
+Package pdftex.def Info: figures/ao3_searchbox.png  used on input line 201.
 (pdftex.def)             Requested size: 173.14644pt x 344.78728pt.
 
-Underfull \hbox (badness 3108) in paragraph at lines 188--188
+Underfull \hbox (badness 3108) in paragraph at lines 203--203
 \T1/ptm/m/n/12 AO3. Per-mi-te ex-cluir (o in-cluir)
  []
 
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 191.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 191.
-[8]
-<figures/ao3_inspect.png, id=183, 1322.9425pt x 808.01875pt>
-File: figures/ao3_inspect.png Graphic file (type png)
-<use figures/ao3_inspect.png>
-Package pdftex.def Info: figures/ao3_inspect.png  used on input line 193.
-(pdftex.def)             Requested size: 1322.93929pt x 808.01678pt.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 202.
- [9 <./figures/ao3_searchbox.png>]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 202.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 202.
- [10 <./figures/ao3_inspect.png>]
-<figures/ao3_structure.png, id=196, 747.79375pt x 475.7775pt>
+<figures/ao3_structure.png, id=220, 747.79375pt x 475.7775pt>
 File: figures/ao3_structure.png Graphic file (type png)
 <use figures/ao3_structure.png>
-Package pdftex.def Info: figures/ao3_structure.png  used on input line 204.
-(pdftex.def)             Requested size: 448.6797pt x 285.46869pt.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 222.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 222.
- [11 <./figures/ao3_structure.png>]
-<figures/scraper_code2.png, id=208, 991.705pt x 562.1pt>
-File: figures/scraper_code2.png Graphic file (type png)
-<use figures/scraper_code2.png>
-Package pdftex.def Info: figures/scraper_code2.png  used on input line 224.
-(pdftex.def)             Requested size: 495.85129pt x 281.04932pt.
-
-Overfull \hbox (40.60718pt too wide) in paragraph at lines 224--225
-[][] 
- []
-
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 232.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 232.
-[12 <./figures/scraper_code2.png>]
-<figures/scraper_code.png, id=220, 979.66pt x 146.5475pt>
-File: figures/scraper_code.png Graphic file (type png)
-<use figures/scraper_code.png>
-Package pdftex.def Info: figures/scraper_code.png  used on input line 234.
-(pdftex.def)             Requested size: 489.82881pt x 73.27356pt.
-
-Overfull \hbox (34.5847pt too wide) in paragraph at lines 234--235
-[][] 
- []
-
-<figures/ao3_structure2.png, id=221, 1213.53375pt x 583.17876pt>
-File: figures/ao3_structure2.png Graphic file (type png)
-<use figures/ao3_structure2.png>
-Package pdftex.def Info: figures/ao3_structure2.png  used on input line 243.
-(pdftex.def)             Requested size: 1213.5308pt x 583.17734pt.
-<figures/scrapers_structure.png, id=224, 718.685pt x 494.84875pt>
-File: figures/scrapers_structure.png Graphic file (type png)
-<use figures/scrapers_structure.png>
-Package pdftex.def Info: figures/scrapers_structure.png  used on input line 254
-.
-(pdftex.def)             Requested size: 431.21432pt x 296.91154pt.
+Package pdftex.def Info: figures/ao3_structure.png  used on input line 210.
+(pdftex.def)             Requested size: 373.89595pt x 237.88815pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 216.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 261.
-[13 <./figures/scraper_code.png>]
+(babel)             in language  on input line 216.
+[12 <./figures/ao3_searchbox.png>]
+<figures/ao3_inspect.png, id=229, 1322.9425pt x 808.01875pt>
+File: figures/ao3_inspect.png Graphic file (type png)
+<use figures/ao3_inspect.png>
+Package pdftex.def Info: figures/ao3_inspect.png  used on input line 219.
+(pdftex.def)             Requested size: 1322.93929pt x 808.01678pt.
+<figures/scraper_code2.png, id=233, 991.705pt x 562.1pt>
+File: figures/scraper_code2.png Graphic file (type png)
+<use figures/scraper_code2.png>
+Package pdftex.def Info: figures/scraper_code2.png  used on input line 239.
+(pdftex.def)             Requested size: 396.67497pt x 224.83601pt.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 261.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 261.
- [14 <./figures/ao3_structure2.png>]
+(babel)             in language  on input line 242.
+ [13 <./figures/ao3_structure.png>]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 263.
+(babel)             in language  on input line 242.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 263.
- [15 <./figures/scrapers_structure.png>]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 280.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 280.
- [16]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 291.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 291.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 291.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 291.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 291.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 291.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 298.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 298.
- [17]
-<figures/fanfic_util_functions.png, id=264, 845.40843pt x 597.73312pt>
-File: figures/fanfic_util_functions.png Graphic file (type png)
-<use figures/fanfic_util_functions.png>
-Package pdftex.def Info: figures/fanfic_util_functions.png  used on input line 
-310.
-(pdftex.def)             Requested size: 422.70317pt x 298.86583pt.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 319.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 319.
- [18]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 322.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 322.
- [19 <./figures/fanfic_util_functions.png>]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 325.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 325.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 325.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 325.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 325.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 325.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 334.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 334.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 334.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 334.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 334.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 334.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 336.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 336.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 336.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 336.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 336.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 336.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 339.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 339.
- [20]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 364.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 364.
- [21]
-<figures/GMB_tag.png, id=290, 335.2525pt x 301.125pt>
-File: figures/GMB_tag.png Graphic file (type png)
-<use figures/GMB_tag.png>
-Package pdftex.def Info: figures/GMB_tag.png  used on input line 368.
-(pdftex.def)             Requested size: 301.72446pt x 271.00998pt.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 376.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 376.
- [22 <./figures/GMB_tag.png>]
-<figures/NLTK_tag.png, id=298, 620.3175pt x 171.64125pt>
-File: figures/NLTK_tag.png Graphic file (type png)
-<use figures/NLTK_tag.png>
-Package pdftex.def Info: figures/NLTK_tag.png  used on input line 379.
-(pdftex.def)             Requested size: 496.25468pt x 137.31316pt.
+(babel)             in language  on input line 242.
+ [14 <./figures/ao3_inspect.png>]
+<figures/scraper_code.png, id=250, 979.66pt x 146.5475pt>
+File: figures/scraper_code.png Graphic file (type png)
+<use figures/scraper_code.png>
+Package pdftex.def Info: figures/scraper_code.png  used on input line 248.
+(pdftex.def)             Requested size: 489.82881pt x 73.27356pt.
 
-Overfull \hbox (41.01057pt too wide) in paragraph at lines 379--380
+Overfull \hbox (34.5847pt too wide) in paragraph at lines 248--249
 [][] 
  []
 
+<figures/scrapers_structure.png, id=251, 718.685pt x 494.84875pt>
+File: figures/scrapers_structure.png Graphic file (type png)
+<use figures/scrapers_structure.png>
+Package pdftex.def Info: figures/scrapers_structure.png  used on input line 255
+.
+(pdftex.def)             Requested size: 287.4689pt x 197.93599pt.
+<figures/ao3_structure2.png, id=252, 1213.53375pt x 583.17876pt>
+File: figures/ao3_structure2.png Graphic file (type png)
+<use figures/ao3_structure2.png>
+Package pdftex.def Info: figures/ao3_structure2.png  used on input line 265.
+(pdftex.def)             Requested size: 1213.5308pt x 583.17734pt.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 394.
+(babel)             in language  on input line 270.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 394.
-[23 <./figures/NLTK_tag.png>]
-<figures/ejecucion_nertrainer.png, id=306, 657.45625pt x 206.7725pt>
+(babel)             in language  on input line 270.
+[15 <./figures/scraper_code2.png> <./figures/scraper_code.png>]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 278.
+ [16 <./figures/scrapers_structure.png>]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 278.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 278.
+ [17 <./figures/ao3_structure2.png>]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 286.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 286.
+ [18]
+<figures/ejecucion_file_scraper.png, id=286, 542.025pt x 379.4175pt>
+File: figures/ejecucion_file_scraper.png Graphic file (type png)
+<use figures/ejecucion_file_scraper.png>
+Package pdftex.def Info: figures/ejecucion_file_scraper.png  used on input line
+ 308.
+(pdftex.def)             Requested size: 271.01183pt x 189.70828pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 314.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 314.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 314.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 314.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 314.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 314.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 319.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 319.
+[19]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 326.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 326.
+ [20 <./figures/ejecucion_file_scraper.png>]
+<figures/fanfic_util_functions.png, id=305, 845.40843pt x 597.73312pt>
+File: figures/fanfic_util_functions.png Graphic file (type png)
+<use figures/fanfic_util_functions.png>
+Package pdftex.def Info: figures/fanfic_util_functions.png  used on input line 
+333.
+(pdftex.def)             Requested size: 338.15738pt x 239.089pt.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 341.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 341.
+ [21 <./figures/fanfic_util_functions.png>]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 348.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 348.
+ [22]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 349.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 349.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 349.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 349.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 349.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 349.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 358.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 358.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 358.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 358.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 358.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 358.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 360.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 360.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 360.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 360.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 360.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 360.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 371.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 371.
+ [23
+
+]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 390.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 390.
+ [24]
+<figures/GMB_tag.png, id=331, 335.2525pt x 301.125pt>
+File: figures/GMB_tag.png Graphic file (type png)
+<use figures/GMB_tag.png>
+Package pdftex.def Info: figures/GMB_tag.png  used on input line 392.
+(pdftex.def)             Requested size: 301.72446pt x 271.00998pt.
+<figures/NLTK_tag.png, id=333, 620.3175pt x 171.64125pt>
+File: figures/NLTK_tag.png Graphic file (type png)
+<use figures/NLTK_tag.png>
+Package pdftex.def Info: figures/NLTK_tag.png  used on input line 403.
+(pdftex.def)             Requested size: 496.25468pt x 137.31316pt.
+
+Overfull \hbox (41.01057pt too wide) in paragraph at lines 403--404
+[][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 414.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 414.
+[25 <./figures/GMB_tag.png>]
+<figures/ejecucion_nertrainer.png, id=341, 657.45625pt x 206.7725pt>
 File: figures/ejecucion_nertrainer.png Graphic file (type png)
 <use figures/ejecucion_nertrainer.png>
-Package pdftex.def Info: figures/ejecucion_nertrainer.png  used on input line 3
-97.
+Package pdftex.def Info: figures/ejecucion_nertrainer.png  used on input line 4
+21.
 (pdftex.def)             Requested size: 394.47679pt x 124.06445pt.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 409.
+(babel)             in language  on input line 429.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 409.
- [24 <./figures/ejecucion_nertrainer.png>]
-<figures/nerextract_tagger.png, id=318, 675.52374pt x 495.8525pt>
+(babel)             in language  on input line 429.
+ [26 <./figures/NLTK_tag.png>]
+<figures/nerextract_tagger.png, id=350, 675.52374pt x 495.8525pt>
 File: figures/nerextract_tagger.png Graphic file (type png)
 <use figures/nerextract_tagger.png>
-Package pdftex.def Info: figures/nerextract_tagger.png  used on input line 416.
+Package pdftex.def Info: figures/nerextract_tagger.png  used on input line 438.
 
 (pdftex.def)             Requested size: 337.76105pt x 247.92564pt.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 436.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 436.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 436.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 436.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 436.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 436.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 441.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 441.
+ [27 <./figures/ejecucion_nertrainer.png>]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 458.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 458.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 458.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 458.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 439.
+(babel)             in language  on input line 458.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 439.
-
-[25 <./figures/nerextract_tagger.png>]
+(babel)             in language  on input line 458.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 447.
+(babel)             in language  on input line 463.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 447.
- [26]
+(babel)             in language  on input line 463.
+ [28 <./figures/nerextract_tagger.png>]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 457.
+(babel)             in language  on input line 476.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 457.
- [27]
+(babel)             in language  on input line 476.
+ [29]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 465.
+(babel)             in language  on input line 484.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 465.
- [28]
-<figures/solapamiento_esquema.png, id=341, 706.89093pt x 498.36188pt>
+(babel)             in language  on input line 484.
+ [30]
+<figures/solapamiento_esquema.png, id=377, 706.89093pt x 498.36188pt>
 File: figures/solapamiento_esquema.png Graphic file (type png)
 <use figures/solapamiento_esquema.png>
 Package pdftex.def Info: figures/solapamiento_esquema.png  used on input line 4
-76.
+98.
 (pdftex.def)             Requested size: 353.4446pt x 249.18033pt.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 485.
+(babel)             in language  on input line 506.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 485.
- [29 <./figures/solapamiento_esquema.png (PNG copy)>]
+(babel)             in language  on input line 506.
+ [31]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 497.
+(babel)             in language  on input line 515.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 497.
- [30]
-<figures/core_ner_extraction.png, id=364, 786.68906pt x 385.44pt>
+(babel)             in language  on input line 515.
+
+[32 <./figures/solapamiento_esquema.png (PNG copy)>]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 529.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 529.
+ [33]
+<figures/core_ner_extraction.png, id=408, 786.68906pt x 385.44pt>
 File: figures/core_ner_extraction.png Graphic file (type png)
 <use figures/core_ner_extraction.png>
-Package pdftex.def Info: figures/core_ner_extraction.png  used on input line 51
-4.
+Package pdftex.def Info: figures/core_ner_extraction.png  used on input line 53
+6.
 (pdftex.def)             Requested size: 472.01707pt x 231.26578pt.
 
-Overfull \hbox (16.77296pt too wide) in paragraph at lines 514--515
+Overfull \hbox (16.77296pt too wide) in paragraph at lines 536--537
  [][] 
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Overfull \hbox (13.11162pt too wide) in paragraph at lines 520--520
+Overfull \hbox (13.11162pt too wide) in paragraph at lines 542--542
 [][][][]\T1/ptm/m/n/12 explicar 
  []
 
 
-Overfull \hbox (3.31956pt too wide) in paragraph at lines 520--520
+Overfull \hbox (3.31956pt too wide) in paragraph at lines 542--542
 \T1/ptm/m/n/12 Smith 
  []
 
 
-Overfull \hbox (7.31552pt too wide) in paragraph at lines 520--520
+Overfull \hbox (7.31552pt too wide) in paragraph at lines 542--542
 \T1/ptm/m/n/12 Smith)  
  []
 
 
-Overfull \hbox (13.11162pt too wide) in paragraph at lines 520--520
+Overfull \hbox (13.11162pt too wide) in paragraph at lines 542--542
 [][][][]\T1/ptm/m/n/12 explicar 
  []
 
 
-Overfull \hbox (3.31956pt too wide) in paragraph at lines 520--520
+Overfull \hbox (3.31956pt too wide) in paragraph at lines 542--542
 \T1/ptm/m/n/12 Smith 
  []
 
 
-Overfull \hbox (7.31552pt too wide) in paragraph at lines 520--520
+Overfull \hbox (7.31552pt too wide) in paragraph at lines 542--542
 \T1/ptm/m/n/12 Smith)  
  []
 
 
-Overfull \hbox (13.11162pt too wide) in paragraph at lines 520--520
+Overfull \hbox (13.11162pt too wide) in paragraph at lines 542--542
 [][][][]\T1/ptm/m/n/12 explicar 
  []
 
 
-Overfull \hbox (3.31956pt too wide) in paragraph at lines 520--520
+Overfull \hbox (3.31956pt too wide) in paragraph at lines 542--542
 \T1/ptm/m/n/12 Smith 
  []
 
 
-Overfull \hbox (7.31552pt too wide) in paragraph at lines 520--520
+Overfull \hbox (7.31552pt too wide) in paragraph at lines 542--542
 \T1/ptm/m/n/12 Smith)  
  []
 
 
-Overfull \hbox (13.11162pt too wide) in paragraph at lines 520--520
+Overfull \hbox (13.11162pt too wide) in paragraph at lines 542--542
 [][][][]\T1/ptm/m/n/12 explicar 
  []
 
 
-Overfull \hbox (3.31956pt too wide) in paragraph at lines 520--520
+Overfull \hbox (3.31956pt too wide) in paragraph at lines 542--542
 \T1/ptm/m/n/12 Smith 
  []
 
 
-Overfull \hbox (7.31552pt too wide) in paragraph at lines 520--520
+Overfull \hbox (7.31552pt too wide) in paragraph at lines 542--542
 \T1/ptm/m/n/12 Smith)  
  []
 
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 522.
+(babel)             in language  on input line 544.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 522.
+(babel)             in language  on input line 544.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 522.
+(babel)             in language  on input line 544.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 522.
+(babel)             in language  on input line 544.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 522.
+(babel)             in language  on input line 544.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 522.
+(babel)             in language  on input line 544.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 525.
+(babel)             in language  on input line 548.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 525.
-[31] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+(babel)             in language  on input line 548.
+[34 <./figures/core_ner_extraction.png (PNG copy)>]
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 531.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 531.
+nput line 553.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 553.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 532.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 554.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 535.
+(babel)             in language  on input line 565.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 535.
- [32 <./figures/core_ner_extraction.png (PNG copy)>]
+(babel)             in language  on input line 565.
+ [35]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 548.
+(babel)             in language  on input line 570.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 548.
+(babel)             in language  on input line 570.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 548.
+(babel)             in language  on input line 570.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 548.
+(babel)             in language  on input line 570.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 548.
+(babel)             in language  on input line 570.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 548.
+(babel)             in language  on input line 570.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 551.
+(babel)             in language  on input line 581.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 551.
- [33]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 571.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 571.
- [34]
-<figures/kmeans_tokenizer2.png, id=407, 462.528pt x 346.896pt>
+(babel)             in language  on input line 581.
+ [36]
+<figures/kmeans_tokenizer2.png, id=442, 462.528pt x 346.896pt>
 File: figures/kmeans_tokenizer2.png Graphic file (type png)
 <use figures/kmeans_tokenizer2.png>
-Package pdftex.def Info: figures/kmeans_tokenizer2.png  used on input line 587.
+Package pdftex.def Info: figures/kmeans_tokenizer2.png  used on input line 609.
 
 (pdftex.def)             Requested size: 185.0079pt x 138.75594pt.
 
-Overfull \hbox (2.91304pt too wide) in paragraph at lines 587--588
+Overfull \hbox (2.91304pt too wide) in paragraph at lines 609--610
 [][] 
  []
 
-<figures/ejecucion_kmeans_tokv2_0.png, id=410, 671.50874pt x 508.90125pt>
+<figures/ejecucion_kmeans_tokv2_0.png, id=445, 671.50874pt x 508.90125pt>
 File: figures/ejecucion_kmeans_tokv2_0.png Graphic file (type png)
 <use figures/ejecucion_kmeans_tokv2_0.png>
 Package pdftex.def Info: figures/ejecucion_kmeans_tokv2_0.png  used on input li
-ne 592.
+ne 614.
 (pdftex.def)             Requested size: 201.45418pt x 152.67155pt.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 602.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 602.
-[35 <./figures/kmeans_tokenizer2.png> <./figures/ejecucion_kmeans_tokv2_0.png>]
-<figures/ejecucion_topic_v1_0.png, id=431, 1500.60625pt x 254.9525pt>
-File: figures/ejecucion_topic_v1_0.png Graphic file (type png)
-<use figures/ejecucion_topic_v1_0.png>
-Package pdftex.def Info: figures/ejecucion_topic_v1_0.png  used on input line 6
-14.
-(pdftex.def)             Requested size: 525.22006pt x 89.2347pt.
-
-Overfull \hbox (43.80324pt too wide) in paragraph at lines 613--615
-[]  [] 
- []
-
-<figures/ejecucion_topic_v2_0.png, id=432, 1479.5275pt x 237.88875pt>
-File: figures/ejecucion_topic_v2_0.png Graphic file (type png)
-<use figures/ejecucion_topic_v2_0.png>
-Package pdftex.def Info: figures/ejecucion_topic_v2_0.png  used on input line 6
-21.
-(pdftex.def)             Requested size: 517.84239pt x 83.2623pt.
-
-Overfull \hbox (36.42557pt too wide) in paragraph at lines 620--622
-[]  [] 
- []
-
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 635.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 635.
-[36]
-<figures/lda_evaluate0.png, id=442, 808.01875pt x 171.64125pt>
-File: figures/lda_evaluate0.png Graphic file (type png)
-<use figures/lda_evaluate0.png>
-Package pdftex.def Info: figures/lda_evaluate0.png  used on input line 641.
-(pdftex.def)             Requested size: 404.00839pt x 85.8204pt.
-<figures/lda_evaluate1.png, id=443, 747.79375pt x 178.6675pt>
-File: figures/lda_evaluate1.png Graphic file (type png)
-<use figures/lda_evaluate1.png>
-Package pdftex.def Info: figures/lda_evaluate1.png  used on input line 648.
-(pdftex.def)             Requested size: 373.89595pt x 89.33353pt.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 685.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 685.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 685.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 685.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 685.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 685.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 692.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 692.
- [37 <./figures/ejecucion_topic_v1_0.png> <./figures/ejecucion_topic_v2_0.png>]
-<figures/core_vis_1.png, id=455, 962.59625pt x 870.25125pt>
-File: figures/core_vis_1.png Graphic file (type png)
-<use figures/core_vis_1.png>
-Package pdftex.def Info: figures/core_vis_1.png  used on input line 698.
-(pdftex.def)             Requested size: 433.1643pt x 391.60945pt.
-<figures/core_vis_3.png, id=456, 496.85625pt x 516.93124pt>
-File: figures/core_vis_3.png Graphic file (type png)
-<use figures/core_vis_3.png>
-Package pdftex.def Info: figures/core_vis_3.png  used on input line 707.
-(pdftex.def)             Requested size: 198.73897pt x 206.76883pt.
-<figures/core_vis_4.png, id=457, 502.87875pt x 703.62875pt>
-File: figures/core_vis_4.png Graphic file (type png)
-<use figures/core_vis_4.png>
-Package pdftex.def Info: figures/core_vis_4.png  used on input line 711.
-(pdftex.def)             Requested size: 201.14793pt x 281.4465pt.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 720.
- [38 <./figures/lda_evaluate0.png> <./figures/lda_evaluate1.png>]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 720.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 720.
- [39 <./figures/core_vis_1.png>]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 730.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 730.
- [40 <./figures/core_vis_3.png> <./figures/core_vis_4.png>]
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 731.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 745.
-
-<figures/r_verbs_0.png, id=484, 628.0263pt x 422.0568pt>
-File: figures/r_verbs_0.png Graphic file (type png)
-<use figures/r_verbs_0.png>
-Package pdftex.def Info: figures/r_verbs_0.png  used on input line 768.
-(pdftex.def)             Requested size: 439.61542pt x 295.43773pt.
-<figures/r_verbs_1.png, id=485, 589.7232pt x 401.8212pt>
-File: figures/r_verbs_1.png Graphic file (type png)
-<use figures/r_verbs_1.png>
-Package pdftex.def Info: figures/r_verbs_1.png  used on input line 775.
-(pdftex.def)             Requested size: 412.80342pt x 281.2729pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 622.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 829.
-[41]
+(babel)             in language  on input line 622.
+[37]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 829.
+(babel)             in language  on input line 630.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 829.
- [42 <./figures/r_verbs_0.png> <./figures/r_verbs_1.png>]
-<figures/r_btrigrams_lik.png, id=501, 735.74875pt x 335.2525pt>
+(babel)             in language  on input line 630.
+ [38 <./figures/kmeans_tokenizer2.png> <./figures/ejecucion_kmeans_tokv2_0.png>
+]
+<figures/ejecucion_topic_v1_0.png, id=472, 1500.60625pt x 254.9525pt>
+File: figures/ejecucion_topic_v1_0.png Graphic file (type png)
+<use figures/ejecucion_topic_v1_0.png>
+Package pdftex.def Info: figures/ejecucion_topic_v1_0.png  used on input line 6
+36.
+(pdftex.def)             Requested size: 525.22006pt x 89.2347pt.
+
+Overfull \hbox (43.80324pt too wide) in paragraph at lines 635--637
+[]  [] 
+ []
+
+<figures/ejecucion_topic_v2_0.png, id=473, 1479.5275pt x 237.88875pt>
+File: figures/ejecucion_topic_v2_0.png Graphic file (type png)
+<use figures/ejecucion_topic_v2_0.png>
+Package pdftex.def Info: figures/ejecucion_topic_v2_0.png  used on input line 6
+43.
+(pdftex.def)             Requested size: 517.84239pt x 83.2623pt.
+
+Overfull \hbox (36.42557pt too wide) in paragraph at lines 642--644
+[]  [] 
+ []
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 657.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 657.
+[39 <./figures/ejecucion_topic_v1_0.png> <./figures/ejecucion_topic_v2_0.png>]
+<figures/lda_evaluate0.png, id=485, 808.01875pt x 171.64125pt>
+File: figures/lda_evaluate0.png Graphic file (type png)
+<use figures/lda_evaluate0.png>
+Package pdftex.def Info: figures/lda_evaluate0.png  used on input line 663.
+(pdftex.def)             Requested size: 404.00839pt x 85.8204pt.
+<figures/lda_evaluate1.png, id=486, 747.79375pt x 178.6675pt>
+File: figures/lda_evaluate1.png Graphic file (type png)
+<use figures/lda_evaluate1.png>
+Package pdftex.def Info: figures/lda_evaluate1.png  used on input line 670.
+(pdftex.def)             Requested size: 373.89595pt x 89.33353pt.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 707.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 707.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 707.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 707.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 707.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 707.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 714.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 714.
+
+[40 <./figures/lda_evaluate0.png> <./figures/lda_evaluate1.png>]
+<figures/core_vis_1.png, id=496, 962.59625pt x 870.25125pt>
+File: figures/core_vis_1.png Graphic file (type png)
+<use figures/core_vis_1.png>
+Package pdftex.def Info: figures/core_vis_1.png  used on input line 720.
+(pdftex.def)             Requested size: 433.1643pt x 391.60945pt.
+<figures/core_vis_3.png, id=497, 496.85625pt x 516.93124pt>
+File: figures/core_vis_3.png Graphic file (type png)
+<use figures/core_vis_3.png>
+Package pdftex.def Info: figures/core_vis_3.png  used on input line 729.
+(pdftex.def)             Requested size: 198.73897pt x 206.76883pt.
+<figures/core_vis_4.png, id=498, 502.87875pt x 703.62875pt>
+File: figures/core_vis_4.png Graphic file (type png)
+<use figures/core_vis_4.png>
+Package pdftex.def Info: figures/core_vis_4.png  used on input line 733.
+(pdftex.def)             Requested size: 201.14793pt x 281.4465pt.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 742.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 742.
+ [41 <./figures/core_vis_1.png>]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 752.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 752.
+ [42 <./figures/core_vis_3.png> <./figures/core_vis_4.png>]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 753.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 767.
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 784.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 784.
+[43]
+<figures/r_verbs_0.png, id=524, 628.0263pt x 422.0568pt>
+File: figures/r_verbs_0.png Graphic file (type png)
+<use figures/r_verbs_0.png>
+Package pdftex.def Info: figures/r_verbs_0.png  used on input line 790.
+(pdftex.def)             Requested size: 439.61542pt x 295.43773pt.
+<figures/r_verbs_1.png, id=525, 589.7232pt x 401.8212pt>
+File: figures/r_verbs_1.png Graphic file (type png)
+<use figures/r_verbs_1.png>
+Package pdftex.def Info: figures/r_verbs_1.png  used on input line 797.
+(pdftex.def)             Requested size: 412.80342pt x 281.2729pt.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 851.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 851.
+ [44 <./figures/r_verbs_0.png> <./figures/r_verbs_1.png>]
+<figures/r_btrigrams_lik.png, id=535, 735.74875pt x 335.2525pt>
 File: figures/r_btrigrams_lik.png Graphic file (type png)
 <use figures/r_btrigrams_lik.png>
-Package pdftex.def Info: figures/r_btrigrams_lik.png  used on input line 896.
+Package pdftex.def Info: figures/r_btrigrams_lik.png  used on input line 918.
 (pdftex.def)             Requested size: 478.23102pt x 217.91153pt.
 
-Overfull \hbox (22.98691pt too wide) in paragraph at lines 896--897
+Overfull \hbox (22.98691pt too wide) in paragraph at lines 918--919
 [][] 
  []
 
-<figures/f_btrigrams_lik.png, id=502, 730.73pt x 326.21875pt>
+<figures/f_btrigrams_lik.png, id=536, 730.73pt x 326.21875pt>
 File: figures/f_btrigrams_lik.png Graphic file (type png)
 <use figures/f_btrigrams_lik.png>
-Package pdftex.def Info: figures/f_btrigrams_lik.png  used on input line 902.
+Package pdftex.def Info: figures/f_btrigrams_lik.png  used on input line 924.
 (pdftex.def)             Requested size: 474.96887pt x 212.03966pt.
 
-Overfull \hbox (19.72476pt too wide) in paragraph at lines 902--903
+Overfull \hbox (19.72476pt too wide) in paragraph at lines 924--925
 [][] 
  []
 
-<figures/e_btrigrams_lik.png, id=503, 727.71875pt x 280.04625pt>
+<figures/e_btrigrams_lik.png, id=537, 727.71875pt x 280.04625pt>
 File: figures/e_btrigrams_lik.png Graphic file (type png)
 <use figures/e_btrigrams_lik.png>
-Package pdftex.def Info: figures/e_btrigrams_lik.png  used on input line 908.
+Package pdftex.def Info: figures/e_btrigrams_lik.png  used on input line 930.
 (pdftex.def)             Requested size: 473.01158pt x 182.0279pt.
 
-Overfull \hbox (17.76747pt too wide) in paragraph at lines 908--909
+Overfull \hbox (17.76747pt too wide) in paragraph at lines 930--931
 [][] 
  []
 
-<figures/ac_rverbs_2.png, id=506, 679.338pt x 392.4261pt>
+<figures/ac_rverbs_2.png, id=540, 679.338pt x 392.4261pt>
 File: figures/ac_rverbs_2.png Graphic file (type png)
 <use figures/ac_rverbs_2.png>
-Package pdftex.def Info: figures/ac_rverbs_2.png  used on input line 922.
+Package pdftex.def Info: figures/ac_rverbs_2.png  used on input line 944.
 (pdftex.def)             Requested size: 407.60594pt x 235.45747pt.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 949.
+(babel)             in language  on input line 971.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 949.
+(babel)             in language  on input line 971.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 949.
+(babel)             in language  on input line 971.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 949.
+(babel)             in language  on input line 971.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 949.
+(babel)             in language  on input line 971.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 949.
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 971.
+[45]
 
-Overfull \hbox (12.01978pt too wide) in paragraph at lines 954--955
+LaTeX Warning: Text page 46 contains only floats.
+
+
+Overfull \vbox (5.54321pt too high) has occurred while \output is active []
+
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 971.
+
+[46 <./figures/r_btrigrams_lik.png> <./figures/f_btrigrams_lik.png> <./figures/
+e_btrigrams_lik.png>]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 971.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 971.
+ [47 <./figures/ac_rverbs_2.png>]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 972.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 972.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 972.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 972.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 972.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 972.
+
+Overfull \hbox (12.01978pt too wide) in paragraph at lines 977--978
 []\T1/ptm/m/it/12 fic_character_extractor <fic_index>\T1/ptm/m/n/12 , que ana-l
 i-za-rá el fan-fic cu-yo iden-ti-fi-ca-dor sea \T1/ptm/m/it/12 fic_index\T1/ptm
 /m/n/12 .
  []
 
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 994.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 963.
-[43]
+(babel)             in language  on input line 994.
+[48
 
-LaTeX Warning: Text page 44 contains only floats.
-
-
-Overfull \vbox (5.54321pt too high) has occurred while \output is active []
-
+]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 963.
+(babel)             in language  on input line 999.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 963.
-
-[44 <./figures/r_btrigrams_lik.png> <./figures/f_btrigrams_lik.png> <./figures/
-e_btrigrams_lik.png>]
+(babel)             in language  on input line 999.
+ [49]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1000.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1000.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1000.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1000.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1000.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1000.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1007.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1007.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1007.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1007.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 972.
+(babel)             in language  on input line 1007.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 972.
- [45 <./figures/ac_rverbs_2.png>]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 976.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 976.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 976.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 976.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 976.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 976.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 983.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 983.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 983.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 983.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 983.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 983.
+(babel)             in language  on input line 1007.
 
 
-Package caption Warning: \label without proper reference on input line 990.
+Package caption Warning: \label without proper reference on input line 1014.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:eval1_metadata' on page 46 undefined on input lin
-e 986.
+LaTeX Warning: Reference `fig:eval1_metadata' on page 50 undefined on input lin
+e 1010.
 
-<figures/eval1_metadata.png, id=533, 479.7925pt x 159.59625pt>
+<figures/eval1_metadata.png, id=577, 479.7925pt x 159.59625pt>
 File: figures/eval1_metadata.png Graphic file (type png)
 <use figures/eval1_metadata.png>
-Package pdftex.def Info: figures/eval1_metadata.png  used on input line 991.
+Package pdftex.def Info: figures/eval1_metadata.png  used on input line 1015.
 (pdftex.def)             Requested size: 335.85245pt x 111.7166pt.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1123.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1123.
+[50
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+ <./figures/eval1_metadata.png>]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1130.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1099.
-[46]
+(babel)             in language  on input line 1130.
+ [51]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1135.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1135.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1135.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1135.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1099.
+(babel)             in language  on input line 1135.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1099.
- [47]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1099.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1099.
- [48]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1105.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1105.
- [49 <./figures/eval1_metadata.png>]
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1111.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1111.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1111.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1111.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1111.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1111.
-<figures/eval2_metadata.png, id=558, 505.89pt x 142.5325pt>
+(babel)             in language  on input line 1135.
+<figures/eval2_metadata.png, id=594, 505.89pt x 142.5325pt>
 File: figures/eval2_metadata.png Graphic file (type png)
 <use figures/eval2_metadata.png>
-Package pdftex.def Info: figures/eval2_metadata.png  used on input line 1119.
+Package pdftex.def Info: figures/eval2_metadata.png  used on input line 1143.
 (pdftex.def)             Requested size: 354.12057pt x 99.77205pt.
 
 
@@ -3070,80 +3155,55 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1170.
-Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1170.
-[50 <./figures/eval2_metadata.png>]
 
-Package caption Warning: \label without proper reference on input line 1118.
+Package caption Warning: \label without proper reference on input line 1142.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:eval2_metadata' on page 51 undefined on input lin
-e 1171.
+LaTeX Warning: Reference `fig:eval2_metadata' on page 52 undefined on input lin
+e 1195.
 
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1196.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1243.
-[51]
+(babel)             in language  on input line 1196.
+[52 <./figures/eval2_metadata.png>]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1267.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1267.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1267.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1267.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1243.
+(babel)             in language  on input line 1267.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1243.
-<figures/eval4_metadata.png, id=574, 486.81876pt x 149.55875pt>
+(babel)             in language  on input line 1267.
+<figures/eval4_metadata.png, id=606, 486.81876pt x 149.55875pt>
 File: figures/eval4_metadata.png Graphic file (type png)
 <use figures/eval4_metadata.png>
-Package pdftex.def Info: figures/eval4_metadata.png  used on input line 1251.
+Package pdftex.def Info: figures/eval4_metadata.png  used on input line 1275.
 (pdftex.def)             Requested size: 340.7708pt x 104.6904pt.
 
 
@@ -3153,143 +3213,269 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1303.
+(babel)             in language  on input line 1327.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1303.
-[52 <./figures/eval4_metadata.png>]
+(babel)             in language  on input line 1327.
+[53 <./figures/eval4_metadata.png>]
 
-Package caption Warning: \label without proper reference on input line 1250.
+Package caption Warning: \label without proper reference on input line 1274.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `fig:eval4_metadata' on page 53 undefined on input lin
-e 1304.
+LaTeX Warning: Reference `fig:eval4_metadata' on page 54 undefined on input lin
+e 1328.
 
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1305.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1305.
-[53]
+(babel)             in language  on input line 1332.
+[54]
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1308.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1308.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1308.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1308.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1308.
+(babel)             in language  on input line 1332.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1308.
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1332.
+ [55]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1332.
+ [56]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1332.
+ [57]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1332.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1332.
+ [58]
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1333.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1333.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1333.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1333.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1333.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1333.
  (./mem_tfg.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 36--38
+Underfull \hbox (badness 10000) in paragraph at lines 43--45
 []\T1/ptm/m/n/12 Information ex-trac-tion.  [][]$\T1/pcr/m/n/12 https : / / git
 hub . com / rohitjose /
  []
 
 
-Underfull \hbox (badness 6658) in paragraph at lines 51--55
+Underfull \hbox (badness 5245) in paragraph at lines 80--84
 []\T1/ptm/m/n/12 Feature ex-trac-tion: Tf^^Uidf term weigh-ting.  [][]$\T1/pcr/
 m/n/12 https : / / scikit-[]learn .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--55
+Underfull \hbox (badness 10000) in paragraph at lines 80--84
 \T1/pcr/m/n/12 org / stable / modules / feature _ extraction . html #
  []
 
-)
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand <<
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand >>
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand "=
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand "~
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand "!
-(babel)             in language  on input line 1319.
+(babel)             in language  on input line 104.
 Package babel Info: Redefining spanish shorthand "?
-(babel)             in language  on input line 1319.
- [54]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1319.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1319.
+(babel)             in language  on input line 104.
+[59
+
+])
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand <<
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand >>
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand "=
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand "~
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand "!
+(babel)             in language  on input line 1344.
+Package babel Info: Redefining spanish shorthand "?
+(babel)             in language  on input line 1344.
+ [60]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1344.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1344.
  (./mem_tfg.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1319.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1319.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1344.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1344.
 
 Package rerunfilecheck Info: File `mem_tfg.out' has not changed.
-(rerunfilecheck)             Checksum: 8624492431FDF40683834801A39EC533;1624.
+(rerunfilecheck)             Checksum: BF1F58E616C192FC6850093C7A7F2E5B;1668.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1319.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1344.
  ) 
 Here is how much of TeX's memory you used:
- 22973 strings out of 494861
- 403221 string characters out of 6178804
- 531059 words of memory out of 5000000
- 25671 multiletter control sequences out of 15000+600000
+ 22982 strings out of 494861
+ 403251 string characters out of 6178804
+ 536816 words of memory out of 5000000
+ 25665 multiletter control sequences out of 15000+600000
  41192 words of font info for 54 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 62i,12n,97p,1472b,2113s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,12n,97p,1472b,1385s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist
@@ -3303,10 +3489,10 @@ share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
 imes/utmri8a.pfb>
-Output written on mem_tfg.pdf (55 pages, 2349995 bytes).
+Output written on mem_tfg.pdf (61 pages, 2373715 bytes).
 PDF statistics:
- 690 PDF objects out of 1000 (max. 8388607)
- 546 compressed objects within 6 object streams
- 165 named destinations out of 1000 (max. 500000)
- 340 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 744 PDF objects out of 1000 (max. 8388607)
+ 592 compressed objects within 6 object streams
+ 179 named destinations out of 1000 (max. 500000)
+ 353 words of extra memory for PDF output out of 10000 (max. 10000000)
 

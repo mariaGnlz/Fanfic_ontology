@@ -1,20 +1,21 @@
 \babel@toc {spanish}{}
-\contentsline {section}{\numberline {1}INTRODUCCI\IeC {\'O}N Y OBJETIVOS}{3}{section.1}
-\contentsline {section}{\numberline {2}FANFICTION Y ARCHIVE OF OUR OWN}{4}{section.2}
-\contentsline {section}{\numberline {3}EXTRACCI\IeC {\'O}N DE INFORMACI\IeC {\'O}N EN OTROS TRABAJOS}{7}{section.3}
-\contentsline {section}{\numberline {4}RECOGIDA Y LIMPIEZA DE DATOS}{8}{section.4}
-\contentsline {subsection}{\numberline {4.1}Creando un scraper para Archive of our Own}{8}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Limpieza de datos y creaci\IeC {\'o}n de datasets}{17}{subsection.4.2}
-\contentsline {section}{\numberline {5}EXTRACCI\IeC {\'O}N DE DATOS A PARTIR DE TEXTO}{20}{section.5}
-\contentsline {subsection}{\numberline {5.1}Algoritmo de identificaci\IeC {\'o}n de entidades}{20}{subsection.5.1}
-\contentsline {subsubsection}{\numberline {5.1.1}Extracci\IeC {\'o}n de entidades con NLTK}{20}{subsubsection.5.1.1}
-\contentsline {subsubsection}{\numberline {5.1.2}Extracci\IeC {\'o}n de entidades con CoreNLP}{26}{subsubsection.5.1.2}
-\contentsline {subsection}{\numberline {5.2}Algoritmo de identificaci\IeC {\'o}n de relaciones}{31}{subsection.5.2}
-\contentsline {subsubsection}{\numberline {5.2.1}Primeras estrategias: Clustering y LDA}{34}{subsubsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2}Correferencia con CoreNLP}{37}{subsubsection.5.2.2}
-\contentsline {section}{\numberline {6}PROGRAMA PRINCIPAL: fic\_character\_extractor }{43}{section.6}
-\contentsline {section}{\numberline {7}EVALUACI\IeC {\'O}N DEL SISTEMA}{46}{section.7}
-\contentsline {subsection}{\numberline {7.1}Prueba 1: Funciones b\IeC {\'a}sicas del programa con un texto largo (Fanfic 9)}{46}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Prueba 2: G\IeC {\'e}nero distinto del canon (Fanfic 2856)}{50}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}Prueba 3: Personajes que no son nombrados (Fanfic 2163)}{52}{subsection.7.3}
-\contentsline {section}{\numberline {8}REFERENCIAS}{54}{section.8}
+\contentsline {section}{\numberline {1}ABSTRACT}{3}{section.1}
+\contentsline {section}{\numberline {2}INTRODUCCI\IeC {\'O}N Y OBJETIVOS}{4}{section.2}
+\contentsline {section}{\numberline {3}FANFICTION Y ARCHIVE OF OUR OWN}{6}{section.3}
+\contentsline {section}{\numberline {4}EXTRACCI\IeC {\'O}N DE INFORMACI\IeC {\'O}N EN OTROS TRABAJOS}{9}{section.4}
+\contentsline {section}{\numberline {5}RECOGIDA Y LIMPIEZA DE DATOS}{11}{section.5}
+\contentsline {subsection}{\numberline {5.1}Creando un scraper para Archive of our Own}{11}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Limpieza de datos y creaci\IeC {\'o}n de datasets}{20}{subsection.5.2}
+\contentsline {section}{\numberline {6}EXTRACCI\IeC {\'O}N DE DATOS A PARTIR DE TEXTO}{23}{section.6}
+\contentsline {subsection}{\numberline {6.1}Algoritmo de identificaci\IeC {\'o}n de entidades}{23}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}Extracci\IeC {\'o}n de entidades con NLTK}{23}{subsubsection.6.1.1}
+\contentsline {subsubsection}{\numberline {6.1.2}Extracci\IeC {\'o}n de entidades con CoreNLP}{28}{subsubsection.6.1.2}
+\contentsline {subsection}{\numberline {6.2}Algoritmo de identificaci\IeC {\'o}n de relaciones}{34}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Primeras estrategias: Clustering y LDA}{36}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Correferencia con CoreNLP}{40}{subsubsection.6.2.2}
+\contentsline {section}{\numberline {7}PROGRAMA PRINCIPAL: fic\_character\_extractor }{48}{section.7}
+\contentsline {section}{\numberline {8}EVALUACI\IeC {\'O}N DEL SISTEMA}{50}{section.8}
+\contentsline {subsection}{\numberline {8.1}Prueba 1: Funciones b\IeC {\'a}sicas del programa con un texto largo (Fanfic 9)}{50}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Prueba 2: G\IeC {\'e}nero distinto del canon (Fanfic 2856)}{52}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Prueba 3: Personajes que no son nombrados (Fanfic 2163)}{53}{subsection.8.3}
+\contentsline {section}{\numberline {9}REFERENCIAS}{59}{section.9}

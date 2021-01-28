@@ -36,10 +36,10 @@
 \usepackage[left=30mm, right=20mm, top=20mm, bottom=20mm]{geometry}
 
 \usepackage[%
-  colorlinks=true,
-  linkcolor=black,
-  citecolor=blue,
-  urlcolor=blue]{hyperref}
+colorlinks=true,
+linkcolor=black,
+citecolor=blue,
+urlcolor=blue]{hyperref}
 
 \usepackage[pdftex]{graphicx}
 \graphicspath{{figures/}}
@@ -51,7 +51,7 @@
 \newcommand{\showhelp}{\setboolean{showhelp}{true}}
 
 \newcommand{\helpfootnote}[1]{
-  \ifthenelse{\boolean{showhelp}}{\footnote{#1}}{}
+	\ifthenelse{\boolean{showhelp}}{\footnote{#1}}{}
 }
 
 %---
@@ -70,30 +70,30 @@
 
 %--- page style ---
 \newcommand{\UCLMhead}{
-  \setlength{\unitlength}{1cm}
-  \begin{picture}(0,0)
-    \put(-1.3,-1.42){
-      \includegraphics[height=2.8cm]{uclm.pdf}}
-  \end{picture}
+	\setlength{\unitlength}{1cm}
+	\begin{picture}(0,0)
+	\put(-1.3,-1.42){
+		\includegraphics[height=2.8cm]{uclm.pdf}}
+	\end{picture}
 }
 
 \newcommand{\ESIhead}{
-  \setlength{\unitlength}{1cm}
-  \begin{picture}(0,0)
-    \put(-4,-1.5){
-      \includegraphics[height=1.6cm]{esi.pdf}}
-  \end{picture}
+	\setlength{\unitlength}{1cm}
+	\begin{picture}(0,0)
+	\put(-4,-1.5){
+		\includegraphics[height=1.6cm]{esi.pdf}}
+	\end{picture}
 }
 
 \newpagestyle{firstpage}[\small\sffamily]{
-  \sethead{\UCLMhead{}} %
-          {} %
-          {\ESIhead{}}
+	\sethead{\UCLMhead{}} %
+	{} %
+	{\ESIhead{}}
 }
 
 \newpagestyle{main}[\small\sffamily]{
-  \sethead{}{}{}
-  \setfoot{}{\thepage{}}{}
+	\sethead{}{}{}
+	\setfoot{}{\thepage{}}{}
 }
 
 %--- lists ---
@@ -129,8 +129,8 @@
 \usepackage{etoolbox}
 
 \newcommand{\@putAuthor}{
-  Autor: \@author\par}
-  
+	Autor: \@author\par}
+
 \newcommand{\@subject}{}
 \newcommand{\subject}[1]{
 	\renewcommand{\@subject}{#1}}
@@ -139,19 +139,19 @@
 
 \newcommand{\@intensification}{}
 \newcommand{\intensification}[1]{%
-  \renewcommand{\@intensification}{#1}}
+	\renewcommand{\@intensification}{#1}}
 
 \newcommand{\@advisorFirst}{}
 \newcommand{\advisorFirst}[1]{%
-  \renewcommand{\@advisorFirst}{#1}}
+	\renewcommand{\@advisorFirst}{#1}}
 \newcommand{\@putAdvisorFirst}{Director: \@advisorFirst\par}
 
 \newcommand{\@advisorSecond}{}
 \newcommand{\advisorSecond}[1]{%
-  \renewcommand{\@advisorSecond}{#1}}
+	\renewcommand{\@advisorSecond}{#1}}
 \newcommand{\@putAdvisorSecond}{
-  \ifdefempty{\@advisorSecond}{}{
-  Director:\helpfootnote{Sólo en el caso de que haya un segundo director.} \@advisorSecond\par}}
+	\ifdefempty{\@advisorSecond}{}{
+		Director:\helpfootnote{Sólo en el caso de que haya un segundo director.} \@advisorSecond\par}}
 
 \newcommand{\@advisorDepartment}{}
 \newcommand{\advisorDepartment}[1]{\renewcommand{\@advisorDepartment}{#1}}
@@ -159,48 +159,48 @@
 \newcommand{\@docmonth}{}
 \newcommand{\@docyear}{}
 \newcommand{\docdate}[2]{%
-  \renewcommand{\@docyear}{#1}
-  \renewcommand{\@docmonth}{#2}}
+	\renewcommand{\@docyear}{#1}
+	\renewcommand{\@docmonth}{#2}}
 
 
 \def\add_frontpage_content{
-  \begin{center}
-    \thispagestyle{firstpage} 
-    \bfseries
-    \setstretch{1.3}
-
-    \vspace*{\stretch{5}}
-  
-
-    {\LARGE \@title}
-  \end{center}
-  
-  %  \vspace*{\stretch{4}}
-    
-
-  \vspace*{\stretch{5}}
-
-  {\large
-    \@putAuthor
-	\@putSubject    
-  	\vspace*{\stretch{4}}
+	\begin{center}
+		\thispagestyle{firstpage} 
+		\bfseries
+		\setstretch{1.3}
+		
+		\vspace*{\stretch{5}}
+		
+		
+		{\LARGE \@title}
+	\end{center}
 	
-  	Grado en Ingeniería Informática
-
-  }
-
-  \vfill
-  \hfill
-  {\large \@docmonth, \@docyear}
+	%  \vspace*{\stretch{4}}
+	
+	
+	\vspace*{\stretch{5}}
+	
+	{\large
+		\@putAuthor
+		\@putSubject    
+		\vspace*{\stretch{4}}
+		
+		Grado en Ingeniería Informática
+		
+	}
+	
+	\vfill
+	\hfill
+	{\large \@docmonth, \@docyear}
 }
 
 \renewcommand\maketitle{%
-  \begin{titlepage}
-    \null\pagestyle{empty}
-    \add_frontpage_content
-    \vfil\null
-  \end{titlepage}
-  \parskip = 5mm
+	\begin{titlepage}
+		\null\pagestyle{empty}
+		\add_frontpage_content
+		\vfil\null
+	\end{titlepage}
+	\parskip = 5mm
 }
 
 \makeatother
