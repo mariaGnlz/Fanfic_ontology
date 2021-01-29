@@ -138,8 +138,11 @@ urlcolor=blue]{hyperref}
 	Asignatura: \@subject\par}
 
 \newcommand{\@intensification}{}
-\newcommand{\intensification}[1]{%
+\newcommand{\intensification}[1]{
 	\renewcommand{\@intensification}{#1}}
+\newcommand{\@putIntensification}{
+	Intensificacion: \@intensification\par}
+
 
 \newcommand{\@advisorFirst}{}
 \newcommand{\advisorFirst}[1]{%
@@ -182,7 +185,8 @@ urlcolor=blue]{hyperref}
 	
 	{\large
 		\@putAuthor
-		\@putSubject    
+		%\@putSubject
+		\@putIntensification    
 		\vspace*{\stretch{4}}
 		
 		Grado en Ingeniería Informática

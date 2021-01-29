@@ -31,11 +31,11 @@
 \pgfsyspdfmark {pgfid5}{38345269}{48428189}
 \citation{jacob}
 \citation{woosh_1998}
-\@writefile{toc}{\contentsline {section}{\numberline {3}FANFICTION Y ARCHIVE OF OUR OWN}{6}{section.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}FANFICTION Y ARCHIVE OF OUR OWN}{7}{section.3}}
 \citation{uncanny_2017}
 \citation{woosh_1998}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:graph_hp}{{\caption@xref {fig:graph_hp}{ on input line 154}}{8}{FANFICTION Y ARCHIVE OF OUR OWN}{figure.caption.2}{}}
+\newlabel{fig:graph_hp}{{\caption@xref {fig:graph_hp}{ on input line 158}}{9}{FANFICTION Y ARCHIVE OF OUR OWN}{figure.caption.2}{}}
 \citation{craven_99}
 \citation{manica_2019}
 \citation{corenlp_ner}
@@ -46,134 +46,135 @@
 \citation{zelenko_2003}
 \citation{craven_99}
 \citation{peng_17}
-\@writefile{toc}{\contentsline {section}{\numberline {4}EXTRACCI\IeC {\'O}N DE INFORMACI\IeC {\'O}N EN OTROS TRABAJOS}{9}{section.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}RECOGIDA Y LIMPIEZA DE DATOS}{11}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Creando un scraper para Archive of our Own}{11}{subsection.5.1}}
-\newlabel{sec:recogidadatos}{{5.1}{11}{Creando un scraper para Archive of our Own}{subsection.5.1}{}}
-\newlabel{SC@1}{{\caption@xref {??}{ on input line 203}}{12}{Creando un scraper para Archive of our Own}{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Herramienta de filtrado de AO3. Permite excluir (o incluir) obras que contengan etiquetas espec\IeC {\'\i }ficas, as\IeC {\'\i } c\IeC {\'o}mo aquellas no escritas en un idioma particular\relax }}{12}{figure.caption.3}}
-\newlabel{fig:ao3_search}{{1}{12}{Herramienta de filtrado de AO3. Permite excluir (o incluir) obras que contengan etiquetas específicas, así cómo aquellas no escritas en un idioma particular\relax }{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Concepto para el \textit  {scraper}. El objetivo es obtener los links de descarga navegando las p\IeC {\'a}ginas de b\IeC {\'u}squeda.\relax }}{13}{figure.caption.4}}
-\newlabel{fig:ao3_structure}{{2}{13}{Concepto para el \textit {scraper}. El objetivo es obtener los links de descarga navegando las páginas de búsqueda.\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Exploraci\IeC {\'o}n de la estructura de la p\IeC {\'a}gina AO3 usando la herramienta 'Inspeccionar elemento' de \textit  {Firefox}. Se puede ver que el sitio utiliza una clase HTML llamada \textit  {'work blurb group'} para mostrar cada obra.\relax }}{14}{figure.caption.5}}
-\newlabel{fig:ao3_inspect}{{3}{14}{Exploración de la estructura de la página AO3 usando la herramienta 'Inspeccionar elemento' de \textit {Firefox}. Se puede ver que el sitio utiliza una clase HTML llamada \textit {'work blurb group'} para mostrar cada obra.\relax }{figure.caption.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces C\IeC {\'o}digo perteneciente al \textit  {scraper} 'ao3\_link\_scraper'. Utiliza un bucle \textit  {while} para iterar entre las p\IeC {\'a}ginas de la b\IeC {\'u}squeda, y en cada p\IeC {\'a}gina, usa la librer\IeC {\'\i }a \textit  {BeautifulSoup} para extraer los objetos 'work blurb group' en una lista llamada 'blurbs' (l\IeC {\'\i }nea 42). De cada 'blurb' extrae el identificador del fanfic y comprueba si tiene texto (l\IeC {\'\i }neas 46-49), y si lo contiene forma el enlace a la p\IeC {\'a}gina del fanfic y lo a\IeC {\~n}ade a una lista llamada 'work\_links' (l\IeC {\'\i }nea 50). Si no contiene texto, se a\IeC {\~n}ade a otra lista llamada 'discarded\_links' (l\IeC {\'\i }nea 52).\relax }}{15}{figure.caption.6}}
-\newlabel{code:scraper2}{{4}{15}{Código perteneciente al \textit {scraper} 'ao3\_link\_scraper'. Utiliza un bucle \textit {while} para iterar entre las páginas de la búsqueda, y en cada página, usa la librería \textit {BeautifulSoup} para extraer los objetos 'work blurb group' en una lista llamada 'blurbs' (línea 42). De cada 'blurb' extrae el identificador del fanfic y comprueba si tiene texto (líneas 46-49), y si lo contiene forma el enlace a la página del fanfic y lo añade a una lista llamada 'work\_links' (línea 50). Si no contiene texto, se añade a otra lista llamada 'discarded\_links' (línea 52).\relax }{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces C\IeC {\'o}digo perteneciente al \textit  {scraper} 'ao3\_link\_scraper'. Utiliza la librer\IeC {\'\i }a \textit  {requests} para enviar una petici\IeC {\'o}n HTTP GET al link permanente del conjunto de datos (l\IeC {\'\i }nea 30), y \textit  {BeautifulSoup} para navegar el resultado como un objeto HTML del que poder extraer datos \IeC {\'u}tiles, como la cantidad total de p\IeC {\'a}ginas (l\IeC {\'\i }neas 33-35).\relax }}{15}{figure.caption.7}}
-\newlabel{code:scraper1}{{5}{15}{Código perteneciente al \textit {scraper} 'ao3\_link\_scraper'. Utiliza la librería \textit {requests} para enviar una petición HTTP GET al link permanente del conjunto de datos (línea 30), y \textit {BeautifulSoup} para navegar el resultado como un objeto HTML del que poder extraer datos útiles, como la cantidad total de páginas (líneas 33-35).\relax }{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Proceso de descarga de fanfics de AO3 utilizando los programas 'ao3\_link\_scraper.py' y 'ao3\_file\_scraper.py'.\relax }}{16}{figure.caption.8}}
-\newlabel{fig:scrapers_structure}{{6}{16}{Proceso de descarga de fanfics de AO3 utilizando los programas 'ao3\_link\_scraper.py' y 'ao3\_file\_scraper.py'.\relax }{figure.caption.8}{}}
-\newlabel{SC@2}{{\caption@xref {??}{ on input line 267}}{17}{Creando un scraper para Archive of our Own}{figure.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Navegaci\IeC {\'o}n de p\IeC {\'a}ginas de b\IeC {\'u}squeda de AO3. Todos los botones vienen con su n\IeC {\'u}mero de p\IeC {\'a}gina, y se puede ver cu\IeC {\'a}l es la \IeC {\'u}ltima\relax }}{17}{figure.caption.9}}
-\newlabel{fig:ao3_structure2}{{7}{17}{Navegación de páginas de búsqueda de AO3. Todos los botones vienen con su número de página, y se puede ver cuál es la última\relax }{figure.caption.9}{}}
-\newlabel{fig:file_scraper}{{\caption@xref {fig:file_scraper}{ on input line 309}}{20}{Creando un scraper para Archive of our Own}{figure.caption.10}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Ejecuci\IeC {\'o}n de \textit  {ao3\_file\_scraper.py}\relax }}{20}{figure.caption.10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Limpieza de datos y creaci\IeC {\'o}n de datasets}{20}{subsection.5.2}}
-\newlabel{sec:limpiezadatos}{{5.2}{20}{Limpieza de datos y creación de datasets}{subsection.5.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Esquema ilustrando la funci\IeC {\'o}n de las clases \textit  {fanfic\_util}\relax }}{21}{figure.caption.11}}
-\newlabel{fig:fanfic_util}{{9}{21}{Esquema ilustrando la función de las clases \textit {fanfic\_util}\relax }{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}EXTRACCI\IeC {\'O}N DE INFORMACI\IeC {\'O}N EN OTROS TRABAJOS}{10}{section.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}RECOGIDA Y LIMPIEZA DE DATOS}{12}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Creando un scraper para Archive of our Own}{12}{subsection.5.1}}
+\newlabel{sec:recogidadatos}{{5.1}{12}{Creando un scraper para Archive of our Own}{subsection.5.1}{}}
+\newlabel{SC@1}{{\caption@xref {??}{ on input line 207}}{13}{Creando un scraper para Archive of our Own}{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Herramienta de filtrado de AO3. Permite excluir (o incluir) obras que contengan etiquetas espec\IeC {\'\i }ficas, as\IeC {\'\i } c\IeC {\'o}mo aquellas no escritas en un idioma particular\relax }}{13}{figure.caption.3}}
+\newlabel{fig:ao3_search}{{1}{13}{Herramienta de filtrado de AO3. Permite excluir (o incluir) obras que contengan etiquetas específicas, así cómo aquellas no escritas en un idioma particular\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Concepto para el \textit  {scraper}. El objetivo es obtener los links de descarga navegando las p\IeC {\'a}ginas de b\IeC {\'u}squeda.\relax }}{14}{figure.caption.4}}
+\newlabel{fig:ao3_structure}{{2}{14}{Concepto para el \textit {scraper}. El objetivo es obtener los links de descarga navegando las páginas de búsqueda.\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Exploraci\IeC {\'o}n de la estructura de la p\IeC {\'a}gina AO3 usando la herramienta 'Inspeccionar elemento' de \textit  {Firefox}. Se puede ver que el sitio utiliza una clase HTML llamada \textit  {'work blurb group'} para mostrar cada obra.\relax }}{15}{figure.caption.5}}
+\newlabel{fig:ao3_inspect}{{3}{15}{Exploración de la estructura de la página AO3 usando la herramienta 'Inspeccionar elemento' de \textit {Firefox}. Se puede ver que el sitio utiliza una clase HTML llamada \textit {'work blurb group'} para mostrar cada obra.\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces C\IeC {\'o}digo perteneciente al \textit  {scraper} 'ao3\_link\_scraper'. Utiliza un bucle \textit  {while} para iterar entre las p\IeC {\'a}ginas de la b\IeC {\'u}squeda, y en cada p\IeC {\'a}gina, usa la librer\IeC {\'\i }a \textit  {BeautifulSoup} para extraer los objetos 'work blurb group' en una lista llamada 'blurbs' (l\IeC {\'\i }nea 42). De cada 'blurb' extrae el identificador del fanfic y comprueba si tiene texto (l\IeC {\'\i }neas 46-49), y si lo contiene forma el enlace a la p\IeC {\'a}gina del fanfic y lo a\IeC {\~n}ade a una lista llamada 'work\_links' (l\IeC {\'\i }nea 50). Si no contiene texto, se a\IeC {\~n}ade a otra lista llamada 'discarded\_links' (l\IeC {\'\i }nea 52).\relax }}{16}{figure.caption.6}}
+\newlabel{code:scraper2}{{4}{16}{Código perteneciente al \textit {scraper} 'ao3\_link\_scraper'. Utiliza un bucle \textit {while} para iterar entre las páginas de la búsqueda, y en cada página, usa la librería \textit {BeautifulSoup} para extraer los objetos 'work blurb group' en una lista llamada 'blurbs' (línea 42). De cada 'blurb' extrae el identificador del fanfic y comprueba si tiene texto (líneas 46-49), y si lo contiene forma el enlace a la página del fanfic y lo añade a una lista llamada 'work\_links' (línea 50). Si no contiene texto, se añade a otra lista llamada 'discarded\_links' (línea 52).\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces C\IeC {\'o}digo perteneciente al \textit  {scraper} 'ao3\_link\_scraper'. Utiliza la librer\IeC {\'\i }a \textit  {requests} para enviar una petici\IeC {\'o}n HTTP GET al link permanente del conjunto de datos (l\IeC {\'\i }nea 30), y \textit  {BeautifulSoup} para navegar el resultado como un objeto HTML del que poder extraer datos \IeC {\'u}tiles, como la cantidad total de p\IeC {\'a}ginas (l\IeC {\'\i }neas 33-35).\relax }}{16}{figure.caption.7}}
+\newlabel{code:scraper1}{{5}{16}{Código perteneciente al \textit {scraper} 'ao3\_link\_scraper'. Utiliza la librería \textit {requests} para enviar una petición HTTP GET al link permanente del conjunto de datos (línea 30), y \textit {BeautifulSoup} para navegar el resultado como un objeto HTML del que poder extraer datos útiles, como la cantidad total de páginas (líneas 33-35).\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Proceso de descarga de fanfics de AO3 utilizando los programas 'ao3\_link\_scraper.py' y 'ao3\_file\_scraper.py'.\relax }}{17}{figure.caption.8}}
+\newlabel{fig:scrapers_structure}{{6}{17}{Proceso de descarga de fanfics de AO3 utilizando los programas 'ao3\_link\_scraper.py' y 'ao3\_file\_scraper.py'.\relax }{figure.caption.8}{}}
+\newlabel{SC@2}{{\caption@xref {??}{ on input line 271}}{18}{Creando un scraper para Archive of our Own}{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Navegaci\IeC {\'o}n de p\IeC {\'a}ginas de b\IeC {\'u}squeda de AO3. Todos los botones vienen con su n\IeC {\'u}mero de p\IeC {\'a}gina, y se puede ver cu\IeC {\'a}l es la \IeC {\'u}ltima\relax }}{18}{figure.caption.9}}
+\newlabel{fig:ao3_structure2}{{7}{18}{Navegación de páginas de búsqueda de AO3. Todos los botones vienen con su número de página, y se puede ver cuál es la última\relax }{figure.caption.9}{}}
+\newlabel{fig:file_scraper}{{\caption@xref {fig:file_scraper}{ on input line 313}}{21}{Creando un scraper para Archive of our Own}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Ejecuci\IeC {\'o}n de \textit  {ao3\_file\_scraper.py}\relax }}{21}{figure.caption.10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Limpieza de datos y creaci\IeC {\'o}n de datasets}{21}{subsection.5.2}}
+\newlabel{sec:limpiezadatos}{{5.2}{21}{Limpieza de datos y creación de datasets}{subsection.5.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Esquema ilustrando la funci\IeC {\'o}n de las clases \textit  {fanfic\_util}\relax }}{22}{figure.caption.11}}
+\newlabel{fig:fanfic_util}{{9}{22}{Esquema ilustrando la función de las clases \textit {fanfic\_util}\relax }{figure.caption.11}{}}
 \citation{ivanov_2016}
-\@writefile{toc}{\contentsline {section}{\numberline {6}EXTRACCI\IeC {\'O}N DE DATOS A PARTIR DE TEXTO}{23}{section.6}}
-\@writefile{tdo}{\contentsline {todo}{Explicar los programas que hice para familiarizarme con NLTK}{23}{section*.12}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}EXTRACCI\IeC {\'O}N DE DATOS A PARTIR DE TEXTO}{24}{section.6}}
+\@writefile{tdo}{\contentsline {todo}{Explicar los programas que hice para familiarizarme con NLTK}{24}{section*.12}}
 \pgfsyspdfmark {pgfid6}{5594039}{48693609}
 \pgfsyspdfmark {pgfid9}{37214773}{48684168}
 \pgfsyspdfmark {pgfid10}{38345269}{48428189}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Algoritmo de identificaci\IeC {\'o}n de entidades}{23}{subsection.6.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Extracci\IeC {\'o}n de entidades con NLTK}{23}{subsubsection.6.1.1}}
-\newlabel{sec:nerextract_tagger}{{6.1.1}{23}{Extracción de entidades con NLTK}{subsubsection.6.1.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Frase etiquetada por GMB. De izquierda a derecha, las columnas representan la palabra a etiquetar, la etiqueta de rol morfol\IeC {\'o}gico, y la etiqueta IOB.\relax }}{25}{figure.caption.13}}
-\newlabel{fig:tags1}{{10}{25}{Frase etiquetada por GMB. De izquierda a derecha, las columnas representan la palabra a etiquetar, la etiqueta de rol morfológico, y la etiqueta IOB.\relax }{figure.caption.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Frase etiquetada por NLTK. Las etiquetas de entidad se encuentran en los nodos, encontr\IeC {\'a}ndose todas las palabras pertenecientes a una secuencia de entidad en la profundidad 2 del \IeC {\'a}rbol. Las palabras que no pertenecen a ninguna secuencia de entidad se encuentran en la profundidad 1. Cada hoja del \IeC {\'a}rbol contiene una tupla formada por la palabra y su etiqueta de rol morfol\IeC {\'o}gico.\relax }}{26}{figure.caption.14}}
-\newlabel{fig:tags2}{{11}{26}{Frase etiquetada por NLTK. Las etiquetas de entidad se encuentran en los nodos, encontrándose todas las palabras pertenecientes a una secuencia de entidad en la profundidad 2 del árbol. Las palabras que no pertenecen a ninguna secuencia de entidad se encuentran en la profundidad 1. Cada hoja del árbol contiene una tupla formada por la palabra y su etiqueta de rol morfológico.\relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Algoritmo de identificaci\IeC {\'o}n de entidades}{24}{subsection.6.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.1}Extracci\IeC {\'o}n de entidades con NLTK}{24}{subsubsection.6.1.1}}
+\newlabel{sec:nerextract_tagger}{{6.1.1}{24}{Extracción de entidades con NLTK}{subsubsection.6.1.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Frase etiquetada por GMB. De izquierda a derecha, las columnas representan la palabra a etiquetar, la etiqueta de rol morfol\IeC {\'o}gico, y la etiqueta IOB.\relax }}{26}{figure.caption.13}}
+\newlabel{fig:tags1}{{10}{26}{Frase etiquetada por GMB. De izquierda a derecha, las columnas representan la palabra a etiquetar, la etiqueta de rol morfológico, y la etiqueta IOB.\relax }{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Frase etiquetada por NLTK. Las etiquetas de entidad se encuentran en los nodos, encontr\IeC {\'a}ndose todas las palabras pertenecientes a una secuencia de entidad en la profundidad 2 del \IeC {\'a}rbol. Las palabras que no pertenecen a ninguna secuencia de entidad se encuentran en la profundidad 1. Cada hoja del \IeC {\'a}rbol contiene una tupla formada por la palabra y su etiqueta de rol morfol\IeC {\'o}gico.\relax }}{27}{figure.caption.14}}
+\newlabel{fig:tags2}{{11}{27}{Frase etiquetada por NLTK. Las etiquetas de entidad se encuentran en los nodos, encontrándose todas las palabras pertenecientes a una secuencia de entidad en la profundidad 2 del árbol. Las palabras que no pertenecen a ninguna secuencia de entidad se encuentran en la profundidad 1. Cada hoja del árbol contiene una tupla formada por la palabra y su etiqueta de rol morfológico.\relax }{figure.caption.14}{}}
 \citation{levenshtein_1966}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Ejecuci\IeC {\'o}n final de \textit  {NER\_trainer.py}, mostrando su evaluaci\IeC {\'o}n.\relax }}{27}{figure.caption.15}}
-\newlabel{fig:ner_evaluation}{{12}{27}{Ejecución final de \textit {NER\_trainer.py}, mostrando su evaluación.\relax }{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces \relax }}{28}{figure.caption.16}}
-\newlabel{fig:nerextract_tagger}{{13}{28}{\relax }{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Extracci\IeC {\'o}n de entidades con CoreNLP}{28}{subsubsection.6.1.2}}
-\newlabel{sec:nerextract_corenlp}{{6.1.2}{28}{Extracción de entidades con CoreNLP}{subsubsection.6.1.2}{}}
-\newlabel{nota:limiteCarac}{{6.1.2}{30}{Extracción de entidades con CoreNLP}{subsubsection.6.1.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Ejecuci\IeC {\'o}n final de \textit  {NER\_trainer.py}, mostrando su evaluaci\IeC {\'o}n.\relax }}{28}{figure.caption.15}}
+\newlabel{fig:ner_evaluation}{{12}{28}{Ejecución final de \textit {NER\_trainer.py}, mostrando su evaluación.\relax }{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces \relax }}{29}{figure.caption.16}}
+\newlabel{fig:nerextract_tagger}{{13}{29}{\relax }{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.1.2}Extracci\IeC {\'o}n de entidades con CoreNLP}{29}{subsubsection.6.1.2}}
+\newlabel{sec:nerextract_corenlp}{{6.1.2}{29}{Extracción de entidades con CoreNLP}{subsubsection.6.1.2}{}}
+\newlabel{nota:limiteCarac}{{6.1.2}{31}{Extracción de entidades con CoreNLP}{subsubsection.6.1.2}{}}
 \citation{levenshtein_1966}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Solapamiento entre menciones de correferencia (Mention) y de entidad (NERMention).\relax }}{32}{figure.caption.17}}
-\newlabel{fig:solapamiento_esquema}{{14}{32}{Solapamiento entre menciones de correferencia (Mention) y de entidad (NERMention).\relax }{figure.caption.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Esquema sobre el proceso de extracci\IeC {\'o}n de personajes con CoreNLP.\relax }}{34}{figure.caption.18}}
-\newlabel{fig:ner_extraction_corenlp}{{15}{34}{Esquema sobre el proceso de extracción de personajes con CoreNLP.\relax }{figure.caption.18}{}}
-\@writefile{tdo}{\contentsline {todo}{explicar posibles problemas y carencias de este proceso (apodo que es un sustantivo com\IeC {\'u}n como "\IeC {\'a}ngel", posibles confunsiones entre un Mr Smith con Ms Smith)}{34}{section*.19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Solapamiento entre menciones de correferencia (Mention) y de entidad (NERMention).\relax }}{33}{figure.caption.17}}
+\newlabel{fig:solapamiento_esquema}{{14}{33}{Solapamiento entre menciones de correferencia (Mention) y de entidad (NERMention).\relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Esquema sobre el proceso de extracci\IeC {\'o}n de personajes con CoreNLP.\relax }}{35}{figure.caption.18}}
+\newlabel{fig:ner_extraction_corenlp}{{15}{35}{Esquema sobre el proceso de extracción de personajes con CoreNLP.\relax }{figure.caption.18}{}}
+\@writefile{tdo}{\contentsline {todo}{explicar posibles problemas y carencias de este proceso (apodo que es un sustantivo com\IeC {\'u}n como "\IeC {\'a}ngel", posibles confunsiones entre un Mr Smith con Ms Smith)}{35}{section*.19}}
 \pgfsyspdfmark {pgfid11}{5594039}{17316108}
 \pgfsyspdfmark {pgfid14}{37214773}{17306667}
 \pgfsyspdfmark {pgfid15}{38345269}{17050688}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Algoritmo de identificaci\IeC {\'o}n de relaciones}{34}{subsection.6.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Algoritmo de identificaci\IeC {\'o}n de relaciones}{35}{subsection.6.2}}
 \citation{bird_2012}
 \citation{bird_2012}
 \citation{jose_2017}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Ejemplo de c\IeC {\'o}digo que utiliza el m\IeC {\'o}dulo \textit  {regexp} de NLTK para extraer relaciones de lugar y mostrarlas por pantalla. Adaptado del cap\IeC {\'\i }tulo 7 de Natural Language Processing with Python\cite  {bird_2012}}{35}{lstlisting.1}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Ejemplo de c\IeC {\'o}digo que utiliza el m\IeC {\'o}dulo \textit  {regexp} de NLTK para extraer relaciones de lugar y mostrarlas por pantalla. Adaptado del cap\IeC {\'\i }tulo 7 de Natural Language Processing with Python\cite  {bird_2012}}{36}{lstlisting.1}}
 \citation{sklearn_feature}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Primeras estrategias: Clustering y LDA}{36}{subsubsection.6.2.1}}
-\newlabel{sec:relextract}{{6.2.1}{36}{Primeras estrategias: Clustering y LDA}{subsubsection.6.2.1}{}}
-\newlabel{for:idf}{{1}{37}{Primeras estrategias: Clustering y LDA}{equation.6.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Componente idf del vectorizador Tf-Idf. \textit  {t} se refire al t\IeC {\'e}rmino cuyo peso est\IeC {\'a} determinando, \textit  {n} al n\IeC {\'u}mero total de documentos y \textit  {df} a la frecuencia de \textit  {t} en este documento.\relax }}{37}{figure.caption.20}}
-\newlabel{for:ineria}{{2}{37}{Primeras estrategias: Clustering y LDA}{equation.6.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Criterio de la suma de cuadrados. \textit  {n} es el total de textos, con \textit  {x} perteneciendo a \textit  {n}. \textit  {C} es el n\IeC {\'u}mero de clusters, con mu siendo la media de las muestras \textit  {x} de cada cluster. El algoritmo KMeans reduce esta suma todo lo posible.\relax }}{37}{figure.caption.21}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces A la derecha, ejecuci\IeC {\'o}n de \textit  {toy\_relex\_kmeans}, mostrando su evaluaci\IeC {\'o}n. La homogeneidad se cumple cuando ning\IeC {\'u}n cluster contiene miembros que pertenezcan a categor\IeC {\'\i }as distintas en los datos reales. La completitud se satisface si todos los miembros de una de las categor\IeC {\'\i }as reales pertenecen al mismo cluster. A la izquierda, el diagrama creado por el programa.\relax }}{38}{figure.caption.22}}
-\newlabel{fig:kmeanresult}{{18}{38}{A la derecha, ejecución de \textit {toy\_relex\_kmeans}, mostrando su evaluación. La homogeneidad se cumple cuando ningún cluster contiene miembros que pertenezcan a categorías distintas en los datos reales. La completitud se satisface si todos los miembros de una de las categorías reales pertenecen al mismo cluster. A la izquierda, el diagrama creado por el programa.\relax }{figure.caption.22}{}}
-\newlabel{fig:topicresult1}{{19a}{39}{Filtrado: sólo puntuación.\relax }{figure.caption.23}{}}
-\newlabel{sub@fig:topicresult1}{{a}{39}{Filtrado: sólo puntuación.\relax }{figure.caption.23}{}}
-\newlabel{fig:topicresult2}{{19b}{39}{Filtrado: puntuación, pronombres, determinantes, etc.\relax }{figure.caption.23}{}}
-\newlabel{sub@fig:topicresult2}{{b}{39}{Filtrado: puntuación, pronombres, determinantes, etc.\relax }{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Ejecuci\IeC {\'o}n de \textit  {toy\_relex\_lda}, con distintos criterios de filtrado. Adem\IeC {\'a}s se muestran los 10 t\IeC {\'e}rminos m\IeC {\'a}s relevantes de cada tema, y su probabilidad de pertenecer a dicho tema.\relax }}{39}{figure.caption.23}}
-\newlabel{fig:lda_eval0}{{20a}{40}{Mejores puntuaciones de coherencia para 3 temas.\relax }{figure.caption.24}{}}
-\newlabel{sub@fig:lda_eval0}{{a}{40}{Mejores puntuaciones de coherencia para 3 temas.\relax }{figure.caption.24}{}}
-\newlabel{fig:lda_eval1}{{20b}{40}{Parámetros con las mejores puntuaciones de coherencia de toda la prueba.\relax }{figure.caption.24}{}}
-\newlabel{sub@fig:lda_eval1}{{b}{40}{Parámetros con las mejores puntuaciones de coherencia de toda la prueba.\relax }{figure.caption.24}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Resultados de \textit  {topic\_evaluate.py}, visualizados y ordenados con la ayuda de \textit  {pandas}. Se pueden observar qu\IeC {\'e} n\IeC {\'u}mero de temas y qu\IeC {\'e} hiperpar\IeC {\'a}metros dan mejores puntuaciones de coherencia para el modelo LDA creado a partir del RFE dataset.\relax }}{40}{figure.caption.24}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}Correferencia con CoreNLP}{40}{subsubsection.6.2.2}}
-\newlabel{sec:correferencia}{{6.2.2}{40}{Correferencia con CoreNLP}{subsubsection.6.2.2}{}}
-\newlabel{nota:corref}{{6.2.2}{40}{Correferencia con CoreNLP}{subsubsection.6.2.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Visualizaci\IeC {\'o}n de la informaci\IeC {\'o}n proporcionada por \textit  {CoreNLP}\relax }}{41}{figure.caption.25}}
-\newlabel{fig:core_visualization_0}{{21}{41}{Visualización de la información proporcionada por \textit {CoreNLP}\relax }{figure.caption.25}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Visualizaci\IeC {\'o}n de frases particulares con anotaciones de correferencia de \textit  {CoreNLP}\relax }}{42}{figure.caption.26}}
-\newlabel{fig:core_visualization_1}{{22}{42}{Visualización de frases particulares con anotaciones de correferencia de \textit {CoreNLP}\relax }{figure.caption.26}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Estructura de \textit  {fic\_sentences.csv}\relax }}{43}{table.caption.27}}
-\newlabel{table:fic_sentences}{{1}{43}{Estructura de \textit {fic\_sentences.csv}\relax }{table.caption.27}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Estructura de \textit  {fic\_characters.csv}\relax }}{43}{table.caption.28}}
-\newlabel{table:fic_characters}{{2}{43}{Estructura de \textit {fic\_characters.csv}\relax }{table.caption.28}{}}
-\newlabel{fig:r_verbs}{{23a}{44}{Verbos más frecuentes en el dataset de romance.\relax }{figure.caption.29}{}}
-\newlabel{sub@fig:r_verbs}{{a}{44}{Verbos más frecuentes en el dataset de romance.\relax }{figure.caption.29}{}}
-\newlabel{fig:r_verbs_removed}{{23b}{44}{Verbos más frecuentes en el dataset de romance, tras retirar los más comunes.\relax }{figure.caption.29}{}}
-\newlabel{sub@fig:r_verbs_removed}{{b}{44}{Verbos más frecuentes en el dataset de romance, tras retirar los más comunes.\relax }{figure.caption.29}{}}
-\newlabel{fig:r_btrigram_lik}{{24a}{46}{Bigramas y trigramas con mayor likelihood en el dataset de romance.\relax }{figure.caption.30}{}}
-\newlabel{sub@fig:r_btrigram_lik}{{a}{46}{Bigramas y trigramas con mayor likelihood en el dataset de romance.\relax }{figure.caption.30}{}}
-\newlabel{fig:f_btrigram_lik}{{24b}{46}{Bigramas y trigramas con mayor likelihood en el dataset de amistad.\relax }{figure.caption.30}{}}
-\newlabel{sub@fig:f_btrigram_lik}{{b}{46}{Bigramas y trigramas con mayor likelihood en el dataset de amistad.\relax }{figure.caption.30}{}}
-\newlabel{fig:e_btrigram_lik}{{24c}{46}{Bigramas y trigramas con mayor likelihood en el dataset de enemistad.\relax }{figure.caption.30}{}}
-\newlabel{sub@fig:e_btrigram_lik}{{c}{46}{Bigramas y trigramas con mayor likelihood en el dataset de enemistad.\relax }{figure.caption.30}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Verbos m\IeC {\'a}s frecuentes en el dataset de romance en las frases que mencionan a dos personajes concretos.\relax }}{47}{figure.caption.31}}
-\newlabel{fig:r_verb_freq_in_character_mentions}{{25}{47}{Verbos más frecuentes en el dataset de romance en las frases que mencionan a dos personajes concretos.\relax }{figure.caption.31}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}PROGRAMA PRINCIPAL: fic\_character\_extractor }{48}{section.7}}
-\newlabel{sec:main}{{7}{48}{PROGRAMA PRINCIPAL: fic\_character\_extractor }{section.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}EVALUACI\IeC {\'O}N DEL SISTEMA}{50}{section.8}}
-\newlabel{sec:evaluacion}{{8}{50}{EVALUACIÓN DEL SISTEMA}{section.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Prueba 1: Funciones b\IeC {\'a}sicas del programa con un texto largo (Fanfic 9)}{50}{subsection.8.1}}
-\newlabel{fig:eval1_metadata}{{\caption@xref {fig:eval1_metadata}{ on input line 1014}}{50}{Prueba 1: Funciones básicas del programa con un texto largo (Fanfic 9)}{figure.caption.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces T\IeC {\'\i }tulo y etiquetas de personaje del fanfic 9.\relax }}{50}{figure.caption.32}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Prueba 2: G\IeC {\'e}nero distinto del canon (Fanfic 2856)}{52}{subsection.8.2}}
-\newlabel{fig:eval2_metadata}{{\caption@xref {fig:eval2_metadata}{ on input line 1142}}{52}{Prueba 2: Género distinto del canon (Fanfic 2856)}{figure.caption.35}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces T\IeC {\'\i }tulo y etiquetas de personaje del fanfic 2856.\relax }}{52}{figure.caption.35}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Prueba 3: Personajes que no son nombrados (Fanfic 2163)}{53}{subsection.8.3}}
-\newlabel{fig:eval4_metadata}{{\caption@xref {fig:eval4_metadata}{ on input line 1274}}{53}{Prueba 3: Personajes que no son nombrados (Fanfic 2163)}{figure.caption.38}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces T\IeC {\'\i }tulo y etiquetas de personaje del fanfic 2163.\relax }}{53}{figure.caption.38}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 9\relax }}{55}{table.caption.33}}
-\newlabel{table:eval1_nertagger}{{3}{55}{Resultados de la ejecución de \finalProgramName para analizar fanfic 9\relax }{table.caption.33}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 9\relax }}{56}{table.caption.34}}
-\newlabel{table:eval1_nercorenlp}{{4}{56}{Resultados de la ejecución de \finalProgramName para analizar fanfic 9\relax }{table.caption.34}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 2856\relax }}{57}{table.caption.36}}
-\newlabel{table:eval2_nertagger}{{5}{57}{Resultados de la ejecución de \finalProgramName para analizar fanfic 2856\relax }{table.caption.36}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 2856\relax }}{57}{table.caption.37}}
-\newlabel{table:eval2_nercorenlp}{{6}{57}{Resultados de la ejecución de \finalProgramName para analizar fanfic 2856\relax }{table.caption.37}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 2163\relax }}{58}{table.caption.39}}
-\newlabel{table:eval4_nertagger}{{7}{58}{Resultados de la ejecución de \finalProgramName para analizar fanfic 2163\relax }{table.caption.39}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 2163\relax }}{58}{table.caption.40}}
-\newlabel{table:eval4_nercorenlp}{{8}{58}{Resultados de la ejecución de \finalProgramName para analizar fanfic 2163\relax }{table.caption.40}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.1}Primeras estrategias: Clustering y LDA}{37}{subsubsection.6.2.1}}
+\newlabel{sec:relextract}{{6.2.1}{37}{Primeras estrategias: Clustering y LDA}{subsubsection.6.2.1}{}}
+\newlabel{for:idf}{{1}{38}{Primeras estrategias: Clustering y LDA}{equation.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Componente idf del vectorizador Tf-Idf. \textit  {t} se refire al t\IeC {\'e}rmino cuyo peso est\IeC {\'a} determinando, \textit  {n} al n\IeC {\'u}mero total de documentos y \textit  {df} a la frecuencia de \textit  {t} en este documento.\relax }}{38}{figure.caption.20}}
+\newlabel{for:ineria}{{2}{38}{Primeras estrategias: Clustering y LDA}{equation.6.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Criterio de la suma de cuadrados. \textit  {n} es el total de textos, con \textit  {x} perteneciendo a \textit  {n}. \textit  {C} es el n\IeC {\'u}mero de clusters, con mu siendo la media de las muestras \textit  {x} de cada cluster. El algoritmo KMeans reduce esta suma todo lo posible.\relax }}{38}{figure.caption.21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces A la derecha, ejecuci\IeC {\'o}n de \textit  {toy\_relex\_kmeans}, mostrando su evaluaci\IeC {\'o}n. La homogeneidad se cumple cuando ning\IeC {\'u}n cluster contiene miembros que pertenezcan a categor\IeC {\'\i }as distintas en los datos reales. La completitud se satisface si todos los miembros de una de las categor\IeC {\'\i }as reales pertenecen al mismo cluster. A la izquierda, el diagrama creado por el programa.\relax }}{39}{figure.caption.22}}
+\newlabel{fig:kmeanresult}{{18}{39}{A la derecha, ejecución de \textit {toy\_relex\_kmeans}, mostrando su evaluación. La homogeneidad se cumple cuando ningún cluster contiene miembros que pertenezcan a categorías distintas en los datos reales. La completitud se satisface si todos los miembros de una de las categorías reales pertenecen al mismo cluster. A la izquierda, el diagrama creado por el programa.\relax }{figure.caption.22}{}}
+\newlabel{fig:topicresult1}{{19a}{40}{Filtrado: sólo puntuación.\relax }{figure.caption.23}{}}
+\newlabel{sub@fig:topicresult1}{{a}{40}{Filtrado: sólo puntuación.\relax }{figure.caption.23}{}}
+\newlabel{fig:topicresult2}{{19b}{40}{Filtrado: puntuación, pronombres, determinantes, etc.\relax }{figure.caption.23}{}}
+\newlabel{sub@fig:topicresult2}{{b}{40}{Filtrado: puntuación, pronombres, determinantes, etc.\relax }{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Ejecuci\IeC {\'o}n de \textit  {toy\_relex\_lda}, con distintos criterios de filtrado. Adem\IeC {\'a}s se muestran los 10 t\IeC {\'e}rminos m\IeC {\'a}s relevantes de cada tema, y su probabilidad de pertenecer a dicho tema.\relax }}{40}{figure.caption.23}}
+\newlabel{fig:lda_eval0}{{20a}{41}{Mejores puntuaciones de coherencia para 3 temas.\relax }{figure.caption.24}{}}
+\newlabel{sub@fig:lda_eval0}{{a}{41}{Mejores puntuaciones de coherencia para 3 temas.\relax }{figure.caption.24}{}}
+\newlabel{fig:lda_eval1}{{20b}{41}{Parámetros con las mejores puntuaciones de coherencia de toda la prueba.\relax }{figure.caption.24}{}}
+\newlabel{sub@fig:lda_eval1}{{b}{41}{Parámetros con las mejores puntuaciones de coherencia de toda la prueba.\relax }{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Resultados de \textit  {topic\_evaluate.py}, visualizados y ordenados con la ayuda de \textit  {pandas}. Se pueden observar qu\IeC {\'e} n\IeC {\'u}mero de temas y qu\IeC {\'e} hiperpar\IeC {\'a}metros dan mejores puntuaciones de coherencia para el modelo LDA creado a partir del RFE dataset.\relax }}{41}{figure.caption.24}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.2.2}Correferencia con CoreNLP}{41}{subsubsection.6.2.2}}
+\newlabel{sec:correferencia}{{6.2.2}{41}{Correferencia con CoreNLP}{subsubsection.6.2.2}{}}
+\newlabel{nota:corref}{{6.2.2}{41}{Correferencia con CoreNLP}{subsubsection.6.2.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Visualizaci\IeC {\'o}n de la informaci\IeC {\'o}n proporcionada por \textit  {CoreNLP}\relax }}{42}{figure.caption.25}}
+\newlabel{fig:core_visualization_0}{{21}{42}{Visualización de la información proporcionada por \textit {CoreNLP}\relax }{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Visualizaci\IeC {\'o}n de frases particulares con anotaciones de correferencia de \textit  {CoreNLP}\relax }}{43}{figure.caption.26}}
+\newlabel{fig:core_visualization_1}{{22}{43}{Visualización de frases particulares con anotaciones de correferencia de \textit {CoreNLP}\relax }{figure.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Estructura de \textit  {fic\_sentences.csv}\relax }}{44}{table.caption.27}}
+\newlabel{table:fic_sentences}{{1}{44}{Estructura de \textit {fic\_sentences.csv}\relax }{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Estructura de \textit  {fic\_characters.csv}\relax }}{44}{table.caption.28}}
+\newlabel{table:fic_characters}{{2}{44}{Estructura de \textit {fic\_characters.csv}\relax }{table.caption.28}{}}
+\newlabel{fig:r_verbs}{{23a}{45}{Verbos más frecuentes en el dataset de romance.\relax }{figure.caption.29}{}}
+\newlabel{sub@fig:r_verbs}{{a}{45}{Verbos más frecuentes en el dataset de romance.\relax }{figure.caption.29}{}}
+\newlabel{fig:r_verbs_removed}{{23b}{45}{Verbos más frecuentes en el dataset de romance, tras retirar los más comunes.\relax }{figure.caption.29}{}}
+\newlabel{sub@fig:r_verbs_removed}{{b}{45}{Verbos más frecuentes en el dataset de romance, tras retirar los más comunes.\relax }{figure.caption.29}{}}
+\newlabel{fig:r_btrigram_lik}{{24a}{47}{Bigramas y trigramas con mayor likelihood en el dataset de romance.\relax }{figure.caption.30}{}}
+\newlabel{sub@fig:r_btrigram_lik}{{a}{47}{Bigramas y trigramas con mayor likelihood en el dataset de romance.\relax }{figure.caption.30}{}}
+\newlabel{fig:f_btrigram_lik}{{24b}{47}{Bigramas y trigramas con mayor likelihood en el dataset de amistad.\relax }{figure.caption.30}{}}
+\newlabel{sub@fig:f_btrigram_lik}{{b}{47}{Bigramas y trigramas con mayor likelihood en el dataset de amistad.\relax }{figure.caption.30}{}}
+\newlabel{fig:e_btrigram_lik}{{24c}{47}{Bigramas y trigramas con mayor likelihood en el dataset de enemistad.\relax }{figure.caption.30}{}}
+\newlabel{sub@fig:e_btrigram_lik}{{c}{47}{Bigramas y trigramas con mayor likelihood en el dataset de enemistad.\relax }{figure.caption.30}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Verbos m\IeC {\'a}s frecuentes en el dataset de romance en las frases que mencionan a dos personajes concretos.\relax }}{48}{figure.caption.31}}
+\newlabel{fig:r_verb_freq_in_character_mentions}{{25}{48}{Verbos más frecuentes en el dataset de romance en las frases que mencionan a dos personajes concretos.\relax }{figure.caption.31}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}PROGRAMA PRINCIPAL: fic\_character\_extractor }{49}{section.7}}
+\newlabel{sec:main}{{7}{49}{PROGRAMA PRINCIPAL: fic\_character\_extractor }{section.7}{}}
+\@writefile{tdo}{\contentsline {todo}{Figure: fig:pantallazo ejecucion main program}{50}{Item.34}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}EVALUACI\IeC {\'O}N DEL SISTEMA}{51}{section.8}}
+\newlabel{sec:evaluacion}{{8}{51}{EVALUACIÓN DEL SISTEMA}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Prueba 1: Funciones b\IeC {\'a}sicas del programa con un texto largo (Fanfic 9)}{51}{subsection.8.1}}
+\newlabel{fig:eval1_metadata}{{\caption@xref {fig:eval1_metadata}{ on input line 1020}}{51}{Prueba 1: Funciones básicas del programa con un texto largo (Fanfic 9)}{figure.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces T\IeC {\'\i }tulo y etiquetas de personaje del fanfic 9.\relax }}{51}{figure.caption.32}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Prueba 2: G\IeC {\'e}nero distinto del canon (Fanfic 2856)}{53}{subsection.8.2}}
+\newlabel{fig:eval2_metadata}{{\caption@xref {fig:eval2_metadata}{ on input line 1148}}{53}{Prueba 2: Género distinto del canon (Fanfic 2856)}{figure.caption.35}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces T\IeC {\'\i }tulo y etiquetas de personaje del fanfic 2856.\relax }}{53}{figure.caption.35}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Prueba 3: Personajes que no son nombrados (Fanfic 2163)}{54}{subsection.8.3}}
+\newlabel{fig:eval4_metadata}{{\caption@xref {fig:eval4_metadata}{ on input line 1280}}{54}{Prueba 3: Personajes que no son nombrados (Fanfic 2163)}{figure.caption.38}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces T\IeC {\'\i }tulo y etiquetas de personaje del fanfic 2163.\relax }}{54}{figure.caption.38}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 9\relax }}{56}{table.caption.33}}
+\newlabel{table:eval1_nertagger}{{3}{56}{Resultados de la ejecución de \finalProgramName para analizar fanfic 9\relax }{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 9\relax }}{57}{table.caption.34}}
+\newlabel{table:eval1_nercorenlp}{{4}{57}{Resultados de la ejecución de \finalProgramName para analizar fanfic 9\relax }{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 2856\relax }}{58}{table.caption.36}}
+\newlabel{table:eval2_nertagger}{{5}{58}{Resultados de la ejecución de \finalProgramName para analizar fanfic 2856\relax }{table.caption.36}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 2856\relax }}{58}{table.caption.37}}
+\newlabel{table:eval2_nercorenlp}{{6}{58}{Resultados de la ejecución de \finalProgramName para analizar fanfic 2856\relax }{table.caption.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 2163\relax }}{59}{table.caption.39}}
+\newlabel{table:eval4_nertagger}{{7}{59}{Resultados de la ejecución de \finalProgramName para analizar fanfic 2163\relax }{table.caption.39}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Resultados de la ejecuci\IeC {\'o}n de fic\_character\_extractor para analizar fanfic 2163\relax }}{59}{table.caption.40}}
+\newlabel{table:eval4_nercorenlp}{{8}{59}{Resultados de la ejecución de \finalProgramName para analizar fanfic 2163\relax }{table.caption.40}{}}
 \bibstyle{alpha}
 \bibdata{bib_tfg}
 \bibcite{Barthes}{Bar68}
@@ -193,6 +194,7 @@
 \bibcite{sklearn_feature}{skl}
 \bibcite{uncanny_2017}{Stu17}
 \bibcite{woosh_1998}{Swi98}
+\@writefile{toc}{\contentsline {section}{\numberline {9}CONCLUSIONES}{60}{section.9}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}REFERENCIAS}{60}{section.10}}
 \bibcite{wick_2009}{Wic09}
-\@writefile{toc}{\contentsline {section}{\numberline {9}REFERENCIAS}{59}{section.9}}
 \bibcite{zelenko_2003}{Zel03}

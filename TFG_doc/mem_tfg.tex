@@ -14,7 +14,8 @@
 
 \title{Identificación automática de personajes en textos de ficción pertenecientes al género fanfiction}
 \author{María González Gutiérrez}
-\docdate{(MONTH)}{2020}
+\docdate{2021}{Febrero}
+\intensification{Computación}
 
 
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
@@ -101,28 +102,31 @@ La extracción de información es una tarea consistente en identificar las entid
 \cleardoublepage
 \section{INTRODUCCIÓN Y OBJETIVOS}
 
-Empecé el proyecto\todo[size=\tiny]{RELLENAR PLACEHOLDERS} porque me gusta el fanfiction y el análisis de datos. Existen en internet numerosas comunidades de fan que son muy activas y producen una vasta cantidad de contenido muy detallado; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma. A veces, estas comunidades crean enormes proyectos de calidad profesional de forma totalmente gratuita, simplemente para mejorar el espacio y las experiencias del resto de miembros. Uno de los mayores ejemplos de este tipo de 'trabajo fan' es la \href{https://www.transformativeworks.org/}{Organizaton for Transformative Works}, una organización sin ánimo de lucro creado 'por fans y para fans' que crea y mantiene proyectos como \href{https://fanlore.org/wiki/Main_Page}{FanLore}, una wiki sobre la cultura fan, o su comité legal, que se encarga tanto de educar sobre leyes de propiedad intelectual y el \textit{fair use} del mismo como de involucrarse en los procesos jurídicos sobre copyright de diversos gobiernos (especialmente Estados Unidos) para defender el derecho del público general a crear obras derivadas.
+Empecé el proyecto\todo[size=\tiny]{RELLENAR PLACEHOLDERS} porque me gusta el fanfiction y el análisis de datos. Existen en internet numerosas comunidades de fan que son muy activas y producen una vasta cantidad de contenido muy rico en detalle; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma. A veces, estas comunidades crean enormes proyectos de calidad profesional de forma totalmente gratuita, simplemente para mejorar el espacio y las experiencias del resto de miembros. Uno de los mayores ejemplos de este tipo de 'trabajo fan' es la \href{https://www.transformativeworks.org/}{Organizaton for Transformative Works}, una organización sin ánimo de lucro creado 'por fans y para fans' que crea y mantiene proyectos como \href{https://www.fanlore.org/wiki/Main_Page}{FanLore}, una wiki sobre la cultura fan, o su comité legal, que se encarga tanto de educar sobre leyes de propiedad intelectual y el \textit{fair use} del mismo como de involucrarse en los procesos jurídicos sobre copyright de diversos gobiernos (especialmente Estados Unidos) para defender el derecho del público general a crear obras derivadas.
 
-Uno de sus proyectos más famosos es \href{https://archiveofourown.org/}{Archive of our Own}, comúnmente acortado a AO3, un sitio web que aloja principalmente fanfiction y cuyo objetivo es, por un lado, facilitar la tarea de encontrar fanfics para aquellos que quieran leerlos y, por otro, funcionar como un archivo que clasifique y documente el fenómeno fanfic a nivel global. En sus datos de mayo de 2020, aparecen más de dos millones de usuarios registrados, y más de seis millones de trabajos alojados. AO3 se ha convertido en una parte fundamental de la cultura fan, especialmente la dedicada al fanfiction, y en este proyecto lo utilizaré como fuente de información.
+Uno de sus proyectos más famosos es \href{https://www.archiveofourown.org/}{Archive of our Own}, comúnmente acortado a AO3, un sitio web que aloja principalmente relatos pertenecientes al género fanfiction y cuyo objetivo es, por un lado, facilitar la tarea de encontrar fanfiction para aquellos que lo quieran leer y, por otro, funcionar como un archivo que clasifique y documente el fenómeno fanfic a nivel global. En sus datos de mayo de 2020, aparecen más de dos millones de usuarios registrados, y más de seis millones de trabajos alojados. AO3 se ha convertido en una parte fundamental de la cultura fan, especialmente la dedicada a la escritura, y en este proyecto lo utilizaré como fuente de información.
 
 
-En literatura comparada se suelen tener en cuenta dos perspectivas a la hora de analizar una obra: la de la teoría del autor, que tiene en cuenta lo que el autor quería comunicar y plasmar en esa obra, y la de la "muerte del autor"\cite{Barthes}, que tiene en cuenta el mensaje con el que los lectores se quedan tras leer la obra (independientemente de si coincide con el que el autor quería comunicar).
+En literatura comparada se suelen tener en cuenta dos perspectivas a la hora de analizar una obra: la de la teoría del autor, que tiene en cuenta lo que el autor quería comunicar y plasmar en esa obra, y la de la 'muerte del autor'\cite{Barthes}, que tiene en cuenta el mensaje con el que los lectores se quedan tras leer la obra (independientemente de si coincide con el que el autor quería comunicar).
 Para entender el mensaje de una obra de forma plena\cite{ellis_2018}, es necesario tener en cuenta tanto la intención comunicativa del autor, como el mensaje que al final los lectores acaban entendiendo. Y como cada lector es hijo de su padre y de su madre, acaban surgiendo muchas posibles interpretaciones distintas a partir de un único texto.
 
 Tradicionalmente, los académicos solamente han tenido en cuenta las opiniones de un grupo reducido de personas (compuesto principalmente por otros académicos) a la hora de analizar una obra desde la perspectiva de la muerte del autor, ya que el lector común no suele tener a su disposición las herramientas necesarias para difundir sus interpretaciones. Sin embargo, desde que Internet y los foros como \textit{LiveJournal} se volvieron accesibles a grandes partes de la población, miles de comunidades fan empezaron a organizarse justamente con la intención de poner en común sus interpretaciones, de expresar sus críticas y opiniones. No todas estas discusiones tienen lugar en forma de fanfiction, pero es un género muy popular en las comunidades fans, y yo personalmente estoy muy familiarizada con sus estructuras y códigos.
 
 Estas comunidades de Internet están generando una cantidad inmensa de opiniones y perspectivas en torno a un tema común en foros públicamente accesibles, y me pareció interesante la idea de crear un sistema que sea capaz de recoger y procesar toda esta información para crear un 'abanico' de las distintas interpretaciones que existen en una comunidad fan, especialmente aquellas sobre los personajes y las relaciones entre ellos. El resultado final se podría utilizar como herramienta dentro de la propia comunidad fan, para observar cómo tienden a interpretar a ciertos personajes a nivel de comunidad y cómo estas interpretaciones cambian a lo largo del tiempo, o en distintas subsecciones dentro de la comunidad en general. También se podría utilizar como herramienta general de análisis literario, aplicándola primero a la obra original y luego a un conjunto de fanfics representativos, y observando cuáles son las diferencias entre la perspectiva del autor original y la de los lectores (convertidos en autores fan).
 
-Al empezar el proyecto, no sabía mucho sobre análisis de texto, por lo que empecé a estudiar sobre análisis de texto natural y extracción de información usando el libro \textit{Natural Language Processing}, de Jacob Eisenstein\cite{jacob}. Tras la fase de recogida y limpieza de datos (explicado en detalle en las secciones \ref{sec:recogidadatos} y \ref{sec:limpiezadatos}), el proceso de extracción de información que tenía que seguir consistía en:
+Al empezar el proyecto, no sabía mucho sobre análisis de texto, por lo que empecé a estudiar sobre análisis de texto natural y extracción de información usando el libro \textit{Natural Language Processing}, de Jacob Eisenstein\cite{jacob}. El proceso de extracción de información a seguir consiste en identificar entidades, relaciones entre entidades y eventos. Para acotar el problema, decidí centrarme sólo en la extracción de entidades y la de relaciones; la intención es aplicar estos dos procesos a conjunto de textos pertenecientes al género fanfiction para identificar qué personajes aparecen en el mismo y qué relaciones los unen, así como otros datos relevantes al campo del fanfiction como si el personaje aparece en la obra original, o si es un añadido del autor fan. El usuario puede utilizar esta información para sacar conclusiones sobre la interpretación del autor sobre los personajes de la obra original.
 
+Los textos pueden ser extraídos directamente de AO3 utilizando un scraper, en una fase de recogida y limpieza de datos explicada en las secciones \ref{sec:recogidadatos} y \ref{sec:limpiezadatos}. Por tanto, los \textbf{objetivos de este proyecto} consisten en:
 
 \begin{enumerate}
-	\item Identificación de entidades
-	\item Identificación de relaciones entre entidades
-	\item Identificación de eventos
+	\item Extraer un conjunto de relatos alojados en \href{http://wwww.archiveofourown.org}{Archive of Our Own} sobre los que utilizar técnicas de extracción de información.
+	\item Crear módulos y herramientas para manejar y extraer información de los archivos HTML de AO3.
+	\item Organizar estos archivos de alguna forma y procesarlos para que sean comprensibles para los algoritmos de análisis de texto.
+	\item Desarrollar un algoritmo que identifique personajes en textos de ficción.
+	\item Desarrollar un algoritmo que identifique relaciones de carácter social entre dichos personajes.
+	\item Crear un programa que utilice ambos algoritmos para extraer los personajes y relaciones en los relatos recogidos de AO3, y mostrarlas al usuario.
 \end{enumerate}
 
-%Sin embargo, otra parte importante del proyecto iba a consistir en la extracción y selección de textos de Internet, organizarlos de alguna forma y procesarlos para que sean comprensibles para los algoritmos de análisis de texto. Éste proceso está explicado en detalle en las secciones \ref{sec:recogidadatos} y \ref{sec:limpiezadatos}.
 
 
 \cleardoublepage
@@ -175,7 +179,7 @@ La extracción de relaciones tradicionalmente se ha realizado tratando de identi
 
 Este proyecto sin embargo busca identificar relaciones de naturaleza social entre distintos personajes de ficción, con ĺo que se centrará en identificar entidades del tipo 'Persona', y buscará relaciones binarias entre ellas. 
 
-Aunque el fanfiction no ha sido muy utilizado para realizar tareas de extracción de información, su disponibilidad online y la cantidad de metadatos asociados a cada obra ha hecho que algunos programadores los aprovechen para crear sistemas de recomendación, como \href{http://fanrecs.com/}{FanRecs}, aunque el principal interés parece residir en crear herramientas de descarga  (\href{https://www.ficlab.com/}{FicLab}, \href{https://fanfictiondownloader.net/#/home}{FanfictionDownloader}).
+Aunque el fanfiction no ha sido muy utilizado para realizar tareas de extracción de información, su disponibilidad online y la cantidad de metadatos asociados a cada obra ha hecho que algunos programadores los aprovechen para crear sistemas de recomendación, como \href{http://www.fanrecs.com/}{FanRecs}, aunque el principal interés parece residir en crear herramientas de descarga  (\href{https://www.ficlab.com/}{FicLab}, \href{https://www.fanfictiondownloader.net/#/home}{FanfictionDownloader}).
 
 
 
@@ -328,7 +332,7 @@ Al principio puse estas funciones dentro de cada programa que necesitaba manejar
 
 La creación de la clase \textit{Fanfic} surgió a mediados del proyecto, cuando el límite de 100000 caracteres de \textit{CoreNLP}\ref{nota:limiteCarac} hizo necesario poder acceder al texto de cada fanfic dividido en capítulos. \textit{Fanfic} por tanto tiene un atributo \textit{chapters}, que es la lista de \textit{string} con los capítulos, y un método \textit{get\_string\_chapters()} que devuelve todos los capítulos en un único \textit{string}. Según seguía avanzando la clase también demostró ser útil para almacenar en un único elemento toda su información relevante, por lo que termina siendo la unidad básica de trabajo del proyecto.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.4]{fanfic_util_functions}
 	\caption{Esquema ilustrando la función de las clases \textit{fanfic\_util}}
@@ -994,6 +998,8 @@ Los personajes detectados por NERTagger y CoreNLP serán algo distintos, pero po
 
 Las menciones de CoreNLP aparecerán fraccionadas según género, de modo que un personaje puede tener 100 menciones masculinas, 3 femeninas, 0 neutras y 12 desconocidas (cuando no ha sido posible asignar ningún género a dicha mención). La intención de mostrar estos datos así es poder cuantificar cómo de seguro está el programa sobre el género de un personaje.
 
+\missingfigure{fig:pantallazo ejecucion main program}
+
 
 
 \cleardoublepage
@@ -1328,8 +1334,10 @@ Esto significa que NERTagger ha identificado 11 personajes, de los cuáles sólo
 Como se puede ver en los metadatos de la figura \ref{fig:eval4_metadata}, ambos programas han identificado correctamente a Aziraphale pero ninguno a Crowley; no es de extrañar, ya que ni su nombre ni ninguno de sus apodos es mencionado en todo el texto, y al propio Azirpahale sólo se le ha identificado por su apodo 'angel'. Sin embargo, NERTagger encuentra el nombre 'Love' y sabe que es un nombre; simplemente no tenía forma de saber que se refería a Crowley. CoreNLPDataProcessor no ha sido capaz de identificar 'Love' como un nombre.
 
 
-
 \cleardoublepage
+
+\section{CONCLUSIONES}
+
 \section{REFERENCIAS}
 
 
