@@ -147,14 +147,14 @@ urlcolor=blue]{hyperref}
 \newcommand{\@advisorFirst}{}
 \newcommand{\advisorFirst}[1]{%
 	\renewcommand{\@advisorFirst}{#1}}
-\newcommand{\@putAdvisorFirst}{Director: \@advisorFirst\par}
+\newcommand{\@putAdvisorFirst}{Tutor académico: \@advisorFirst\par}
 
 \newcommand{\@advisorSecond}{}
 \newcommand{\advisorSecond}[1]{%
 	\renewcommand{\@advisorSecond}{#1}}
 \newcommand{\@putAdvisorSecond}{
 	\ifdefempty{\@advisorSecond}{}{
-		Director:\helpfootnote{Sólo en el caso de que haya un segundo director.} \@advisorSecond\par}}
+		Cotutor académico:\helpfootnote{Sólo en el caso de que haya un segundo director.} \@advisorSecond\par}}
 
 \newcommand{\@advisorDepartment}{}
 \newcommand{\advisorDepartment}[1]{\renewcommand{\@advisorDepartment}{#1}}
@@ -165,8 +165,42 @@ urlcolor=blue]{hyperref}
 	\renewcommand{\@docyear}{#1}
 	\renewcommand{\@docmonth}{#2}}
 
+\def\putEFrontpageContent{
+	\begin{center}
+		\thispagestyle{firstpage}
+		\bfseries
+		\sffamily
+		\setstretch{1.3}
+		
+		\vspace*{\stretch{1}}
+		
+		{\LARGE UNIVERSIDAD DE CASTILLA-LA MANCHA
+			
+		 ESCUELA SUPERIOR DE INFORMÁTICA
+		
+		\vspace{3cm}
+		
+		GRADO EN INGENIERÍA INFORMÁTICA}
+		
+		
+		\vspace{5cm}
+		
+		{\large 
+		\@title
+		
+		\vspace{1cm}
+		
+		\@author}
+	
+	\end{center}
 
-\def\add_frontpage_content{
+	\vfill
+	\hfill
+	{\large \@docmonth, \@docyear}
+
+}
+
+\def\putIFrontpageContentI{
 	\begin{center}
 		\thispagestyle{firstpage} 
 		\bfseries
@@ -185,7 +219,7 @@ urlcolor=blue]{hyperref}
 	
 	{\large
 		\@putAuthor
-		%\@putSubject
+		\@putAdvisorFirst
 		\@putIntensification    
 		\vspace*{\stretch{4}}
 		
@@ -198,10 +232,55 @@ urlcolor=blue]{hyperref}
 	{\large \@docmonth, \@docyear}
 }
 
+\def\putIFrontpageContentII{
+	\begin{center}
+		\thispagestyle{firstpage}
+		\bfseries
+		\sffamily
+		\setstretch{1.3}
+		
+		\vspace*{\stretch{1}}
+		
+		{\LARGE UNIVERSIDAD DE CASTILLA-LA MANCHA}
+			
+		{\larger Departamento de Tecnologías y Sistemas de Información}
+			
+		\vspace{2cm}
+			
+		{\LARGE	GRADO EN INGENIERÍA INFORMÁTICA}
+		
+		{\larger	\@intensification}
+		
+		\vspace{1cm}
+		
+		{\large \@title}
+		
+	\end{center}
+			
+	\vspace{2cm}
+	
+		{\large
+		\@putAuthor
+		\@putAdvisorFirst   
+
+	}
+	\vfill
+	\hfill
+	{\large \@docmonth, \@docyear}
+	
+}
+
 \renewcommand\maketitle{%
 	\begin{titlepage}
 		\null\pagestyle{empty}
-		\add_frontpage_content
+		\putEFrontpageContent
+		\vfil\null
+	\end{titlepage}
+	\parskip = 5mm
+	
+	\begin{titlepage}
+		\null\pagestyle{empty}
+		\putIFrontpageContentII
 		\vfil\null
 	\end{titlepage}
 	\parskip = 5mm

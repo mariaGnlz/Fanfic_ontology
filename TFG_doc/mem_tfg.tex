@@ -14,6 +14,7 @@
 
 \title{Identificación automática de personajes en textos de ficción pertenecientes al género fanfiction}
 \author{María González Gutiérrez}
+\advisorFirst{José Ángel Olivas Varela}
 \docdate{2021}{Febrero}
 \intensification{Computación}
 
@@ -89,6 +90,7 @@
 \begin{document}
 
 \maketitle
+
 \tableofcontents
 
 \cleardoublepage
@@ -96,10 +98,43 @@
 \clearpage
 
 \cleardoublepage
-\section{ABSTRACT}
-La extracción de información es una tarea consistente en identificar las entidades presentes en un texto y qué relaciones las unen. En este trabajo se aborda una posible aplicación de este proceso en obras literarias, en particular las pertenecientes al género fanfiction. Se propone un clasificador entrenado con un modelo de regresión logística, así como datos extraídos utilizando CoreNLP, como métodos para identificar personajes en un texto, junto con un conjunto de scrapers y utilidades creados en python para extraer y manejar archivos HTML de \href{http://www.archiveofourown.org}{Archive of Our Own}. Se exploran estrategias para identificar relaciones de naturaleza social entre los personajes, sin éxito.
+\section{PÁGINA DE CALIFICACIÓN}
+TRIBUNAL:
+\begin{itemize}
+	\item Presidente:
+	\item Vocal:
+	\item Secretario:
+\end{itemize}
+\vspace{1cm}
+
+FECHA DE DEFENSA:
+
+
+CALIFICACIÓN:
+
+\vspace{14cm}
+
+\small{PRESIDENTE} \hspace{4cm} \small{VOCAL}\hspace{4cm} \small{SECRETARIO}
+
 
 \cleardoublepage
+
+\section{RESUMEN}
+La extracción de información es una tarea consistente en identificar las entidades presentes en un texto y qué relaciones las unen. En este trabajo se aborda una posible aplicación de este proceso en obras literarias, en particular las pertenecientes al género fanfiction. Se propone un clasificador entrenado con un modelo de regresión logística, junto con datos extraídos utilizando CoreNLP, como método para identificar personajes en un texto. También se desarrollaron scrapers y utilidades para extraer y manejar archivos HTML de \href{http://www.archiveofourown.org}{Archive of Our Own} para proveer al proyecto de los datos necesarios para el mismo. Se exploran estrategias para identificar relaciones de naturaleza social entre los personajes, sin éxito.
+
+\cleardoublepage
+
+\section{ABSTRACT}
+Information extraction is the task of recognizing the entities present in a text, and which relationships exist between them. This project attemps an application of this task on literary works, in particular to those belonging the genre of fanfiction. A classifier trained with a logistic regression model, in combination with information provided by CoreNLP, is proposed as a method for recognizing characters in a text. A series of scrapers and tools created in python for extracting and handling HTML files from \href{http://www.archiveofourown.org}{Archive of Our Own} were also created in order to provide the necessary data for the project. Some strategies for recognition of social relationships between characters are explored, unsuccessfully.
+
+\cleardoublepage
+
+\section{AGRADECIMIENTOS}
+
+
+\cleardoublepage
+
+
 \section{INTRODUCCIÓN Y OBJETIVOS}
 
 Empecé el proyecto\todo[size=\tiny]{RELLENAR PLACEHOLDERS} porque me gusta el fanfiction y el análisis de datos. Existen en internet numerosas comunidades de fan que son muy activas y producen una vasta cantidad de contenido muy rico en detalle; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma. A veces, estas comunidades crean enormes proyectos de calidad profesional de forma totalmente gratuita, simplemente para mejorar el espacio y las experiencias del resto de miembros. Uno de los mayores ejemplos de este tipo de 'trabajo fan' es la \href{https://www.transformativeworks.org/}{Organizaton for Transformative Works}, una organización sin ánimo de lucro creado 'por fans y para fans' que crea y mantiene proyectos como \href{https://www.fanlore.org/wiki/Main_Page}{FanLore}, una wiki sobre la cultura fan, o su comité legal, que se encarga tanto de educar sobre leyes de propiedad intelectual y el \textit{fair use} del mismo como de involucrarse en los procesos jurídicos sobre copyright de diversos gobiernos (especialmente Estados Unidos) para defender el derecho del público general a crear obras derivadas.
@@ -126,6 +161,8 @@ Los textos pueden ser extraídos directamente de AO3 utilizando un scraper, en u
 	\item Desarrollar un algoritmo que identifique relaciones de carácter social entre dichos personajes.
 	\item Crear un programa que utilice ambos algoritmos para extraer los personajes y relaciones en los relatos recogidos de AO3, y mostrarlas al usuario.
 \end{enumerate}
+
+Para consultar cualquier aspecto del código e implementación del proyecto, se puede visitar el repositorio del mismo en \href{https://www.github.com/mariaGnlz/Fanfic_ontology}{GitHub} (Usuario: \textit{mariaGnlz}, repositorio: \textit{Fanfic\_ontology}).
 
 
 
@@ -611,7 +648,7 @@ Además del código necesario para crear el modelo KMeans y procesar los daños,
 	
 	\begin{subfigure}{.4\textwidth}
 		\includegraphics[scale=0.4]{kmeans_tokenizer2}
-		\caption{El código utilizado para crear este diagrama fue escrito por \href{https://stackoverflow.com/questions/57626286/how-to-plot-text-clusters}{Matt L en StackOverflow}.}
+		\caption[aaaaa]{El código utilizado para crear este diagrama fue escrito por \href{https://stackoverflow.com/questions/57626286/how-to-plot-text-clusters}{Matt L en StackOverflow}\protect\footnotemark.}
 	\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
@@ -622,6 +659,7 @@ Además del código necesario para crear el modelo KMeans y procesar los daños,
 	\label{fig:kmeanresult}
 \end{figure}
 
+\footnotetext{https://stackoverflow.com/questions/57626286/how-to-plot-text-clusters}
 Los resultados no son muy buenos. Aunque los términos de cada cluster parecen prometedores, ninguna métrica sube del 0.1, lo que indica que las categorías del clustering son sólo un poco mejores que haberlas asignado al azar, y que hay mucho solapamiento entre clusters.
 
 Puesto que para crear el modelo he utilizado datos filtrados a propósito para modelar cada categoría tan bien como fuera posible, con la esperanza de poder usarlo como posible semilla para un sistema más general, esto supone un gran problema.
@@ -1337,7 +1375,33 @@ Como se puede ver en los metadatos de la figura \ref{fig:eval4_metadata}, ambos 
 \cleardoublepage
 
 \section{CONCLUSIONES}
+En este trabajo se ha desarrollado un sistema de extracción y análisis de textos de internet, utilizando técnicas de \textit{scraping} y procesado de texto natural. De los objetivos originales, se ha conseguido con éxito extraer un conjunto de relatos de \href{http://wwww.archiveofourown.org}{Archive of Our Own} que sirve como corpus para algoritmos de procesado de texto, así como el desarrollo de un algoritmo de identificación de entidades capaz de identificar personajes en estos textos. No se ha conseguido encontrar un algoritmo que identifique relaciones entre estos personajes, pero mientras se buscaba se desarrolló un segundo algoritmo de identificación de personajes utilizando Stanford CoreNLP, que complementa el primer algoritmo explotando su función de correferencia entre nombres y pronombres para hallar más menciones y posibles apodos de un personaje, además de dilucidar el género del personaje.
 
+%\begin{enumerate}
+%	\item Extraer un conjunto de relatos alojados en \href{http://wwww.archiveofourown.org}{Archive of Our Own} sobre los que utilizar técnicas de extracción de información.
+%	\item Crear módulos y herramientas para manejar y extraer información de los archivos HTML de AO3.
+%	\item Organizar estos archivos de alguna forma y procesarlos para que sean comprensibles para los algoritmos de análisis de texto.
+%	\item Desarrollar un algoritmo que identifique personajes en textos de ficción.
+%	\item Desarrollar un algoritmo que identifique relaciones de carácter social entre dichos personajes.
+%	\item Crear un programa que utilice ambos algoritmos para extraer los personajes y relaciones en los relatos recogidos de AO3, y mostrarlas al usuario.
+%\end{enumerate}
+
+
+Durante todo este proceso he tenido que aprender las bases de la extracción de información, técnicas de \textit{machine learning} y cómo crear, organizar y preprocesar un conjunto de archivos para que su información sea comprensible para los algoritmos que los utilizan como entrada. En cierto aspecto este proyecto me ha hecho perderle el miedo al procesado del lenguaje humano, que siempre había visto como algo extremadamente complicado, y aunque ciertamente no es una tarea trivial, he podido ver de primera mano que existen métodos bien establecidos para la extracción de información y que pueden ser aprendidos y entendidos. El modelo de regresión logística utilizado en la sección \ref{sec:nerextract_tagger}, por ejemplo, me llevó a repasar funciones y gradientes para poder entender su base matemática, y me di cuenta de que sí, es complejo, pero no es magia.
+
+Mientras me encontraba con que la parte relacionada con el procesado de lenguaje natural en sí no era tan complicada como temía, los problemas relacionados con el manejo de archivos HTML y extraer el texto puro me pillaron por sorpresa en lo retorcidos y frustrantes que podían llegar a ser. Detalles como puntos y coma que destrozan el formato de una base de datos, o la etiqueta HTML que utilizaba para extraer un cierto metadato funciona en la mayoría de archivos pero está misteriosamente ausente en otros, no hizo más que recordarme que la mayoría del esfuerzo en ciencia de datos suele ir a limpiar los datos y darles un formato uniforme.
+
+El diseño de ciertas del proyecto también es algo que hubiese planificado mejor; la clase Fanfic de la sección \ref{sec:limpiezadatos} acaba siendo la unidad de información básica, pero se desarrolló orgánicamente a medida que el proyecto avanzaba, especialmente mientras buscaba alguna forma de aprovechar las funciones de CoreNLP para identificar relaciones en el texto (ya que es la parte en la que los metadatos de un fanfic adquirieron más importancia). En retrospectiva, crear una clase que encapsule todas las características de un fanfic tenía mucho sentido para el proyecto, y pensar que simplemente con el texto puro de cada obra iba a ser suficiente fue un poco ingenuo. Todo el módulo \textit{fanfic\_util} podría haberse beneficiado de haber planificado la clase Fanfic desde el principio, por no hablar de ahorrarme trabajo.
+
+
+Un añadido evidente para este proyecto sería mejorar el manejo de archivos HTML, introducidos en una base de datos que facilite su filtrado según sus etiquetas o autor o cualquiera de sus metadatos, ya que ahora mismo no tiene un mecanismo de búsqueda generalizado, y los \textit{datasets} fueron creados mediante comandos de python en la terminal. Otra mejora es generalizar la canonicalización de personajes. Este proyecto utiliza una una base de datos con los personajes de \textit{Good Omens} para decidir la canonicidad de los personajes de un fanfic dado, por lo que ahora mismo sólo los fanfics de \textit{Good Omens} pueden tener sus personajes marcados como canon. Sin embargo, se podría crear un método que consultara el título de la obra original en los metadatos del fanfic y comprobase si hay alguna wiki dedicada a esta obra en internet, y usar la página de personajes de dicha wiki para decidir qué personajes del fanfic son canon o no. De esta manera el proceso de canonicalización funcionaría para cualquier fanfic cuya obra original tenga una wiki.
+
+El proceso de consolidación de menciones en personajes también podría mejorarse, ya que ahora mismo es un proceso basado en la distancia de edición de los nombres y, en el caso del extractor de personajes que utiliza CoreNLP (\ref{sec:nerextract_corenlp}), también en el género. Un programa más sofisticado podría utilizar más información del contexto de la mención para captar más características de un personaje particular (títulos, nombre y apellidos, especie, país); en otras palabras, adoptar una estrategia que se centre en los personajes como entidad\cite{wick_2009} que trate de rellenar una "ficha" para cada candidato a personaje podría suponer una mejora para todo el proceso.
+
+De cara al usuario, una mejora sería modificar la entrada del programa de modo que acepte un link de una obra de AO3, evitando así que tenga que descargar el archivo y configurar el \textit{path} para que el programa lo encuentre.
+
+
+\cleardoublepage
 \section{REFERENCIAS}
 
 
