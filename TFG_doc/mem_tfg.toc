@@ -1,25 +1,43 @@
 \babel@toc {spanish}{}
-\contentsline {section}{\numberline {1}P\IeC {\'A}GINA DE CALIFICACI\IeC {\'O}N}{3}{section.1}
-\contentsline {section}{\numberline {2}RESUMEN}{4}{section.2}
-\contentsline {section}{\numberline {3}ABSTRACT}{5}{section.3}
-\contentsline {section}{\numberline {4}AGRADECIMIENTOS}{6}{section.4}
-\contentsline {section}{\numberline {5}INTRODUCCI\IeC {\'O}N Y OBJETIVOS}{7}{section.5}
-\contentsline {section}{\numberline {6}FANFICTION Y ARCHIVE OF OUR OWN}{10}{section.6}
-\contentsline {section}{\numberline {7}EXTRACCI\IeC {\'O}N DE INFORMACI\IeC {\'O}N EN OTROS TRABAJOS}{13}{section.7}
-\contentsline {section}{\numberline {8}RECOGIDA Y LIMPIEZA DE DATOS}{15}{section.8}
-\contentsline {subsection}{\numberline {8.1}Creando un scraper para Archive of our Own}{15}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Limpieza de datos y creaci\IeC {\'o}n de datasets}{23}{subsection.8.2}
-\contentsline {section}{\numberline {9}EXTRACCI\IeC {\'O}N DE DATOS A PARTIR DE TEXTO}{27}{section.9}
-\contentsline {subsection}{\numberline {9.1}Algoritmo de identificaci\IeC {\'o}n de entidades}{27}{subsection.9.1}
-\contentsline {subsubsection}{\numberline {9.1.1}Extracci\IeC {\'o}n de entidades con NLTK}{27}{subsubsection.9.1.1}
-\contentsline {subsubsection}{\numberline {9.1.2}Extracci\IeC {\'o}n de entidades con CoreNLP}{32}{subsubsection.9.1.2}
-\contentsline {subsection}{\numberline {9.2}Algoritmo de identificaci\IeC {\'o}n de relaciones}{37}{subsection.9.2}
-\contentsline {subsubsection}{\numberline {9.2.1}Primeras estrategias: Clustering y LDA}{39}{subsubsection.9.2.1}
-\contentsline {subsubsection}{\numberline {9.2.2}Correferencia con CoreNLP}{42}{subsubsection.9.2.2}
-\contentsline {section}{\numberline {10}PROGRAMA PRINCIPAL: fic\_character\_extractor }{50}{section.10}
-\contentsline {section}{\numberline {11}EVALUACI\IeC {\'O}N DEL SISTEMA}{52}{section.11}
-\contentsline {subsection}{\numberline {11.1}Prueba 1: Funciones b\IeC {\'a}sicas del programa con un texto largo (Fanfic 9)}{52}{subsection.11.1}
-\contentsline {subsection}{\numberline {11.2}Prueba 2: G\IeC {\'e}nero distinto del canon (Fanfic 2856)}{54}{subsection.11.2}
-\contentsline {subsection}{\numberline {11.3}Prueba 3: Personajes que no son nombrados (Fanfic 2163)}{55}{subsection.11.3}
-\contentsline {section}{\numberline {12}CONCLUSIONES}{60}{section.12}
-\contentsline {section}{\numberline {13}REFERENCIAS}{62}{section.13}
+\contentsline {section}{\numberline {1}P\IeC {\'A}GINA DE CALIFICACI\IeC {\'O}N}{4}{section.1}
+\contentsline {section}{\numberline {2}RESUMEN}{5}{section.2}
+\contentsline {section}{\numberline {3}ABSTRACT}{6}{section.3}
+\contentsline {section}{\numberline {4}AGRADECIMIENTOS}{7}{section.4}
+\contentsline {section}{\numberline {5}INTRODUCCI\IeC {\'O}N Y OBJETIVOS}{8}{section.5}
+\contentsline {section}{\numberline {6}FANFICTION Y ARCHIVE OF OUR OWN}{12}{section.6}
+\contentsline {section}{\numberline {7}EXTRACCI\IeC {\'O}N DE INFORMACI\IeC {\'O}N EN OTROS TRABAJOS}{15}{section.7}
+\contentsline {section}{\numberline {8}RECOGIDA Y LIMPIEZA DE DATOS}{17}{section.8}
+\contentsline {subsection}{\numberline {8.1}Creando un scraper para Archive of our Own}{17}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Limpieza de datos y creaci\IeC {\'o}n de datasets}{25}{subsection.8.2}
+\contentsline {section}{\numberline {9}EXTRACCI\IeC {\'O}N DE DATOS A PARTIR DE TEXTO}{29}{section.9}
+\contentsline {subsection}{\numberline {9.1}Algoritmo de identificaci\IeC {\'o}n de entidades}{29}{subsection.9.1}
+\contentsline {subsubsection}{\numberline {9.1.1}Extracci\IeC {\'o}n de entidades con NLTK}{29}{subsubsection.9.1.1}
+\contentsline {subsubsection}{\numberline {9.1.2}Extracci\IeC {\'o}n de entidades con CoreNLP}{34}{subsubsection.9.1.2}
+\contentsline {subsection}{\numberline {9.2}Algoritmo de identificaci\IeC {\'o}n de relaciones}{39}{subsection.9.2}
+\contentsline {subsubsection}{\numberline {9.2.1}Primeras estrategias: Clustering y LDA}{41}{subsubsection.9.2.1}
+\contentsline {subsubsection}{\numberline {9.2.2}Correferencia con CoreNLP}{45}{subsubsection.9.2.2}
+\contentsline {section}{\numberline {10}PROGRAMA PRINCIPAL: fic\_character\_extractor }{52}{section.10}
+\contentsline {section}{\numberline {11}EVALUACI\IeC {\'O}N DEL SISTEMA}{54}{section.11}
+\contentsline {subsection}{\numberline {11.1}Prueba 1: Funciones b\IeC {\'a}sicas del programa con un texto largo (Fanfic 9)}{54}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}Prueba 2: G\IeC {\'e}nero distinto del canon (Fanfic 2856)}{56}{subsection.11.2}
+\contentsline {subsection}{\numberline {11.3}Prueba 3: Personajes que no son nombrados (Fanfic 2163)}{57}{subsection.11.3}
+\contentsline {section}{\numberline {12}CONCLUSIONES}{62}{section.12}
+\contentsline {subsection}{\numberline {12.1}Trabajos futuros}{66}{subsection.12.1}
+\contentsline {section}{\numberline {13}REFERENCIAS}{67}{section.13}
+\contentsline {section}{\numberline {A}ANEXO: C\IeC {\'O}DIGO DEL SISTEMA DE SCRAPERS}{68}{appendix.Alph1}
+\contentsline {subsection}{\numberline {A.1}link\_scraper}{68}{subsection.Alph1.1}
+\contentsline {subsection}{\numberline {A.2}file\_scraper}{70}{subsection.Alph1.2}
+\contentsline {section}{\numberline {B}ANEXO: C\IeC {\'O}DIGO DE fanfic\_util}{73}{appendix.Alph2}
+\contentsline {section}{\numberline {C}ANEXO: C\IeC {\'O}DIGO DEL ALGORITMO DE IDENTIFICACI\IeC {\'O}N DE ENTIDADES BASADO EN REGRESI\IeC {\'O}N LOG\IeC {\'I}STICA}{79}{appendix.Alph3}
+\contentsline {subsection}{\numberline {C.1}NER\_chunker}{79}{subsection.Alph3.1}
+\contentsline {subsection}{\numberline {C.2}NER\_trainer}{82}{subsection.Alph3.2}
+\contentsline {subsection}{\numberline {C.3}NER\_tagger}{84}{subsection.Alph3.3}
+\contentsline {section}{\numberline {D}ANEXO: C\IeC {\'O}DIGO QUE MANEJA CoreNLP}{86}{appendix.Alph4}
+\contentsline {subsection}{\numberline {D.1}corenlp\_wrapper}{86}{subsection.Alph4.1}
+\contentsline {subsection}{\numberline {D.2}corenlp\_util}{89}{subsection.Alph4.2}
+\contentsline {section}{\numberline {E}ANEXO: PROGRAMAS DE PRUEBA PARA ALGORITMO DE EXTRACCI\IeC {\'O}N DE RELACIONES}{98}{appendix.Alph5}
+\contentsline {subsection}{\numberline {E.1}toy\_relex\_kmeans}{98}{subsection.Alph5.1}
+\contentsline {subsection}{\numberline {E.2}toy\_relex\_topic}{101}{subsection.Alph5.2}
+\contentsline {subsection}{\numberline {E.3}toy\_relex\_v2}{104}{subsection.Alph5.3}
+\contentsline {subsection}{\numberline {E.4}ner\_and\_sen\_extraction\_v2}{108}{subsection.Alph5.4}
+\contentsline {section}{\numberline {F}ANEXO: PROGRAMA FINAL}{116}{appendix.Alph6}

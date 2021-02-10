@@ -9,6 +9,7 @@
 \usepackage{todonotes}
 \usepackage{amsmath}
 \usepackage{verbatim}
+\usepackage{apalike}
 
 \showhelp  % comenta o borra para eliminar ayudas
 
@@ -72,16 +73,11 @@
 \renewcommand*\lstlistingname{Listado}
 
 %% PLACEHOLDERS %%
-\newcommand{\refToLinkScraperCode}{[placeholder ref]}
-\newcommand{\refToFileScraperCode}{[placeholder ref]}
-\newcommand{\refToScraperExecution}{[placeholder ref]}
+\newcommand{\refToLinkScraperCode}{\ref{an:scrapers}}
+\newcommand{\refToFileScraperCode}{\ref{an:scrapers}}
 
-\newcommand{\refToFilterCode}{[placeholder ref]}
-\newcommand{\refToNerAndSenPastVersions}{[placeholder ref]}
 
-\newcommand{\refToTrialCode}{[placeholder ref]}
-
-\newcommand{\refToAnexoDatosRFE}{[placeholder ref]}
+%\newcommand{\refToAnexoDatosRFE}{[placeholder ref]}
 
 \newcommand{\finalProgramName}{fic\_character\_extractor }
 
@@ -120,38 +116,61 @@ CALIFICACIÓN:
 \cleardoublepage
 
 \section{RESUMEN}
-La extracción de información es una tarea consistente en identificar las entidades presentes en un texto y qué relaciones las unen. En este trabajo se aborda una posible aplicación de este proceso en obras literarias, en particular las pertenecientes al género fanfiction. Se propone un clasificador entrenado con un modelo de regresión logística, junto con datos extraídos utilizando CoreNLP, como método para identificar personajes en un texto. También se desarrollaron scrapers y utilidades para extraer y manejar archivos HTML de \href{http://www.archiveofourown.org}{Archive of Our Own} para proveer al proyecto de los datos necesarios para el mismo. Se exploran estrategias para identificar relaciones de naturaleza social entre los personajes, sin éxito.
+
+
+La extracción de información es una tarea consistente en identificar las entidades presentes en un texto y qué relaciones las unen. En este trabajo se aborda una posible aplicación de este proceso en obras literarias, en particular las pertenecientes al género fanfiction, que se caracteriza por que sus autores no crean obras originales: un fanfic es un relato que toma prestados los personajes o la historia de una obra ya existente. La finalidad de este proyecto pues es crear una herramienta que pueda resultar de utilidad a la hora de realizar análisis literarios sobre los temas, conflictos y carencias que los fans de una obra perciben en la misma.
+
+La primera parte del proyecto consiste en descargar una parte de los relatos de la web \href{http://www.archiveofourown.org}{Archive of Our Own}, con el objetivo de crear un corpus básico de textos que utilizar para pruebas y entrenamientos. Esto se realiza mediante un sistema de scrapers, y además se desarrollan las herramientas necesarias para organizar y manejar los archivos del corpus para que los algoritmos de procesamiento de texto puedan entender su contenido. Dichos algoritmos utilizarán tanto el texto en sí como los metadatos. Para ello se explora la estructura de la página web y se echa mano de librerías de python como \textit{BeautifulSoup}, \textit{HTML2Text} y \textit{requests}.
+
+La siguiente parte del proyecto es el procesado de texto natural. Utilizando NLTK, se entrena un modelo de regresión logística con el corpus \textit{Groningen Meaning Bank}, dando como resultado un algoritmo de identificación de entidades nombradas que es capaz de encontrar los nombres de los personajes de un texto y contar cuántas veces se les menciona. Para desarrollar un algoritmo de identificación de relaciones se utilizan librerías como \textit{sci-kit learn}, \textit{gensim} y \textit{Stanza} para explorar diferentes técnicas con el fin de hallar relaciones sociales entre personajes, incluyendo clustering, un modelo LDA y explotando la correferencia pronominal en frases en las que un personaje es mencionado para buscar patrones, pero no se llega a ninguna conclusión satisfactoria. Sin embargo, el uso de CoreNLP (mediante \textit{Stanza}) en estas pruebas resulta en el desarrollo de otro algoritmo de identificación de personajes que tiene las ventajas añadidas de ser capaz de identificar el género del personaje y hallar más menciones que el modelo de regresión logística. 
+
+Por último, ambos algoritmos de identificación de personajes llevan a cabo una tarea de canonicalización, que en este proyecto es una tarea definida por las características del género fanfiction: puesto que estos relatos no son originales, sino que están basados en personajes ya existentes, estos algoritmos identificarán cuáles personajes se encontraban en la obra original y cuáles son originales del autor fan. Para reducir el alcance de esta tarea, todos los relatos descargados de  \href{http://www.archiveofourown.org}{Archive of Our Own} están basados en el libro \textit{Good Omens} (Neil Gaiman y Terry Pratchett, 1990).
+
 
 \cleardoublepage
 
 \section{ABSTRACT}
+
+\begin{comment}
 Information extraction is the task of recognizing the entities present in a text, and which relationships exist between them. This project attemps an application of this task on literary works, in particular to those belonging the genre of fanfiction. A classifier trained with a logistic regression model, in combination with information provided by CoreNLP, is proposed as a method for recognizing characters in a text. A series of scrapers and tools created in python for extracting and handling HTML files from \href{http://www.archiveofourown.org}{Archive of Our Own} were also created in order to provide the necessary data for the project. Some strategies for recognition of social relationships between characters are explored, unsuccessfully.
+\end{comment}
+
+Information extraction is the task of recognizing the entities present in a text, and which relationships exist between them. This project attemps an application of this task on literary works, in particular to those belonging the genre of fanfiction, which is defined by not being original works: a fanfic is a story that lends the characters or the plot from an already existing work. The purpose of this project is to create a tool that helps in the literary analysis of the themes, conflicts and oversights that the fans of a particular work find on it.
+
+The first part of the project consists in downloading texts from the website \href{http://www.archiveofourown.org}{Archive of Our Own}, thus creating a basic corpus of stories to be used in tests and training. This is achieved with a scraper system, and developing tools to organise and handle the corpus' files so that the text processing algorithms can understand their contents. Said algorithms will use both the pure text and the metadata of the files. The structure of the website is studied in order to create the scrapers, and python libraries like \textit{BeautifulSoup}, \textit{HTML2Text} and \textit{requests} are used.
+
+The next part of the project is the natural text processing. A named entity recognition algorithm is developed using NLTK, by training a logistic regression model on the \textit{Groningen Meaning Bank} corpus. The result is an algorithm that can recognize a character's name in a text, and count how many times it is mentioned. Several strategies are explored in order to find an algorithm for recognising relationships, and python libraries like \textit{sci-kit learn}, \textit{gensim} and \textit{Stanza} are used to create clustering algorithms, a LDA model and to exploit pronominal correference in sentences where characters are mentioned in order to find patterns that may signify a relationship, but none of these attemps are successful. However, the use of CoreNLP via \textit{Stanza} ends up creating another named entity recognition algorithm which has the ability of identifying the gender of a character, and can find more mentions than the logistic regression model.
+
+At last, both named entity recognition algorithms perform a task of canonicalization, which in this project is defined by the features of the fanfiction genre: since these stories are not orginal, but instead they are based in already existing characters, these algorithms identify which characters belong to the original work, and which are created by the fan writer. In order to reduce the scope of this task, all the downloaded works from \href{http://www.archiveofourown.org}{Archive of Our Own} are based on the book \textit{Good Omens} (Neil Gaiman and Terry Pratchett, 1990).
 
 \cleardoublepage
 
 \section{AGRADECIMIENTOS}
+Esta etapa de mi vida ha sido larga y muy dura para mí, y nunca la habría visto acabar así de bien sin la ayuda de mucha gente. En primer lugar mis padres y mi hermana, que han estado todo este tiempo conmigo y teniendo fe en mis esfuerzos cuando yo no tenía ninguna. También ha habido muchos profesores que me han animado y dado oportunidades, y en especial quiero mencionar a José Ángel Olivas Varela, que siempre me ha apoyado en mis esfuerzos y me ha ayudado cuando lo he necesitado.
 
+También quiero mencionar a mis amigos, fuera y dentro de la universidad, que me han hecho compañía, escuchado mis problemas y levantado el ánimo cuando yo no podía. Nunca podría haber terminado este proyecto si no hubieran estado ahí para tomar cafés, oírme quejarme y descansar de nuestros problemas del día a día, incluso cuando este año hemos estado físicamente separados y los cafés han tenido que ser con la pantalla en medio.
+
+Este trabajo fin de estudios es resultado de la combinación del apoyo y los ánimos de todas estas personas, que me dieron cariño y confianza cuando más los necesitaba. Mis esfuerzos nacen de su compañía.
 
 \cleardoublepage
 
 
 \section{INTRODUCCIÓN Y OBJETIVOS}
-
-Empecé el proyecto\todo[size=\tiny]{RELLENAR PLACEHOLDERS} porque me gusta el fanfiction y el análisis de datos. Existen en internet numerosas comunidades de fan que son muy activas y producen una vasta cantidad de contenido muy rico en detalle; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma. A veces, estas comunidades crean enormes proyectos de calidad profesional de forma totalmente gratuita, simplemente para mejorar el espacio y las experiencias del resto de miembros. Uno de los mayores ejemplos de este tipo de 'trabajo fan' es la \href{https://www.transformativeworks.org/}{Organizaton for Transformative Works}, una organización sin ánimo de lucro creado 'por fans y para fans' que crea y mantiene proyectos como \href{https://www.fanlore.org/wiki/Main_Page}{FanLore}, una wiki sobre la cultura fan, o su comité legal, que se encarga tanto de educar sobre leyes de propiedad intelectual y el \textit{fair use} del mismo como de involucrarse en los procesos jurídicos sobre copyright de diversos gobiernos (especialmente Estados Unidos) para defender el derecho del público general a crear obras derivadas.
-
-Uno de sus proyectos más famosos es \href{https://www.archiveofourown.org/}{Archive of our Own}, comúnmente acortado a AO3, un sitio web que aloja principalmente relatos pertenecientes al género fanfiction y cuyo objetivo es, por un lado, facilitar la tarea de encontrar fanfiction para aquellos que lo quieran leer y, por otro, funcionar como un archivo que clasifique y documente el fenómeno fanfic a nivel global. En sus datos de mayo de 2020, aparecen más de dos millones de usuarios registrados, y más de seis millones de trabajos alojados. AO3 se ha convertido en una parte fundamental de la cultura fan, especialmente la dedicada a la escritura, y en este proyecto lo utilizaré como fuente de información.
+\label{sec:intro}
+En este proyecto se desarrollará un sistema para la identificación y extracción de personajes y relaciones en textos de ficción, en particular aquellos pertenecientes al género fanfiction. Consistirá, por un lado, en realizar un scrape parcial de la página web \href{https://www.archiveofourown.org/}{Archive of our Own} para obtener un corpus de textos con los que entrenar y hacer pruebas, y por otro lado se desarrollarán los algoritmos encargados de la identificación de entidades y las relaciones entre ellas. De esta manera se pretende crear una herramienta que ayude en análisis literarios, en particular aquellos que se centren en investigar cuáles son las interpretaciones que los lectores fuera el mundo académico encuentran en una obra particular. 
 
 
-En literatura comparada se suelen tener en cuenta dos perspectivas a la hora de analizar una obra: la de la teoría del autor, que tiene en cuenta lo que el autor quería comunicar y plasmar en esa obra, y la de la 'muerte del autor'\cite{Barthes}, que tiene en cuenta el mensaje con el que los lectores se quedan tras leer la obra (independientemente de si coincide con el que el autor quería comunicar).
-Para entender el mensaje de una obra de forma plena\cite{ellis_2018}, es necesario tener en cuenta tanto la intención comunicativa del autor, como el mensaje que al final los lectores acaban entendiendo. Y como cada lector es hijo de su padre y de su madre, acaban surgiendo muchas posibles interpretaciones distintas a partir de un único texto.
 
-Tradicionalmente, los académicos solamente han tenido en cuenta las opiniones de un grupo reducido de personas (compuesto principalmente por otros académicos) a la hora de analizar una obra desde la perspectiva de la muerte del autor, ya que el lector común no suele tener a su disposición las herramientas necesarias para difundir sus interpretaciones. Sin embargo, desde que Internet y los foros como \textit{LiveJournal} se volvieron accesibles a grandes partes de la población, miles de comunidades fan empezaron a organizarse justamente con la intención de poner en común sus interpretaciones, de expresar sus críticas y opiniones. No todas estas discusiones tienen lugar en forma de fanfiction, pero es un género muy popular en las comunidades fans, y yo personalmente estoy muy familiarizada con sus estructuras y códigos.
+Esta herramienta para análisis literario estará basada en los personajes del texto, y las relaciones entre ellos. Al fin y al cabo, es útil para un académico comprobar cuáles son los personajes que más captan la atención de los lectores, si son los protagonistas o si optan por desarrollar personajes menores a los que el autor original no prestó tanta atención, y también puede aprender mucho de qué relaciones y a qué personajes involucran: cuando un gran número de lectores elige enfrentar a personajes que en la obra original son amigos, o crear amistades y romances entre personajes que son enemigos (o que directamente ni se conocen), un académico puede sacar conclusiones sobre qué encuentran atractivo o repulsivo de un personaje, o qué temas quieren resaltar y explorar mediante el desarrollo de estas relaciones.
 
-Estas comunidades de Internet están generando una cantidad inmensa de opiniones y perspectivas en torno a un tema común en foros públicamente accesibles, y me pareció interesante la idea de crear un sistema que sea capaz de recoger y procesar toda esta información para crear un 'abanico' de las distintas interpretaciones que existen en una comunidad fan, especialmente aquellas sobre los personajes y las relaciones entre ellos. El resultado final se podría utilizar como herramienta dentro de la propia comunidad fan, para observar cómo tienden a interpretar a ciertos personajes a nivel de comunidad y cómo estas interpretaciones cambian a lo largo del tiempo, o en distintas subsecciones dentro de la comunidad en general. También se podría utilizar como herramienta general de análisis literario, aplicándola primero a la obra original y luego a un conjunto de fanfics representativos, y observando cuáles son las diferencias entre la perspectiva del autor original y la de los lectores (convertidos en autores fan).
+Por tanto, es una tarea adecuada para la extracción de información a partir de texto natural. El análisis de lenguaje natural tiene como objetivo ahorrar el trabajo humano de resumir y sacar conclusiones de grandes conjuntos de textos, creando programas capaces de procesar información no estructurada y dotándoles de la habilidad de entender el significado del lenguaje humano. En este proyecto se pretende utilizar esta técnica para ahorrar a un académico el tener que leerse manualmente cientos de relatos para concluir cuáles son los temas, conflictos y personajes que le interesan a una comunidad de escritores en particular.
 
-Al empezar el proyecto, no sabía mucho sobre análisis de texto, por lo que empecé a estudiar sobre análisis de texto natural y extracción de información usando el libro \textit{Natural Language Processing}, de Jacob Eisenstein\cite{jacob}. El proceso de extracción de información a seguir consiste en identificar entidades, relaciones entre entidades y eventos. Para acotar el problema, decidí centrarme sólo en la extracción de entidades y la de relaciones; la intención es aplicar estos dos procesos a conjunto de textos pertenecientes al género fanfiction para identificar qué personajes aparecen en el mismo y qué relaciones los unen, así como otros datos relevantes al campo del fanfiction como si el personaje aparece en la obra original, o si es un añadido del autor fan. El usuario puede utilizar esta información para sacar conclusiones sobre la interpretación del autor sobre los personajes de la obra original.
+En primer lugar se va a crear un corpus de relatos pertenecientes al género fanfiction a partir de los textos alojados en la web gratuita \href{https://www.archiveofourown.org/}{Archive of our Own}; este corpus será útil para realizar pruebas, entrenamiento y experimentos que ayudarán en el desarrollo de un sistema de procesado de texto natural que extraerá personajes nombrados de un texto y qué relaciones sociales les unen, utilizando el libro \textit{Natural Language Processing}, de Jacob Eisenstein \cite{jacob} como guía general del proceso.
 
-Los textos pueden ser extraídos directamente de AO3 utilizando un scraper, en una fase de recogida y limpieza de datos explicada en las secciones \ref{sec:recogidadatos} y \ref{sec:limpiezadatos}. Por tanto, los \textbf{objetivos de este proyecto} consisten en:
+El proceso de extracción de información que el proyecto va a seguir consistirá en identificar primero las entidades que se corresponden con los personajes del texto, y después identificará las relaciones entre dichos personajes. La identificación de eventos en un texto es también parte habitual del proceso de extracción de información, pero decidí centrarme sólo en entidades y relaciones para acotar el problema. La intención es aplicar estos dos procesos a un conjunto de textos pertenecientes al género fanfiction para identificar qué personajes aparecen en el mismo y qué relaciones los unen, así como otros datos relevantes al campo del fanfiction como si el personaje aparece en la obra original, o si es un añadido del autor fan. El usuario podrá utilizar esta información para sacar conclusiones sobre la interpretación del autor sobre los personajes de la obra original.
+
+
+Los textos serán ser extraídos directamente de AO3 utilizando un scraper, en una fase de recogida y limpieza de datos explicada en las secciones \ref{sec:recogidadatos} y \ref{sec:limpiezadatos}. Por tanto, los \textbf{objetivos de este proyecto} consisten en:
 
 \begin{enumerate}
 	\item Extraer un conjunto de relatos alojados en \href{http://wwww.archiveofourown.org}{Archive of Our Own} sobre los que utilizar técnicas de extracción de información.
@@ -164,6 +183,20 @@ Los textos pueden ser extraídos directamente de AO3 utilizando un scraper, en u
 
 Para consultar cualquier aspecto del código e implementación del proyecto, se puede visitar el repositorio del mismo en \href{https://www.github.com/mariaGnlz/Fanfic_ontology}{GitHub} (Usuario: \textit{mariaGnlz}, repositorio: \textit{Fanfic\_ontology}).
 
+La idea para empezar el proyecto surgió de la cantidad de información que existe en internet sobre fenómenos culturales como \textit{Los Vengadores} o \textit{Harry Potter}, historias que claramente resuenan con mucha gente y que mueven a los fans a reunirse y crear contenido en comunidades digitales. Estas comunidades de fans suelen ser muy activas y producen una vasta cantidad de contenido muy rico en detalle; son básicamente una gran discusión entre los fans de una obra sobre qué es lo que dicha obra significa para ellos, y sobretodo, qué es lo que a ellos les hubiese gustado llegar a ver realizado en el texto de la misma. A veces, estas comunidades crean enormes proyectos de calidad profesional de forma totalmente gratuita, simplemente para mejorar el espacio y las experiencias del resto de miembros. Uno de los mayores ejemplos de este tipo de 'trabajo fan' es la \href{https://www.transformativeworks.org/}{Organizaton for Transformative Works}, una organización sin ánimo de lucro creado 'por fans y para fans' que crea y mantiene proyectos como \href{https://www.fanlore.org/wiki/Main_Page}{FanLore}, una wiki sobre la cultura fan, o su comité legal, que se encarga tanto de educar sobre leyes de propiedad intelectual y el \textit{fair use} del mismo como de involucrarse en los procesos jurídicos sobre copyright de diversos gobiernos (especialmente Estados Unidos) para defender el derecho del público general a crear obras derivadas.
+
+Uno de sus proyectos más famosos es \href{https://www.archiveofourown.org/}{Archive of our Own}, comúnmente acortado a AO3, un sitio web que aloja principalmente relatos pertenecientes al género fanfiction y cuyo objetivo es, por un lado, facilitar la tarea de encontrar fanfiction para aquellos que lo quieran leer y, por otro, funcionar como un archivo que clasifique y documente el fenómeno fanfic a nivel global. En sus datos de mayo de 2020, aparecen más de dos millones de usuarios registrados, y más de seis millones de trabajos alojados. AO3 se ha convertido en una parte fundamental de la cultura fan, especialmente la dedicada a la escritura, y en este proyecto lo utilizaré como fuente de información.
+
+
+En literatura comparada se suelen tener en cuenta dos perspectivas a la hora de analizar una obra: la de la teoría del autor, que tiene en cuenta lo que el autor quería comunicar y plasmar en esa obra, y la de la 'muerte del autor' \cite{Barthes}, que tiene en cuenta el mensaje con el que los lectores se quedan tras leer la obra (independientemente de si coincide con el que el autor quería comunicar).
+Para entender el mensaje de una obra de forma plena \cite{ellis_2018}, es necesario tener en cuenta tanto la intención comunicativa del autor, como el mensaje que al final los lectores acaban entendiendo. Y como cada lector es hijo de su padre y de su madre, acaban surgiendo muchas posibles interpretaciones distintas a partir de un único texto.
+
+Tradicionalmente, los académicos solamente han tenido en cuenta las opiniones de un grupo reducido de personas (compuesto principalmente por otros académicos) a la hora de analizar una obra desde la perspectiva de la muerte del autor, ya que el lector común no suele tener a su disposición las herramientas necesarias para difundir sus interpretaciones. Sin embargo, desde que Internet y los foros como \textit{LiveJournal} se volvieron accesibles a grandes partes de la población, miles de comunidades fan empezaron a organizarse justamente con la intención de poner en común sus interpretaciones, de expresar sus críticas y opiniones. No todas estas discusiones tienen lugar en forma de fanfiction, pero es un género muy popular en las comunidades fans, y yo personalmente estoy muy familiarizada con sus estructuras y códigos.
+
+Estas comunidades de Internet están generando una cantidad inmensa de opiniones y perspectivas en torno a un tema común en foros públicamente accesibles, y me pareció interesante la idea de crear un sistema que sea capaz de recoger y procesar toda esta información para crear un 'abanico' de las distintas interpretaciones que existen en una comunidad fan, especialmente aquellas sobre los personajes y las relaciones entre ellos. El resultado final se podría utilizar como herramienta dentro de la propia comunidad fan, para observar cómo tienden a interpretar a ciertos personajes a nivel de comunidad y cómo estas interpretaciones cambian a lo largo del tiempo, o en distintas subsecciones dentro de la comunidad en general. También se podría utilizar como herramienta general de análisis literario, aplicándola primero a la obra original y luego a un conjunto de fanfics representativos, y observando cuáles son las diferencias entre la perspectiva del autor original y la de los lectores (convertidos en autores fan).
+
+
+
 
 
 \cleardoublepage
@@ -173,13 +206,13 @@ Fanfiction (del inglés \textit{fan fiction}, 'ficción del fan', y abreviado co
 
 El concepto detrás del fanfiction es, en esencia, una ausencia percibida en la historia original. Uno se termina un libro o un videojuego y siente que le falta algo: el pasado de un protagonista, una perspectiva distinta de un conflicto, una relación que acabó o nunca empezó, qué sucede después del final, o quizás que a la historia le hacían falta doscientas páginas más, o incluso que tendría que haber sido de un género literario distinto... Hay algo en la historia que está ausente. El lector se queda con ganas de explorar más a fondo el mundo y los personajes que el autor ha creado, y de aquí nace el impulso de crear historias propias en las que se exploran dichas ausencias. Por tanto, no es sorprendente descubrir que hay muchos fanfics en los que se cambia el destino de tal o cuál personaje, que exploran qué sucede tras el final, o que llevan a cabo exploraciones exhaustivas de los conflictos, los personajes y sus motivaciones desde perspectivas distintas a las de la obra original.
 
-Todos estos motivos hacen que el fanfiction se considere una obra derivada\cite{woosh_1998}, y está en su naturaleza el reflejar las opiniones y críticas que el autor tiene de la obra original: qué es lo que le gusta, qué temas siente que faltan en la obra, qué cosas tendrían que haberse explicado desde una perspectiva distinta, etc.
+Todos estos motivos hacen que el fanfiction se considere una obra derivada \cite{woosh_1998}, y está en su naturaleza el reflejar las opiniones y críticas que el autor tiene de la obra original: qué es lo que le gusta, qué temas siente que faltan en la obra, qué cosas tendrían que haberse explicado desde una perspectiva distinta, etc.
 
 Por ejemplo, es evidente al leer los libros de la saga \textit{Harry Potter} que el texto quiere que pienses que Ron Weasly, el mejor amigo del protagonista, es un chico un poco torpe y bocazas pero con buen corazón, y un buen amigo de Harry. Sin embargo, muchos fans no interpretaron a Ron como torpe y bocazas, sino como egocéntrico e insensible, y hay no pocos fanfics en los que Ron y Harry discuten y dejan de ser amigos, o en los que Ron es directamente un villano aliado con Voldemort.
 
 Cuando los fans de una misma obra se reúnen y organizan, se crean comunidades fan llamadas "fandoms", que suelen crear foros donde intercambiar sus impresiones, teorías y, por supuesto, fanfiction y otras formas de arte fan. Es evidente que existe un intercambio de ideas en foros de discusión y otras comunidades online explícitamente creadas para conversar, pero ya que es totalmente posible inferir las opiniones de un autor a partir de sus fanfics, tanto escribir como leer fanfiction son actividades que contribuyen al discurso general del fandom, ayudando a popularizar algunas teorías y generando las suyas propias.
 
-Cuando un fandom alcanza un cierto nivel de madurez, algunas teorías se consolidan y el fandom acaba formando, a nivel de comunidad, una interpretación propia de la obra original. Para distinguir la perspectiva del fandom de la que realmente pretende transmitir la obra original, en los fandoms se distingue entre el \textit{fanon} y el canon. Siguiendo el ejemplo de \textit{Harry Potter}, el Ron Weasly del \textit{fanon} es una persona egoísta que sólo es amigo de Harry por interés, mientras que el Ron Weasly del canon tiene una amistad sincera con Harry. \textit{Fanon}, por tanto, es el 'conjunto de teorías basadas en el material original que, aunque generalmente parecen ser la interpretación 'obvia' o 'única' de los hechos canónicos, no son realmente parte del canon'\cite{uncanny_2017}.
+Cuando un fandom alcanza un cierto nivel de madurez, algunas teorías se consolidan y el fandom acaba formando, a nivel de comunidad, una interpretación propia de la obra original. Para distinguir la perspectiva del fandom de la que realmente pretende transmitir la obra original, en los fandoms se distingue entre el \textit{fanon} y el canon. Siguiendo el ejemplo de \textit{Harry Potter}, el Ron Weasly del \textit{fanon} es una persona egoísta que sólo es amigo de Harry por interés, mientras que el Ron Weasly del canon tiene una amistad sincera con Harry. \textit{Fanon}, por tanto, es el 'conjunto de teorías basadas en el material original que, aunque generalmente parecen ser la interpretación 'obvia' o 'única' de los hechos canónicos, no son realmente parte del canon' \cite{uncanny_2017}.
 
 
 %Ésta es sólo una de las formas de escribir fanfic que hay. Existen muchos fanfics que cambian la historia original de formas mucho más radicales, explorando cómo hubiese sido Star Wars si Luke Skywalker hubiese caído al lado oscuro, o cómo actuarían los personajes de Juego de Tronos si fuesen trabajadores normales en una cafetería de Toronto, por poner algunos ejemplos. El fan convertido en autor puede añadir o quitar a la historia original lo que considere oportuno para contar su propia visión personal.
@@ -201,18 +234,18 @@ Como se ha dicho anteriormente, los fans se organizan en comunidades según la o
 
 AO3 no es el único sitio web popular para alojar fanfiction, pero a lo largo de esta década ha desplazado a sitios como \href{http://fanfiction.net}{Fanfiction.net} y \href{https://www.wattpad.com/}{Wattpad}, y la característica que condicionó mi decisión es su extensivo sistema de etiquetas, que como se verá más adelante fue fundamental para filtrar y gestionar los datos del proyecto.
 
-En términos legales y de derechos de autor, la mayoría de legislaciones considera el fanfiction como un tipo de obra derivada \cite{woosh_1998} y por tanto entra dentro del \textit{fair use}.
+En términos legales y de derechos de autor, la mayoría de legislaciones considera el fanfiction como un tipo de obra derivada  \cite{woosh_1998} y por tanto entra dentro del \textit{fair use}.
 
 
 \cleardoublepage
 \section{EXTRACCIÓN DE INFORMACIÓN EN OTROS TRABAJOS}
 
-La extracción de información es un problema que se aborda en el análisis de lenguaje natural, cuyo objetivo es ahorrar el trabajo humano de resumir y sacar conclusiones de grandes conjuntos de textos. Para lograrlo, se crean programas capaces de procesar información no estructurada, dotándoles de la habilidad de entender el significado del lenguaje humano para que resuman y saquen conclusiones a partir de grandes volúmenes de textos ya existentes y, por ejemplo, usen esa información para crear una base de datos de conocimiento automáticamente, sin tener que dedicar grandes cantidades de tiempo y esfuerzo a leerlos manualmente. Es especialmente útil en campos como la medicina y la química, para los cuales se han creado distintos modelos\cite{craven_99}\cite{manica_2019} con el objetivo de ayudar a procesar las ingentes cantidades de estudios y artículos que se publican hoy en día.
+La extracción de información es un problema que se aborda en el análisis de lenguaje natural, cuyo objetivo es ahorrar el trabajo humano de resumir y sacar conclusiones de grandes conjuntos de textos. Para lograrlo, se crean programas capaces de procesar información no estructurada, dotándoles de la habilidad de entender el significado del lenguaje humano para que resuman y saquen conclusiones a partir de grandes volúmenes de textos ya existentes y, por ejemplo, usen esa información para crear una base de datos de conocimiento automáticamente, sin tener que dedicar grandes cantidades de tiempo y esfuerzo a leerlos manualmente. Es especialmente útil en campos como la medicina y la química, para los cuales se han creado distintos modelos \cite{craven_99}\cite{manica_2019} con el objetivo de ayudar a procesar las ingentes cantidades de estudios y artículos que se publican hoy en día.
 
 
-El primero de los pasos para extraer información de un texto es identificar las entidades nombradas en el mismo. Algunos sistemas, como CoreNLP\cite{corenlp_ner}, utilizan un clasificador estadístico (en particular, un campo aleatorio condicional\cite{lafferty_2011}) para identificar las palabras que denotan un nombre, lugar u organización. La desventaja de éstos métodos es que requieren ser entrenados con datos previamente etiquetados y listas de nombres bien conocidos (nomenclátor), por lo que también se han buscado alternativas no-supervisadas\cite{nothman_2013} y semi-supervisadas\cite{lin_2009}, pero las estrategias que echan mano del \textit{machine learning} y grandes corpus de texto etiquetado para entrenar clasificadores siguen siendo las más populares. Existen por tanto muchas soluciones distintas, algunas dotadas de extractores de características muy sofisticados compuestos por varios algoritmos entrenados para realizar tareas específicas, como capturar el contexto o incluso canonicalizar entidades\cite{wick_2009}.
+El primero de los pasos para extraer información de un texto es identificar las entidades nombradas en el mismo. Algunos sistemas, como CoreNLP \cite{corenlp_ner}, utilizan un clasificador estadístico (en particular, un campo aleatorio condicional \cite{laff_2001}) para identificar las palabras que denotan un nombre, lugar u organización. La desventaja de éstos métodos es que requieren ser entrenados con datos previamente etiquetados y listas de nombres bien conocidos (nomenclátor), por lo que también se han buscado alternativas no-supervisadas \cite{nothman_2013} y semi-supervisadas \cite{lin_2009}, pero las estrategias que echan mano del \textit{machine learning} y grandes corpus de texto etiquetado para entrenar clasificadores siguen siendo las más populares. Existen por tanto muchas soluciones distintas, algunas dotadas de extractores de características muy sofisticados compuestos por varios algoritmos entrenados para realizar tareas específicas, como capturar el contexto o incluso canonicalizar entidades \cite{wick_2009}.
 
-La extracción de relaciones tradicionalmente se ha realizado tratando de identificar relaciones binarias, bien frase a frase o teniendo en cuenta dos o tres frases consecutivas\cite{zelenko_2003} \cite{craven_99}. Las limitaciones de este sistema no son sólo que no todos los tipos de relaciones son binarias, si no que cuanto más largo es un texto, menos probable es que ambas entidades aparezcan nombradas en una única frase, con lo que se pierde mucha información si se ignoran. Pasar a un sistema que tenga en cuenta varias frases interdependientes viene con sus propios problemas, pues las características sintácticas de una relación son muy dispersas en el texto y tratar de extraerlas automáticamente requiere de mucha memoria y muchos datos; más cuántas más frases tengas en cuenta. Sin embargo, recientemente se han creado algoritmos que identifican una relación n-aria a partir de todas las menciones en las que aparece, como el de Peng et al\cite{peng_17}, que utiliza grafos LSTM para modelar el contexto e información de cada frase y las conexiones entre ellas, logrando así beneficiarse de la interdependencia de distintas frases sin tanto coste de recursos.
+La extracción de relaciones tradicionalmente se ha realizado tratando de identificar relaciones binarias, bien frase a frase o teniendo en cuenta dos o tres frases consecutivas \cite{zelenko_2003}\cite{craven_99}. Las limitaciones de este sistema no son sólo que no todos los tipos de relaciones son binarias, si no que cuanto más largo es un texto, menos probable es que ambas entidades aparezcan nombradas en una única frase, con lo que se pierde mucha información si se ignoran. Pasar a un sistema que tenga en cuenta varias frases interdependientes viene con sus propios problemas, pues las características sintácticas de una relación son muy dispersas en el texto y tratar de extraerlas automáticamente requiere de mucha memoria y muchos datos; más cuántas más frases tengas en cuenta. Sin embargo, recientemente se han creado algoritmos que identifican una relación n-aria a partir de todas las menciones en las que aparece, como el de Peng et al \cite{peng_17}, que utiliza grafos LSTM para modelar el contexto e información de cada frase y las conexiones entre ellas, logrando así beneficiarse de la interdependencia de distintas frases sin tanto coste de recursos.
 
 Este proyecto sin embargo busca identificar relaciones de naturaleza social entre distintos personajes de ficción, con ĺo que se centrará en identificar entidades del tipo 'Persona', y buscará relaciones binarias entre ellas. 
 
@@ -315,7 +348,7 @@ Ninguna de estas cosas me convenía, ya que descargar más de 20000 archivos ya 
 
 
 
-El link \textit{scraper} se ejecutaría una vez y exploraría todas las páginas de búsqueda, extrayendo los links a los fanfics de cada una, y los almacenaría en un archivo de texto. Por tanto, al terminar su ejecución este \textit{scraper} ha generado un archivo llamado '\textit{fic\_work\_links.txt}' que almacena los enlaces a cada fanfic. El \textit{file scraper} utiliza esta lista para saber dónde buscar las descargas, y el usuario le indica en la línea de comando los índices que acotan el tramo de la lista a descargar, tal y como se ilustra en el esquema de la figura \ref{fig:scrapers_structure}. De este modo, es posible indicarle al programa que descargue desde el link 0 al link 1000 de la lista, permitiendo descargar los 20000 archivos en porciones manejables. Además, el programa anuncia en pantalla qué link está siendo descargado en cada momento, por lo que si sucede un error de red mientras descargaba el link número 866, es posible reanudar el programa fácilmente e indicarle que continúe desde el 866 al 1000 \refToScraperExecution.
+El link \textit{scraper} se ejecutaría una vez y exploraría todas las páginas de búsqueda, extrayendo los links a los fanfics de cada una, y los almacenaría en un archivo de texto. Por tanto, al terminar su ejecución este \textit{scraper} ha generado un archivo llamado '\textit{fic\_work\_links.txt}' que almacena los enlaces a cada fanfic. El \textit{file scraper} utiliza esta lista para saber dónde buscar las descargas, y el usuario le indica en la línea de comando los índices que acotan el tramo de la lista a descargar, tal y como se ilustra en el esquema de la figura \ref{fig:scrapers_structure}. De este modo, es posible indicarle al programa que descargue desde el link 0 al link 1000 de la lista, permitiendo descargar los 20000 archivos en porciones manejables. Además, el programa anuncia en pantalla qué link está siendo descargado en cada momento, por lo que si sucede un error de red mientras descargaba el link número 866, es posible reanudar el programa fácilmente e indicarle que continúe desde el 866 al 1000.
 
 Esta división del trabajo en dos programas además me daba la oportunidad de introducir con sencillez un segundo filtrado durante el proceso de exploración que realiza el link \textit{scraper}. Si el primer filtrado se encargaba de cribar los fanfics que habían sido etiquetados por sus autores como imágenes o audio, este segundo filtrado pretende detectar los fanfics que tampoco contienen texto, pero no han sido etiquetados como tal por sus autores. Para ello usé el criterio de la relación palabras/capítulo de cada fanfic: si una obra tiene menos de 40 palabras por capítulo, se considera como fanfic "sin texto", y se elimina. Escogí 40 palabras como umbral tras investigar un poco con la herramienta de búsqueda de AO3, que como se puede ver en la figura \ref{fig:ao3_search}, tiene una opción para filtrar por cantidad total de palabras. Tras probar varios umbrales, 40 parecía ser el que descartaba todas las obras sin texto sin sacrificar muchos microrrelatos en el proceso.
 
@@ -338,7 +371,7 @@ Por su parte, el \textit{file scraper} realiza estos pasos:
 
 El manejo del código de error 404 (Page Not Found) es bastante importante en este \textit{scraper}, puesto que entre el momento en el que se almacenó el link del fanfic mediante el primer \textit{scraper} y el momento en el que el segundo \textit{scraper} lo utiliza para la descarga pueden haber pasado varios días. En ese tiempo, el autor del fanfic puede haber decidido borrar el fanfic de AO3, o haberlo hecho privado, y de ahí que el \textit{scraper} reciba un 404. Un simple \textit{try-catch} detecta el código 404 y simplemente pasa al siguiente link, como se puede consultar en el anexo \refToFileScraperCode.
 
-El otro error que ambos \textit{scrapers} necesitaban manejar es, naturalmente, el error 429 (Too Many Requests). En las líneas 58-66 de la figura \ref{code:scraper2} se puede ver cómo se utiliza un \textit{try-catch} que envuelve la petición HTTP GET para detectar el status 429 y, en vez de pasar al siguiente link, se lanza una espera de dos minutos tras la cual vuelve a solicitar la página. Antes de incorporar este código a los \textit{scrapers} creé un pequeño programa de prueba, para ver cuánto tardaba AO3 en enviar un 429 y cuánto tiempo de espera requería antes de volver a aceptar solicitudes; dicho programa se puede consultar en \refToTrialCode.
+El otro error que ambos \textit{scrapers} necesitaban manejar es, naturalmente, el error 429 (Too Many Requests). En las líneas 58-66 de la figura \ref{code:scraper2} se puede ver cómo se utiliza un \textit{try-catch} que envuelve la petición HTTP GET para detectar el status 429 y, en vez de pasar al siguiente link, se lanza una espera de dos minutos tras la cual vuelve a solicitar la página. Antes de incorporar este código a los \textit{scrapers} creé un pequeño programa de prueba, para ver cuánto tardaba AO3 en enviar un 429 y cuánto tiempo de espera requería antes de volver a aceptar solicitudes.
  
 %Decidí dividir este proceso en dos programas (el de navegación y filtrado, y el que únicamente descarga) en vez de hacerlo todo en uno porque descargar los más de 20000 archivos de una vez lógicamente tardaría varias horas, y pensé que sería más pragmático si ejecuto una vez el \textit{scraper} crea una lista de enlaces, y luego ya ejecuto todas las veces que sean necesarias el \textit{scraper} que descarga, descargando cada vez un tramo distinto de la lista. De esta forma, pude descargar todos los fanfics en grupos de 2000 (alrededor de una hora y media), pudiendo tener el ordenador libre el resto del tiempo.
 
@@ -380,15 +413,14 @@ Sin embargo, el acceso a los datos sigue basándose en una lista de \textit{path
 
 El identificador de entidades puede utilizar la lista original con todos los fanfics como fuente para etiquetarlos, pero para la parte de identificación de relaciones del proyecto se necesita filtrar los fanfics originales en tres subconjuntos: uno centrado en el romance, otro en la amistad, y el último en la enemistad. Por lo tanto, utilicé las funciones de \textit{fanfic\_util} para crear un programa, \textit{generate\_fic\_lists.py}, para crear las listas de \textit{paths} correspondientes a cada grupo.
 
-El criterio utilizado para crear estos tres grupos está basado en la longitud de los textos y sus etiquetas. En el caso de las etiquetas es sencillo: los autores casi siempre etiquetan las relaciones románticas en sus relatos, y a menudo también las amistades, para hacer que sus historias sean más fáciles de encontrar por aquellos que quieran leerlas. En AO3, las etiquetas románticas tienen el formato 'Personaje A/Personaje B', mientras que las etiquetas de amistad son 'Personaje A \& Personaje B' o 'Personaje A and  Personaje B', con lo que extraer estas etiquetas del archivo HTML es sencillo utilizando expresiones regulares \refToFilterCode. Además de tener una etiqueta que valide la expresión regular, sólo tuve en cuenta aquellos relatos que sólo tenían un capítulo. De esa forma, esperaba poder eliminar historias largas y elaboradas que contienen romance, pero que principalmente son una historia costumbrista o de aventuras. Limitando la longitud de la historia a un capítulo, todo el romance o la amistad queda condensada en dicho capítulo. Además, como en los relatos que contienen abusos sexuales es común etiquetar al perpetrador y a la víctima con el formato de 'Personaje A/Personaje B', realicé un segundo pase a la lista de romance, eliminando todos aquellos relatos que tuviesen la etiqueta 'Rape/Non-con'.
+El criterio utilizado para crear estos tres grupos está basado en la longitud de los textos y sus etiquetas. En el caso de las etiquetas es sencillo: los autores casi siempre etiquetan las relaciones románticas en sus relatos, y a menudo también las amistades, para hacer que sus historias sean más fáciles de encontrar por aquellos que quieran leerlas. En AO3, las etiquetas románticas tienen el formato 'Personaje A/Personaje B', mientras que las etiquetas de amistad son 'Personaje A \& Personaje B' o 'Personaje A and  Personaje B', con lo que extraer estas etiquetas del archivo HTML es sencillo utilizando expresiones regulares. Además de tener una etiqueta que valide la expresión regular, sólo tuve en cuenta aquellos relatos que sólo tenían un capítulo. De esa forma, esperaba poder eliminar historias largas y elaboradas que contienen romance, pero que principalmente son una historia costumbrista o de aventuras. Limitando la longitud de la historia a un capítulo, todo el romance o la amistad queda condensada en dicho capítulo. Además, como en los relatos que contienen abusos sexuales es común etiquetar al perpetrador y a la víctima con el formato de 'Personaje A/Personaje B', realicé un segundo pase a la lista de romance, eliminando todos aquellos relatos que tuviesen la etiqueta 'Rape/Non-con'.
 
-Crear un conjunto con relaciones de enemistad u odio es una tarea más complicada, ya que los usuarios de AO3 no tienen un formato oficial para las mismas y no se suelen etiquetar. Al final utilicé una lista de las etiquetas que los autores comúnmente utilizan como aviso de que su historia contiene violencia o abusos, como 'Rape/Non-con', 'Torture', 'Graphic Depictions of Violence' o 'Dead Dove: Do Not Eat'\refToFilterCode . Esperaba que, entre esas etiquetas y la limitación de longitud, pudiese aislar un conjunto de relatos que sirvieran de modelo para la relación de enemistad.
+Crear un conjunto con relaciones de enemistad u odio es una tarea más complicada, ya que los usuarios de AO3 no tienen un formato oficial para las mismas y no se suelen etiquetar. Al final utilicé una lista de las etiquetas que los autores comúnmente utilizan como aviso de que su historia contiene violencia o abusos, como 'Rape/Non-con', 'Torture', 'Graphic Depictions of Violence' o 'Dead Dove: Do Not Eat'. Esperaba que, entre esas etiquetas y la limitación de longitud, pudiese aislar un conjunto de relatos que sirvieran de modelo para la relación de enemistad.
 
 El resultado fueron 12520 relatos en el conjunto de romance, 784 en el de amistad y 155 en el de enemistad. Para equilibrar los \textit{datasets}, reduje el conjunto de romance a 220 y el de amistad a 180, dando un total de 555 relatos para modelar estas relaciones. A este \textit{dataset} lo llamo 'RFE dataset' (por \textit{Romance, Friendship, Enemy}) y se utiliza en la sección \ref{sec:relextract}.
 
 \cleardoublepage
 \section {EXTRACCIÓN DE DATOS A PARTIR DE TEXTO}
-\todo[size=\tiny]{Explicar los programas que hice para familiarizarme con NLTK}
 
 En la identificación de entidades, se considera una entidad a los personajes, los lugares y las instituciones, entre otras cosas, que haya sido nombrada en el texto. Un algoritmo capaz de identificar entidades nombradas tiene que poder dividir un texto en tramos y asignarle una etiqueta de entidad ("Persona", "País", etc) a cada uno. Esta tarea además requiere que las palabras del texto hayan sido previamente etiquetadas con su rol morfológico.
 
@@ -468,9 +500,9 @@ Sin embargo, al contrario que los modelos de NLTK, NERTagger no devuelve el text
 
 Vamos a aprovechar el hecho de que los relatos que estamos manejando pertenecen al género fanfic, es decir, son obras basadas en obras ya existentes. Eso quiere decir que hay una alta probabilidad de que la mayoría o incluso todos los personajes del fanfic no sean creación del autor, sino que ya aparecían en la obra original. A estos personajes se les llama 'personajes canon'.
 
-En este proyecto, la canonicalización de personajes consiste en descubrir qué personajes del fanfic son canon o no. Para ello necesito la lista de personajes que sí que son canon, de modo que, con la ayuda de \href{https://goodomens.fandom.com/wiki/Category:Characters}{la página de personajes de la wiki de \textit{Good Omens}}, creo un archivo llamado \textit{canon\_characters.csv} que sirve como base de datos de los personajes de la obra original, asignándole a cada uno un identificador numérico. La base de datos además también contiene el género canónico de cada personaje, y una lista con sus apodos.
+En este proyecto, la canonicalización de personajes consiste en descubrir qué personajes del fanfic son canon o no. Para ello necesito la lista de personajes que sí que son canon, de modo que, con la ayuda de \href{https://goodomens.fandom.com/wiki/Category:Characters}{la página de personajes de la wiki de \textit{Good Omens}}\footnote{https://goodomens.fandom.com/wiki/Category:Characters}, creo un archivo llamado \textit{canon\_characters.csv} que sirve como base de datos de los personajes de la obra original, asignándole a cada uno un identificador numérico. La base de datos además también contiene el género canónico de cada personaje, y una lista con sus apodos.
 
-Usando la base de datos es sencillo comprobar si un personaje pertenece al canon simplemente observando si su nombre o parte de su nombre coincide con el nombre o algún apodo de un personaje canon. Para no pasar por alto posibles erratas cometidas por los autores al escribir, se considera que dos nombres coinciden cuando la distancia de edición\cite{levenshtein_1966} entre ellos es menor que una distancia máxima, cuyo valor se depende de lo largos que sean los nombres. Por ejemplo, un candidato a personaje llamado 'Azriaphale' será enlazado con el personaje canon 'Aziraphale', mientras que para que un candidato sea enlazado con 'War' o 'God' la distancia de edición tendrá que ser 0, puesto que son nombres muy cortos e incluso una distancia de edición de 1 añadiría ruido como 'dog', 'Got', 'warm' o 'ware'. Nombres que tengan varias palabras, como 'Mr. Anderson' y 'Jane Austen', se comparan palabra a palabra con los nombres de los personajes canon, y se escoge la menor distancia de edición.
+Usando la base de datos es sencillo comprobar si un personaje pertenece al canon simplemente observando si su nombre o parte de su nombre coincide con el nombre o algún apodo de un personaje canon. Para no pasar por alto posibles erratas cometidas por los autores al escribir, se considera que dos nombres coinciden cuando la distancia de edición \cite{levenshtein_1966} entre ellos es menor que una distancia máxima, cuyo valor se depende de lo largos que sean los nombres. Por ejemplo, un candidato a personaje llamado 'Azriaphale' será enlazado con el personaje canon 'Aziraphale', mientras que para que un candidato sea enlazado con 'War' o 'God' la distancia de edición tendrá que ser 0, puesto que son nombres muy cortos e incluso una distancia de edición de 1 añadiría ruido como 'dog', 'Got', 'warm' o 'ware'. Nombres que tengan varias palabras, como 'Mr. Anderson' y 'Jane Austen', se comparan palabra a palabra con los nombres de los personajes canon, y se escoge la menor distancia de edición.
 
 El resultado final es un diccionario que incluye el nombre del personaje, el identificador numérico de su personaje canon (si lo tiene) y su número de menciones. Un ejemplo se puede observar en la figura \ref{fig:nerextract_tagger}.
 
@@ -503,7 +535,7 @@ La decisión de incluir CoreNLP en el proyecto está motivada por la posibilidad
 Esto hace que CoreNLP sea una un complemento atractivo al NERtagger desarrollado en la sección anterior, ya que además del nombre del personaje también recoge información de sus pronombres, posibilitando identificar su género y llevar una cuenta más precisa de cuántas veces se menciona un personaje concreto en el texto (incluso aunque la mención sea sólo un pronombre como \textit{he}). En esta sección se explica cómo utilizar todas estas funciones, además de los metadatos a nuestra disposición, para identificar y extraer el nombre y el género de los personajes presentes en un texto. Además, puesto que la intención del programa es que el fanfic se pueda comparar con el texto original en el que se basa, por cada personaje se identificará si aparece en la obra original o es un añadido del autor fan.
 
 La idea básica para la extracción de personajes es buscar tanto las menciones de entidad como las de correferencia (en particular, las menciones pronominales y propias).
-Como se explica en su \href{https://github.com/stanfordnlp/stanza/blob/master/doc/CoreNLP.proto}{documentación}, CoreNLP tiene dos tipos de menciones:
+Como se explica en su \href{https://github.com/stanfordnlp/stanza/blob/master/doc/CoreNLP.proto}{documentación}\footnote{https://github.com/stanfordnlp/stanza/blob/master/doc/CoreNLP.proto}, CoreNLP tiene dos tipos de menciones:
 \begin{itemize}
 	\item \textit{NERMention}, para las menciones relacionadas con identificación de entidades. Hay varios tipos, pero este proyecto se utiliza sobretodo las menciones de tipo 'PERSON'. Cada mención tiene un entityMentionIndex que la identifica de forma única, y además también tiene un canonicalEntityMentionIndex que identifica a la entidad particular a la que hace referencia (de modo que si una entidad se llama John Smith, todas las menciones que contienen John irían idexadas a una única NERMention).
 	\item \textit{Mention}, para las menciones de correferencia. En este proyecto se utilizan sobretodo las de tipo 'PROPER' y 'PRONOMINAL', ya que son las que identifican nombres y pronombres. Cada una tiene un mentionID que la identifica de forma única, además de un corefClusterID y un goldenCorefClusterID que indican los clusters a los que pertenecen.
@@ -541,7 +573,7 @@ Sin embargo, los clusters de correferencia no se corresponden fácilmente con pe
 	\label{fig:solapamiento_esquema}
 \end{figure}
 
-En base a estas observaciones se pueden determinar algunas reglas para decidir qué menciones se refieren a qué personaje. Como en el proceso de canonicalización explicado en la sección \ref{sec:nerextract_corenlp}, se considera que dos nombres coinciden cuando su distancia de edición\cite{levenshtein_1966} es menor que una distancia máxima, que se fija según lo largo que sea el nombre. Así, tenemos:
+En base a estas observaciones se pueden determinar algunas reglas para decidir qué menciones se refieren a qué personaje. Como en el proceso de canonicalización explicado en la sección \ref{sec:nerextract_corenlp}, se considera que dos nombres coinciden cuando su distancia de edición \cite{levenshtein_1966} es menor que una distancia máxima, que se fija según lo largo que sea el nombre. Así, tenemos:
 
 \begin{enumerate}
 	\item Todas las NERMention que tengan el mismo \textit{canonicalEntityMentionIndex} se consideran como el mismo personaje, y el atributo \textit{entityMentionText} se considera el nombre del mismo.
@@ -580,8 +612,6 @@ En la figura \ref{fig:ner_extraction_corenlp} hay un esquema que explica de form
 \end{figure}
 
 
-\todo{explicar posibles problemas y carencias de este proceso (apodo que es un sustantivo común como "ángel", posibles confunsiones entre un Mr Smith con Ms Smith)}
-
 \subsection{Algoritmo de identificación de relaciones}
 
 Las relaciones que definen un fanfic son las amistades, los enemigos y, principalmente, los amantes. Extraer relaciones a partir de texto natural es una tarea compleja de por sí, y tratar de detectar este tipo concreto de relaciones en literatura de género puede presentar un reto mayor, puesto que las relaciones sentimentales tienden a representarse de forma implícita, de modo que el lector aprende quiénes son amigos y quiénes enemigos a través de las acciones de los personajes. Además, la ambigüedad, la heterogeneidad y la experimentación son partes naturales de cualquier proceso creativo, por lo que un conjunto de obras no representará una misma relación de forma uniforme, incluso si es entre los mismos personajes.
@@ -591,7 +621,7 @@ Encontrar una estrategia para abordar este problema requiere exploración y crea
 El extractor de relaciones de NLTK funciona mediante reglas: después de extraer las entidades nombradas del texto, se puede utilizar el módulo \textit{relextract} para dividir el texto en listas de fragmentos del texto que contienen dichas entidades, y aplicar reglas basadas en expresiones regulares que definan la relación entre las entidades. La regla puede incluir etiquetas de rol morfológico en la expresión regular, y \textit{relextract} permite filtrar por etiqueta IOB, lo que le da algo más de flexibilidad.
 
 Por ejemplo, para extraer una relación de lugar entre una organización y una localización, se puede crear una expresión regular que busque la palabra clave 'in' en el texto, e indicarle a \textit{relextract} que sólo te interesan los fragmentos de texto que tengan una entidad de tipo 'ORG' seguida de una entidad de tipo 'LOC':
-\begin{lstlisting}[style=consola, caption=Ejemplo de código que utiliza el módulo \textit{regexp} de NLTK para extraer relaciones de lugar y mostrarlas por pantalla. Adaptado del capítulo 7 de Natural Language Processing with Python\cite{bird_2012}]
+\begin{lstlisting}[style=consola, caption=Ejemplo de código que utiliza el módulo \textit{regexp} de NLTK para extraer relaciones de lugar y mostrarlas por pantalla. Adaptado del capítulo 7 de Natural Language Processing with Python \cite{bird_2012}]
 IN = re.compile(r'.*\bin\b(?!\b.+ing\b)')
 
 for doc in parsed_docs:
@@ -600,7 +630,7 @@ for doc in parsed_docs:
 
 \end{lstlisting}
 
-Existen proyectos que utilizan este módulo de NLTK para extraer relaciones como \textit{DateOfBirth} y \textit{HasParent} \cite{jose_2017}, pero es evidente que es un método poco adecuado para el tipo de proyecto que estaba intentando hacer.
+Existen proyectos que utilizan este módulo de NLTK para extraer relaciones como \textit{DateOfBirth} y \textit{HasParent}  \cite{jose_2017}, pero es evidente que es un método poco adecuado para el tipo de proyecto que estaba intentando hacer.
 
 Estos programas basados en reglas dependen de localizar palabras claves en el texto, y aunque existen palabras clave para identificar relaciones sociales (\textit{"love"}, \textit{"kiss"}, \textit{"hug"}, \textit{"friend"}, \textit{"kill"}, \textit{"hate"}, etc), lo cierto es que la naturaleza de la expresión literaria hace que este método, incluso a simple vista, parezca bastante ingenuo. No sólo es perfectamente posible expresar amor, amistad y odio sin usar "palabras clave" asociadas con dichos sentimientos, sino que en un texto literario raramente se escribe explícitamente \textit{Romeo loved Juliette}, si no que es más normal encontrar estructuras como \textit{'I love you', said Romeo}. En una frase así, no se menciona explícitamente a Julieta, pero pero un lector humano sabe si se refiere a ella por el contexto de la escena. Pero un programa que únicamente se preocupa de las etiquetas IOB de una frase no será capaz de unir ese \textit{you} con Julieta (ni, ya puestos, el \textit{I} con Romeo).
 
@@ -659,7 +689,9 @@ Además del código necesario para crear el modelo KMeans y procesar los daños,
 	\label{fig:kmeanresult}
 \end{figure}
 
+
 \footnotetext{https://stackoverflow.com/questions/57626286/how-to-plot-text-clusters}
+
 Los resultados no son muy buenos. Aunque los términos de cada cluster parecen prometedores, ninguna métrica sube del 0.1, lo que indica que las categorías del clustering son sólo un poco mejores que haberlas asignado al azar, y que hay mucho solapamiento entre clusters.
 
 Puesto que para crear el modelo he utilizado datos filtrados a propósito para modelar cada categoría tan bien como fuera posible, con la esperanza de poder usarlo como posible semilla para un sistema más general, esto supone un gran problema.
@@ -822,7 +854,7 @@ Para resolver todas estas preguntas y alcanzar un programa funcional fui pasando
 
 Una vez procesado todo el RFE dataset y completados los CSV, utilicé la información almacenada ellos para realizar varias técnicas de análisis de texto natural, con la esperanza de hallar algún patrón, bigrama o palabra significativa que me ayudara a identificar relaciones entre personajes.
 
-En primer lugar quise buscar si había algún verbo que fuera característico de cada dataset, por lo que extraje y lematicé los verbos de cada frase usando las herramientas de NLTK. En la primera pasada los verbos más repetidos en todos los dataset fueron verbos muy comunes en inglés, como 'say', 'go', 'get', 'make', 'look', etc. de modo que para eliminar ruido hice otro análisis eliminándolos. Para hacer más fácil la comparación y a modo de ejemplo, se muestra la distribución de frecuencias de los verbos en el dataset de romance en la figura \ref{fig:r_verbs}-\ref{fig:r_verbs_removed}, el resto de distribuciones se puede consultar en el anexo \refToAnexoDatosRFE.
+En primer lugar quise buscar si había algún verbo que fuera característico de cada dataset, por lo que extraje y lematicé los verbos de cada frase usando las herramientas de NLTK. En la primera pasada los verbos más repetidos en todos los dataset fueron verbos muy comunes en inglés, como 'say', 'go', 'get', 'make', 'look', etc. de modo que para eliminar ruido hice otro análisis eliminándolos. Para hacer más fácil la comparación y a modo de ejemplo, se muestra la distribución de frecuencias de los verbos en el dataset de romance en la figura \ref{fig:r_verbs}-\ref{fig:r_verbs_removed}.
 
 
 \begin{figure}[h!]
@@ -977,7 +1009,7 @@ Desafortunadamente, ni siquiera eliminar los verbos más frecuentes parecía dar
 
 En un último intento de buscar algún patrón, decidí volver extraer la distrución de frecuencia de verbos, bigramas y trigramas, pero esta vez utilizando únicamente las frases en las que se mencione a dos personajes en concreto, en vez de todas las frases del relato. Estos personajes son elegidos de antemano, utilizando los identificadores propocionados por CoreNLP (tal y como se ve en la tabla \ref{table:fic_sentences}).
 
- La distribución de frecuencias se puede ver en la figura \ref{fig:r_verb_freq_in_character_mentions}, el resto de resultados se pueden consultar en el anexo \refToAnexoDatosRFE.
+ La distribución de frecuencias se puede ver en la figura \ref{fig:r_verb_freq_in_character_mentions}.
  
  Sobra decir que los resultados tampoco fueron muy prometedores. Por tanto dejo para un trabajo la parte de extracción de relaciones, y el resto del proyecto se centra en la extracción de personajes nombrados y determinación de su género.
 
@@ -1035,8 +1067,6 @@ Las etiquetas de personaje, como el título, son metadatos del fanfic que se ext
 Los personajes detectados por NERTagger y CoreNLP serán algo distintos, pero por lo general las coincidencias son bastante consistentes. Las menciones de los personajes de NERTagger siempre serán más bajas que los de CoreNLP, ya que éste último no sólo cuenta cuando al personaje se le menciona por el nombre, sino que también puede detectar menciones puramente pronominales.
 
 Las menciones de CoreNLP aparecerán fraccionadas según género, de modo que un personaje puede tener 100 menciones masculinas, 3 femeninas, 0 neutras y 12 desconocidas (cuando no ha sido posible asignar ningún género a dicha mención). La intención de mostrar estos datos así es poder cuantificar cómo de seguro está el programa sobre el género de un personaje.
-
-\missingfigure{fig:pantallazo ejecucion main program}
 
 
 
@@ -1375,17 +1405,38 @@ Como se puede ver en los metadatos de la figura \ref{fig:eval4_metadata}, ambos 
 \cleardoublepage
 
 \section{CONCLUSIONES}
-En este trabajo se ha desarrollado un sistema de extracción y análisis de textos de internet, utilizando técnicas de \textit{scraping} y procesado de texto natural. De los objetivos originales, se ha conseguido con éxito extraer un conjunto de relatos de \href{http://wwww.archiveofourown.org}{Archive of Our Own} que sirve como corpus para algoritmos de procesado de texto, así como el desarrollo de un algoritmo de identificación de entidades capaz de identificar personajes en estos textos. No se ha conseguido encontrar un algoritmo que identifique relaciones entre estos personajes, pero mientras se buscaba se desarrolló un segundo algoritmo de identificación de personajes utilizando Stanford CoreNLP, que complementa el primer algoritmo explotando su función de correferencia entre nombres y pronombres para hallar más menciones y posibles apodos de un personaje, además de dilucidar el género del personaje.
 
-%\begin{enumerate}
-%	\item Extraer un conjunto de relatos alojados en \href{http://wwww.archiveofourown.org}{Archive of Our Own} sobre los que utilizar técnicas de extracción de información.
-%	\item Crear módulos y herramientas para manejar y extraer información de los archivos HTML de AO3.
-%	\item Organizar estos archivos de alguna forma y procesarlos para que sean comprensibles para los algoritmos de análisis de texto.
-%	\item Desarrollar un algoritmo que identifique personajes en textos de ficción.
-%	\item Desarrollar un algoritmo que identifique relaciones de carácter social entre dichos personajes.
-%	\item Crear un programa que utilice ambos algoritmos para extraer los personajes y relaciones en los relatos recogidos de AO3, y mostrarlas al usuario.
-%\end{enumerate}
 
+En este trabajo se ha desarrollado un sistema de extracción y análisis de textos de internet, utilizando técnicas de \textit{scraping} y procesado de texto natural.
+
+En primer lugar se ha creado un corpus de relatos pertenecientes al género fanfiction a partir de los textos alojados en la web \href{https://www.archiveofourown.org/}{Archive of our Own}, y se ha utilizado este corpus para realizar pruebas, entrenamientos y experimentos que ayudaron en el desarrollo de un sistema de procesado de texto natural. Se han seleccionado textos en inglés que se basaran en el libro \textit{Good Omens} (Neil Gaiman y Terry Pratchett, 1990) y que tuvieran una cantidad mínima de palabras para asegurar que la obra estaba compuesta principalmente por texto (en vez de imágenes o audio), y se ha desarrollado un sistema de scrapers capaces de extraer los relatos de la web que tuvieran esas características. El resultado ha sido un corpus compuesto por archivos HTML para cuyo acceso y manejo se han desarrollado diversos objetos y funciones en python, encapsuladas en un módulo que he llamado \textit{fanfic\_util}. Además, aprovechando los metadatos de los relatos del corpus se han creado tres datasets, cada uno consistente en relatos de un sólo capítulo centrados en romance, amistad y enemistad, respectivamente. Estos datasets se utilizan para experimetnos durante la búsqueda de estrategias para la identificación de relaciones.
+
+En el procesado de texto natural se han creado dos algoritmos de identificación de entidades, uno basado en naïve Bayes y otro en un modelo de regresión logística. Ambos fueron desarrollados con la librería NLTK de python (en conjunto con el módulo \textit{megam} en el caso del modelo de regresión logística), y entrenados con el corpus \textit{Groninger Meaning Bank}, que fue creado expresamente para entrenar algoritmos para identificar entidades en textos en inglés. La versión con el modelo de regresión logística consiguió mejores resultados, como se puede ver en la figura \ref{fig:ner_evaluation}, con lo que se decide utilizar esta versión bajo el nombre \textit{NER\_tagger}.
+
+Para la parte de extracción de relaciones del procesado de texto natural, se han explorado varias estrategias. Usando \textit{sci-kit learn} y \textit{gensim} se han creado algoritmos de clustering y un modelo LDA, con la esperanza de que fueran capaces de clasificar correctamente a qué dataset pertenecía cada relato (romance, amistad o enemistad). La idea era que si podían clasificarlos correctamente, las características más relevantes de cada cluster o del modelo podrían utilizarse para refinar el algoritmo y crear una versión que pudiese identificar romance, amistad o enemistad incluso en textos largos donde no fueran el tema central, pero lamentablemente no se obtuvieron resultados mucho mejores que el azar.
+
+La última estrategia para identificar relaciones consistía en explotar la correferencia pronominal en frases donde se nombraran a los personajes, utilizando para ello el servidor de Stanford CoreNLP mediante su biblioteca para python, \textit{Stanza}. La idea era identificar todas las menciones de un personaje en un texto, incluso aquellas que sólo se les mencionaran por el pronombre (\textit{he, she, they}), aumentando por tanto la cantidad de frases relevantes para el algoritmo. CoreNLP tiene, entre otras funciones, la capacidad de resolver esta correferencia pronominal en textos, por lo que se ha creado un conjunto de funciones para enviar peticiones de forma sencilla y controlada a su servidor, sin inundarlo, y manejar errores de red de forma que se pierda la menor de cantidad posible. Todas estas funciones han sido encapsuladas en un módulo que he llamado \textit{corenlp\_util}. Mediante este módulo los relatos de los datasets de romance, amistad y enemistad han sido procesados y etiquetados, y los resultados se han guardado en un archivo con el que se realizaron aún más experimentos para buscar alguna forma de identificar relaciones entre entidades. Estos últimos experimentos consistieron en buscar patrones relacionados con los verbos, adjetivos, bigramas o trigramas más frecuentes en las frases que mencionasen al menos a dos personajes, pero tampoco se pudo encontrar ningún patrón que fuese más relevante que el azar.
+
+Decidí entonces dejar el desarrollo de un algoritmo de identificación de relaciones sociales entre personajes para el futuro, y me centré en el algoritmo de identificación de personajes. Ya tenía uno, basado en regresión logística, pero como durante el desarrollo de las pruebas con CoreNLP para realizar correferencia también tuve que manejar las funciones de CoreNLP para identificación de entidades, esto resultó en un segundo algoritmo de identificación de personajes que he llamado \textit{CoreNLPDataProcessor}, encapsulado también dentro del módulo \textit{corenlp\_util}. A diferencia de la versión basada en un modelo de regresión logística, esta versión puede identificar no sólo el nombre sino también el género del personaje, además de aprovechar la resolución de correferencia para identificar más menciones.
+
+El resultado final por tanto, ha sido un programa que he llamado \textit{fic\_character extractor}, que utiliza ambos algoritmos de identificación de personajes para extraer información de un texto. Este programa ofrece al usuario la posibilidad de extraer personajes de cualquiera de los relatos del corpus creado en la primera parte del proyecto, dando la posibilidad de analizar uno al azar o introducir el identificador numérico de un relato particular. Entonces, el programa utiliza tanto \textit{NER\_tagger} como \textit{CoreNLPDataProcessor} para analizar el texto y mostrar al usuario el nombre de los personajes, si son canon o no, el número de menciones y, en el caso de este último, su género.
+
+ De los objetivos originales expuestos en la introducción (\ref{sec:intro}), se han logrado con éxito cuatro de los seis objetivos, uno que ha fallado y el último, que se ha logrado en parte:
+\begin{enumerate}
+	\item Se ha conseguido extraer un conjunto de relatos de la web \href{http://wwww.archiveofourown.org}{Archive of Our Own} sobre los que utilizar técnicas de extracción de información, mediante la creación de dos scrapers que seleccionan y descargan los archivos allí alojados.
+	\item Se ha creado el módulo \textit{fanfic\_util} para manejar y extraer información de los archivos HTML de AO3, de modo que los algoritmos de procesado de texto natural pueden acceder tanto al texto puro como a los metadatos de cada archivo de forma simple. 
+	\item Utilizando las herramientas de \textit{fanfic\_util}, se han creado tres datasets sobre los que realizar pruebas y experimentos.
+	\item Se han desarrollado dos algoritmos que identifican personajes en textos de ficción, uno basado en un modelo de regresión logística creado con NLTK y \textit{megam} y entrenado con \textit{Groningen Meaning Bank} para identificar entidades en inglés, y otro que aprovecha las capacidades para identificar entidades de CoreNLP, a través de la biblioteca \textit{Stanza}. Además de identificar sus nombres, también pueden identificar si los personajes son originales del autor fan o si ya existían en la obra original.
+	\item No se ha conseguido desarrollar un algoritmo de identificación de relaciones entre entidades, aunque se han probado diversas técnicas no-supervisadas y las capacidades de resolución de correferencia de CoreNLP.
+	\item No se ha conseguido crear un programa que utilice tanto identificación de entidades y relaciones para los personajes y relaciones en los relatos recogidos de AO3, y mostrarlas al usuario. Sin embargo, sí se ha conseguido un programa que utiliza dos métodos de identificación de entidades para extraer los personajes de un texto, así como información relevante sobre los mismos (número de menciones, género, si son canon). Por lo tanto, este objetivo se ha conseguido parcialmente.
+
+\end{enumerate}
+
+El objetivo final de este proyecto, que era el desarrollo de una herramienta para ayuda al análisis literario, ha quedado conseguido tan sólo en parte. La identificación automática de los personajes de un conjunto de relatos puede ser muy útil para saber qué personajes son más populares entre los fans y pueden dar pie a teorías interesantes según si se corresponden o no con los protagonistas de la obra original, o dividiendo la comunidad fan a estudiar en subcategorías: si se tiene datos sobre los autores, se podría buscar si todos los personajes son populares de forma homogénea en toda la comunidad o si hay algunos que son más populares entre los hombres, si algunos son más populares entre los escritores que además de ser fans de esta obra lo son también de \textit{Harry Potter}, etc. Como el programa final también arroja datos sobre cosas como el género de los personajes y si son canon, un investigador podría utilizar estos datos para explorar, por ejemplo, si hay tendencias entre los fans a interpretar a ciertos personajes con un género diferente al de la obra original, o qué tipos de autores tienen más tendencia a escribir personajes originales. Incluso, se podrían investigar qué personajes no originales se vuelven populares en toda la comunidad, en vez de quedar limitado a los fanfic de un único autor.
+
+Sin embargo, la falta de información sobre las relaciones entre personajes limita mucho los análisis posibles. Sin tener una idea de qué personajes tienen relación de enemistad o romances, es difícil dilucidar qué personajes son interpretados como los "buenos" o los "malos" de una historia, con lo que un investigador tendría que leer los relatos en más profundidad para sacar una conclusión sobre las tendencias de los fans relacionadas con la redención o corrupción de personajes, y sobre la moralidad que les transmiten ciertos arcos o características de personajes.
+
+Para consultar cualquier aspecto del código e implementación del proyecto, se puede visitar el repositorio del mismo en \href{https://www.github.com/mariaGnlz/Fanfic_ontology}{GitHub} (Usuario: \textit{mariaGnlz}, repositorio: \textit{Fanfic\_ontology}).
 
 Durante todo este proceso he tenido que aprender las bases de la extracción de información, técnicas de \textit{machine learning} y cómo crear, organizar y preprocesar un conjunto de archivos para que su información sea comprensible para los algoritmos que los utilizan como entrada. En cierto aspecto este proyecto me ha hecho perderle el miedo al procesado del lenguaje humano, que siempre había visto como algo extremadamente complicado, y aunque ciertamente no es una tarea trivial, he podido ver de primera mano que existen métodos bien establecidos para la extracción de información y que pueden ser aprendidos y entendidos. El modelo de regresión logística utilizado en la sección \ref{sec:nerextract_tagger}, por ejemplo, me llevó a repasar funciones y gradientes para poder entender su base matemática, y me di cuenta de que sí, es complejo, pero no es magia.
 
@@ -1393,24 +1444,3379 @@ Mientras me encontraba con que la parte relacionada con el procesado de lenguaje
 
 El diseño de ciertas del proyecto también es algo que hubiese planificado mejor; la clase Fanfic de la sección \ref{sec:limpiezadatos} acaba siendo la unidad de información básica, pero se desarrolló orgánicamente a medida que el proyecto avanzaba, especialmente mientras buscaba alguna forma de aprovechar las funciones de CoreNLP para identificar relaciones en el texto (ya que es la parte en la que los metadatos de un fanfic adquirieron más importancia). En retrospectiva, crear una clase que encapsule todas las características de un fanfic tenía mucho sentido para el proyecto, y pensar que simplemente con el texto puro de cada obra iba a ser suficiente fue un poco ingenuo. Todo el módulo \textit{fanfic\_util} podría haberse beneficiado de haber planificado la clase Fanfic desde el principio, por no hablar de ahorrarme trabajo.
 
+\subsection{Trabajos futuros}
 
 Un añadido evidente para este proyecto sería mejorar el manejo de archivos HTML, introducidos en una base de datos que facilite su filtrado según sus etiquetas o autor o cualquiera de sus metadatos, ya que ahora mismo no tiene un mecanismo de búsqueda generalizado, y los \textit{datasets} fueron creados mediante comandos de python en la terminal. Otra mejora es generalizar la canonicalización de personajes. Este proyecto utiliza una una base de datos con los personajes de \textit{Good Omens} para decidir la canonicidad de los personajes de un fanfic dado, por lo que ahora mismo sólo los fanfics de \textit{Good Omens} pueden tener sus personajes marcados como canon. Sin embargo, se podría crear un método que consultara el título de la obra original en los metadatos del fanfic y comprobase si hay alguna wiki dedicada a esta obra en internet, y usar la página de personajes de dicha wiki para decidir qué personajes del fanfic son canon o no. De esta manera el proceso de canonicalización funcionaría para cualquier fanfic cuya obra original tenga una wiki.
 
-El proceso de consolidación de menciones en personajes también podría mejorarse, ya que ahora mismo es un proceso basado en la distancia de edición de los nombres y, en el caso del extractor de personajes que utiliza CoreNLP (\ref{sec:nerextract_corenlp}), también en el género. Un programa más sofisticado podría utilizar más información del contexto de la mención para captar más características de un personaje particular (títulos, nombre y apellidos, especie, país); en otras palabras, adoptar una estrategia que se centre en los personajes como entidad\cite{wick_2009} que trate de rellenar una "ficha" para cada candidato a personaje podría suponer una mejora para todo el proceso.
+El proceso de consolidación de menciones en personajes también podría mejorarse, ya que ahora mismo es un proceso basado en la distancia de edición de los nombres y, en el caso del extractor de personajes que utiliza CoreNLP (\ref{sec:nerextract_corenlp}), también en el género. Un programa más sofisticado podría utilizar más información del contexto de la mención para captar más características de un personaje particular (títulos, nombre y apellidos, especie, país); en otras palabras, adoptar una estrategia que se centre en los personajes como entidad \cite{wick_2009} que trate de rellenar una "ficha" para cada candidato a personaje podría suponer una mejora para todo el proceso.
+
+Para continuar con los esfuerzos de identificación de relaciones sociales se podría explorar el entrenar un modelo de aprendizaje supervisado, aprovechando las etiquetas de los metadatos de un fanfic para etiquetar la relación principal de un relato. También se podrían explorar técnicas de aprendizaje no supervisado distintas a las ya vistas, como las redes neuronales \cite{peng_17}, que pueden acceder a una mayor cantidad de contexto a la hora de decidir si existe una relación entre dos entidades particulares.
 
 De cara al usuario, una mejora sería modificar la entrada del programa de modo que acepte un link de una obra de AO3, evitando así que tenga que descargar el archivo y configurar el \textit{path} para que el programa lo encuentre.
 
-
 \cleardoublepage
 \section{REFERENCIAS}
-
-
-
-
-\bibliographystyle{alpha}
+%\bibliographystyle{alpha}
+\bibliographystyle{apalike}
 \singlespacing
-%\bibliography{ejemplo}
 \bibliography{bib_tfg}
+
+
+\cleardoublepage
+
+\appendix
+\section{ANEXO: CÓDIGO DEL SISTEMA DE SCRAPERS}
+\label{an:scrapers}
+\subsection{link\_scraper}
+\begin{lstlisting}[style=consola]
+
+#!/bin/bash/python3
+
+import requests, time
+from bs4 import BeautifulSoup
+
+def check_for_text(blurb): #returns true if the fic contains at least 40 words per chapter on average
+contains_text = True
+
+#print(blurb.find('dd', class_='words').text) #debug
+num_words = (blurb.find('dd', class_='words').text).replace(',','') #take away the comma that marks the thousands
+
+if num_words == '': contains_text = False #there's a bug in AO3 that makes some works appear with no word count (not '0'; it doesn't show a number at all)
+else:
+num_words=int(num_words) 
+
+if num_words == 0: contains_text = False
+else:
+num_chapters = int(((blurb.find('dd', class_='chapters').text).split('/'))[0]) #chapters are displayed as '# of current chapters / total # of chapters', we only want the current chapters
+#print(num_words/num_chapters) #debug
+
+if (num_words/num_chapters) < 40: 
+contains_text = False
+
+
+#if not contains_text: print('in: ',((blurb.find('h4')).find('a'))['href']) #debug
+return contains_text
+
+
+def get_work_links(page_link):
+page = requests.get(page_link) #get first page of the archive
+soup = BeautifulSoup(page.content, 'html.parser')
+
+#figure out how many pages in total there are
+page_list = (soup.find(class_='pagination actions')).find_all('li')
+number_of_pages = int(page_list[len(page_list)-2].text) #there are number_of_pages pages in total
+
+#get work links in all pages
+work_links = []
+discarded_links = []
+current_page = 1
+while current_page < number_of_pages:
+blurbs = soup.find_all(class_='work blurb group')
+#print('current page: ',current_page) #debug
+
+for blurb in blurbs:
+#filter out fics that don't contain text
+contains_text = check_for_text(blurb)
+
+work_id = (blurb.find('h4')).find('a')
+if contains_text: work_links.append('https://archiveofourown.org'+work_id['href'])
+else: 
+discarded_links.append('https://archiveofourown.org'+work_id['href'])
+#print('out:', work_id['href'])	
+#end 'for blurb' loop
+
+current_page +=1
+next_page_link = page_link.replace('&page=1&','&page='+str(current_page)+'&')
+while True: #wait out if too many requests
+page = requests.get(next_page_link)
+
+if page.status_code == 429:  #Too Many Requests
+print('Sleeping...')
+time.sleep(120)
+print('Woke up')
+
+else: break
+
+soup = BeautifulSoup(page.content, 'html.parser')
+
+#end while loop
+
+#get work links in last page (the loop won't catch it)
+blurbs = soup.find_all(class_='work blurb group')
+
+for blurb in blurbs:
+#filter out fics that don't contain text
+contains_text = check_for_text(blurb)
+
+work_id = (blurb.find('h4')).find('a')
+if contains_text == True: work_links.append('https://archiveofourown.org'+work_id['href'])
+else: discarded_links.append('https://archiveofourown.org'+work_id['href'])
+#end 'for blurb' loop
+print('Current page: ',current_page) #debug
+return work_links, discarded_links
+
+
+start = time.time()
+work_links, discarded_links = get_work_links('https://archiveofourown.org/tags/Good%20Omens%20-%20Neil%20Gaiman%20*a*%20Terry%20Pratchett/works?commit=Sort+and+Filter&page=1&utf8=%E2%9C%93&work_search%5Bcomplete%5D=&work_search%5Bcrossover%5D=&work_search%5Bdate_from%5D=&work_search%5Bdate_to%5D=&work_search%5Bexcluded_tag_names%5D=Fanart%2CPodfic&work_search%5Blanguage_id%5D=en&work_search%5Bother_tag_names%5D=&work_search%5Bquery%5D=&work_search%5Bsort_column%5D=revised_at&work_search%5Bwords_from%5D=&work_search%5Bwords_to%5D=')
+end = time.time()
+
+print('Time: ',(end-start)/60,' mins','\nNumber of fics: ',len(work_links),'\nDiscarded links: ',len(discarded_links)) #debug
+
+fic_work_links = open('./fic_work_links.txt', 'w')
+
+for link in work_links:
+fic_work_links.write(link+'\n')
+
+fic_work_links.close()
+
+discarded_works = open('./discarded_works.txt', 'w')
+for link in discarded_links:
+discarded_works.write(link+'\n')
+
+discarded_works.close()
+
+
+
+\end{lstlisting}
+
+\cleardoublepage
+
+\subsection{file\_scraper}
+
+\begin{lstlisting}[style=consola]
+#!/bin/bash/python3
+
+import requests, time, sys
+import urllib.request
+from urllib.error import URLError, HTTPError, ContentTooShortError
+from bs4 import BeautifulSoup
+
+### VARIABLES ###
+HTML_FICS_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_fics/html/'
+HTML_FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
+DELTED_FICS = []
+
+### FUNCTIONS ###
+def get_deleted_fics():
+f = open(HTML_FICS_PATH+'deleted.txt', 'r')
+lines = [line[:-1] for line in f.readlines()]
+f.close()
+
+index_lines = [line.split(' ') for line in lines if lines.index(line)%2 != 0]
+DELETED_FICS = [int(line[len(line)-1]) for line in index_lines]
+
+return DELETED_FICS
+
+def get_work_links_from_file():
+link_file = open('fic_work_links.txt', 'r')
+
+work_links = [line[:-1] for line in link_file.readlines()] #take out the \n at the end of the line
+link_file.close()
+
+return work_links 
+
+def write_out_file(link, reason, index):
+out_file = open(HTML_FICS_PATH+'deleted.txt', 'a')
+out_file.write(link+'\nReason: '+reason+' Index: '+str(index)+'\n')
+out_file.close()
+
+
+def get_html_link(page):
+soup = BeautifulSoup(page.content, 'html.parser')
+
+
+if soup.find('title').text == '\n          New\n          Session\n        |\n        Archive of Our Own\n    ':
+#the work is private and shouldn't be downloaded
+html_link=''
+
+else:				
+all_links = (soup.find(class_='download')).find_all('a')
+html_link = all_links[len(all_links)-1]
+
+return html_link
+
+
+def download_works_in_range(work_links, start, end):
+num_deleted = 0
+
+i = start
+while i<end:
+deleted = False
+
+while True:		
+page = requests.get(work_links[i])
+
+if page.status_code == 429: #Too Many Requests
+print('Sleeping...')
+time.sleep(120)
+print('Woke up')
+
+elif page.status_code ==404: #Page Not Found
+print('Deleted work at '+work_links[i])
+deleted = True
+num_deleted += 1
+write_out_file(work_links[i], 'deleted', i)
+
+break
+
+else: break
+
+if not deleted: #only continue with iteration if the work is still online
+
+html_link = get_html_link(page)
+
+if html_link == '': #this work is private
+num_deleted += 1
+write_out_file(work_links[i], 'private', i)
+print('Private work at '+work_links[i])
+
+else:
+download_link = 'https://archiveofourown.org'+html_link['href']
+#print(download_link) #debug
+
+print('Downloading ',i,'of ',end,'. . .')
+
+try:
+fanfic_path, _ = urllib.request.urlretrieve(download_link, HTML_FICS_PATH+'gomensfanfic_'+str(i)+'.html')
+#print(fanfic_path) #debug
+
+#Write path to fanfic on html_fic_paths.txt
+html_list = open(HTML_FIC_LISTING_PATH, 'a')
+html_list.write(fanfic_path+'\n')
+html_list.close()
+
+except HTTPError as e:
+print('HTTPError ',e.code,': ',e.reason,'\nIn fanfic number ',i)
+if e.code == 429: #Too Many Requests
+i-=1 #Will re-attempt iteration from the beginning
+
+except ContentTooShortError as e:
+print('ContentTooShortError ',e.code,':',e.reason,'\nIn fanfic number ',i)
+write_out_file(work_links[i], e.reason, i)
+
+except URLError as e:
+print('URLError ',e.code,': ',e.reason,'\nIn fanfic number ',i)
+write_out_file(work_links[i], e.reason, i)
+
+except (IOError, OSError) as e:
+print('IOError/OSerror ',e.errno,': ',e.strerror,'\nIn fanfic number ',i)
+write_out_file(work_links[i], e.strerror, i)
+
+except Error as e:
+print('Error ',e.errno,': ',e.strerror,'\nIn fanfic number ',i)
+write_out_file(work_links[i], e.strerror, i)
+
+
+#end if not deleted
+
+i+=1
+#end while loop
+
+num_fics = len((open(HTML_FIC_LISTING_PATH, 'r')).readlines())
+return num_deleted, num_fics #return number of deleted fics and fics successfully downloaded
+
+
+### M A I N ###
+
+work_links = get_work_links_from_file()
+num_fics = len((open(HTML_FIC_LISTING_PATH, 'r')).readlines())
+num_deleted = len(get_deleted_fics())
+
+if len(sys.argv) == 3:
+start_index = int(sys.argv[1])
+end_index = int(sys.argv[2])
+#print(type(start_index), end_index) #debug
+
+start = time.time()
+new_deleted, new_fics = download_works_in_range(work_links, start_index, end_index)
+end = time.time()
+
+print('Successfully downloaded ',(new_fics-num_fics),' fanfics in ',(end-start)/60,' minutes to '+HTML_FICS_PATH)
+print('Deleted fics: ',new_deleted, ', total deleted fics: ', new_deleted+num_deleted)
+
+elif len(sys.argv) == 2:
+if sys.argv[1] == 'd':
+print('Downloaded ',num_fics,' out of ',len(work_links),' total')
+print('Deleted fics: ',num_deleted)
+latest_path = (open(HTML_FIC_LISTING_PATH, 'r')).readlines()
+print('Path of latest download: ', latest_path[len(latest_path)-1])
+
+else: print('Error. Correct usage: check_correct.py \ncheck_correct.py [start_index] [end_index] \ncheck_correct_py d')
+
+
+elif len(sys.argv) == 1:	
+start = time.time()
+#num_deleted, num_fics = download_works_in_range(work_links, 5147, 6000)
+#num_deleted, num_fics = download_works_in_range(work_links, 0, 10) #debug
+end = time.time()
+
+print('Successfully downloaded ',(new_fics-num_fics),' fanfics in ',(end-start)/60,' minutes to '+HTML_FICS_PATH)
+print('Deleted fics: ',new_deleted, ', total deleted fics: ', new_deleted+num_deleted)
+
+else:
+print('Error. Correct usage: \ncheck_correct.py \ncheck_correct.py [start_index] [end_index] \ncheck_correct_py d')
+
+\end{lstlisting}
+
+\cleardoublepage
+\section{ANEXO: CÓDIGO DE fanfic\_util}
+\begin{lstlisting}[style=consola]
+#!/usr/bin/bash/python3
+
+from bs4 import BeautifulSoup
+from stanza.server import Document
+
+import string, html2text, sys
+
+
+### VARIABLES ###
+FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
+#TXT_LISTING_PATH = '/'
+#SsAVE_TXT_PATH = '/home/maria/Documents/pruebasNLTK/trial_e_fics/'
+#TXT_LISTING_PATH = '/home/maria/Documents/pruebasNLTK/trial_e_txt_paths.txt'
+
+ERRORLOG = '/home/maria/Documents/Fanfic_ontology/TFG_logs/fanfic_util_errorlog.txt'
+
+### FUNCTIONS ###
+#def clean_text(text, chapter_titles):
+def clean_text(text, num_chapters, num_fic):
+headers_and_footers = ['See the end of the chapter for more notes', 'See the end of the chapter for notes', 'Summary', 'Chapter Summary', 'Chapter Notes', 'Notes', 'Chapter End Notes']
+#headers_and_footers.extend(chapter_titles)
+if num_chapters == 0: num_chapters += 1
+
+errorstr = '?\n'
+chapters = []
+for i in range(0,num_chapters):
+header1_index = text.find('## ')
+
+if header1_index < 0: #esto no deberia pasar
+print("Error on fanfic ", num_fic,": menos de 0")
+errorstr = "menos de 0\n"
+else:
+header2_index = text[header1_index+3:].find('## ')
+chapters.append(text[header1_index:header2_index])
+
+#print(header1_index, header2_index) #debug
+
+text = text[header2_index:]
+#print(text[:100]) #debug
+#print("\n N E X T  C H A P T E R") #debug
+
+chapter_text = ''
+clean_chapters = []
+for chapter in chapters:
+for line in chapter.splitlines():
+if line not in headers_and_footers and '> ' != line[:2]: chapter_text += line+'\n'
+
+clean_chapters.append(chapter_text)
+chapter_text = ''
+
+if len(clean_chapters) != num_chapters: #something went wrong
+print("Chapters of fic number ", num_fic, " were improperly processed") #debug
+f = open(ERRORLOG, 'a')
+ficid = "Num fic: "+str(num_fic)+"\n"
+ficchapters = str(num_chapters)+"\n" 
+f.write(ficid)
+f.write(ficchapters)
+f.write(text[:10000])
+f.write("=====================================================\n")
+f.close()
+
+
+#print(fic_text[:10000]) #debug
+
+return clean_chapters
+
+def remove_metadata(text):
+index1 = text.find('See the end of the chapter for more notes')
+index2 = text.find('See the end of the chapter for notes')
+index3 = text[3:].find('## ')
+chapter_header_indexes = [index1, index2, index3]
+
+#print(text[:1000]) #debug
+
+while -1 in chapter_header_indexes: chapter_header_indexes.remove(-1) #Remove unvalid indexes
+
+fic_text = ''
+
+if len(chapter_header_indexes) == 1: fic_text = text[chapter_header_indexes[0]:]
+else:
+index = min(chapter_header_indexes)
+fic_text = text[index:]
+
+
+#print(fic_text[:1000]) #debug
+#print(chapter_header_index1, chapter_header_index2, chapter_header_index3) #debug
+
+
+""" #debug
+f = open('no_metadata.txt', 'w')
+f.write(fic_text)
+f.close()
+"""
+
+return fic_text
+
+def get_chapterised_fic(path, num_fic): #Transforms the HTML file in a list of chapters (a list of str)
+page = open(path, 'r').read()
+soup = BeautifulSoup(open(path, 'r'), 'html.parser')
+
+#Get number of chapters with BeautifulSoup
+chapter_titles = ['## '+header.text for header in soup.find_all('h2', class_='heading')]
+num_chapters = len(chapter_titles)
+
+if num_chapters == 0: #this fic only has one chapter
+title = soup.find('h1').text
+chapter_titles = ['## '+title]
+
+#print(chapter_titles) #debug
+
+
+#Take HTML tags out with HTML2text
+to_text = html2text.HTML2Text()
+to_text.ignore_images = True
+to_text.ignore_links = True
+
+text = to_text.handle(page)
+
+""" #debug
+f = open('htmlfic.txt', 'w')
+f.write(text)
+f.close()
+"""
+
+#Take author notes and metadata out
+fic_text = remove_metadata(text)
+chapterised_fic = clean_text(fic_text, num_chapters, num_fic)
+
+"""
+print(len(chapterised_fic)) #debug
+for chapter in chapterised_fic: #debug
+print(chapter[:100])
+print(". . .")
+print(chapter[-100:])
+
+#debug
+f = open('text.txt', 'w')
+f.write(fic_text)
+f.close()
+"""
+
+return chapterised_fic
+
+def get_fanfics(dataset, start, end, slicing): #gets the paths to the fics, opens them
+#and stores them in chapterised form in a list of Fanfic objects
+paths_file = open(FIC_LISTING_PATH, 'r')
+fic_paths = [line[:-1] for line in paths_file.readlines()]
+paths_file.close()
+
+if slicing: fic_paths = fic_paths[start:end] #slices the list, if not all of it is required
+
+fic_list = []
+for path in fic_paths:
+num_fic=int((path.split('_')[3]).split('.')[0])
+chapterised_fic = get_chapterised_fic(path, num_fic)
+fic_list.append(Fanfic(num_fic, dataset, chapterised_fic, None, None, None))
+
+return fic_list
+
+### CLASSES ###
+
+class Fanfic():
+def __init__(self, index, dataset, chapters, annotations, characters, sentences):
+self.index = index
+self.dataset = dataset
+self.chapters = chapters
+self.annotations = annotations
+self.characters = characters
+self.sentences = sentences
+
+def set_chapters(self, new_chapters):
+self.chapters = new_chapters
+
+def get_chapter(self, index):
+return self.chapters[index]
+
+def get_string_chapters(self):
+chaps = ''
+for chapter in self.chapters: chaps += chapter+'\n'
+
+
+return chaps
+
+def set_annotations(self, ann):
+self.annotations = ann
+
+def set_characters(self, new_characters):
+self.characters = new_characters
+
+def set_sentences(self, new_sentences):
+self.sentences = new_sentences
+
+
+class FanficGetter():
+def __init__(self):
+self.dataset = 'GENERAL'
+
+def get_fanfics_in_range(self, start_index, end_index):
+fic_list = get_fanfics(self.dataset, start_index, end_index, True)
+
+
+return fic_list
+
+def get_fanfics_in_list(self):
+fic_list = get_fanfics(self.dataset, 0, 0, False)
+
+return fic_list
+def get_fanfic_in_path(self, path):
+num_fic=int((path.split('_')[3]).split('.')[0])
+chapterised_fic = get_chapterised_fic(path, num_fic)
+fic = Fanfic(num_fic, self.dataset, chapterised_fic, None, None, None)
+
+return fic
+
+def get_fic_paths_in_range(self, start_index, end_index):
+paths_file = open(FIC_LISTING_PATH, 'r')
+fic_paths = [line[:-1] for line in paths_file.readlines()]
+paths_file.close()
+fic_paths = fic_paths[start_index:end_index]
+
+return fic_paths
+
+def get_fic_paths_in_list(self):
+paths_file = open(FIC_LISTING_PATH, 'r')
+fic_paths = [line[:-1] for line in paths_file.readlines()]
+paths_file.close()
+
+return fic_paths
+
+def save_txt_fanfics(fic_list):
+for fic, path in fic_list:
+path_tokens = path.split('/')
+fic_name = path_tokens[7:][0]
+#print(fic_name)
+new_path = SAVE_TXT_PATH + fic_name[:-4] +'txt'
+
+#print(new_path) #debug
+
+f = open(new_path, 'w')
+f.write(fic)
+f.close()
+
+f = open(TXT_LISTING_PATH, 'a')
+f.write(new_path+'\n')
+f.close()
+
+def set_fic_listing_path(self, new_fic_listing):
+global FIC_LISTING_PATH
+FIC_LISTING_PATH = new_fic_listing
+
+if 'romance' in new_fic_listing: self.dataset = 'ROMANCE'
+elif 'friendship' in new_fic_listing: self.dataset = 'FRIENDSHIP'
+elif 'enemy' in new_fic_listing: self.dataset = 'ENEMY'
+elif 'explicit' in new_fic_listing: self.dataset = 'EXPLICIT'
+elif 'htlm' in new_fic_listing: self.dataset = 'GENERAL'
+else: new_fic_listing: self.dataset = 'UNKNOWN'
+
+def set_save_txt_path(self, new_fic_save_path):
+global SAVE_TXT_PATH
+SAVE_TXT_PATH = new_fic_save_path
+
+def get_fic_listing_path(self): return FIC_LISTING_PATH
+
+def get_save_txt_path(self): return SAVE_TXT_PATH
+
+
+
+class FanficHTMLHandler():
+def get_chapters(self, fic_path):
+filehandle = open(fic_path, 'r').read()
+soup = BeautifulSoup(filehandle, 'html.parser')
+meta_inf = soup.find_all('dd') #chapters are displayed as '# of current chapters / total # of chapters'
+
+meta_chapters = meta_inf[len(meta_inf)-1].text
+#print(chapters) #debug
+
+if 'Chapters:' not in meta_chapters: #this means that the fic only has one chapter
+return [1,1]
+
+else:
+lines = meta_chapters.split('\n')
+for line in lines:
+if 'Chapters:' in line:
+chapters = line[20:].split('/')
+#print(chapters)#debug
+
+return chapters
+
+def get_rating(self, fic_path):
+filehandle = open(fic_path, 'r').read()
+soup = BeautifulSoup(filehandle, 'html.parser')
+rating_link = soup.find(class_='tags').find('a')
+#print(rating_link.text)#debug
+
+return rating_link.text
+
+def get_relationships(self, fic_path):
+filehandle = open(fic_path, 'r').read()
+soup = BeautifulSoup(filehandle, 'html.parser')
+dt_inf = soup.find_all('dt')
+dd_inf = soup.find_all('dd')
+#print(len(dt_inf), len(dd_inf)) #debug
+
+index = 0
+ships = ''
+for dt in dt_inf:
+#print(dt) #debug
+if 'Relationship:' not in dt.text: index += 1
+else: 
+ships = dd_inf[index].text
+break
+
+#print(ships) #debug
+ships = ships.split(',')
+if len(ships) == 1 and ships[0] == '': ships = []
+else:
+for i in range(len(ships)):
+if ' (Good Omens)' in ships[i]: ships[i] = ships[i][:-len(' (Good Omens)')]
+
+return ships
+
+def get_tags(self, fic_path):
+filehandle = open(fic_path, 'r').read()
+soup = BeautifulSoup(filehandle, 'html.parser')
+
+dt_inf = soup.find_all('dt')
+dd_inf = soup.find_all('dd')
+
+tags = ''
+index = 0
+for dt in dt_inf:
+if 'Archive Warning:' not in dt.text: index +=1
+else:
+tags = dd_inf[index].text
+
+tags += ', '
+index = 0
+for dt in dt_inf:
+if 'Additional Tags:' not in dt.text: index += 1
+else:
+tags += dd_inf[index].text
+
+#print(tags) #debug
+tags = tags.split(',')
+if len(tags) == 1 and tags[0] == '': tags = [] #I don't think this ever happens, but just in case
+else:
+tags = [tag.strip() for tag in tags]
+for i in range(len(tags)):
+if ' (Good Omens)' in tags[i]: tags[i] = tags[i][:-len(' (Good Omens)')]
+
+return tags
+
+
+def get_characters(self, fic_path):
+filehandle = open(fic_path, 'r').read()
+soup = BeautifulSoup(filehandle, 'html.parser')
+dt_inf = soup.find_all('dt')
+dd_inf = soup.find_all('dd')
+#print(len(dt_inf), len(dd_inf)) #debug
+
+index = 0
+chars = ''
+for dt in dt_inf:
+#print(dt) #debug
+if 'Character:' not in dt.text: index += 1
+else :
+chars = dd_inf[index].text
+break
+
+#print(chars) #debug
+chars = chars.split(',')
+if len(chars) == 1 and chars[0] == '': chars = []
+else:
+for i in range(len(chars)):
+if ' (Good Omens)' in chars[i]: chars[i] = chars[i][:-len(' (Good Omens)')]
+
+return chars
+
+def get_fandoms(self, fic_path):
+filehandle = open(fic_path, 'r').read()
+soup = BeautifulSoup(filehandle, 'html.parser')
+dt_inf = soup.find_all('dt')
+dd_inf = soup.find_all('dd')
+#print(len(dt_inf), len(dd_inf)) #debug
+
+index = 0
+fandoms = ''
+for dt in dt_inf:
+#print(dt) #debug
+if 'Fandom:' not in dt.text: index += 1
+else :
+fandoms = dd_inf[index].text
+break
+
+#print(chars) #debug
+fandoms = fandoms.split(',')
+if len(fandoms) == 1 and fandoms[0] == '': fandoms = [] #does this ever happen?
+else: fandoms = [fandom.strip() for fandom in fandoms]
+
+return fandoms
+
+def get_title(self, fic_path):
+filehandle = open(fic_path, 'r').read()
+soup = BeautifulSoup(filehandle, 'html.parser')
+h1 = soup.find('h1')
+#print(len(h1)) #debug
+
+return h1.text
+
+\end{lstlisting}
+
+\cleardoublepage
+\section{ANEXO: CÓDIGO DEL ALGORITMO DE IDENTIFICACIÓN DE ENTIDADES BASADO EN REGRESIÓN LOGÍSTICA}
+\subsection{NER\_chunker}
+\begin{lstlisting}[style=consola]
+#!/bin/bash/python3
+
+import string, re
+import nltk
+#from nltk.corpus import conll2000
+from nltk.stem.snowball import SnowballStemmer
+from nltk.tag import ClassifierBasedTagger
+from collections import Iterable
+
+def word_shape(word):
+shape = 'other'
+
+if re.match('[0-9]+(\.[0-9]*)?|[0-9]*\.[0-9]+$', word): shape = 'number'
+elif re.match('\W+$', word): shape = 'punct'
+elif re.match('[A-Z][a-z]+$', word): shape = 'capitalized'
+elif re.match('[A-Z]+$', word): shape = 'allcaps'
+elif re.match('[a-z]+$', word): shape = 'alllower'
+elif re.match('[A-Z][a-z]+[A-Z][a-z]+[A-Za-a]*$', word): shape = 'camelcase'
+elif re.match('[A-Za-z]+$', word): shape = 'mixedcase'
+elif re.match('__-+__$', word): shape = 'wildcard'
+elif re.match('[A-Za-z0-9]+\.$', word): shape = 'dot-end'
+elif re.match('[A-Za-z0-9]+\.[A-Za-z0-9\.]+\.$', word): shape = 'abbreviation'
+elif re.match('[A-Za-z0-9]+\-[A-Za-z0-9\-]+.*$', word): shape = 'hyphenated'
+
+return shape
+
+def feature_function(sentence, i, history):
+"""
+sentence: a POS-tagged sentence
+i: index of the current token
+history: previous IOB tags
+"""
+
+stemmer = SnowballStemmer('english')
+
+#Padding
+sentence = [('<START2>','<START2>'),('<START1>','<START1>')] + list(sentence) + [('<END1>','<END1>'),('<END2>','<END2>')]
+
+history = ['<START2>','<START1>'] + list(history)
+
+i += 2 #shift the index to accomodate padding
+
+word, pos = sentence[i]
+prevword, prevpos = sentence[i-1]
+previob = history[i-1]
+prevprevword, prevprevpos = sentence[i-2]
+prevpreviob = history[i-2]
+nextword, nextpos = sentence[i+1]
+nextnextword, nextnextpos = sentence[i+2]
+
+"""
+contains_dash = '-' in word
+contains_dot = '.' in word
+allascii = all([True for c in word if c in string.ascii_lowercase])
+allcaps = word == word.capitalize()
+capitalized = word[0] in string.ascii_uppercase
+prevallcaps = prevword == prevword.capitalize()
+prevcapitalized = prevword[0] in string.ascii_uppercase
+nextallcaps = nextword == nextword.capitalize()
+nextcapitalized = nextword[0] in string.ascii_uppercase
+"""
+
+return {
+'word': word,
+'lemma': stemmer.stem(word),
+'shape': word_shape(word),
+'pos': pos,
+
+'prev-word': prevword,
+'prev-lemma': stemmer.stem(prevword),
+'prev-shape': word_shape(prevword),
+'prev-pos': prevpos,
+
+'prevprev-word': prevprevword,
+'prevprev-lemma': stemmer.stem(prevprevword),
+'prevprev-shape': word_shape(prevprevword),
+'prevprev-pos': prevprevpos,
+
+'prev-iob': previob,
+'prevprev-iob': prevpreviob,
+
+'next-word': nextword,
+'next-lemma': stemmer.stem(nextword),
+'next-shape': word_shape(nextword),
+'next-pos': nextpos,
+
+'nextnext-word': nextnextword,
+'nextnext-lemma': stemmer.stem(nextnextword),
+'nextnext-shape': word_shape(nextnextword),
+'nextnext-pos': nextnextpos,
+}
+
+
+
+class NERTagger(nltk.TaggerI):
+def __init__(self, train_sents):
+train_set = []
+
+for tagged_sent in train_sents:
+untagged_sent = nltk.tag.untag(tagged_sent)
+history = []
+
+for i, (word,tag) in enumerate(tagged_sent):
+featureset = feature_function(untagged_sent, i, history)
+train_set.append( (featureset, tag) ) #sentence[1] is the tag of the token
+
+history.append(tag)
+
+self.classifier = nltk.MaxentClassifier.train(train_set,
+algorithm='megam', trace=0)
+
+def tag(self,sentence):
+history = []
+for i, word in enumerate(sentence):
+featureset = feature_function(sentence, i, history)
+tag = self.classifier.classify(featureset)
+history.append(tag)
+
+return zip(sentence, history)
+
+
+class NERChunkerv3(nltk.ChunkParserI):
+def __init__(self, train_sents):
+tagged_sents = [((w,t),c) for (w,t,c) in train_sents]#transform sentences to a shape that can be understood to the tagger
+self.tagger=NERTagger(tagged_sents)
+
+def parse(self, sentence):
+tagged_sents = self.tagger.tag(sentence)
+conlltags = [(w,t,c) for ((w,t),c) in tagged_sents]
+
+return nltk.chunk.conlltags2tree(conlltags)
+
+
+class NERChunkerv2(nltk.ChunkParserI):
+def __init__(self, train_sents, **kwargs):
+assert isinstance(train_sents, Iterable)
+tagged_sents = [[((w,t),c) for (w,t,c) in
+nltk.chunk.tree2conlltags(sent)]
+for sent in train_sents] #transform sentences to a shape that can be understood to the tagger
+
+self.feature_detector = feature_function
+self.tagger = ClassifierBasedTagger(train=tagged_sents, feature_detector=feature_function, **kwargs)
+
+def parse(self, sentence):
+tagged_sents = self.tagger.tag(sentence)
+conlltags = [(w,t,c) for ((w,t),c) in tagged_sents]
+
+return nltk.chunk.conlltags2tree(conlltags)
+
+
+class NERChunkerv1(nltk.ChunkParserI):
+def __init__(self, train_sents):
+tagged_sents = [[((w,t,),c) for (w,t,c) in                        nltk.chunk.tree2conlltags(sent)]
+for sent in train_sents]#transform sentences to a shape that can be understood to the tagger
+
+
+self.tagger=NERTagger(tagged_sents)
+
+def parse(self, sentence):
+tagged_sents = self.tagger.tag(sentence)
+conlltags = [(w,t,c) for ((w,t),c) in tagged_sents]
+
+return nltk.chunk.conlltags2tree(conlltags)
+
+
+\end{lstlisting}
+
+\cleardoublepage
+\subsection{NER\_trainer}
+\begin{lstlisting}[style=consola]
+#!/bin/bash/python3
+
+
+#Trainer for an entity recognition process
+
+import nltk, re, pprint, time, pickle, pandas
+from nltk.tokenize import word_tokenize
+from nltk.tag import pos_tag
+from nltk.classify import megam
+from NER_chunker import NERChunkerv1
+
+
+
+### NOTAS ###
+"""
+NLTK no tiene un corpus adecuado para el reconocimiento de entindades en ingles,
+de modo que utilizare una base de datos en csv para NER basada en GMB
+"""
+
+
+### VARIABLES ###
+NER_DATASET_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_train/ner_dataset.csv'
+megam.config_megam('/home/maria/Downloads/megam_0.92/megam')
+
+### FUNCTIONS ###
+
+def get_tagged_tokens_from_csv():
+csv_file = pandas.read_csv(NER_DATASET_PATH, encoding='ISO-8859-1')
+
+i = 0
+sentences = []
+current_sent = []
+while i < len(csv_file['Sentence #']):
+if i == 0:
+current_sent.append((csv_file['Word'][i], csv_file['POS'][i], 	csv_file['Tag'][i]))
+
+elif ':' in str(csv_file['Sentence #'][i]): 
+
+sentences.append(nltk.chunk.conlltags2tree(current_sent))
+
+current_sent = []
+current_sent.append((csv_file['Word'][i], csv_file['POS'][i], csv_file['Tag'][i]))
+
+else:
+current_sent.append((csv_file['Word'][i], csv_file['POS'][i], csv_file['Tag'][i]))
+
+i+=1
+
+return sentences #returns a list of tagged sentences that NLTK can understand
+
+### M A I N ###
+
+### Get train and test sentences:
+tagged_sentences = get_tagged_tokens_from_csv()
+#print(tagged_sentences[0], tagged_sentences[1], tagged_sentences[2]) #debug
+#print(isinstance(tagged_sentences[0], Tree)) #debug
+
+#Database: 70% for training, 30% for testing (in three 'slices' of 10% each)
+
+#train_sents = tagged_sentences[:int(len(tagged_sentences)*0.1)] #debug, tarda 20 mins aprox
+
+train_sents = tagged_sentences[:int(len(tagged_sentences)*0.7)] #aprox 2 horas
+#test_sents = tagged_sentences[int(len(tagged_sentences)*0.8):int(len(tagged_sentences)*0.7)] #Test A
+#test_sents = tagged_sentences[int(len(tagged_sentences)*0.9):int(len(tagged_sentences)*0.8)] #Test B
+test_sents = tagged_sentences[int(len(tagged_sentences)*0.9):] #Test C
+
+
+### Create and train chunker:
+print('Starting tranining... go for a walk')
+start = time.time()
+NER_chunker = NERChunkerv1(train_sents)
+end = time.time()
+
+
+### Test our chunker
+print('NER chunker (',(end-start)/60,'mins) \n',NER_chunker.evaluate(test_sents))
+
+
+### Store trained chunker for later use
+print('Preparing to pickle. . .')
+f = open('NER_training.pickle','wb')
+pickle.dump(NER_chunker, f)
+f.close()
+
+print('NER_chunker successfully pickled')
+
+\end{lstlisting}
+
+\cleardoublepage
+\subsection{NER\_tagger}
+\begin{lstlisting}[style=consola]
+#!/bin/bash/python3
+
+#Tagger for NER tags, using a previously trained NER chunker
+
+import pickle, time, pandas, re, nltk
+
+### VARIABLES ###
+MODEL_PATH = '/home/maria/Documents/Fanfic_ontology/NER_training.pickle'
+CANON_DB = '/home/maria/Documents/Fanfic_ontology/canon_characters.csv'
+MAX_EDIT_DISTANCE = 3
+
+### FUNCTIONS ###
+
+def get_max_edit_distance(name):
+if ' ' in name:
+subnames = [n.strip() for n in name.split(' ')]
+
+lengths = [len(name) for name in subnames]
+
+min_length = min(lengths)
+
+else: min_length = len(name.strip())
+
+if min_length > 4: return 3
+elif min_length == 4: return 2
+else: return 0
+
+def get_edit_distance(name1, name2):
+if ' ' in name1:
+name_and_surname1 = [n.strip().lower() for n in name1.split(' ')]
+
+distance = []
+if ' ' in name2:
+name_and_surname2 = [n.strip().lower() for n in name2.split(' ')]
+
+for n1 in name_and_surname1:
+for n2 in name_and_surname2: distance.append(nltk.edit_distance(n1, n2))
+
+else:
+for n in name_and_surname1: distance.append(nltk.edit_distance(n, name2.lower()))
+
+return min(distance)
+
+elif ' ' in name2:
+name_and_surname2 = [n.strip().lower() for n in name2.split(' ')]
+
+distance = []
+for n in name_and_surname2: distance.append(nltk.edit_distance(name1.lower(), n))
+
+return min(distance)
+
+else: return nltk.edit_distance(name1.lower(), name2.lower())
+
+def link_to_canon(ner_entities):
+#Get canon_db
+canon_db = pandas.read_csv(CANON_DB)
+
+for character in ner_entities:
+better_fit = (-1, 300) #first member of the tuple is ID, the other is edit distance, instantiated to an absolutely ridiculous high one so it can be replaced for the smallest one
+
+for index, canon_character in canon_db.iterrows():
+if type(canon_character['Other names']) == str:
+other_canon_names = [name.strip().lower() for name in canon_character['Other names'].split(',')]
+#print(other_canon_names) #debug
+
+
+else: other_canon_names = ['']
+
+distance = get_edit_distance(canon_character['Name'], character['Name'])
+max_edit_distance = min(get_max_edit_distance(canon_character['Name']), get_max_edit_distance(character['Name']))
+
+if  distance == 0:
+character['Canon ID'] = index
+break
+
+elif distance < max_edit_distance:
+if distance < better_fit[1]: better_fit = (index, distance)
+
+else:
+for other_name in other_canon_names:
+distance = get_edit_distance(other_name, character['Name'])
+max_edit_distance = min(get_max_edit_distance(other_name), get_max_edit_distance(character['Name']))
+
+if distance == 0:
+character['Canon ID'] = index
+break
+
+elif distance < max_edit_distance:
+if distance < better_fit[1]: better_fit = (index, distance)
+
+if character['Canon ID'] == 'NO' and better_fit[0] >= 0:
+character['Canon ID'] = better_fit[0]
+
+return ner_entities
+
+### CLASSES ###
+
+class NERTagger():
+
+def __init__(self):
+self.model_path = MODEL_PATH 
+
+def parse(self, tagged_fic): #fanfic must be pos-tagged previously
+###Load trained chunker and parse sentences
+f = open(self.model_path,'rb')
+NER_chunker = pickle.load(f)
+f.close()
+
+NER_tagged_sentences = [NER_chunker.parse(sent) for sent in tagged_fic] #NER-tagging
+
+#Explore the tags and create a list of named entities
+per_entities= []
+#start = time.time() 
+for sentence in NER_tagged_sentences:
+for t in sentence.subtrees():
+if t.label() == 'per': 
+leaves = t.leaves()
+entity = [word for word, _ in leaves]
+#print(entity) #debug
+
+entity = ' '.join(entity)
+entity = re.sub(r'[^A-Za-z0-9 ]+', '', entity).strip() #Clean name
+
+per_entities.append(entity)
+
+#print(len(per_entities)) #debug
+
+names = set(per_entities)
+ner_entities = []
+for name in names:
+num = per_entities.count(name)
+ner_entities.append({'Name':name, 'Mentions':num, 'Canon ID':'NO'})
+
+#print(ner_entities) #debug
+
+canonized_ner_entities = link_to_canon(ner_entities)
+
+return canonized_ner_entities
+
+def get_model_path(self): return self.model_path
+
+def set_model_path(self, path):
+self.model_path = path
+
+### MAIN ###
+
+
+\end{lstlisting}
+
+\cleardoublepage
+\section{ANEXO: CÓDIGO QUE MANEJA CoreNLP}
+\subsection{corenlp\_wrapper}
+\begin{lstlisting}[style=consola]
+#!/bin/bash/python3
+
+from stanza.server import CoreNLPClient
+from stanza.server.client import TimeoutException
+from fanfic_util import Fanfic
+from urllib.error import HTTPError
+
+import time
+
+### VARIABLES ###
+MAX_CHAPTER_LENGTH = 30000
+
+
+### FUNCTIONS ###
+def split_chapter(chapter):
+len_chapter = len(chapter)
+
+if len_chapter % MAX_CHAPTER_LENGTH == 0: divisions = int(len_chapter/MAX_CHAPTER_LENGTH)
+else: divisions = int(len_chapter/MAX_CHAPTER_LENGTH)+1
+
+div_chapters = []
+while len(chapter) > MAX_CHAPTER_LENGTH:
+div_chapters.append(chapter[:MAX_CHAPTER_LENGTH])
+chapter = chapter[MAX_CHAPTER_LENGTH:]
+
+if len(chapter) != 0: div_chapters.append(chapter)
+
+
+if len(div_chapters) != divisions: raise Exception("[corenlp_wrapper] An error ocurred while slicing chapters")
+
+return div_chapters
+
+def compress_chapters(fic_chapters):
+compressed_chapters = []
+
+processed_chapters = 0
+while processed_chapters < len(fic_chapters):
+chapter_text = ''
+while len(chapter_text) < MAX_CHAPTER_LENGTH:
+chapter_text += fic_chapters[processed_chapters]
+processed_chapters += 1
+
+compressed_chapters.append(chapter_text)
+
+return processed_chapters
+
+def process_fics(fics):
+if type(fics) == list:
+#Check that members of list are class Fanfic
+for i, fic in enumerate(fics):
+if type(fic) is not Fanfic: raise TypeError("[corenlp_wrapper2] The input for the client must be list of Fanfic, or a single Fanfic")
+else: #check that all chapters in fanfic are no longer than 100000 characters
+fic_chapters = fic.chapters
+
+for chapter in fic_chapters:
+#print(type(chapter), len(chapter))
+if len(chapter) > MAX_CHAPTER_LENGTH:
+print('BIG BOY CHAPTER')
+extra_chapters = split_chapter(chapter)
+fic_chapters.remove(chapter)
+
+position = i
+for extra_chap in extra_chapters:
+#print(len(extra_chap)) #debug
+fic_chapters.insert(position, extra_chap)
+position += 1
+
+#end FOR chapter
+
+fic.set_chapters(fic_chapters)
+
+#end ELSE
+#end FOR fic
+#end if TYPE(FICS) == LIST
+elif type(fics) == Fanfic:
+fic_chapters = fics.chapters
+
+for i,chapter in enumerate(fic_chapters):
+if len(chapter) > MAX_CHAPTER_LENGTH:
+extra_chapters = split_chapter(chapter)
+fic_chapters.remove(chapter)
+
+position = i
+for extra_chap in extra_chapters:
+fic_chapters.insert(position, extra_chap)
+position += 1
+
+fics.set_chapters(fic_chapters)
+
+
+return fics
+
+
+### CLASSES ###
+class CoreClient(): #This client works with lists of string, or individual string. Returns a list of annotations with the data from CoreNLP
+
+def parse(self, fic_chapters):
+if type(fic_chapters) == list:
+#First we check that all chapters are strings, and none of them are longer than 100000 caracters
+for i, chapter in enumerate(fic_chapters):
+if not type(chapter) is str: raise TypeError("[corenlp_wrapper] The input for the client must be a string")
+elif len(chapter) > MAX_CHAPTER_LENGTH: 
+extra_chapters = split_chapter(chapter)
+fic_chapters.remove(chapter)
+
+position = i
+for extra_chap in extra_chapters:
+fic_chapters.insert(position, extra_chap)
+position += 1
+
+elif type(fic_chapters) == str:
+if len(fic_chapters) > MAX_CHAPTER_LENGTH:
+extra_chapters = split_chapter(fic_chapters)
+fic_chapters = extra_chapters
+
+else: fic_chapters = [fic_chapters]
+
+else: raise TypeError("[corenlp_wrapper] The input for the client must be a list of string or a single string")
+
+
+
+
+
+annotations = []
+
+with CoreNLPClient(
+annotators = ['tokenize', 'sentiment', 'ssplit', 'pos', 'lemma', 'ner', 'parse', 'depparse','coref'],
+timeout=120000,
+be_quiet = True,
+memory='4G') as client:
+print("Annotating data . . .")
+
+for chapter in fic_chapters: annotations.append(client.annotate(chapter))
+
+
+print("...done")
+
+return annotations
+
+class CoreClient2(): #This client works with lists of Fanfic objects. Returns the same list, but each Fanfic object now has a list of annotations with the data from CoreNLP
+
+def parse(self, fics):
+fics = process_fics(fics)
+
+annotations = []
+
+try:
+with CoreNLPClient(
+annotators = ['tokenize', 'sentiment', 'ssplit', 'pos', 'lemma', 'ner', 'parse', 'depparse','coref'],
+timeout=120000,
+be_quiet = True,
+memory='4G') as client:
+print("Annotating data . . .")
+
+for i, fic in enumerate(fics):
+print('fic #', i, 'has ',len(fic.chapters))
+annotations = []
+for i, chapter in enumerate(fic.chapters):
+print('chapter ',i,': ',len(chapter))
+ann = client.annotate(chapter)
+time.sleep(4)
+
+annotations.append(ann)
+
+fic.set_annotations(annotations)
+
+
+print("...done")
+
+except TimeoutException as e:
+print('CoreNLP TimeoutException')
+return fics, True
+
+
+return fics, False
+
+\end{lstlisting}
+
+\cleardoublepage
+\subsection{corenlp\_util}
+\begin{lstlisting}[style=consola]
+#!/usr/bin/bash/python3
+
+import time, pandas, nltk, re, random
+#from corenlp_wrapper import CoreClient2
+from stanza.server import Document
+from stanza.server import CoreNLPClient
+from stanza.server.client import TimeoutException
+from urllib.error import HTTPError
+
+from fanfic_util import *
+
+### VARIABLES ###
+CANON_DB = '/home/maria/Documents/Fanfic_ontology/canon_characters.csv'
+ERRORLOG = '/home/maria/Documents/Fanfic_ontology/TFG_logs/corenlp_util_errorlog.txt'
+
+FEMALE_TAGS = ['She/Her Pronouns for ', 'Female ', 'Female!', 'Female-Presenting ']
+MALE_TAGS = ['He/Him Pronouns for ', 'Male ', 'Male!', 'Male-Presenting ']
+NEUTRAL_TAGS = ['They/Them Pronouns for ', 'Gender-Neutral Pronouns for ', 'Gender-Neutral ', 'Agender ', 'Genderfluid ', 'Androgynous ', 'Gender Non-Conforming ']
+
+PRONOUNS = ['he','him','his','she','her','hers','I','me','mine','you','your','yours','we','our','ours','they','them','theirs','it','its']
+
+
+MAX_CHAPTER_LENGTH = 30000
+
+### FUNCTIONS ###
+def normalize_sentiment(sentences):
+sentiment_info = {'Num sentences':0, 'Very positive':0, 'Positive':0, 'Neutral':0, 'Negative':0, 'Very negative':0}
+sentiment_info['Num sentences'] = len(sentences)
+
+sentiment_count = 0
+for sentence in sentences:
+sentiment = sentence.sentiment
+#print(sentiment) #debug
+sentiment_info[sentiment] += 1
+
+
+if sentiment == 'Very positive': sentiment_count += 2
+elif sentiment == 'Positive': sentiment_count += 1
+elif sentiment == 'Negative': sentiment_count -= 1
+elif sentiment == 'Very negative': sentiment_count -= 2
+
+
+sentiment_info['Weighted average'] = sentiment_count/len(sentences)
+
+return sentiment_info
+
+def make_gender_tags(tags, character_name):
+for tag in tags:
+tag = tag+character_name
+#print(tag) #debug
+
+return tags
+
+def decide_gender(characters, canon_db):
+handler = FanficHTMLHandler()
+
+for character in characters:
+fic_link = '/home/maria/Documents/Fanfic_ontology/TFG_fics/html/gomensfanfic_'+str(character['ficID'])+'.html'
+fic_tags = handler.get_tags(fic_link)
+character_name = character['Name'].capitalize()
+
+f_gender = make_gender_tags(FEMALE_TAGS, character_name)
+m_gender = make_gender_tags(MALE_TAGS, character_name)
+n_gender = make_gender_tags(NEUTRAL_TAGS, character_name)
+
+male = female = neutral = False
+
+if any(tag in fic_tags for tag in f_gender): female = True
+if any(tag in fic_tags for tag in m_gender): male = True
+if any(tag in fic_tags for tag in n_gender): neutral = True
+
+if female and male: character['Gender'] = 'NEUTRAL'
+elif female: character['Gender'] = 'FEMALE'
+elif male: character['Gender'] = 'MALE'
+elif neutral: character['Gender'] = 'NEUTRAL'
+else: #if there are no gender tags applicable to the character, we'll defer to CoreNLP's opinion on this character's gender
+
+if character['Gender'] == 'UNKNOWN' or character['Gender']== '':#if CoreNLP doesn't know this character's gender, and it is canon, we assume the canon gender. If it isn't canon it'll be left unknown
+#print(character['Name'], character['Gender']) #debug
+
+if character['canonID'] > -1:
+canon_gender = canon_db.iloc[character['canonID']]['Gender']
+character['Gender'] = canon_gender
+
+elif character['Gender'] == '' or character['Gender'] == 'X': character['Gender'] = 'UNKNOWN' 
+
+return characters
+
+def merge_sentences(fic_index, fic_dataset, character_sentences):
+sen_ids = []
+merged_sentences = []
+
+for sentence in character_sentences:
+sent = {}
+if sentence['senID'] in sen_ids: #If a dict for this sentence already exists
+sent = list(filter(lambda s: s['senID'] == sentence['senID'], merged_sentences))
+#print(len(sent)) #debug
+sent = sent[0]
+
+if sentence['nerIDs'] > -1 and sentence['nerIDs'] not in sent['nerIDs']: sent['nerIDs'].append(sentence['nerIDs'])
+if sentence['Clusters'] > -1 and sentence['Clusters'] not in sent['Clusters']: sent['Clusters'].append(sentence['Clusters'])
+
+else: #Create new sentence dict
+sen_ids.append(sentence['senID'])
+
+sent['ficID'] = fic_index
+sent['ficDataset'] = fic_dataset
+sent['senID'] = sentence['senID']
+sent['Sentiment'] = sentence['Sentiment']
+sent['Verbs'] = sentence['Verbs']
+
+if sentence['nerIDs'] > -1: sent['nerIDs'] =  [sentence['nerIDs']]
+else: sent['nerIDs'] = []
+
+if sentence['Clusters'] > -1: sent['Clusters'] = [sentence['Clusters']]
+else: sent['Clusters'] = []
+
+merged_sentences.append(sent)
+
+return merged_sentences
+
+def get_name_count(ner_chars):
+names = {}
+other_names = []
+
+for char in ner_chars:
+try: 
+if char['Name'].lower() not in PRONOUNS:
+names[char['Name']] += 1
+except KeyError: names[char['Name']] = 1
+
+return names
+
+def get_edit_distance(name1, name2):
+if ' ' in name1:
+name_and_surname1 = [n.strip().lower() for n in name1.split(' ')]
+
+distance = []
+if ' ' in name2:
+name_and_surname2 = [n.strip().lower() for n in name2.split(' ')]
+
+for n1 in name_and_surname1:
+for n2 in name_and_surname2: distance.append(nltk.edit_distance(n1, n2))
+
+else:
+for n in name_and_surname1: distance.append(nltk.edit_distance(n, name2.lower()))
+
+return min(distance)
+
+elif ' ' in name2:
+name_and_surname2 = [n.strip().lower() for n in name2.split(' ')]
+
+distance = []
+for n in name_and_surname2: distance.append(nltk.edit_distance(name1.lower(), n))
+
+return min(distance)
+
+else: return nltk.edit_distance(name1.lower(), name2.lower())
+
+def get_max_edit_distance(name):
+if ' ' in name:
+subnames = [n.strip() for n in name.split(' ')]
+
+lengths = [len(name) for name in subnames]
+
+min_length = min(lengths)
+
+else: min_length = len(name)
+
+if min_length > 4: return 3
+elif min_length == 4: return 2
+else: return 1
+
+def merge_character_mentions(fic_index, character_entities, coref_mentions):
+# create characters from their NER IDs
+ner_ids = [char['nerID'] for char in character_entities]
+ner_ids = set(ner_ids) #remove duplicates
+
+characters = []
+## Rule 1 of character merging: Mentions with the same nerID refer to the same character
+for ner in ner_ids:
+ner_chars = list(filter(lambda entity: entity['nerID'] == ner, character_entities)) #characters with this ner ID
+#Select gender according to CoreNLP NER extractor
+gender = []
+for char in ner_chars: gender.append(char['Gender'])
+gender = list(set(gender)) #remove duplicates
+if '' in gender: gender.remove('')
+
+if len(gender) == 0: gender = 'X'
+elif len(gender) == 1: gender = gender[0]
+else:
+#print(gender) #debug
+gender = 'X'
+
+#Clean and select character's name
+names = [char['Name'].replace('\n',' ').strip() for char in ner_chars]
+names = [re.sub(r'[^A-Za-z0-9 	]+', '', name).strip() for name in names if name.lower() not in PRONOUNS] #strip non-alphanumeric characters, except for spaces
+names = list(set(names)) #remove duplicates
+#print(names) #debug
+
+for name in names:
+new_character = {'ficID':fic_index,'nerID':[ner],'Name':name,'Other names':[],'Gender':gender,'clusterID':[-1],'canonID':-1,'Mentions':0}
+#print(new_character) #debug
+characters.append(new_character)
+
+
+for char in characters:
+for mention in coref_mentions:
+if mention['nerID'] == char['nerID'][0]:
+
+if mention['MentionT'] == 'PROPER':
+#if mention['nerID'] == 0: print(mention) #debug
+## Rule 2 of character merging: Mentions which overlap with a NERMention refer to its same character
+distance = get_edit_distance(char['Name'], mention['Name'])
+max_edit_distance = min(get_max_edit_distance(char['Name']),get_max_edit_distance(mention['Name']))
+
+if distance < max_edit_distance:
+if char['Gender'] == 'X': #gender is added
+char['Gender'] = mention['Gender']
+
+elif char['Gender'] != mention['Gender']: 
+#print('diff gender: ',mention) #debug
+diff_gender_chars = list(filter(lambda entity: nltk.edit_distance(char['Name'],entity['Name']) < max_edit_distance and entity['Gender'] == mention['Gender'], characters))
+if len(diff_gender_chars) > 0:
+#print('len diff gender:',len(diff_gender_chars))#debug
+char = diff_gender_chars[0]
+
+else:	#Add new entry for the character with different gender
+diff_gender_char = char.copy()
+diff_gender_char['Gender'] = mention['Gender']
+diff_gender_char['Mentions'] = 0
+characters.append(diff_gender_char)
+
+char = diff_gender_char
+
+char['Mentions'] +=1
+
+if distance > 0: #different names are added
+other_names = [name.lower() for name in char['Other names']]
+if mention['Name'].lower() not in other_names:
+char['Other names'].append(mention['Name'])
+
+
+cluster = char['clusterID'] #cluster is added
+if  mention['clusterID'] not in cluster: char['clusterID'].append(mention['clusterID'])
+
+
+for char in characters:
+if -1 in char['clusterID']: char['clusterID'].remove(-1) #remove filler
+
+
+## Rule 3 of character merging: All the mentions of a coreference cluster refer to the same character, but only if the gender is consistent and the names have an edit distance lesser than MAX_EDIT_DISTANCE
+aux = characters.copy()
+for char in characters:
+aux.remove(char)
+
+for c in aux:
+cluster = c['clusterID']
+
+if any(cluster) in char['clusterID']:
+if char['Gender'] == c['Gender']:
+distance = get_edit_distance(char['Name'],c['Name'])
+max_edit_distance = min(get_max_edit_distance(char['Name']),get_max_edit_distance(c['Name']))
+
+if distance == 0:
+char['Mentions'] = char['Mentions']+c['Mentions']
+
+aux.remove(c)
+characters.remove(c)
+
+elif distance < max_edit_distance:
+char['Mentions'] = char['Mentions']+c['Mentions']
+char['nerID'].append(c['nerID'][0])
+
+other_names = [n.lower() for n in char['Other names']]
+if c['Name'] not in other_names: char['Other names'].append(c['Name'])
+
+aux.remove(c)
+characters.remove(c)
+
+
+
+#print(characters) #debug
+return characters
+
+def link_characters_to_canon(characters, canon_db):
+for character in characters:
+better_fit = (-1, 300) #first member of the tuple is ID, the other is edit distance, instantiated to an absolutely ridiculous high one so it can be replaced for the smallest one
+
+for index, canon_character in canon_db.iterrows():
+if type(canon_character['Other names']) == str:
+other_canon_names = [name.strip().lower() for name in canon_character['Other names'].split(',')]
+#print(other_canon_names) #debug
+
+
+else: other_canon_names = ['']
+
+distance = get_edit_distance(canon_character['Name'], character['Name'])
+max_edit_distance = min(get_max_edit_distance(canon_character['Name']),get_max_edit_distance(character['Name']))
+
+if  distance == 0:
+character['canonID'] = index
+break
+
+elif distance < max_edit_distance:
+#print(canon_character['Name'].lower(), character['Name'].lower()) #debug
+if distance < better_fit[1]: better_fit = (index, distance)
+
+elif character['Name'].lower() in other_canon_names:
+character['canonID'] = index
+break
+else:
+for name in character['Other names']:
+distances = [get_edit_distance(name, canon_name) for canon_name in other_canon_names]
+max_distances = [get_max_edit_distance(canon_name) for canon_name in other_canon_names]
+max_edit_distance = min(max_distances)
+if any(distances) == 0:
+character['canonID'] = index
+break
+
+elif any(distances) < max_edit_distance:
+if distance < better_fit[1]: better_fit = (index, distance)
+
+
+# end for canon_characters			
+if character['canonID'] < 0 and better_fit[0] >= 0:
+character['canonID'] = better_fit[0]
+
+#if a character is not canon its canonID will not be changed from -1
+
+return characters
+
+def canonize_characters(characters, canon_db):
+characters = link_characters_to_canon(characters, canon_db)
+characters = decide_gender(characters, canon_db)
+
+canon_ids = len(canon_db['Name'])
+#print(canon_ids) #debug
+
+canonized_characters = []
+for i in range(canon_ids):
+canon_name = canon_db.iloc[i]['Name']
+#print(canon_name) #debug
+characters_in_canon = list(filter(lambda char: char['canonID'] == i, characters))
+
+if len(characters_in_canon) > 0:
+canonized_character = {'Name':canon_name, 'Other names':'', 'Male mentions':0, 'Female mentions':0, 'Neutral mentions':0, 'Unknown mentions':0, 'Canon ID':i}
+
+canonized_character['Name'] = canon_name
+
+other_names = []
+for char in characters_in_canon:
+if char['Name'].lower() != canon_name.lower(): other_names.append(char['Name'])
+other_names.extend(char['Other names'])
+
+if char['Gender'] == 'MALE':
+canonized_character['Male mentions'] += char['Mentions']
+
+elif char['Gender'] == 'FEMALE':
+canonized_character['Female mentions'] += char['Mentions']
+
+elif char['Gender'] == 'NEUTRAL':
+canonized_character['Neutral mentions'] += char['Mentions']
+else:
+canonized_character['Unknown mentions'] += char['Mentions']
+
+other_names = list(set(other_names))
+canonized_character['Other names'] = ', '.join(other_names)
+
+canonized_characters.append(canonized_character)
+
+characters_not_in_canon = list(filter(lambda char: char['canonID'] == -1, characters))
+noncanon_characters = []
+for char in characters_not_in_canon:
+noncanon_char = {'Name':char['Name'], 'Other names':'', 'Male mentions':0, 'Female mentions':0, 'Neutral mentions':0, 'Unknown mentions':0,'Canon ID':'NO'}
+
+if char['Gender'] == 'MALE':
+noncanon_char['Male mentions'] += char['Mentions']
+
+elif char['Gender'] == 'FEMALE':
+noncanon_char['Female mentions'] += char['Mentions']
+
+else:
+noncanon_char['Unknown mentions'] += char['Mentions']
+
+noncanon_characters.append(noncanon_char)
+
+#print(type(canonized_characters)) #debug
+
+return canonized_characters+noncanon_characters
+
+def extract_data_from_annotations(annotation):
+sentences= annotation.sentence
+all_ner_mentions = annotation.mentions #NERMention[]
+all_coref_mentions = annotation.mentionsForCoref #Mention[]
+chains = annotation.corefChain #CorefChain[], made up of CorefMention[]
+
+# lists to store the return values in
+character_entities = []
+coref_mentions = []
+character_sentences = []
+
+## Extract characters from NER and coreference mentions ##
+if len(all_ner_mentions) > 0:
+for ner in all_ner_mentions:
+if ner.ner == 'PERSON':
+sentence = {}
+sen = sentences[ner.sentenceIndex]
+
+string_sen = ''
+for token in sen.token: 
+string_sen += ' '+token.originalText
+
+sentence['senID'] = sen.sentenceIndex
+sentence['Sentiment'] = sen.sentiment
+#sentence['Verbs'] = get_lemmatized_verbs(string_sen)
+sentence['Verbs'] = string_sen
+sentence['nerIDs'] =  ner.canonicalEntityMentionIndex
+sentence['Clusters'] = -1 #filler
+character_sentences.append(sentence)
+
+character = {}
+#token = tokens[ner.tokenStartInSentenceInclusive]
+#coref_in_token = token.
+
+character['senID'] = sen.sentenceIndex
+character['nerID'] = ner.canonicalEntityMentionIndex
+character['nerMentionIndex'] = ner.entityMentionIndex
+character['Name'] = ner.entityMentionText
+character['Gender'] = ner.gender
+character['MentionT'] = 'PERSON'
+character_entities.append(character)
+
+#end FOR ner
+#end IF len
+if len(all_coref_mentions) > 0:
+for mention in all_coref_mentions:
+if mention.mentionType in ['PROPER','PRONOMINAL']:
+sentence = {}
+sen = sentences[mention.sentNum]
+
+string_sen = ''
+for token in sen.token: 
+string_sen += ' '+token.originalText
+
+sentence['senID'] = sen.sentenceIndex
+sentence['Sentiment'] = sen.sentiment
+#sentence['Verbs'] = get_lemmatized_verbs(string_sen)
+sentence['Verbs'] = string_sen
+sentence['nerIDs'] = -1 #filler
+sentence['Clusters'] = mention.corefClusterID
+
+character_sentences.append(sentence)
+
+#if mention.sentNum != sen.sentenceIndex: print('false')
+
+character = {}
+
+token = sen.token[mention.headIndex]
+ner_in_token = all_ner_mentions[token.entityMentionIndex]
+character['senID'] = sen.sentenceIndex
+character['nerID'] = ner_in_token.canonicalEntityMentionIndex
+character['clusterID'] = mention.corefClusterID
+character['Name'] = mention.headString
+character['Gender'] = mention.gender
+character['MentionT'] = mention.mentionType
+coref_mentions.append(character)
+
+
+#end FOR mention
+#end IF len		
+
+return character_entities, coref_mentions, character_sentences
+
+def split_chapter(chapter):
+len_chapter = len(chapter)
+
+if len_chapter % MAX_CHAPTER_LENGTH == 0: divisions = int(len_chapter/MAX_CHAPTER_LENGTH)
+else: divisions = int(len_chapter/MAX_CHAPTER_LENGTH)+1
+
+div_chapters = []
+while len(chapter) > MAX_CHAPTER_LENGTH:
+div_chapters.append(chapter[:MAX_CHAPTER_LENGTH])
+chapter = chapter[MAX_CHAPTER_LENGTH:]
+
+if len(chapter) != 0: div_chapters.append(chapter)
+
+
+if len(div_chapters) != divisions: raise Exception("[corenlp_wrapper] An error ocurred while slicing chapters")
+
+return div_chapters
+
+def process_fics(fics):
+if type(fics) == list:
+#Check that members of list are class Fanfic
+for i, fic in enumerate(fics):
+if type(fic) is not Fanfic: raise TypeError("[corenlp_wrapper2] The input for the client must be list of Fanfic, or a single Fanfic")
+else: #check that all chapters in fanfic are no longer than 100000 characters
+fic_chapters = fic.chapters
+
+for chapter in fic_chapters:
+#print(type(chapter), len(chapter))
+if len(chapter) > MAX_CHAPTER_LENGTH:
+#print('BIG BOY CHAPTER') #debug
+extra_chapters = split_chapter(chapter)
+fic_chapters.remove(chapter)
+
+position = i
+for extra_chap in extra_chapters:
+#print(len(extra_chap)) #debug
+fic_chapters.insert(position, extra_chap)
+position += 1
+
+#end FOR chapter
+
+fic.set_chapters(fic_chapters)
+
+#end ELSE
+#end FOR fic
+#end if TYPE(FICS) == LIST
+elif type(fics) == Fanfic:
+fic_chapters = fics.chapters
+
+for i,chapter in enumerate(fic_chapters):
+if len(chapter) > MAX_CHAPTER_LENGTH:
+extra_chapters = split_chapter(chapter)
+fic_chapters.remove(chapter)
+
+position = i
+for extra_chap in extra_chapters:
+fic_chapters.insert(position, extra_chap)
+position += 1
+
+fics.set_chapters(fic_chapters)
+
+
+return fics
+
+
+### CLASSES ###
+class CoreNLPDataProcessor():
+def __init__ (self, fic): #fic must be annotated with CoreNLP data
+try: 
+if fic.annotations is None: raise ValueError
+else: self.fic = fic
+
+except ValueError: print('This fanfic does not contain CoreNLP annotations')
+
+def extract_fic_characters(self):
+#Get canon_db
+canon_db = pandas.read_csv(CANON_DB)
+
+# Declarations
+character_entities = []
+coref_mentions = []
+character_sentences = []
+canonized_characters = [] #final result is stored here
+
+
+for annotation in self.fic.annotations:
+entities, mentions, sentences = extract_data_from_annotations(annotation)
+
+character_entities = character_entities + entities
+coref_mentions = coref_mentions + mentions
+character_sentences = character_sentences + sentences
+
+# Merge all character mentions into unique characters
+unique_characters = merge_character_mentions(self.fic.index, character_entities, coref_mentions)
+
+# Link characters to their canon version, if it has one
+canonized_characters = canonize_characters(unique_characters, canon_db)
+#print(canonized_characters[:10]) #debug
+
+self.fic.set_characters(canonized_characters)
+
+def extract_fic_sentiment(self):
+fic_sentences = []
+
+for annotation in self.fic.annotations: fic_sentences.extend(annotation.sentence)
+
+fic_sentiment = normalize_sentiment(fic_sentences)
+
+return fic_sentiment
+
+class CoreWrapper(): #This client is like CoreClient2 from corenlp_wrapper
+
+def parse(self, fics):
+fics = process_fics(fics)
+if type(fics) == Fanfic: fics = [fics]
+
+annotations = []
+
+try:
+with CoreNLPClient(
+annotators = ['tokenize', 'sentiment', 'ssplit', 'pos', 'lemma', 'ner', 'parse', 'depparse','coref'],
+timeout=120000,
+be_quiet = True,
+memory='4G') as client:
+print("Annotating data . . .")
+
+for i, fic in enumerate(fics):
+print('fic #', i, 'has ',len(fic.chapters))
+annotations = []
+for i, chapter in enumerate(fic.chapters):
+print('chapter ',i,': ',len(chapter))
+ann = client.annotate(chapter)
+time.sleep(4)
+
+annotations.append(ann)
+
+fic.set_annotations(annotations)
+
+
+print("...done")
+
+except TimeoutException as e:
+print('CoreNLP TimeoutException')
+return fics, True
+
+
+return fics, False
+
+\end{lstlisting}
+
+\cleardoublepage
+\section{ANEXO: PROGRAMAS DE PRUEBA PARA ALGORITMO DE EXTRACCIÓN DE RELACIONES}
+\subsection{toy\_relex\_kmeans}
+\begin{lstlisting}[style=consola]
+#!/usr/bin/bash/python3
+
+from nltk import word_tokenize
+from nltk.tokenize import RegexpTokenizer, sent_tokenize
+from nltk.tag import pos_tag
+from nltk.corpus import stopwords
+from nltk.corpus import wordnet
+from sklearn import metrics
+from sklearn.cluster import KMeans
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import PCA
+from fanfic_util import FanficGetter, Fanfic
+from NER_tagger import NERTagger
+
+from matplotlib import pyplot as plt
+from pprint import pprint
+import string, time, html2text
+import numpy as np
+
+### VARIABLES ###
+#FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
+RFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
+FFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_paths.txt'
+EFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths.txt'
+
+COLOURS = ["r", "b", "y", "b", "g"]
+NUM_CLUSTERS = 3
+
+INTERESTING_POS = ['NN', 'NNS', 'JJ', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] #I choose to only use nouns, adjectives and verbs (all kinds of verbs)
+#INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR']
+
+### FUNCTIONS ###
+
+def get_lemma(word):
+lemma = wordnet.morphy(word)
+
+if lemma is None:
+return word
+else: return lemma
+
+def get_stopwords():
+# Tokenize and lemmatize stopwords
+stop = stopwords.words('english')
+#tokenizer = RegexpTokenizer(r'\w+')
+#stop = [tokenizer.tokenize(word) for word in stop]
+stop = [word_tokenize(word) for word in stop]
+
+words = []
+for item in stop:
+if type(item) == list: 
+for w in item: words.append(w)
+
+else: words.append(word)
+
+
+words = [get_lemma(word) for word in words]
+#print(words[:10]) #debug
+
+return words
+
+
+def fic_tokenizev1(fic):
+sent_tokens = sent_tokenize(fic)
+#tokenizer = RegexpTokenizer(r'\w+')
+word_tokens = [word_tokenize(sen) for sen in sent_tokens]
+
+#print(character_mentions) #debug
+
+#Remove character names from text
+words = []
+for item in word_tokens:
+if type(item) == list:
+for w in item: words.append(w)
+
+else: words.append(word)
+
+#Lemmatize words
+processed_tokens = [get_lemma(word) for word in words]
+
+return processed_tokens
+
+def fic_tokenizev2(fic):
+sent_tokens = sent_tokenize(fic)
+#tokenizer = RegexpTokenizer(r'\w+')
+#pos_tokens = [pos_tag(tokenizer.tokenize(sent)) for sent in sent_tokens]
+pos_tokens = [pos_tag(word_tokenize(sent)) for sent in sent_tokens]
+
+interesting_words = []
+for token in pos_tokens:
+for word, pos in token:
+#word = word.strip()
+if pos in INTERESTING_POS: interesting_words.append(word)
+
+processed_tokens = [get_lemma(word) for word in interesting_words]
+
+return processed_tokens
+
+def remove_characters(fic_texts):
+ner_tagger = NERTagger()
+
+for text in fic_texts:
+sent_tokens = sent_tokenize(text)
+pos_tokens = [pos_tag(word_tokenize(sent)) for sent in sent_tokens]
+character_mentions = ner_tagger.parse(pos_tokens)
+
+for name, _ in character_mentions.items(): text = text.replace(name, '')
+
+return 	fic_texts
+
+def cluster_texts(texts, name_labels):
+#print(texts[0][:100]) #debug
+
+print("Creating stopwords and removing character names from texts...")
+start = time.time()
+
+stop_words = get_stopwords()
+#texts = [remove_characters(text) for text in texts]
+
+end = time.time()
+print("...done in ", (end-start)/60," mins")
+
+print("Creating vectorizer, transforming texts to tf-idf coordinates...")
+start = time.time()
+#vectorizer = TfidfVectorizer(tokenizer=fic_tokenizev1, stop_words=stop_words, max_df=0.5, min_df=0.3, lowercase=True)
+vectorizer = TfidfVectorizer(tokenizer=fic_tokenizev2, stop_words=stop_words, max_df=0.5, min_df=0.3, lowercase=True)
+
+#print(type(texts),type(texts[0])) #debug
+vectorized_data = vectorizer.fit_transform(texts)
+#print(vectorizer.get_feature_names()) #debug
+
+end = time.time()
+print("...done in ", (end-start)/60," mins")
+
+print("Creating the K-Means model and fitting data..")
+start = time.time()
+k_labels = np.unique(name_labels).shape[0]
+km_model = KMeans(n_clusters=k_labels, init='k-means++', n_init=10)
+
+data = km_model.fit_transform(vectorized_data)
+centroids = km_model.cluster_centers_
+#print(len(data)) #debug
+#print(centroids) #debug
+
+end = time.time()
+print("...done in ", (end-start)/60, "mins")
+print("n_samples: %d, n_features: %d" % data.shape)
+
+print("\n === Metrics ===")
+print("Homogeneity: %0.3f" % metrics.homogeneity_score(name_labels, km_model.labels_))
+print("Completeness: %0.3f" % metrics.completeness_score(name_labels, km_model.labels_))
+print("V-measure: %0.3f" % metrics.v_measure_score(name_labels, km_model.labels_))
+print("Adjusted Rand-Index: %.3f" % metrics.adjusted_rand_score(name_labels, km_model.labels_))
+print("Silhouette Coefficient: %0.3f" % metrics.silhouette_score(data, km_model.labels_, sample_size=100))
+
+
+print("\nTop terms per cluster:")
+order_centroids = km_model.cluster_centers_.argsort()[:, ::-1]
+terms = vectorizer.get_feature_names()
+for i in range(k_labels):
+print('Cluster %d:' % i)
+all_terms = ''
+for j in order_centroids[i, :10]: all_terms += terms[j]+', '
+print(all_terms+'\n')
+
+
+### Plot the data
+
+model = PCA(n_components=2)
+scatter_points = model.fit_transform(vectorized_data.toarray())
+kmean_indices = km_model.fit_predict(vectorized_data)
+
+x_axis = [x[0] for x in scatter_points]
+y_axis = [y[1] for y in scatter_points]
+
+plt.scatter(x_axis, y_axis, c=[COLOURS[d] for d in kmean_indices])
+
+plt.show()
+
+
+
+### MAIN ###
+
+print("Fetching fic texts...")
+start = time.time()
+
+getter = FanficGetter()
+
+getter.set_fic_listing_path(EFIC_LISTING_PATH)
+efics = getter.get_fanfics_in_list()
+elabels = ['enemy'] * len(efics)
+
+getter.set_fic_listing_path(FFIC_LISTING_PATH)
+ffics = getter.get_fanfics_in_range(0,180)
+flabels = ['friendship'] * len(ffics)
+
+getter.set_fic_listing_path(RFIC_LISTING_PATH)
+rfics = getter.get_fanfics_in_range(0,220) # There are a lot of romance fanfics, so we're going to tone it down a bit
+rlabels = ['romance'] * len(rfics)
+
+fics = efics + ffics + rfics
+name_labels = elabels + flabels + rlabels
+
+
+fanfic_texts = [fic.get_string_chapters() for fic in fics]
+#print(len(fics)) #debug
+#print(len(fanfic_texts), len(name_labels)) #debug
+
+end = time.time()
+
+print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
+
+cluster_texts(fanfic_texts, name_labels)
+
+
+\end{lstlisting}
+
+\cleardoublepage
+\subsection{toy\_relex\_topic}
+\begin{lstlisting}[style=consola]
+#!/usr/bin/bash/python3
+
+from nltk import word_tokenize
+from nltk.tokenize import RegexpTokenizer, sent_tokenize
+from nltk.tag import pos_tag
+from nltk.corpus import stopwords
+from nltk.corpus import wordnet
+from gensim import corpora
+
+import pandas as pd
+from fanfic_util import FanficGetter, Fanfic
+
+import string, pickle, gensim, sys, time
+
+### VARIABLES ###
+FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
+RFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths.txt'
+FFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_paths.txt'
+EFIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths.txt'
+
+MODEL_NAME = 'model0.gensim' #default name
+MODEL_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_models/'
+DICTIONARY_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_dictionaries/'
+NUM_TOPICS = 3
+
+#INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR','VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] #nouns, adjectives and verbs (all kinds) aka C
+#INTERESTING_POS = ['NN', 'NNS', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] #nouns, adverbs and verbs (all kinds) aka B
+#INTERESTING_POS = ['NN', 'NNS', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'UH'] #nouns, adverbs and verbs (all kinds) aka BUH
+#INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ'] #nouns, adjectives, adverbs and verbs (all kinds) aka D
+#INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ', 'UH'] #nouns, adjectives, adverbs and verbs (all kinds) aka DUH
+INTERESTING_POS = ['JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS', 'VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ','UH', 'RP', 'IN', 'CC'] #nouns, adjectives, adverbs and verbs (all kinds) aka DUH2
+#INTERESTING_POS = ['NN', 'NNS', 'JJ', 'JJS', 'JJR', 'RB', 'RBR', 'RBS'] #nouns, adjectives and adverbs (all kinds)
+
+UNINTERESTING_POS = ['PRP','PRP$','POS','CC','CD','TO','DT','IN']
+
+### FUNCTIONS ###
+
+def get_lemma(word):
+lemma = wordnet.morphy(word)
+
+if lemma is None:
+return word
+else: return lemma
+
+def get_stopwords():
+# Tokenize and lemmatize stopwords
+stop = stopwords.words('english')
+#tokenizer = RegexpTokenizer(r'\w+')
+#stop = [tokenizer.tokenize(word) for word in stop]
+stop = [word_tokenize(word) for word in stop]
+
+words = []
+for item in stop:
+if type(item) == list: 
+for w in item: words.append(w)
+
+else: words.append(word)
+
+
+words = [get_lemma(word) for word in words]
+#print(words[:10]) #debug
+
+return words
+
+
+def fic_tokenizev1(fic):
+sent_tokens = sent_tokenize(fic)
+#tokenizer = RegexpTokenizer(r'\w+')
+#word_tokens = [tokenizer.tokenize(sent) for sent in sent_tokens]
+word_tokens = [word_tokenize(sent) for sent in sent_tokens]
+
+words = []
+for item in word_tokens:
+if type(item) == list:
+for w in item: words.append(w)
+
+else: words.append(word)
+
+
+processed_tokens = [get_lemma(word) for word in words]
+
+return processed_tokens
+
+def fic_tokenizev2(fic):
+sent_tokens = sent_tokenize(fic)
+#tokenizer = RegexpTokenizer(r'\w+')
+#pos_tokens = [pos_tag(tokenizer.tokenize(sent)) for sent in sent_tokens]
+pos_tokens = [pos_tag(word_tokenize(sent)) for sent in sent_tokens]
+
+interesting_words = []
+for token in pos_tokens:
+for word, pos in token:
+#word = word.strip()
+if pos not in UNINTERESTING_POS: interesting_words.append(word)
+
+processed_tokens = [get_lemma(word) for word in interesting_words]
+
+return processed_tokens
+
+def process_text(unprocessed_fics):
+processed_fics = []
+for fic in unprocessed_fics:
+#Get lemmatized tokens
+#tokens = fic_tokenizev1(fic)
+tokens = fic_tokenizev2(fic)
+
+#Filter out stopwords
+stopwords = get_stopwords()
+
+word_tokens = [word for word in tokens if word not in stopwords]
+processed_fics.append(word_tokens)
+
+return processed_fics
+
+
+### MAIN ###
+
+if len(sys.argv) == 2:
+start_time = time.time()
+MODEL_NAME = (sys.argv[1]).strip()
+print(MODEL_NAME) #debug
+
+
+print('Fetching fic texts...')
+start = time.time()
+
+getter = FanficGetter()
+
+
+getter.set_fic_listing_path(EFIC_LISTING_PATH)
+efics = getter.get_fanfics_in_list()
+
+getter.set_fic_listing_path(FFIC_LISTING_PATH)
+ffics = getter.get_fanfics_in_range(0,180)
+
+getter.set_fic_listing_path(RFIC_LISTING_PATH)
+rfics = getter.get_fanfics_in_range(0,220) # There are a lot of romance fanfics, so we're going to tone it down a bit
+
+fics = efics + ffics + rfics
+
+
+
+fanfic_texts = [fic.get_string_chapters() for fic in fics]
+#print(len(fics)) #debug
+#print(len(fanfic_texts), len(name_labels)) #debug
+
+end = time.time()
+
+print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
+
+
+print('Preprocessing fanfics and creating dictionaries...')
+start_time = time.time()
+
+processed_fics = process_text(fanfic_texts)
+#print(type(processed_fics), processed_fics[0][:10]) #debug
+
+dictionary = corpora.Dictionary(processed_fics)
+corpus = [dictionary.doc2bow(fic) for fic in processed_fics]
+
+#pickle.dump(corpus, open('corpus.pkl', 'wb'))
+dictionary.save(DICTIONARY_PATH+MODEL_NAME+'_dictionary.gensim')
+
+end_time = time.time()
+print('Processing elapsed time: ',(end_time-start_time)/60,' minutes')
+
+start_time = time.time()
+print('Training LDA model. . .')
+ldamodel = gensim.models.ldamodel.LdaModel(corpus=corpus, num_topics=NUM_TOPICS, id2word=dictionary, passes=20)
+ldamodel.save(MODEL_PATH +'lda_'+MODEL_NAME+'.gensim')
+coherence = gensim.models.coherencemodel.CoherenceModel(model=ldamodel, texts=processed_fics, dictionary=dictionary, coherence='c_v')
+
+end_time = time.time()
+print('...LDA elapsed time: ',(end_time-start_time)/60,' minutes')
+
+print('LDA Coherence score: ', coherence.get_coherence())
+topics = ldamodel.print_topics(num_words=10)
+
+print('Topics in LDA model:')
+for topic in topics: print(topic)
+
+
+else:
+print('Error. Correct usage: \ntopic.py <MODEL_NAME>')
+
+\end{lstlisting}
+
+\cleardoublepage
+\subsection{toy\_relex\_v2}
+
+\begin{lstlisting}[style=consola]
+#!/bin/bash/python3
+
+import sys, time, pickle, pandas, numpy
+from sklearn.cluster import KMeans
+from sklearn.feature_extraction import DictVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
+from stanza.server import CoreNLPClient
+
+from NER_tagger import NERTagger
+from fanfic_util import FanficGetter, Fanfic
+
+import matplotlib.pyplot as plt
+
+### VARIABLES ###
+
+VERB_TAGS = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
+COLORMAP  = {0: 'red', 1: 'blue'}
+
+### FUNCTIONS ###
+
+def get_longest_lists(coref_chains): #returns the two longest chains in the coreference graph
+longest = []
+longest.append(max(list(coref_chains), key=len))
+
+coref_chains.remove(longest[0])
+
+longest.append(max(list(coref_chains), key=len))
+
+return longest
+
+def print_coref_mention(mention):
+print(mention.mentionID, mention.corefClusterID, mention.mentionType, mention.gender, mention.animacy, mention.number)
+
+def print_ner_mention(mention):	
+print(mention.entityMentionIndex, mention.canonicalEntityMentionIndex, mention.ner, mention.gender, mention.entityMentionText)
+
+### CLASSES ###
+
+class CharacterMention():
+def __init__(self, ID, word, canonicalName, gender, animacy, number, corefClusterID, nerEntityID, corefMentions, nerMentions):
+self.ID = ID
+self.word = word
+self.canonicalName = canonicalName
+self.gender = gender
+self.animacy = animacy
+self.number = number
+
+self.corefClusterID = corefClusterID
+self.nerEntityID = nerEntityID
+self.corefMentions = corefMentions
+self.nerMentions = nerMentions
+
+
+def getDictRepresentation(self):
+return {
+'name': self.canonicalName,
+'gender': self.gender,
+'animacy': self.animacy,
+'number': self.number,
+
+'clusterID': self.corefClusterID,
+'nerID': self.nerEntityID,
+}
+
+def getID(self): return self.ID
+
+
+### MAIN ###
+
+fGetter = FanficGetter()
+NERtagger = NERTagger()
+
+fic_list = fGetter.get_fanfics_in_range(8,9)
+
+fic_text = ''
+
+for i in range(7,10):
+fic_text += fic_list[0].get_chapter(i)
+
+#print(fic_text) #debug
+
+
+print("\n###### Starting client and calling CoreNLP server ######\n")
+start= time.time()
+
+sentences = []
+nerMentions = []
+corefMentions = []
+coref_chains = []
+with CoreNLPClient(
+annotators = ['tokenize', 'ssplit', 'pos', 'lemma', 'ner', 'parse', 'depparse','coref'],
+timeout=120000,
+be_quiet = True,
+memory='4G') as client:	
+
+print("Annotating data . . .")
+ann = client.annotate(fic_text)
+
+print("...done")
+
+sentences = ann.sentence
+nerMentions = ann.mentions #NERMention[]
+corefMentions = ann.mentionsForCoref #Mention[]
+chain = ann.corefChain #CorefChain[], made up of CorefMention[]
+
+for i in range(0, len(chain)): #debug
+coref_chains.append(chain[i].mention)
+
+
+#print(len(coref_chains)) #debug
+
+end = time.time()
+print("Client closed. "+ str((end-start)/60) +" mins elapsed")
+
+start = time.time()
+print("Processing annotation data...")
+
+
+coref_chains = get_longest_lists(coref_chains) #debug
+
+characterMentions = []
+i = 0
+for chain in coref_chains:
+#print(" =========== CHAIN #"+ str(i) +" ===========") #for visualization purposes
+for mention in chain:
+senIndex = mention.sentenceIndex
+tokBIndex = mention.beginIndex
+tokEIndex = mention.endIndex
+clusterID = corefMentions[mention.mentionID].corefClusterID
+entityID = nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].canonicalEntityMentionIndex
+entityName = str(nerMentions[sentences[mention.sentenceIndex].token[mention.beginIndex].entityMentionIndex].entityMentionText)
+mentionText = sentences[mention.sentenceIndex].token[mention.beginIndex].originalText
+
+character = CharacterMention(i, mentionText, entityName, corefMentions[mention.mentionID].gender, corefMentions[mention.mentionID].animacy, corefMentions[mention.mentionID].number, clusterID, entityID, [], [])
+characterMentions.append(character)
+
+#if i < 10: print(character.getDictRepresentation()) #debug
+
+i+=1
+
+
+#print("Sentence "+ senIndex +"	|	tokens "+ tokBIndex +"-"+ tokEIndex +"	|	"+ mention.mentionType +"	|	cluster  "+ clusterID +"	|	entity "+ entityID +" "+ entityName +"	|	text: "+  mentionText) #for visualization purposes
+
+print("CanonicalEntityMentionIndex for nerMentions[0]: ",nerMentions[0].canonicalEntityMentionIndex) #debug
+#print(len(characterMentions)) #debug
+characterDicts = [char.getDictRepresentation() for char in characterMentions]
+
+end = time.time()
+print("Annotations processed. "+ str((end-start)/60) +" mins elapsed")
+
+print("\n###### Starting clustering process ######\n")
+
+start = time.time()
+print("Get dictionary and Tfid vectorization...")
+vec1 = DictVectorizer()
+vec2 = TfidfTransformer() #this one is for normalization
+
+vec_data = vec1.fit_transform(characterDicts) #toarray?
+#print("before tfid", vec_data.shape) #debug
+#vec_data = vec2.fit_transform(vec_data)
+#print("after tfid", vec_data.shape) #debug
+#print(vec1.get_feature_names()) #debug
+
+data = pandas.DataFrame(vec_data.toarray(), columns = vec1.get_feature_names())
+
+
+end = time.time()
+print("...done. "+ str((end-start)/60) +" mins elapsed.")
+
+start = time.time()
+print("Initializing  and fitting KMeans model...")
+model = KMeans(init='k-means++', n_clusters=2, n_init=5)
+model.fit(data)
+predict = model.predict(data)
+
+data['category'] = model.labels_
+
+#for i in range(0,1): print(data.iloc[i,:]) #debug
+end = time.time()
+print("...done. "+ str((end-start)/60) +" mins elapsed.")
+
+# Print who belongs to which cluster
+#print(data.shape) #debug
+
+#print(data[['category','clusterID','nerID']].values) #debug
+
+print("Navigate sentences with relevant keyword verb 'love'\n")
+for sentence in sentences:
+printsentence = False
+sen = ''
+ner_indexes = []
+coref_indexes = []
+
+for token in sentence.token:
+#sen += token.originalText+' '
+
+if token.pos in VERB_TAGS and token.originalText == 'love':
+printsentence = True
+#print(token.corefMentionIndex)
+
+#for mention in sentence.mentions: print_ner_mention(mention)
+#for mention in sentence.mentionsForCoref: print_coref_mention(mention)
+
+if printsentence:
+for token in sentence.token:
+if token.ner == 'PERSON':
+print(token.originalText, token.ner, token.gender)
+print(nerMentions[token.entityMentionIndex].canonicalEntityMentionIndex, nerMentions[token.entityMentionIndex].ner, nerMentions[token.entityMentionIndex].gender, nerMentions[token.entityMentionIndex].entityMentionText)
+if len(token.corefMentionIndex) > 0:
+for index in token.corefMentionIndex: print(corefMentions[index].corefClusterID)
+
+elif len(token.corefMentionIndex) > 0:
+for index in token.corefMentionIndex:
+if corefMentions[index].mentionType == 'PRONOMINAL':
+character = list(filter(lambda char: char['clusterID'] == corefMentions[index].corefClusterID, characterDicts)) #find the character with the same cluster ID
+
+if len(character) < 1:
+print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+
+else:
+character = character[0]
+if character['name'] != '': print(character['name'], corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+
+else: print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+
+else: print(token.originalText, corefMentions[index].corefClusterID, corefMentions[index].mentionType, corefMentions[index].gender, corefMentions[index].number, corefMentions[index].animacy)
+
+else: print(token.originalText)
+
+print("\n\n")
+
+
+
+\end{lstlisting}
+
+\cleardoublepage
+\subsection{ner\_and\_sen\_extraction\_v2}
+\begin{lstlisting}[style=consola]
+#!/bin/bash/python3
+
+import sys, time, pandas, numpy
+from corenlp_wrapper import CoreClient2
+from stanza.server import Document
+from nltk.tag import pos_tag
+from nltk.tokenize import sent_tokenize, word_tokenize
+#from urllib.error import HTTPError
+
+from NER_tagger_v3 import NERTagger
+from fanfic_util import FanficGetter, FanficHTMLHandler, Fanfic
+
+### VARIABLES ###
+CHARACTERS_TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_characters.csv'
+SENTENCES_TO_CSV = '/home/maria/Documents/Fanfic_ontology/fic_sentences.csv'
+CANON_DB = '/home/maria/Documents/Fanfic_ontology/canon_characters.csv'
+ERRORLOG = '/home/maria/Documents/Fanfic_ontology/TFG_logs/ner_and_sen_extraction_v2_errorlog.txt'
+
+ROMANCE_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/romance_fic_paths_shortened.txt'
+FRIENDSHIP_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/friendship_fic_paths_shortened.txt'
+ENEMY_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/enemy_fic_paths3.txt'
+
+FEMALE_TAGS = ['She/Her Pronouns for ', 'Female ', 'Female!', 'Female-Presenting ']
+MALE_TAGS = ['He/Him Pronouns for ', 'Male ', 'Male!', 'Male-Presenting ']
+NEUTRAL_TAGS = ['They/Them Pronouns for ', 'Gender-Neutral Pronouns for', 'Gender-Neutral ', 'Agender ', 'Genderfluid ', 'Androgynous ', 'Gender Non-Conforming ']
+
+### FUNCTIONS ###
+
+def print_coref_mention(mention, sent):
+token = sent.token[mention.headIndex]
+coref_cluster = token.corefClusterID
+#print(mention.mentionID, coref_cluster, mention.mentionType, token.originalText, mention.gender, mention.animacy, mention.number)
+
+def print_ner_mention(mention):	
+print(mention.entityMentionIndex, mention.canonicalEntityMentionIndex, mention.ner, mention.gender, mention.entityMentionText)
+
+def merge_character_mentions(fic_index, character_entities, character_mentions, tagger_characters):
+# create characters from their NER IDs
+ner_ids = [char['nerID'] for char in character_entities]
+ner_ids = set(ner_ids) #remove duplicates
+
+characters = []
+for ner in ner_ids:
+character = {}
+character['ficID'] = fic_index
+character['nerID'] = [ner]
+character['Name'] = 'Jane Doe' #filler
+character['Gender'] = 'X' #filler
+character['Mentions'] = 0
+character['clusterID'] = [-1] #filler
+character['canonID'] = -1 #to be used later
+characters.append(character)
+
+# fill in character information using its clusters and mentions
+for char in characters:
+for mention in character_mentions:
+if mention['nerID'] == char['nerID'][0]:
+no_cluster = False
+char['Mentions'] = char['Mentions']+1
+
+if mention['MentionT'] == 'PROPER':
+char['Name'] = mention['Name']
+char['Gender'] = mention['Gender']
+
+cluster = char['clusterID']
+if  mention['clusterID'] not in cluster: char['clusterID'].append(mention['clusterID'])
+
+for char in characters:
+if len(char['clusterID']) == 1:
+ner_char = list(filter(lambda entity: entity['nerID'] == char['nerID'][0], character_entities))
+
+char['Name'] = ner_char[0]['Name']
+char['Gender'] = ner_char[0]['Gender']
+char['Mentions'] = len(ner_char)  		
+
+for char in characters: char['clusterID'].remove(-1) #remove filler
+
+# merge repeated character entries into single entry
+aux = characters.copy()
+for char in characters:
+aux.remove(char)
+for c in aux:
+cluster = c['clusterID']
+if len(cluster) == 1 and cluster[0] in char['clusterID']:
+if char['Name'] == c['Name'] and char['Gender'] == c['Gender']:
+char['Mentions'] = char['Mentions']+c['Mentions']
+char['nerID'].append(c['nerID'][0])
+
+aux.remove(c)
+characters.remove(c)
+
+# merge in the NERTagger characters
+for tagger_char, mentions in tagger_characters.items():
+for char in characters:
+if tagger_char.lower() == char['Name'].lower(): #add characters mentions if the character is already named
+if mentions > char['Mentions']:
+char['Mentions'] += mentions-char['Mentions']
+break
+
+
+return characters
+
+def link_characters_to_canon(characters, canon_db):
+
+for character in characters:
+for index, canon_character in canon_db.iterrows():
+if type(canon_character['Other names']) == str:
+other_names = [name.lower() for name in canon_character['Other names'].split(',')]
+#print(other_names) #debug
+
+else: other_names = ['']
+
+if canon_character['Name'].lower() == character['Name'].lower():
+#print(canon_character['Name'].lower(), character['Name'].lower()) #debug
+character['canonID'] = index
+break
+
+elif character['Name'].lower() in [name.lower() for name in canon_character['Name'].split(' ')]:
+character['canonID'] = index
+break
+
+elif character['Name'].lower() in other_names:
+character['canonID'] = index
+break
+
+#if a character is not canon its canonID will not be changed from -1
+
+return characters
+
+def make_gender_tags(tags, character_name):
+for tag in tags:
+tag = tag+character_name
+
+return tags
+
+def decide_gender(characters, canon_db):
+handler = FanficHTMLHandler()
+
+for character in characters:
+if character['Gender'] == 'UNKNOWN':
+fic_link = '/home/maria/Documents/Fanfic_ontology/TFG_fics/html/gomensfanfic_'+str(character['ficID'])+'.html'
+fic_tags = handler.get_tags(fic_link)
+character_name = character['Name'].capitalize()
+
+f_gender = make_gender_tags(FEMALE_TAGS, character_name)
+m_gender = make_gender_tags(MALE_TAGS, character_name)
+n_gender = make_gender_tags(NEUTRAL_TAGS, character_name)
+
+male = female = neutral = False
+
+if any(tag in fic_tags for tag in f_gender): female = True
+elif any(tag in fic_tags for tag in m_gender): male = True
+elif any(tag in fic_tags for tag in n_gender): neutral = True
+
+if female and male: character['Gender'] = 'NEUTRAL'
+elif female: character['Gender'] = 'FEMALE'
+elif male: character['Gender'] = 'MALE'
+elif neutral: character['Gender'] = 'NEUTRAL'
+else: #if there are no gender tags applicable to the character we assume the canon gender
+if character['canonID'] > -1: #if the character is not canon the gender will remain unknown
+canon_gender = canon_db.iloc[character['canonID']]['Gender']
+character['Gender'] = canon_gender
+
+return characters
+
+
+def get_longest_lists(coref_chains): #returns the two longest chains in the coreference graph
+longest = []
+longest.append(max(list(coref_chains), key=len))
+
+coref_chains.remove(longest[0])
+
+longest.append(max(list(coref_chains), key=len))
+
+return longest
+
+def merge_sentences(fic_index, fic_dataset, character_sentences):
+sen_ids = []
+merged_sentences = []
+
+for sentence in character_sentences:
+sent = {}
+if sentence['senID'] in sen_ids: #If a dict for this sentence already exists
+sent = list(filter(lambda s: s['senID'] == sentence['senID'], merged_sentences))
+#print(len(sent)) #debug
+sent = sent[0]
+
+if sentence['nerIDs'] > -1 and sentence['nerIDs'] not in sent['nerIDs']: sent['nerIDs'].append(sentence['nerIDs'])
+if sentence['Clusters'] > -1 and sentence['Clusters'] not in sent['Clusters']: sent['Clusters'].append(sentence['Clusters'])
+
+else: #Create new sentence dict
+sen_ids.append(sentence['senID'])
+
+sent['ficID'] = fic_index
+sent['ficDataset'] = fic_dataset
+sent['senID'] = sentence['senID']
+sent['Sentiment'] = sentence['Sentiment']
+sent['Verbs'] = sentence['Verbs']
+
+if sentence['nerIDs'] > -1: sent['nerIDs'] =  [sentence['nerIDs']]
+else: sent['nerIDs'] = []
+
+if sentence['Clusters'] > -1: sent['Clusters'] = [sentence['Clusters']]
+else: sent['Clusters'] = []
+
+merged_sentences.append(sent)
+
+return merged_sentences
+
+def extract_data_from_annotations(annotation):
+sentences= annotation.sentence
+all_ner_mentions = annotation.mentions #NERMention[]
+all_coref_mentions = annotation.mentionsForCoref #Mention[]
+chains = annotation.corefChain #CorefChain[], made up of CorefMention[]
+
+
+#coref_chains = []
+#for i in range(0, len(chains)): #debug
+#	coref_chains.append(chains[i].mention)
+#coref_chains = get_longest_lists(coref_chains)
+
+# lists to store the return values in
+character_entities = []
+character_mentions = []
+character_sentences = []
+## Extract characters from NER and coreference mentions ##
+if len(all_ner_mentions) > 0:
+for ner in all_ner_mentions:
+if ner.ner == 'PERSON':
+sentence = {}
+sen = sentences[ner.sentenceIndex]
+
+string_sen = ''
+for token in sen.token: 
+string_sen += ' '+token.originalText
+
+sentence['senID'] = sen.sentenceIndex
+sentence['Sentiment'] = sen.sentiment
+#sentence['Verbs'] = get_lemmatized_verbs(string_sen)
+sentence['Verbs'] = string_sen
+sentence['nerIDs'] =  ner.canonicalEntityMentionIndex
+sentence['Clusters'] = -1 #filler
+character_sentences.append(sentence)
+
+character = {}
+#token = tokens[ner.tokenStartInSentenceInclusive]
+#coref_in_token = token.
+
+character['senID'] = sen.sentenceIndex
+character['nerID'] = ner.canonicalEntityMentionIndex
+character['nerMentionIndex'] = ner.entityMentionIndex
+character['Name'] = ner.entityMentionText
+character['Gender'] = ner.gender
+character['MentionT'] = 'PERSON'
+character_entities.append(character)
+
+#end FOR ner
+#end IF len
+if len(all_coref_mentions) > 0:
+for mention in all_coref_mentions:
+if mention.mentionType == 'NOMINAL':
+print_coref_mention(mention, sentences[mention.sentNum])
+
+elif mention.mentionType in ['PROPER','PRONOMINAL']:
+sentence = {}
+sen = sentences[mention.sentNum]
+
+string_sen = ''
+for token in sen.token: 
+string_sen += ' '+token.originalText
+
+sentence['senID'] = sen.sentenceIndex
+sentence['Sentiment'] = sen.sentiment
+#sentence['Verbs'] = get_lemmatized_verbs(string_sen)
+sentence['Verbs'] = string_sen
+sentence['nerIDs'] = -1 #filler
+sentence['Clusters'] = mention.corefClusterID
+
+character_sentences.append(sentence)
+
+if mention.sentNum != sen.sentenceIndex: print('false')
+
+character = {}
+
+token = sen.token[mention.headIndex]
+ner_in_token = all_ner_mentions[token.entityMentionIndex]
+character['senID'] = sen.sentenceIndex
+character['nerID'] = ner_in_token.canonicalEntityMentionIndex
+character['clusterID'] = mention.corefClusterID
+character['Name'] = mention.headString
+character['Gender'] = mention.gender
+character['MentionT'] = mention.mentionType
+character_mentions.append(character)
+
+
+#end FOR mention
+#end IF len		
+
+return character_entities, character_mentions, character_sentences
+
+def character_and_sentence_extraction(fics):
+# Declarations
+client = CoreClient2()
+NERtagger = NERTagger()
+#chains = []
+
+print('\n###### Starting CoreNLP server and processing fanfics. . .######\n')
+start= time.time()
+
+
+annotated_fics, error = client.parse(fics)
+if error:
+print('Error: not all fanfics could be processed by the server')
+recovered_fics = []
+for fic in annotated_fics:
+if fic.annotations is not None: recovered_fics.append(fic)
+
+print('Program is continuing with ',len(recovered_fics),' of the original ',len(fics), 'fics')
+annotated_fics = recovered_fics
+
+
+
+end = time.time()
+print("Client closed. "+ str((end-start)/60) +" mins elapsed")
+
+print("Processing annotation data...")
+start = time.time()
+
+
+
+num_fics = len(annotated_fics)-1
+for i, fic in enumerate(annotated_fics):
+# Declarations
+character_entities = []
+character_mentions = []
+character_sentences = []
+
+# First we process the character entities with NERTagger
+print('Processing fic '+ str(i)+' of '+str(num_fics)+' (Fic #'+str(fic.index)+')')
+
+# Preprocess and tag characters with NERTagger
+processed_fic = preprocess_fic(fic)
+tagger_characters = NERtagger.parse(processed_fic)
+#print(tagger_characters) #debug
+
+canonized_characters = []
+for annotation in fic.annotations:
+entities, mentions, sentences = extract_data_from_annotations(annotation)
+
+character_entities = character_entities + entities
+character_mentions = character_mentions + mentions
+character_sentences = character_sentences + sentences
+
+# Merge all character mentions into unique characters
+unique_characters = merge_character_mentions(fic.index, character_entities, character_mentions, tagger_characters)
+
+# Link characters to their canon version, if it has one
+canonized_characters = link_characters_to_canon(unique_characters, canon_db)
+#print(canonized_characters[:10])
+
+# Decide genders for all characters
+canonized_characters = decide_gender(canonized_characters, canon_db)
+
+# Merge all sentences into unique sentences with the characters they mention
+merged_sentences = merge_sentences(fic.index,fic.dataset,character_sentences)
+#print(merged_sentences[:10]) #debug
+
+fic.set_characters(canonized_characters)
+fic.set_sentences(merged_sentences)
+
+
+end = time.time()
+print(". . .annotation data processed. "+ str((end-start)/60) +" mins elapsed")
+
+
+return annotated_fics
+
+def preprocess_fic(fic):
+tagged_fic = []
+
+for chapter in fic.chapters:
+tokenized_chapter = [word_tokenize(sent) for sent in sent_tokenize(chapter)]
+tagged_chapter = [pos_tag(word) for word in tokenized_chapter]
+
+tagged_fic.extend(tagged_chapter)
+
+return tagged_fic
+
+def get_fanfics(start, end, dataset):
+fGetter = FanficGetter()
+fics = []
+if dataset == 'r':
+fGetter.set_fic_listing_path(ROMANCE_LISTING_PATH)
+fics = fGetter.get_fanfics_in_range(start, end) #get ROMANCE fanfics
+
+elif dataset == 'f':
+fGetter.set_fic_listing_path(FRIENDSHIP_LISTING_PATH)
+fics = fGetter.get_fanfics_in_range(start, end) #get FRIENDSHIP fanfics
+
+elif dataset == 'e':
+fGetter.set_fic_listing_path(ENEMY_LISTING_PATH)
+fics = fGetter.get_fanfics_in_range(start, end) #get ENEMY fanfics
+
+else: print('Dataset '+dataset+' does not exist')
+
+if dataset != 'e': #ENEMY dataset can contain more than one chapter per fanfic
+for fic in fics:
+if len(fic.chapters) != 1:
+f = open(ERRORLOG, 'a')
+f.write('Error on fanfic #'+str(fic.index)+' from dataset '+dataset+': num chapters = '+str(len(fic.chapters))+'\n')
+f.close()
+
+raise Exception('ERROR: a multi-chapter fanfic was found (fic index #'+str(fic.index)+')')
+
+return fics
+
+def count_fics_already_processed():
+processed_sentences = pandas.read_csv(SENTENCES_TO_CSV)
+
+r_sentences = processed_sentences[processed_sentences['ficDataset'] == 'ROMANCE']
+f_sentences = processed_sentences[processed_sentences['ficDataset'] == 'FRIENDSHIP']
+e_sentences = processed_sentences[processed_sentences['ficDataset'] == 'ENEMY']
+
+num_r = len(set(r_sentences['ficID']))
+num_f = len(set(f_sentences['ficID']))
+num_e = len(set(e_sentences['ficID']))
+
+return {'r': num_r, 'f': num_f, 'e':num_e}
+
+
+### MAIN ###
+# Loading canon DB...
+canon_db = pandas.read_csv(CANON_DB)
+
+if len(sys.argv) == 4:
+start_index = int(sys.argv[1])
+end_index = int(sys.argv[2])
+dataset = sys.argv[3]
+
+count_processed = count_fics_already_processed()
+
+if start_index < count_processed[dataset]: print('Careful: you seem to be re-processing some fanfics')
+else:
+
+print('Fetching fic texts from database '+dataset+'...')
+start = time.time()
+
+fic_list = get_fanfics(start_index, end_index, dataset)
+
+
+#fic_texts = [fic.chapters for fic in fic_list] #debug
+#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
+
+end = time.time()
+print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
+
+processed_fics = character_and_sentence_extraction(fic_list)
+
+all_characters = []
+all_sentences = []
+for fic in processed_fics: 
+all_characters = all_characters + fic.characters
+all_sentences = all_sentences + fic.sentences
+
+print('Saving data to csv file...')
+start = time.time()
+
+# Create dataframe from dicts and save to csv
+c_df = pandas.DataFrame.from_dict(all_characters)
+s_df = pandas.DataFrame.from_dict(all_sentences)
+
+c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=False)
+s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=False)
+
+end = time.time()
+print("...saved. Elapsed time: ",(end-start)/60," mins")
+
+elif len(sys.argv) == 3:
+start_index = int(sys.argv[1])
+end_index = int(sys.argv[2])
+
+count_processed = count_fics_already_processed()
+
+if start_index < count_processed['r']: print('Careful: you seem to be re-processing some fanfics')
+else:
+
+print('Fetching fic texts...')
+start = time.time()
+
+fic_list = get_fanfics(start_index, end_index, 'r')
+
+
+#fic_texts = [fic.chapters for fic in fic_list] #debug
+#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
+
+end = time.time()
+print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
+
+processed_fics = character_and_sentence_extraction(fic_list)
+
+all_characters = []
+all_sentences = []
+for fic in processed_fics: 
+all_characters = all_characters + fic.characters
+all_sentences = all_sentences + fic.sentences
+
+print('Saving data to csv file...')
+start = time.time()
+
+# Create dataframe from dicts and save to csv
+c_df = pandas.DataFrame.from_dict(all_characters)
+s_df = pandas.DataFrame.from_dict(all_sentences)
+
+c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=False)
+s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=False)
+
+end = time.time()
+print("...saved. Elapsed time: ",(end-start)/60," mins")
+
+elif len(sys.argv) == 2:
+if sys.argv[1] == 'c': 
+count = count_fics_already_processed()
+print('Romance fics processed: ',count['r'],'\nFriendship fics processed: ',count['f'],'\nEnemy fics processed: ',count['e'])
+else: print('Incorrect use of command line')
+
+elif len(sys.argv) == 1:
+fGetter = FanficGetter()
+fGetter.set_fic_listing_path(ROMANCE_LISTING_PATH)
+
+print('Fetching fic texts...')
+start = time.time()
+
+fic_list = fGetter.get_fanfics_in_range(0, 5)
+#fic_texts = [fic.chapters for fic in fic_list]
+#print(len(fic_texts[0]), type(fic_texts[0][0])) #debug
+
+end = time.time()
+print("...fics fetched. Elapsed time: ",(end-start)/60," mins")
+
+processed_fics = character_and_sentence_extraction(fic_list)
+
+all_characters = []
+all_sentences = []
+for fic in processed_fics: 
+all_characters.extend(fic.characters)
+all_sentences.extend(fic.sentences)
+
+#print(len(all_characters), len(all_sentences)) #debug
+#print(type(all_characters), type(all_sentences)) #debug
+
+#print(all_characters[:5]) #debug
+#print(all_sentences[:5]) #debug
+
+# Create dataframe from dicts and save to csv
+c_df = pandas.DataFrame.from_dict(all_characters)
+s_df = pandas.DataFrame.from_dict(all_sentences)
+
+#c_df.to_csv(CHARACTERS_TO_CSV, mode='a', index=False, header=True)
+#s_df.to_csv(SENTENCES_TO_CSV, mode = 'a', index=False, header=True)
+
+else:
+print('Incorrect use of command line')
+
+
+\end{lstlisting}
+
+\cleardoublepage
+\section{ANEXO: PROGRAMA FINAL}
+\begin{lstlisting}[style=consola]
+#!/usr/bin/bash/python3
+
+from nltk.tag import pos_tag
+from nltk.tokenize import word_tokenize, sent_tokenize
+from fanfic_util import *
+from NER_tagger import NERTagger
+from corenlp_util import CoreNLPDataProcessor, CoreWrapper
+
+import sys, time, random, pandas
+
+### VARIABLES ###
+FIC_LISTING_PATH = '/home/maria/Documents/Fanfic_ontology/html_fic_paths.txt'
+FIC_NAME_PATH = '/home/maria/Documents/Fanfic_ontology/TFG_fics/html/'
+
+MAX_FIC_CHARACTERS = 50000
+
+### FUNCTIONS ###
+
+def tag_with_NERTagger(fic):
+nerTagger = NERTagger()
+tagged_fic = []
+
+#tokenize fanfic
+for chapter in fic.chapters:
+tokens = [word_tokenize(sent) for sent in sent_tokenize(chapter)]
+tagged_chapter = [pos_tag(word) for word in tokens]
+
+tagged_fic.extend(tagged_chapter)
+
+#tag NERs with NERTagger
+ner_characters = nerTagger.parse(tagged_fic)
+
+return ner_characters
+
+def call_corenlp(fic):
+client = CoreWrapper()
+
+print('\n## Starting CoreNLP server and processing fanfic. . .\n')
+start= time.time()
+
+
+annotated_fics, error = client.parse(fic)
+if error:
+print('Error: not all fanfics could be processed by the server')
+recovered_fics = []
+for fic in annotated_fics:
+if fic.annotations is not None: recovered_fics.append(fic)
+
+print('Program is continuing with ',len(recovered_fics),' of the original ',len(fics), 'fics')
+annotated_fics = recovered_fics
+
+
+
+end = time.time()
+print("Client closed. "+ str((end-start)/60) +" mins elapsed")
+
+return annotated_fics
+
+def calculate_sentiment_percent(fic_sentiment):
+total = fic_sentiment['Num sentences']
+fic_sentiment.pop('Num sentences')
+
+sentiment_percents = []
+for _, count in fic_sentiment.items():
+sentiment_percents.append(count*100/total)
+
+return sentiment_percents
+
+
+### MAIN ###
+getter = FanficGetter()
+handler = FanficHTMLHandler()
+
+if len(sys.argv) == 1:
+print('Fetching fanfic...')
+
+fic_not_found = True
+while fic_not_found:
+fic_id = random.randint(0,20190)
+fic_path = FIC_NAME_PATH+'gomensfanfic_'+str(fic_id)+'.html'
+#print(fic_id, fic_path) #debug
+
+fic = getter.get_fanfics_in_range(fic_id, fic_id+1)
+fic = fic[0]
+
+if len(fic.get_string_chapters()) < MAX_FIC_CHARACTERS: fic_not_found = False
+
+print('Fic #'+str(fic.index)+' fetched.')
+
+print('Tagging characters with NERTagger...')
+start = time.time()
+nertagger_characters = tag_with_NERTagger(fic)
+#for char in nertagger_characters: print(char) #debug
+end = time.time()  
+print('...done in '+str((end-start)/60)+' minutes.')
+
+annotated_fic = call_corenlp(fic)
+#print(len(annotated_fic)) #debug
+annotated_fic = annotated_fic[0]
+
+print('Processing CoreNPL data...')
+coreProcessor = CoreNLPDataProcessor(annotated_fic)
+coreProcessor.extract_fic_characters()
+core_characters = coreProcessor.fic.characters
+#print(type(core_characters)) #debug
+
+fic_sentiment = coreProcessor.extract_fic_sentiment()
+#print(fic_sentiment) #debug
+
+print('...data processed.')
+fic_title = handler.get_title(fic_path)
+
+print('-- DATA FOR FANFIC #'+str(fic.index)+' --\n')
+print(' Title: '+fic_title)
+print(' NERTagger characters:	{:<8} {:<30} {:<10}'.format('Canon ID','Name','Mentions'))
+for character in nertagger_characters:
+try: print('			{:<8} {:<30} {:<10}'.format(character['Canon ID'], character['Name'],character['Mentions']))
+except TypeError: print(character) #debug
+
+print('\n')
+
+print(' CoreNLP characters:	{:<8} {:<20} {:<10} {:<10} {:<10} {:<10} {:<20}'.format('Canon ID','Name','MALE','FEMALE','NEUTRAL','UNKNOWN','Other names'))
+for character in core_characters:
+try: print('			{:<8} {:<20} {:<10} {:<10} {:<10} {:<10} {:<20}'.format(character['Canon ID'], character['Name'],character['Male mentions'],character['Female mentions'],character['Neutral mentions'],character['Unknown mentions'],character['Other names']))
+except TypeError: print(character) #debug
+
+print('\n')
+
+#percentages = calculate_sentiment_percentages(fic_sentiment)	
+print(' Sentiment:	{:<10} {:<15} {:<15} {:<15} {:<15} {:<15} {:<15}'.format('Sentences','Very positive','Positive','Neutral','Negative','Very negative','Weighted avg'))
+print('		{:<10} {:<15} {:<15} {:<15} {:<15} {:<15} {:<15}'.format(fic_sentiment['Num sentences'],fic_sentiment['Very positive'],fic_sentiment['Positive'],fic_sentiment['Neutral'],fic_sentiment['Negative'],fic_sentiment['Very negative'], fic_sentiment['Weighted average']))
+print('\n\n')
+
+
+elif len(sys.argv) == 2:
+try: 
+fic_id = int(sys.argv[1])
+fic_path = FIC_NAME_PATH+'gomensfanfic_'+sys.argv[1]+'.html'
+print(fic_id, fic_path) #debug
+
+if fic_id < 0 or fic_id > 20190: raise ValueError
+
+except ValueError:
+print('Fic index must be a natural number between 0 and 20190')
+sys.exit()
+
+print('Fetching fanfic #'+str(fic_id)+'...')
+fic = getter.get_fanfic_in_path(fic_path)
+
+
+print('Tagging characters with NERTagger...')
+start = time.time()
+nertagger_characters = tag_with_NERTagger(fic)
+#for char in nertagger_characters: print(char) #debug
+end = time.time()  
+print('...done in '+str((end-start)/60)+' minutes.')
+
+annotated_fic = call_corenlp(fic)
+#print(len(annotated_fic)) #debug
+annotated_fic = annotated_fic[0]
+
+print('Processing CoreNPL data...')
+coreProcessor = CoreNLPDataProcessor(annotated_fic)
+coreProcessor.extract_fic_characters()
+core_characters = coreProcessor.fic.characters
+#print(type(core_characters)) #debug
+
+fic_sentiment = coreProcessor.extract_fic_sentiment()
+#print(fic_sentiment) #debug
+
+print('...data processed.')
+fic_title = handler.get_title(fic_path)
+fic_character_tags = handler.get_characters(fic_path)
+character_tags = ''
+for tag in fic_character_tags: character_tags += tag+' '
+
+print('-- DATA FOR FANFIC #'+str(fic_id)+' --\n')
+print(' Title: '+fic_title)
+print(' Character tags: '+character_tags)
+print(' NERTagger characters:	{:<8} {:<30} {:<10}'.format('Canon ID','Name','Mentions'))
+for character in nertagger_characters:
+try: print('			{:<8} {:<30} {:<10}'.format(character['Canon ID'], character['Name'],character['Mentions']))
+except TypeError: print(character) #debug
+
+print('\n')
+
+print(' CoreNLP characters:	{:<8} {:<20} {:<10} {:<10} {:<10} {:<10} {:<20}'.format('Canon ID','Name','MALE','FEMALE','NEUTRAL','UNKNOWN','Other names'))
+for character in core_characters:
+try: print('			{:<8} {:<20} {:<10} {:<10} {:<10} {:<10} {:<20}'.format(character['Canon ID'], character['Name'],character['Male mentions'],character['Female mentions'],character['Neutral mentions'],character['Unknown mentions'],character['Other names']))
+except TypeError: print(character) #debug
+
+print('\n')
+
+#percentages = calculate_sentiment_percentages(fic_sentiment)	
+print(' Sentiment:	{:<10} {:<15} {:<15} {:<15} {:<15} {:<15} {:<15}'.format('Sentences','Very positive','Positive','Neutral','Negative','Very negative', 'Weighted avg'))
+print('		{:<10} {:<15} {:<15} {:<15} {:<15} {:<15} {:<15}'.format(fic_sentiment['Num sentences'],fic_sentiment['Very positive'],fic_sentiment['Positive'],fic_sentiment['Neutral'],fic_sentiment['Negative'],fic_sentiment['Very negative'], fic_sentiment['Weighted average']))
+print('\n\n')
+
+else: print('Incorrect usage of program.py. Correct use: program.py, program.py <fic_index>')
+
+\end{lstlisting}
 
 
 \end{document}

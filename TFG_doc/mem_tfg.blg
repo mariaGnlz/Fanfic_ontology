@@ -1,62 +1,57 @@
 This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: mem_tfg.aux
-The style file: alpha.bst
+The style file: apalike.bst
 Database file #1: bib_tfg.bib
 Warning--entry type for "jose_2017" isn't style-file defined
---line 53 of file bib_tfg.bib
+--line 55 of file bib_tfg.bib
 Warning--entry type for "ivanov_2016" isn't style-file defined
---line 209 of file bib_tfg.bib
+--line 204 of file bib_tfg.bib
 Warning--entry type for "sklearn_feature" isn't style-file defined
---line 227 of file bib_tfg.bib
-Warning--to sort, need author or key in nothman_2013
-Warning--to sort, need author or key in ivanov_2016
-Warning--to sort, need author or key in jose_2017
+--line 221 of file bib_tfg.bib
 Warning--to sort, need author or key in sklearn_feature
+Warning--empty year in sklearn_feature
 Warning--there's a number but no volume in Barthes
-Warning--empty journal in lafferty_2011
-Warning--empty author in nothman_2013
-Warning--empty journal in wick_2009
 Warning--there's a number but no volume in zelenko_2003
 You've used 19 entries,
-            2543 wiz_defined-function locations,
-            663 strings with 7385 characters,
-and the built_in function-call counts, 5315 in all, are:
-= -- 529
-> -- 124
-< -- 16
-+ -- 32
-- -- 30
-* -- 298
-:= -- 835
-add.period$ -- 57
+            1935 wiz_defined-function locations,
+            581 strings with 6922 characters,
+and the built_in function-call counts, 5890 in all, are:
+= -- 599
+> -- 180
+< -- 20
++ -- 58
+- -- 54
+* -- 403
+:= -- 1073
+add.period$ -- 61
 call.type$ -- 19
-change.case$ -- 90
+change.case$ -- 115
 chr.to.int$ -- 19
-cite$ -- 32
-duplicate$ -- 260
-empty$ -- 466
-format.name$ -- 60
-if$ -- 1112
+cite$ -- 24
+duplicate$ -- 252
+empty$ -- 409
+format.name$ -- 84
+if$ -- 1158
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 14
-newline$ -- 98
-num.names$ -- 45
-pop$ -- 125
+newline$ -- 102
+num.names$ -- 54
+pop$ -- 81
 preamble$ -- 1
-purify$ -- 110
+purify$ -- 116
 quote$ -- 0
-skip$ -- 210
+skip$ -- 222
 stack$ -- 0
-substring$ -- 229
-swap$ -- 28
-text.length$ -- 16
-text.prefix$ -- 15
+substring$ -- 337
+swap$ -- 31
+text.length$ -- 2
+text.prefix$ -- 0
 top$ -- 0
-type$ -- 148
-warning$ -- 9
-while$ -- 34
-width$ -- 22
-write$ -- 231
-(There were 12 warnings)
+type$ -- 112
+warning$ -- 4
+while$ -- 42
+width$ -- 0
+write$ -- 243
+(There were 7 warnings)

@@ -21,4 +21,22 @@
 \BOOKMARK [2][-]{subsection.11.2}{Prueba 2: G\351nero distinto del canon \(Fanfic 2856\)}{section.11}% 21
 \BOOKMARK [2][-]{subsection.11.3}{Prueba 3: Personajes que no son nombrados \(Fanfic 2163\)}{section.11}% 22
 \BOOKMARK [1][-]{section.12}{CONCLUSIONES}{}% 23
-\BOOKMARK [1][-]{section.13}{REFERENCIAS}{}% 24
+\BOOKMARK [2][-]{subsection.12.1}{Trabajos futuros}{section.12}% 24
+\BOOKMARK [1][-]{section.13}{REFERENCIAS}{}% 25
+\BOOKMARK [1][-]{appendix.Alph1}{ANEXO: C\323DIGO DEL SISTEMA DE SCRAPERS}{}% 26
+\BOOKMARK [2][-]{subsection.Alph1.1}{link\137scraper}{appendix.Alph1}% 27
+\BOOKMARK [2][-]{subsection.Alph1.2}{file\137scraper}{appendix.Alph1}% 28
+\BOOKMARK [1][-]{appendix.Alph2}{ANEXO: C\323DIGO DE fanfic\137util}{}% 29
+\BOOKMARK [1][-]{appendix.Alph3}{ANEXO: C\323DIGO DEL ALGORITMO DE IDENTIFICACI\323N DE ENTIDADES BASADO EN REGRESI\323N LOG\315STICA}{}% 30
+\BOOKMARK [2][-]{subsection.Alph3.1}{NER\137chunker}{appendix.Alph3}% 31
+\BOOKMARK [2][-]{subsection.Alph3.2}{NER\137trainer}{appendix.Alph3}% 32
+\BOOKMARK [2][-]{subsection.Alph3.3}{NER\137tagger}{appendix.Alph3}% 33
+\BOOKMARK [1][-]{appendix.Alph4}{ANEXO: C\323DIGO QUE MANEJA CoreNLP}{}% 34
+\BOOKMARK [2][-]{subsection.Alph4.1}{corenlp\137wrapper}{appendix.Alph4}% 35
+\BOOKMARK [2][-]{subsection.Alph4.2}{corenlp\137util}{appendix.Alph4}% 36
+\BOOKMARK [1][-]{appendix.Alph5}{ANEXO: PROGRAMAS DE PRUEBA PARA ALGORITMO DE EXTRACCI\323N DE RELACIONES}{}% 37
+\BOOKMARK [2][-]{subsection.Alph5.1}{toy\137relex\137kmeans}{appendix.Alph5}% 38
+\BOOKMARK [2][-]{subsection.Alph5.2}{toy\137relex\137topic}{appendix.Alph5}% 39
+\BOOKMARK [2][-]{subsection.Alph5.3}{toy\137relex\137v2}{appendix.Alph5}% 40
+\BOOKMARK [2][-]{subsection.Alph5.4}{ner\137and\137sen\137extraction\137v2}{appendix.Alph5}% 41
+\BOOKMARK [1][-]{appendix.Alph6}{ANEXO: PROGRAMA FINAL}{}% 42
